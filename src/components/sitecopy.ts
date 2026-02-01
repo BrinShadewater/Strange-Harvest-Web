@@ -42,7 +42,7 @@ export const sitecopy = {
     stats: [
       { value: "2025", label: "Release Year" },
       { value: "134m", label: "Runtime" },
-      { value: "R", label: "Rating" },
+      { value: "RESTRICTED", label: "Disturbing / Grisly Violent Content And Language" },
       { value: "True Crime / Horror", label: "Genre" },
     ],
   },
@@ -259,6 +259,11 @@ export const sitecopy = {
         href: "https://www.cosmogo.com/#!/search?phrase=strange%20hav",
         icon: "/images/strange-harvest-watch-cosmo-streaming-icon.webp",
       },
+      {
+        name: "Sony Pictures Core",
+        href: "https://www.sonypicturescore.com",
+        icon: "/images/sony-pictures-core.webp",
+      },
     ],
     intl: [
       {
@@ -368,6 +373,7 @@ export const sitecopy = {
   footer: {
     title: "STRANGE HARVEST",
     tagline: "True Crime Found Footage Mockumentary",
+    rating: "Disturbing / Grisly Violent Content And Language",
     copyright: "© 2024 Strange Harvest. All rights reserved.",
     musicCredit: "Adorable Damage & Pathogen Pictures",
   },

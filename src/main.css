@@ -92,7 +92,7 @@ section:first-of-type {
 
 .hero {
   text-align: center;
-  padding-top: 24px;
+  padding-top: 120px !important;
   position: relative;
   padding-left: 50px;
   padding-right: 50px;
@@ -645,6 +645,14 @@ section:first-of-type {
   transform: translateY(-1px);
   background: rgba(255,255,255,0.07);
   border-color: rgba(255,255,255,0.18);
+}
+
+.watchIcon {
+  width: 84px !important;
+  height: 84px !important;
+  object-fit: cover;
+  margin-bottom: 10px;
+  display: block;
 }
 
 .watchName {
@@ -1391,7 +1399,38 @@ section {
   display: flex;
   justify-content: center;
   gap: 24px;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
+}
+
+.footerRating {
+  margin-bottom: 32px;
+}
+
+.ratingBox {
+  display: inline-block;
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  padding: 12px 16px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  max-width: 320px;
+}
+
+.ratingLetter {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.ratingText {
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .socialIcon {
