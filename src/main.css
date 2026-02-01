@@ -926,6 +926,7 @@ body::after {
   top: 0;
   left: 0;
   width: 100%;
+  background:
     radial-gradient(900px 520px at 50% -160px, rgba(255,255,255,0.04), rgba(0,0,0,0) 60%),
     radial-gradient(700px 520px at 20% 10%, rgba(120, 0, 0, 0.09), rgba(0,0,0,0) 55%),
     radial-gradient(900px 620px at 80% 15%, rgba(255, 210, 120, 0.03), rgba(0,0,0,0) 55%);
