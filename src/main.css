@@ -631,6 +631,7 @@ section:first-of-type {
 .watchCard {
   display: block;
   padding: 16px 16px;
+  min-height: 44px; /* Ensure touch target meets WCAG AAA */
   border-radius: 14px;
   text-decoration: none;
   background: rgba(255,255,255,0.04);

@@ -80,12 +80,12 @@ export default function Press() {
       </div>
 
       <div className="carouselDots">
-        {press.quotes.map((_, idx) => (
+        {press.quotes.map((review, idx) => (
           <button
             key={idx}
             className={`carouselDot ${idx === currentIndex ? 'active' : ''}`}
             onClick={() => setCurrentIndex(idx)}
-            aria-label={`Go to review ${idx + 1}`}
+            aria-label={`Go to review from ${review.source.split('/')[0].trim()}`}
             aria-current={idx === currentIndex ? 'true' : 'false'}
           />
         ))}
