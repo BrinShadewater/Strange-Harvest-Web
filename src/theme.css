@@ -1,5 +1,5 @@
 :root {
-  /* Colors (HSL tokens, Loveable-style) */
+  /* Colors (HSL tokens) */
   --background: 0 0% 4%;
   --foreground: 40 20% 90%;
 
@@ -54,7 +54,7 @@ p {
 }
 
 main {
-  max-width: 980px;      /* Loveable-ish */
+  max-width: 980px;
   margin: 0 auto;
   padding: 0 20px 96px;
 }
@@ -269,7 +269,7 @@ section {
   font-size: 14px;
 }
 
-/* Hover feel (Loveable-ish) */
+/* Hover effects */
 .watchCard:hover {
   transform: translateY(-2px);
   border-color: hsl(0, 65%, 45%);
