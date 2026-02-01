@@ -27,13 +27,6 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className="footerRating">
-          <div className="ratingBox">
-            <div className="ratingLetter">RESTRICTED</div>
-            <div className="ratingText">{footer.rating}</div>
-          </div>
-        </div>
-
         <div className="footerBottom">
           <p className="footerCopyright">{footer.copyright}</p>
           <p className="footerMusic">{footer.musicCredit}</p>
