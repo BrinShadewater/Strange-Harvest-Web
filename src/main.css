@@ -6,20 +6,28 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(200, 0, 0, 0.3);
+  tap-highlight-color: rgba(200, 0, 0, 0.3);
 }
 
+/* Improve text rendering on mobile */
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: #0e0f10;
   color: #e9e9e9;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 #root {
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow: visible;
+  overflow-x: hidden;
+  overflow-y: visible;
+  position: relative;
 }
 
 h1, h2, h3 {
@@ -39,10 +47,23 @@ p {
   color: rgba(255,255,255,0.86);
 }
 
+.siteHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(14, 15, 16, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+}
+
 main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 120px 80px;
+  padding: 80px 120px 80px;
   overflow: visible;
 }
 
@@ -339,11 +360,14 @@ section:first-of-type {
 }
 
 .siteHeader {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 50;
+  left: 0;
+  right: 0;
+  z-index: 100;
   background: rgba(14, 15, 16, 0.72);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   width: 100%;
 }
@@ -451,7 +475,7 @@ section:first-of-type {
 
 @media (max-width: 520px) {
   .siteHeaderInner {
-    padding: 14px 40px;
+    padding: 14px 20px;
   }
   
   .brand {
@@ -464,58 +488,25 @@ section:first-of-type {
   }
   
   .nav {
-    gap: 12px;
+    gap: 8px;
   }
   
   .nav a {
     font-size: 13px;
+    padding: 8px 4px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
   
   .cartIcon svg {
-    width: 24px;
-    height: 24px;
-  }
-}
-
-.cartIcon:hover {
-  color: hsl(0, 75%, 55%);
-  transform: scale(1.1);
-}
-
-@media (max-width: 520px) {
-  .siteHeaderInner {
-    padding: 14px 40px;
+    width: 28px;
+    height: 28px;
   }
   
-  .brand {
-    font-size: 16px;
-    gap: 10px;
-  }
-  
-  .brandSymbol {
-    width: 24px;
-  }
-  
-  .nav {
-    gap: 12px;
-  }
-  
-  .nav a {
-    font-size: 13px;
-  }
-  
-  .cartIcon svg {
-    width: 24px;
-    height: 24px;
-  }
-}
-
-@media (max-width: 520px) {
-  .nav {
-    gap: 12px;
-  }
-  .nav a {
-    font-size: 13px;
+  .cartIcon {
+    min-width: 44px;
+    min-height: 44px;
   }
 }
 
@@ -528,6 +519,10 @@ section:first-of-type {
   text-decoration: none;
   font-weight: 500;
   transition: transform 0.15s ease, background 0.15s ease;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cta:hover {
@@ -898,9 +893,39 @@ body::before {
   );
   z-index: 10;
 }
-  height: 100vh;
+
+/* Additional red spotlights throughout the page - more subtle and natural */
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-  background:
+  background: 
+    radial-gradient(
+      circle 800px at 20% 1400px,
+      rgba(180, 0, 0, 0.06) 0%,
+      rgba(160, 0, 0, 0.04) 20%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle 900px at 85% 2800px,
+      rgba(180, 0, 0, 0.07) 0%,
+      rgba(160, 0, 0, 0.045) 20%,
+      transparent 65%
+    );
+  z-index: 10;
+}
+
+#root::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
     radial-gradient(900px 520px at 50% -160px, rgba(255,255,255,0.04), rgba(0,0,0,0) 60%),
     radial-gradient(700px 520px at 20% 10%, rgba(120, 0, 0, 0.09), rgba(0,0,0,0) 55%),
     radial-gradient(900px 620px at 80% 15%, rgba(255, 210, 120, 0.03), rgba(0,0,0,0) 55%);
@@ -947,6 +972,37 @@ section {
 
 .skip-link:focus {
   top: 0;
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  flex-wrap: wrap;
+}
+
+.breadcrumb a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb a:hover {
+  color: hsl(0, 65%, 45%);
+}
+
+.breadcrumb-separator {
+  color: rgba(255, 255, 255, 0.3);
+  user-select: none;
+}
+
+.breadcrumb-current {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
 }
 
 /* Home Video Section */
@@ -1379,4 +1435,59 @@ section {
     width: 28px;
     height: 28px;
   }
+}
+
+/* Additional Mobile Optimizations */
+@media (max-width: 520px) {
+  /* Increase spacing for easier tapping */
+  .pressIcons {
+    gap: 24px;
+    margin: 24px 0;
+  }
+  
+  .pressIcon {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  /* Better touch targets for watch cards */
+  .watchCard {
+    min-height: 80px;
+    padding: 16px;
+  }
+  
+  /* Improve carousel buttons */
+  .carouselButton {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 12px;
+  }
+  
+  /* Better footer social icons */
+  .footerSocials a {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Adjust font sizes for better readability */
+  h2 {
+    font-size: 32px;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+}
+
+/* Horizontal scroll prevention */
+body {
+  overflow-x: hidden;
+}
+
+#root {
+  overflow-x: hidden;
 }

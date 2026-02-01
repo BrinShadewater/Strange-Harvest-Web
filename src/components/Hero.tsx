@@ -8,9 +8,11 @@ export default function Hero() {
       <div className="heroGrid">
         <div className="heroPoster">
           <img
-            src="/images/still-strange-harvest-poster.webp"
+            src="/images/strange-harvest-movie-poster-official.webp"
             alt="Strange Harvest Poster"
             loading="eager"
+            fetchPriority="high"
+            decoding="async"
             width="600"
             height="900"
           />

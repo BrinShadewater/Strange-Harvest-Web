@@ -1,23 +1,25 @@
 import { sitecopy } from "./sitecopy";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 export default function Press() {
   const { press } = sitecopy;
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const quotesLength = useMemo(() => press.quotes.length, [press.quotes.length]);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % press.quotes.length);
-    }, 5000);
+      setCurrentIndex((prev) => (prev + 1) % quotesLength);
+    }, 8000);
     return () => clearInterval(interval);
-  }, [press.quotes.length]);
+  }, [quotesLength]);
 
   const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev - 1 + press.quotes.length) % press.quotes.length);
+    setCurrentIndex((prev) => (prev - 1 + quotesLength) % quotesLength);
   };
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % press.quotes.length);
+    setCurrentIndex((prev) => (prev + 1) % quotesLength);
   };
 
   return (
@@ -61,6 +63,7 @@ export default function Press() {
                 transform: `translateX(${(idx - currentIndex) * 100}%)`,
               }}
             >
+              <img src="/images/quote-marks.svg" alt="" className="quoteDecoration" aria-hidden="true" />
               <blockquote className="pressQuote">"{review.quote}"</blockquote>
               <p className="pressSource">— {review.source}</p>
             </a>

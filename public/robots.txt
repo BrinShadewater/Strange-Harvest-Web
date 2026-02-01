@@ -4,6 +4,7 @@ Allow: /
 
 # Sitemap location
 Sitemap: https://strangeharvestmovie.com/sitemap.xml
+Sitemap: https://strangeharvestmovie.com/image-sitemap.xml
 
 # Crawl delay (optional, helps prevent server overload)
 Crawl-delay: 1

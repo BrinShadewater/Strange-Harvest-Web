@@ -10,6 +10,7 @@ export default function Trailer() {
           src="https://www.youtube.com/embed/tYyTpuk8Zuk"
           title="Strange Harvest Official Trailer"
           frameBorder="0"
+          loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />

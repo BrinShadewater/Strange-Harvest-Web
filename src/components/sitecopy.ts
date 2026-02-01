@@ -34,10 +34,10 @@ export const sitecopy = {
       attribution: "Detective Joe Kirby",
     },
     images: [
-      "/images/still-pool.webp",
-      "/images/still-kitchen.webp",
-      "/images/still-knife.webp",
-      "/images/still-handprint.webp",
+      "/images/strange-harvest-crime-scene-pool-investigation.webp",
+      "/images/strange-harvest-crime-scene-kitchen-evidence.webp",
+      "/images/strange-harvest-forensic-evidence-weapon-knife.webp",
+      "/images/strange-harvest-forensic-evidence-bloody-handprint.webp",
     ],
     stats: [
       { value: "2025", label: "Release Year" },
@@ -52,18 +52,23 @@ export const sitecopy = {
     icons: [
       {
         name: "Rotten Tomatoes",
-        icon: "/images/still-icon-fresh.webp",
+        icon: "/images/strange-harvest-rotten-tomatoes-fresh-icon.webp",
         href: "https://www.rottentomatoes.com/m/strange_harvest",
       },
       {
         name: "Letterboxd",
-        icon: "/images/still-icon-letterboxd.webp",
+        icon: "/images/strange-harvest-letterboxd-film-icon.webp",
         href: "https://letterboxd.com/film/strange-harvest-2024/",
       },
       {
         name: "Wikipedia",
-        icon: "/images/Still-icon-wiki.webp",
+        icon: "/images/strange-harvest-wikipedia-icon.webp",
         href: "https://en.wikipedia.org/wiki/Strange_Harvest_(film)",
+      },
+      {
+        name: "IMDb",
+        icon: "/images/svgcons/strange-harvest-imdb-rating-icon.svg",
+        href: "https://www.imdb.com/title/tt33400719/",
       },
     ],
     quotes: [
@@ -113,8 +118,106 @@ export const sitecopy = {
         quote: "Ortiz’s bone-chilling effort is easily the found footage horror standout of 2025",
         source: "Daily Dead / Rocco T. Thompson",
         href: "https://dailydead.com/fantastic-fest-2024-review-strange-harvest-occult-murder-in-the-inland-empire-is-an-instant-found-footage-classic/",
+      },      {
+        quote: "A fascinating and neatly realised horror riff on the 2020s' most popular genre.",
+        source: "Rotten Tomatoes Critics Consensus",
+        href: "https://www.rottentomatoes.com/m/strange_harvest",
       },
-    ],
+      {
+        quote: "A compelling horror show woven through mockumentary threads.",
+        source: "RogerEbert.com",
+        href: "https://www.rogerebert.com/reviews/strange-harvest-film-review-2025",
+      },
+      {
+        quote: "Strange Harvest offers plenty of grisly intrigue for genre fans.",
+        source: "Decider (Stream It Verdict)",
+        href: "https://decider.com/2025/12/26/strange-harvest-stream-it-or-skip-it/",
+      },
+      {
+        quote: "A deeply unsettling experience that mimics true-crime docs with eerie precision.",
+        source: "The Daily Beast",
+        href: "https://www.thedailybeast.com/obsessed/strange-harvest-true-crime-thriller-about-a-serial-killer-with-a-twist",
+      },
+      {
+        quote: "An impressively realistic faux-documentary horror.",
+        source: "JoshAtTheMovies.com",
+        href: "https://joshatthemovies.com/2025/08/04/film-review-strange-harvest/",
+      },
+      {
+        quote: "Like Lake Mungo, but original and confidently crafted.",
+        source: "Rue Morgue",
+        href: "https://rue-morgue.com/movie-review-strange-harvest-a-cleverly-twisted-take-on-true-crime/",
+      },
+      {
+        quote: "Perhaps the best pseudo-documentary since Lake Mungo.",
+        source: "Dread Central",
+        href: "https://en.wikipedia.org/wiki/Strange_Harvest_(film)",
+      },
+      {
+        quote: "An eerie, convincing recreation of modern true-crime format.",
+        source: "Paste Magazine",
+        href: "https://www.pastemagazine.com/movies/horror-movies/strange-harvest-review-documentary-mr-shiny-serial-killer-real-stuart-ortiz-killings",
+      },
+      {
+        quote: "Gruesome, nasty effects and dreadful intrigue keep the tension high.",
+        source: "Movies and Munchies",
+        href: "https://www.rottentomatoes.com/m/strange_harvest",
+      },
+      {
+        quote: "This mockumentary blurs fiction and reality with compelling verité style.",
+        source: "The Daily Beast",
+        href: "https://www.thedailybeast.com/obsessed/strange-harvest-true-crime-thriller-about-a-serial-killer-with-a-twist",
+      },
+      {
+        quote: "A gripping and immersive faux-true-crime thriller.",
+        source: "From the Fourth Row",
+        href: "https://fromthefourthrow.com/2025/08/09/strange-harvest-review-a-faux-documentary-film-that-felt-as-real-as-any-true-crime-documentary-ive-ever-seen/",
+      },
+      {
+        quote: "A thoroughly engaging horror mockumentary.",
+        source: "Moviejawn",
+        href: "https://www.moviejawn.com/home/2025/10/29/strange-harvest-review",
+      },
+      {
+        quote: "Worth horror mavens' time with enough variation on genre tropes.",
+        source: "Decider",
+        href: "https://www.rottentomatoes.com/m/strange_harvest",
+      },
+      {
+        quote: "Strange Harvest nails the true-crime parody in early moments.",
+        source: "Paste Magazine",
+        href: "https://www.pastemagazine.com/movies/horror-movies/strange-harvest-review-documentary-mr-shiny-serial-killer-real-stuart-ortiz-killings",
+      },
+      {
+        quote: "A convincing blend of documentary style and horror tension.",
+        source: "RogerEbert.com",
+        href: "https://www.rogerebert.com/reviews/strange-harvest-film-review-2025",
+      },
+      {
+        quote: "An unforgettable mockumentary experience for true-crime fans.",
+        source: "JoshAtTheMovies.com",
+        href: "https://joshatthemovies.com/2025/08/04/film-review-strange-harvest/",
+      },
+      {
+        quote: "The film's doc style keeps you immersed, making it feel almost real.",
+        source: "From the Fourth Row",
+        href: "https://fromthefourthrow.com/2025/08/09/strange-harvest-review-a-faux-documentary-film-that-felt-as-real-as-any-true-crime-documentary-ive-ever-seen/",
+      },
+      {
+        quote: "Mockumentary structure executed in a way that feels familiar and eerie.",
+        source: "Paste Magazine",
+        href: "https://www.pastemagazine.com/movies/horror-movies/strange-harvest-review-documentary-mr-shiny-serial-killer-real-stuart-ortiz-killings",
+      },
+      {
+        quote: "Strange Harvest sets itself apart with immersive documentary mimicry.",
+        source: "Decider",
+        href: "https://decider.com/2025/12/26/strange-harvest-stream-it-or-skip-it/",
+      },
+      {
+        quote: "A compelling horror journey that blends mockumentary realism with unsettling imagery.",
+        source: "Rotten Tomatoes",
+        href: "https://www.rottentomatoes.com/m/strange_harvest",
+      },    ],
   },
 
   watch: {
@@ -127,46 +230,46 @@ export const sitecopy = {
       {
         name: "Hulu",
         href: "https://www.hulu.com/movie/strange-harvest-e931d642-fe34-4b92-b6da-96f4c7573fac",
-        icon: "/images/still-icon-hulu.webp",
+        icon: "/images/strange-harvest-streaming-hulu-icon.webp",
       },
     ],
     usca: [
       {
         name: "Apple TV",
         href: "https://tv.apple.com/us/movie/strange-harvest/umc.cmc.4atgf8qjfghsw0w6ki9k7eqch",
-        icon: "/images/still-icon-appletv.webp",
+        icon: "/images/strange-harvest-watch-apple-tv-icon.webp",
       },
       {
         name: "Amazon",
         href: "https://www.primevideo.com/detail/Strange-Harvest/0GOLHLOCIIRVMO44IB2E0LMNN2",
-        icon: "/images/still-icon-primevideo.webp",
+        icon: "/images/strange-harvest-watch-amazon-prime-video-icon.webp",
       },
       {
         name: "Fandango",
         href: "https://athome.fandango.com/content/browse/details/Strange-Harvest/4473508",
-        icon: "/images/still-icon-fandago.webp",
+        icon: "/images/strange-harvest-watch-fandango-icon.webp",
       },
       {
         name: "YouTube",
         href: "https://www.youtube.com/watch?v=XU5edpgV37o",
-        icon: "/images/still-icon-youtube.webp",
+        icon: "/images/strange-harvest-watch-youtube-movies-icon.webp",
       },
       {
         name: "Cosmo",
         href: "https://www.cosmogo.com/#!/search?phrase=strange%20hav",
-        icon: "/images/still-icon-cosmogo.webp",
+        icon: "/images/strange-harvest-watch-cosmo-streaming-icon.webp",
       },
     ],
     intl: [
       {
         name: "Sky Store",
         href: "https://www.skystore.com/product/strange-harvest/5cea96ca-2f66-4c07-9d95-643537650b95",
-        icon: "/images/still-icon-skystore.webp",
+        icon: "/images/strange-harvest-watch-sky-store-uk-icon.webp",
       },
       {
         name: "Rakuten TV",
         href: "https://www.rakuten.tv/uk/movies/strange-harvest",
-        icon: "/images/still-rakutentv.webp",
+        icon: "/images/strange-harvest-watch-rakuten-tv-uk-icon.webp",
       },
     ],
   },
@@ -175,7 +278,7 @@ export const sitecopy = {
     title: "Official Home Video Release",
     productTitle: "Strange Harvest (DVD)",
     description: "Official DVD release distributed by Sony Pictures Home Entertainment. Manufactured on demand.",
-    image: "/images/still-strange-harvest-poster.webp",
+    image: "/images/strange-harvest-movie-poster-official.webp",
     cta: { label: "View on Amazon", href: "https://www.amazon.com/Strange-Harvest-Stuart-Ortiz/dp/B0FSMGS86V/ref=sr_1_1?crid=3MEPFFGPVKEM4&dib=eyJ2IjoiMSJ9.wKKvBTt3a79y5PdK9kfPjEDogznzPzIjEJhY4NzKGzDmfLB_hGnjjtNctm0t9N8raH6bVMMEEkTgHioXFfqEcgoCzCFly1CQ-K5k0qM9Wcv7XRxOuQuaDQ8D7yNVrOTtCBaq8WB_s1gh-axVW2i1IK6gd_8qTyt_8Lg_mpakl6DnvnRDK6kD4oYHdhPtCI7pNFeaXzamO35EtoyuX71ARS25EPMTEsglBNYP-8LXY5w.t9IPUet8BAUX-k5oYES1X0jiXOfPSMbPAwnbJysWGw8&dib_tag=se&keywords=strange+harvest&qid=1768728090&sprefix=strange+harves%2Caps%2C204&sr=8-1", target: "_blank" },
     disclaimer: "*Sold and fulfilled by Amazon.",
   },
@@ -194,13 +297,13 @@ export const sitecopy = {
         {
           name: "Peter Zizzo",
           role: "Detective Joe Kirby",
-          image: "/images/still-kirby.webp",
+          image: "/images/strange-harvest-detective-joe-kirby-peter-zizzo.webp",
           imdb: "https://www.imdb.com/name/nm0970567/",
         },
         {
           name: "Terri Apple",
           role: "Detective Lexi Taylor",
-          image: "/images/still-taylor.webp",
+          image: "/images/strange-harvest-detective-lexi-taylor-terri-apple.webp",
           imdb: "https://www.imdb.com/name/nm0032322/",
         },
       ],

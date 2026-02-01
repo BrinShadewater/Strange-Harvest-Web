@@ -11,19 +11,19 @@ export default function Footer() {
         
         <div className="footerSocials">
           <a href="https://www.rottentomatoes.com/m/strange_harvest" target="_blank" rel="noreferrer" aria-label="Rotten Tomatoes">
-            <img src="/images/still-icon-tomato.webp" alt="Rotten Tomatoes" className="socialIcon" />
+            <img src="/images/strange-harvest-rotten-tomatoes-icon.webp" alt="Rotten Tomatoes" className="socialIcon" />
           </a>
           <a href="https://www.instagram.com/strangeharvestmovie/" target="_blank" rel="noreferrer" aria-label="Instagram">
-            <img src="/images/still-icon-instagram.webp" alt="Instagram" className="socialIcon" />
+            <img src="/images/strange-harvest-social-instagram-icon.webp" alt="Instagram" className="socialIcon" />
           </a>
           <a href="https://www.facebook.com/Strangeharvestmovie/" target="_blank" rel="noreferrer" aria-label="Facebook">
-            <img src="/images/still-icon-facebook.webp" alt="Facebook" className="socialIcon" />
+            <img src="/images/strange-harvest-social-facebook-icon.webp" alt="Facebook" className="socialIcon" />
           </a>
           <a href="https://x.com/Strange_Harvest" target="_blank" rel="noreferrer" aria-label="X (Twitter)">
-            <img src="/images/still-icon-twitter.webp" alt="X (Twitter)" className="socialIcon noFilter" />
+            <img src="/images/strange-harvest-social-twitter-x-icon.webp" alt="X (Twitter)" className="socialIcon noFilter" />
           </a>
           <a href="https://www.youtube.com/@strangeharvestfilm" target="_blank" rel="noreferrer" aria-label="YouTube">
-            <img src="/images/still-icon-youtube2.webp" alt="YouTube" className="socialIcon" />
+            <img src="/images/strange-harvest-social-youtube-channel-icon.webp" alt="YouTube" className="socialIcon" />
           </a>
         </div>
 

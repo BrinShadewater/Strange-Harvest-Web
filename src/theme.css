@@ -366,7 +366,7 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 24px;
+  padding: 48px 24px 24px 24px;
   background: hsl(var(--card));
   border: 1px solid hsl(var(--border));
   border-radius: var(--radius);
@@ -374,6 +374,17 @@ section {
   color: inherit;
   transition: transform 0.5s ease, opacity 0.5s ease;
   opacity: 0;
+  pointer-events: none;
+}
+
+.quoteDecoration {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  width: 60px;
+  height: auto;
+  opacity: 0.6;
+  z-index: 0;
   pointer-events: none;
 }
 
@@ -392,6 +403,8 @@ section {
   line-height: 1.6;
   margin: 0 0 20px;
   color: hsl(var(--foreground));
+  position: relative;
+  z-index: 2;
 }
 
 .pressSource {

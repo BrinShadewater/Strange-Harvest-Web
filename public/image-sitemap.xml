@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage Images -->
+  <url>
+    <loc>https://strangeharvestmovie.com/</loc>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-movie-poster-official.webp</image:loc>
+      <image:title>Strange Harvest Movie Poster</image:title>
+      <image:caption>Official theatrical poster for Strange Harvest horror film</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-occult-symbol-horror-icon.webp</image:loc>
+      <image:title>Strange Harvest Symbol</image:title>
+      <image:caption>Mysterious symbol from Strange Harvest film</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-crime-scene-pool-investigation.webp</image:loc>
+      <image:title>Crime Scene - Pool Investigation</image:title>
+      <image:caption>Detective investigation scene from Strange Harvest</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-crime-scene-kitchen-evidence.webp</image:loc>
+      <image:title>Crime Scene - Kitchen Evidence</image:title>
+      <image:caption>Evidence collection scene from Strange Harvest</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-forensic-evidence-weapon-knife.webp</image:loc>
+      <image:title>Forensic Evidence - Weapon</image:title>
+      <image:caption>Forensic evidence from Strange Harvest investigation</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-forensic-evidence-bloody-handprint.webp</image:loc>
+      <image:title>Forensic Evidence - Handprint</image:title>
+      <image:caption>Bloodied handprint evidence from Strange Harvest</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-detective-joe-kirby-peter-zizzo.webp</image:loc>
+      <image:title>Detective Joe Kirby</image:title>
+      <image:caption>Peter Zizzo as Detective Joe Kirby in Strange Harvest</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-detective-lexi-taylor-terri-apple.webp</image:loc>
+      <image:title>Detective Lexi Taylor</image:title>
+      <image:caption>Terri Apple as Detective Lexi Taylor in Strange Harvest</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Press Page Images -->
+  <url>
+    <loc>https://strangeharvestmovie.com/press</loc>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-movie-poster-official.webp</image:loc>
+      <image:title>Strange Harvest Official Poster - Press Kit</image:title>
+      <image:caption>High resolution poster for press and media use</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-detective-joe-kirby-peter-zizzo.webp</image:loc>
+      <image:title>Peter Zizzo - Detective Joe Kirby Press Photo</image:title>
+      <image:caption>Lead actor Peter Zizzo as Detective Joe Kirby</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-detective-lexi-taylor-terri-apple.webp</image:loc>
+      <image:title>Terri Apple - Detective Lexi Taylor Press Photo</image:title>
+      <image:caption>Lead actress Terri Apple as Detective Lexi Taylor</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Platform Icons -->
+  <url>
+    <loc>https://strangeharvestmovie.com/#watch</loc>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-hulu-icon.webp</image:loc>
+      <image:title>Watch Strange Harvest on Hulu</image:title>
+      <image:caption>Hulu streaming platform icon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-appletv-icon.webp</image:loc>
+      <image:title>Rent Strange Harvest on Apple TV</image:title>
+      <image:caption>Apple TV platform icon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-primevideo-icon.webp</image:loc>
+      <image:title>Watch Strange Harvest on Prime Video</image:title>
+      <image:caption>Amazon Prime Video platform icon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-youtube-icon.webp</image:loc>
+      <image:title>Rent Strange Harvest on YouTube</image:title>
+      <image:caption>YouTube Movies platform icon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-fandago-icon.webp</image:loc>
+      <image:title>Watch Strange Harvest on Fandango</image:title>
+      <image:caption>Fandango at Home platform icon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-cosmogo-icon.webp</image:loc>
+      <image:title>Watch Strange Harvest on Cosmo</image:title>
+      <image:caption>Cosmo streaming platform icon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-skystore-icon.webp</image:loc>
+      <image:title>Watch Strange Harvest on Sky Store UK</image:title>
+      <image:caption>Sky Store UK platform icon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-rakutentv-icon.webp</image:loc>
+      <image:title>Watch Strange Harvest on Rakuten TV</image:title>
+      <image:caption>Rakuten TV UK platform icon</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Press Icons -->
+  <url>
+    <loc>https://strangeharvestmovie.com/#press</loc>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-press-fresh-icon.webp</image:loc>
+      <image:title>Strange Harvest on Rotten Tomatoes</image:title>
+      <image:caption>Rotten Tomatoes Fresh rating icon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-press-letterboxd-icon.webp</image:loc>
+      <image:title>Strange Harvest on Letterboxd</image:title>
+      <image:caption>Letterboxd film social platform icon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-press-wiki-icon.webp</image:loc>
+      <image:title>Strange Harvest Wikipedia Page</image:title>
+      <image:caption>Wikipedia encyclopedia icon</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Social Media Icons -->
+  <url>
+    <loc>https://strangeharvestmovie.com/</loc>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-social-instagram-icon.webp</image:loc>
+      <image:title>Strange Harvest on Instagram</image:title>
+      <image:caption>Instagram social media icon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-social-facebook-icon.webp</image:loc>
+      <image:title>Strange Harvest on Facebook</image:title>
+      <image:caption>Facebook social media icon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-social-twitter-icon.webp</image:loc>
+      <image:title>Strange Harvest on X Twitter</image:title>
+      <image:caption>X (Twitter) social media icon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-social-youtube-icon.webp</image:loc>
+      <image:title>Strange Harvest YouTube Channel</image:title>
+      <image:caption>YouTube channel icon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-social-tomato-icon.webp</image:loc>
+      <image:title>Strange Harvest Rotten Tomatoes Link</image:title>
+      <image:caption>Rotten Tomatoes review aggregator icon</image:caption>
+    </image:image>
+  </url>
+
+</urlset>

@@ -11,7 +11,7 @@ export default function Synopsis() {
   };
 
   return (
-    <section className="synopsis" id="about">
+    <article className="synopsis" id="about">
       <h2 className="synopsisTitle">{synopsis.title}</h2>
       
       <div className="synopsisContent">
@@ -54,6 +54,6 @@ export default function Synopsis() {
           ))}
         </div>
       )}
-    </section>
+    </article>
   );
 }

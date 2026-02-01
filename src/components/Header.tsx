@@ -4,7 +4,7 @@ export default function Header() {
       <a href="#main" className="skip-link">Skip to main content</a>
       <div className="siteHeaderInner">
         <a className="brand" href="#top" aria-label="Strange Harvest home">
-          <img src="/images/still-symbol-divider.webp" alt="" className="brandSymbol" loading="eager" />
+          <img src="/images/strange-harvest-occult-symbol-horror-icon.webp" alt="" className="brandSymbol" loading="eager" />
           Strange Harvest
         </a>
 

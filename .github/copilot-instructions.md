@@ -49,18 +49,18 @@ Components live in `src/components/` and are rendered in this exact sequence by 
 #### Component Types
 
 **Layout Components:**
-- `Header.tsx` - Sticky navigation with brand logo, nav links, and cart icon
+- `Header.tsx` - Fixed navigation (position: fixed) with brand logo, nav links, and cart icon - stays at top on scroll
 - `Footer.tsx` - Site footer with social links and copyright
 - `SymbolDivider.tsx` - Visual separator using horror symbol image
 
 **Content Sections:**
-- `Hero.tsx` - Movie poster + title + CTAs in two-column grid
-- `Synopsis.tsx` - Plot summary with detective names highlighted, quote block, image grid, and stats
-- `Trailer.tsx` - YouTube embed wrapper
+- `Hero.tsx` - Movie poster + title + CTAs in two-column grid (poster has fetchPriority="high")
+- `Synopsis.tsx` - Plot summary with detective names highlighted, quote block, image grid, and stats (uses <article> tag for reader mode)
+- `Trailer.tsx` - YouTube embed wrapper (lazy loaded iframe)
 - `Watch.tsx` - Streaming and rental platform cards with icons
 - `HomeVideo.tsx` - DVD product card with Amazon link
 - `Merch.tsx` - Shopify product grid (dynamic, fetches from API)
-- `Press.tsx` - Press icons + carousel of review quotes
+- `Press.tsx` - Press icons + carousel of 28 review quotes (8-second rotation) with decorative SVG quotation marks
 - `CastCrew.tsx` - Lead detectives, full cast grid, crew sections
 
 **Utility Components:**
@@ -187,16 +187,15 @@ npm run preview  # Preview production build locally
 **Location**: All assets in `public/` (accessible as `/path/to/asset`)
 
 **Image conventions**:
-- `still-*.webp` - Movie stills, screenshots, promotional images
-- `icon-*.webp` - Platform icons (Apple TV, Hulu, etc.)
-- `still-symbol-divider.webp` - Horror symbol used in SymbolDivider
-- `still-strange-harvest-poster.webp` - Main poster image
+- All images use SEO-friendly naming: `strange-harvest-[context]-[description].webp`
+- Examples: `strange-harvest-movie-poster-official.webp`, `strange-harvest-watch-hulu-icon.webp`
+- SVG assets in `/images/` (e.g., `quote-marks.svg` for press section)
 
 **Image formats**:
 - **Preferred**: WebP for best compression/quality ratio
 - Always include `alt` text for accessibility
 - Use `loading="lazy"` for below-fold images
-- Use `loading="eager"` and `width`/`height` for hero poster (LCP optimization)
+- Use `loading="eager"` and `fetchPriority="high"` with `width`/`height` for hero poster (LCP optimization)
 
 **Icon organization**:
 - Platform icons in `/images/` root
@@ -248,7 +247,10 @@ quotes: Array<{
 ### State Management
 - **No global state library** (no Redux, Zustand, etc.)
 - Local state only where needed:
-  - `Press.tsx` - Carousel index state
+  - `Press.tsx` - Carousel index state (8-second rotation with useMemo optimization)
+  - `Merch.tsx` - Loading state, products array
+  - `CookieConsent.tsx` - Visibility state + localStorage
+- All content is static from `sitecopy.ts` (no API calls except Shopify)
   - `Merch.tsx` - Loading state, products array
   - `CookieConsent.tsx` - Visibility state + localStorage
 - All content is static from `sitecopy.ts` (no API calls except Shopify)
@@ -264,19 +266,35 @@ quotes: Array<{
 ## SEO & Meta Tags
 
 ### Meta Tag Structure (in index.html)
-- **Basic SEO**: title, description, keywords, author
-- **Open Graph**: Full OG tags for Facebook/social sharing
-- **Twitter Card**: Summary large image card
-- **JSON-LD**: Structured data for Movie, VideoObject, Organization, Reviews, BreadcrumbList
+- **Title**: Clean format - `Strange Harvest | True Crime Found Footage Horror Film` (no keyword stuffing)
+- **Basic SEO**: Description, keywords, author, robots directive with `max-image-preview:large, max-snippet:-1`
+- **Security Headers**: Referrer policy, X-Content-Type-Options, Permissions-Policy
+- **Open Graph**: Full OG tags with image dimensions for Facebook/social sharing
+- **Twitter Card**: Summary large image card with complete metadata
+- **JSON-LD Structured Data**:
+  - **Movie** schema with director, cast, aggregateRating, sameAs links
+  - **VideoObject** schema with actual YouTube trailer ID: `tYyTpuk8Zuk`
+  - **Organization** schema with social media links
+  - **Person** schemas for 16 cast & crew members (Peter Zizzo, Terri Apple, Andy Lauer, Matthew Peschio, Janna Cardia, Travis T. Wolfe Sr., Christina Hélène Braa, Roy Abramsohn, Jesse Clarkson, Dawsyn Eubanks, Tim Shelburne, Matthew M Garcia, Ross Turner, David Hemphill, Stuart Ortiz)
+  - **Offer** schemas for streaming/rental (Hulu subscription, Apple TV, Amazon Prime Video, Fandango at Home, YouTube Movies)
+  - **Review** schemas (11 total from major outlets)
+  - **BreadcrumbList** for navigation structure
+  - **FAQPage** with 7 common questions
+  - **WebSite** with search action
 - **Canonical URL**: `https://strangeharvestmovie.com/`
 - **Sitemap**: `/sitemap.xml` (updated dates to signal fresh content)
-- **Robots**: `/robots.txt` (allows all crawlers, 1s delay)
+- **Image Sitemap**: `/image-sitemap.xml` for Google Image Search optimization
+- **Robots**: `/robots.txt` (allows all crawlers, references both sitemaps)
+- **Hreflang**: Language/regional targeting (en, en-US, en-GB, x-default)
+- **Reader Mode**: article:* meta properties for Safari/Firefox reader mode
 
 ### Performance Optimizations
 - **Preload critical assets**: Hero poster image, Google Fonts CSS
 - **DNS prefetch**: External domains (YouTube, streaming platforms, Shopify)
 - **Lazy loading**: All images except hero poster
 - **Resource hints**: `preconnect` for YouTube
+- **Build optimization**: Terser minification, CSS minification, code splitting (react-vendor chunk)
+- **React optimization**: useMemo in Press component for carousel
 
 ## Common Tasks
 
@@ -339,7 +357,9 @@ quotes: Array<{
 │   ├── images/               # All image assets (webp preferred)
 │   │   └── svgcons/          # SVG icons
 │   ├── sitemap.xml           # SEO sitemap
+│   ├── image-sitemap.xml     # Image SEO sitemap
 │   ├── robots.txt            # Crawler directives
+│   ├── press.html            # Press kit page (fully optimized with structured data)
 │   ├── privacy.html          # Privacy policy page
 │   ├── site.webmanifest      # PWA manifest
 │   └── favicon-*.png         # Favicons
@@ -391,4 +411,18 @@ quotes: Array<{
 
 ---
 
-**Last Updated**: January 31, 2026
+**Last Updated**: February 1, 2026
+
+**Recent Updates**:
+- Added comprehensive Person schemas for all 16 cast & crew members
+- Added Offer schemas for streaming/rental platforms ("Where to watch" rich results)
+- Fixed YouTube trailer ID in VideoObject schema (tYyTpuk8Zuk)
+- Updated title format to cleaner style: `Strange Harvest | True Crime Found Footage Horror Film`
+- Added robots directive meta tag: `index, follow, max-image-preview:large, max-snippet:-1`
+- Fully optimized press.html page with structured data, security headers, and enhanced SEO
+- Added 20 additional press quotes (28 total in carousel)
+- Fixed header to position: fixed for proper scroll behavior
+- Added SVG quotation marks to press review cards
+- Optimized build with terser minification and code splitting
+- All images renamed with SEO-friendly naming convention
+- Added comprehensive structured data and image sitemap
