@@ -2,12 +2,40 @@ export const sitecopy = {
   cookieConsent: {
     title: "Cookie Notice",
     message:
-      "This website uses cookies to improve your browsing experience and analyze site traffic. By clicking 'Accept', you consent to our use of cookies.",
-    acceptButton: "Accept",
-    declineButton: "Decline",
+      "This website uses cookies to improve your browsing experience and analyze site traffic. You can choose which cookies to accept.",
+    acceptAllButton: "Accept All",
+    essentialOnlyButton: "Only Essential Cookies",
+    manageButton: "Manage Preferences",
+    saveButton: "Save Preferences",
     privacyLink: {
       label: "Privacy Policy",
       href: "/privacy.html",
+    },
+    preferences: {
+      title: "Cookie Preferences",
+      description: "Choose which types of cookies you want to allow. Essential cookies cannot be disabled as they are necessary for the site to function.",
+      categories: {
+        essential: {
+          label: "Essential Cookies",
+          description: "Required for basic site functionality. These cannot be disabled.",
+          required: true,
+        },
+        analytics: {
+          label: "Analytics Cookies",
+          description: "Help us understand how visitors interact with our website.",
+          required: false,
+        },
+        marketing: {
+          label: "Marketing Cookies",
+          description: "Used to track visitors across websites for advertising purposes.",
+          required: false,
+        },
+        preferences: {
+          label: "Preference Cookies",
+          description: "Remember your settings and preferences for future visits.",
+          required: false,
+        },
+      },
     },
   },
 
@@ -25,7 +53,7 @@ export const sitecopy = {
   synopsis: {
     title: "About",
     body: [
-      `A routine welfare check in the San Bernardino suburbs leads to a gruesome discovery — a family of three has been bound, bled and posed below a strange symbol written in blood on the ceiling. Detective Joe Kirby and Lexi Taylor recognize the symbol as the calling card of a killer from 15 years earlier who has seemingly returned to continue his murder spree.`,
+      `This is the official website for Strange Harvest (2025). A routine welfare check in the San Bernardino suburbs leads to a gruesome discovery — a family of three has been bound, bled and posed below a strange symbol written in blood on the ceiling. Detective Joe Kirby and Lexi Taylor recognize the symbol as the calling card of a killer from 15 years earlier who has seemingly returned to continue his murder spree.`,
       `It's not long before "Mr. Shiny" begins leaving horrifying new crime scenes in his wake; one victim is trapped in a swimming pool with live leeches while another is ritualistically flayed and displayed in a public park.`,
       `It soon becomes evident the case is anything but routine and that the murders, and their perpetrator, may be part of some sinister, otherworldly agenda involving cosmic phenomena and evil forces from beyond.`,
     ],
@@ -374,6 +402,7 @@ export const sitecopy = {
     title: "STRANGE HARVEST",
     tagline: "True Crime Found Footage Mockumentary",
     rating: "Disturbing / Grisly Violent Content And Language",
+    officialNotice: "Official Website of Strange Harvest (2025)",
     copyright: "© 2024 Strange Harvest. All rights reserved.",
     musicCredit: "Adorable Damage & Pathogen Pictures",
   },

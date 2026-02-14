@@ -3,6 +3,10 @@ import { sitecopy } from "./sitecopy";
 export default function Footer() {
   const { footer } = sitecopy;
 
+  const handleCookieSettings = () => {
+    window.dispatchEvent(new Event("openCookieSettings"));
+  };
+
   return (
     <footer className="siteFooter">
       <div className="footerContent">
@@ -28,8 +32,16 @@ export default function Footer() {
         </div>
 
         <div className="footerBottom">
+          <p className="footerOfficial">{footer.officialNotice}</p>
           <p className="footerCopyright">{footer.copyright}</p>
           <p className="footerMusic">{footer.musicCredit}</p>
+          <button 
+            onClick={handleCookieSettings}
+            className="footerCookieSettings"
+            aria-label="Manage cookie preferences"
+          >
+            Cookie Settings
+          </button>
         </div>
       </div>
     </footer>

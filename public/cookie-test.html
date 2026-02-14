@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Consent Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 4px;
+        }
+        button:hover {
+            background: #b71c1c;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .error {
+            background: #ffebee;
+            color: #c62828;
+        }
+        .info {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍪 Cookie Consent Testing Dashboard</h1>
+    
+    <div class="test-section">
+        <h2>Current Consent Status</h2>
+        <div id="consentStatus" class="status info">
+            Loading...
+        </div>
+        <button onclick="checkConsent()">Refresh Status</button>
+        <button onclick="clearConsent()">Clear Consent</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Simulate Consent Choices</h2>
+        <button onclick="acceptAll()">Accept All</button>
+        <button onclick="essentialOnly()">Essential Only</button>
+        <button onclick="customConsent()">Custom (Analytics Only)</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Network Monitoring</h2>
+        <p>Open DevTools → Network tab to verify:</p>
+        <ul>
+            <li>Before consent: No analytics/tracking requests</li>
+            <li>After "Accept All": Analytics scripts should load</li>
+            <li>After "Essential Only": No analytics/tracking requests</li>
+        </ul>
+        <div id="networkStatus" class="status info">
+            Check browser Network tab for verification
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Quick Tests</h2>
+        <ol>
+            <li><strong>Clear Consent:</strong> Click "Clear Consent" above, then refresh the page</li>
+            <li><strong>Verify Banner:</strong> Cookie banner should appear at bottom</li>
+            <li><strong>Test Buttons:</strong> Try all three banner buttons</li>
+            <li><strong>Test Modal:</strong> Click "Manage Preferences" to open modal</li>
+            <li><strong>Test Toggles:</strong> Toggle cookie categories on/off</li>
+            <li><strong>Test Save:</strong> Click "Save Preferences" in modal</li>
+            <li><strong>Verify Persistence:</strong> Refresh page - banner should not appear</li>
+            <li><strong>Test Footer Link:</strong> Scroll to footer, click "Cookie Settings"</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>Console Logs</h2>
+        <p>Expected console messages:</p>
+        <ul>
+            <li><code>Analytics scripts loaded</code> - When analytics consent given</li>
+            <li><code>Marketing scripts loaded</code> - When marketing consent given</li>
+            <li><code>Preference scripts loaded</code> - When preference consent given</li>
+        </ul>
+        <p>Open DevTools Console to see messages</p>
+    </div>
+
+    <script>
+        const CONSENT_KEY = 'sh_consent';
+
+        function checkConsent() {
+            const consent = localStorage.getItem(CONSENT_KEY);
+            const statusDiv = document.getElementById('consentStatus');
+            
+            if (!consent) {
+                statusDiv.className = 'status error';
+                statusDiv.textContent = 'No consent set (banner should show on main site)';
+            } else {
+                try {
+                    const parsed = JSON.parse(consent);
+                    statusDiv.className = 'status success';
+                    statusDiv.innerHTML = `
+                        <strong>Consent saved:</strong><br>
+                        Essential: ${parsed.essential ? '✅' : '❌'}<br>
+                        Analytics: ${parsed.analytics ? '✅' : '❌'}<br>
+                        Marketing: ${parsed.marketing ? '✅' : '❌'}<br>
+                        Preferences: ${parsed.preferences ? '✅' : '❌'}
+                    `;
+                } catch (e) {
+                    statusDiv.className = 'status error';
+                    statusDiv.textContent = 'Error parsing consent: ' + e.message;
+                }
+            }
+        }
+
+        function clearConsent() {
+            localStorage.removeItem(CONSENT_KEY);
+            checkConsent();
+            alert('Consent cleared! Refresh the main site to see the banner again.');
+        }
+
+        function acceptAll() {
+            const consent = {
+                essential: true,
+                analytics: true,
+                marketing: true,
+                preferences: true
+            };
+            localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+            checkConsent();
+            alert('Accept All consent set! Check the status above.');
+        }
+
+        function essentialOnly() {
+            const consent = {
+                essential: true,
+                analytics: false,
+                marketing: false,
+                preferences: false
+            };
+            localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+            checkConsent();
+            alert('Essential Only consent set! Check the status above.');
+        }
+
+        function customConsent() {
+            const consent = {
+                essential: true,
+                analytics: true,
+                marketing: false,
+                preferences: false
+            };
+            localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+            checkConsent();
+            alert('Custom consent (Analytics only) set! Check the status above.');
+        }
+
+        // Check status on load
+        checkConsent();
+
+        // Update status every 2 seconds
+        setInterval(checkConsent, 2000);
+    </script>
+</body>
+</html>
