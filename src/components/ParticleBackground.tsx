@@ -62,7 +62,7 @@ export default function ParticleBackground() {
           size: Math.random() * 40 + 20, // 20-60px
           speedX: (Math.random() - 0.5) * 0.3,
           speedY: (Math.random() - 0.5) * 0.3,
-          opacity: Math.random() * 0.1 + 0.02, // Very subtle: 0.02-0.12
+          opacity: Math.random() * 0.075 + 0.015, // Reduced 25%: 0.015-0.09
           rotation: Math.random() * Math.PI * 2,
           rotationSpeed: (Math.random() - 0.5) * 0.01,
         });
@@ -80,7 +80,7 @@ export default function ParticleBackground() {
           size: Math.random() * 2 + 0.5, // 0.5-2.5px tiny flecks
           speedX: (Math.random() - 0.5) * 0.5,
           speedY: (Math.random() - 0.5) * 0.5,
-          opacity: Math.random() * 0.3 + 0.1, // 0.1-0.4 opacity
+          opacity: Math.random() * 0.225 + 0.075, // Reduced 25%: 0.075-0.3
         });
       }
       flecksRef.current = flecks;

@@ -161,12 +161,11 @@ section:first-of-type {
   width: 100%;
   height: auto;
   border-radius: var(--radius);
-  border: 1px solid hsl(var(--border));
-  filter: 
-    drop-shadow(0 0 8px rgba(200, 0, 0, 0.175))
-    drop-shadow(0 0 18px rgba(180, 0, 0, 0.12))
-    drop-shadow(0 0 30px rgba(160, 0, 0, 0.08))
-    drop-shadow(0 0 45px rgba(140, 0, 0, 0.04));
+  border: 1px solid rgba(200, 0, 0, 0.3);
+  box-shadow: 
+    0 0 20px rgba(140, 0, 0, 0.15),
+    0 0 40px rgba(120, 0, 0, 0.08),
+    inset 0 0 0 1px rgba(200, 0, 0, 0.1);
 }
 
 .heroPoster {
@@ -194,7 +193,7 @@ section:first-of-type {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-size: 12px;
-  color: hsl(var(--muted-foreground));
+  color: rgba(255, 255, 255, 0.92);
   margin-bottom: 8px;
 }
 

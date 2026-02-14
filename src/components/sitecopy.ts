@@ -53,7 +53,7 @@ export const sitecopy = {
   synopsis: {
     title: "About",
     body: [
-      `This is the official website for Strange Harvest (2025). A routine welfare check in the San Bernardino suburbs leads to a gruesome discovery — a family of three has been bound, bled and posed below a strange symbol written in blood on the ceiling. Detective Joe Kirby and Lexi Taylor recognize the symbol as the calling card of a killer from 15 years earlier who has seemingly returned to continue his murder spree.`,
+      `A routine welfare check in the San Bernardino suburbs leads to a gruesome discovery — a family of three has been bound, bled and posed below a strange symbol written in blood on the ceiling. Detective Joe Kirby and Lexi Taylor recognize the symbol as the calling card of a killer from 15 years earlier who has seemingly returned to continue his murder spree.`,
       `It's not long before "Mr. Shiny" begins leaving horrifying new crime scenes in his wake; one victim is trapped in a swimming pool with live leeches while another is ritualistically flayed and displayed in a public park.`,
       `It soon becomes evident the case is anything but routine and that the murders, and their perpetrator, may be part of some sinister, otherworldly agenda involving cosmic phenomena and evil forces from beyond.`,
     ],
