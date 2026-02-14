@@ -912,10 +912,10 @@ body::before {
   pointer-events: none;
   background: radial-gradient(
     circle 650px at 85% 100px,
-    rgba(200, 0, 0, 0.135) 0%,
-    rgba(180, 0, 0, 0.09) 15%,
-    rgba(160, 0, 0, 0.055) 30%,
-    rgba(140, 0, 0, 0.03) 45%,
+    rgba(200, 0, 0, 0.08) 0%,
+    rgba(180, 0, 0, 0.05) 15%,
+    rgba(160, 0, 0, 0.03) 30%,
+    rgba(140, 0, 0, 0.015) 45%,
     transparent 65%
   );
   z-index: 10;
@@ -934,14 +934,14 @@ body::after {
   background: 
     radial-gradient(
       circle 800px at 20% 1400px,
-      rgba(180, 0, 0, 0.06) 0%,
-      rgba(160, 0, 0, 0.04) 20%,
+      rgba(180, 0, 0, 0.04) 0%,
+      rgba(160, 0, 0, 0.025) 20%,
       transparent 60%
     ),
     radial-gradient(
       circle 900px at 85% 2800px,
-      rgba(180, 0, 0, 0.07) 0%,
-      rgba(160, 0, 0, 0.045) 20%,
+      rgba(180, 0, 0, 0.045) 0%,
+      rgba(160, 0, 0, 0.028) 20%,
       transparent 65%
     );
   z-index: 10;
@@ -954,9 +954,9 @@ body::after {
   left: 0;
   width: 100%;
   background:
-    radial-gradient(900px 520px at 50% -160px, rgba(255,255,255,0.04), rgba(0,0,0,0) 60%),
-    radial-gradient(700px 520px at 20% 10%, rgba(120, 0, 0, 0.09), rgba(0,0,0,0) 55%),
-    radial-gradient(900px 620px at 80% 15%, rgba(255, 210, 120, 0.03), rgba(0,0,0,0) 55%);
+    radial-gradient(900px 520px at 50% -160px, rgba(255,255,255,0.03), rgba(0,0,0,0) 60%),
+    radial-gradient(700px 520px at 20% 10%, rgba(120, 0, 0, 0.06), rgba(0,0,0,0) 55%),
+    radial-gradient(900px 620px at 80% 15%, rgba(255, 210, 120, 0.02), rgba(0,0,0,0) 55%);
   z-index: 0;
 }
 
