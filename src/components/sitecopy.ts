@@ -41,7 +41,7 @@ export const sitecopy = {
 
   hero: {
     title: "STRANGE HARVEST",
-    tagline: "TRUE-CRIME FOUND FOOTAGE MOCKUMENTARY",
+    tagline: "TRUE-CRIME FOUND FOOTAGE HORROR MOCKUMENTARY",
     subtitle: "OFFICIAL WEBSITE",
     ctas: {
       primary: { label: "Watch Trailer", href: "#trailer" },

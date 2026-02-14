@@ -7,7 +7,7 @@ export default function Trailer() {
 
       <div style={{ marginTop: '48px' }} className="videoWrapper">
         <iframe
-          src="https://www.youtube.com/embed/tYyTpuk8Zuk"
+          src="https://www.youtube.com/embed/tYyTpuk8Zuk?cc_load_policy=1"
           title="Strange Harvest Official Trailer"
           frameBorder="0"
           loading="lazy"
