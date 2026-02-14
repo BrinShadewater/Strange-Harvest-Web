@@ -844,7 +844,7 @@ section:first-of-type {
 }
 
 .comingSoonContent {
-  background: rgba(255, 255, 255, 0.039);
+  background: rgba(255, 255, 255, 0.0507);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 60px 40px;
@@ -1042,7 +1042,7 @@ section {
   max-width: 600px;
   margin: 40px auto;
   padding: 40px;
-  background: rgba(255,255,255,0.026);
+  background: rgba(255,255,255,0.0338);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 8px;
 }
@@ -1192,7 +1192,7 @@ section {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   padding: 16px;
-  background: rgba(255,255,255,0.02);
+  background: rgba(255,255,255,0.026);
   border: 1px solid rgba(255,255,255,0.08);
   text-decoration: none;
   color: inherit;
@@ -1204,7 +1204,7 @@ section {
 }
 
 .castName:hover {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.065);
   border-color: hsl(var(--primary) / 0.4);
 }
 
@@ -1221,7 +1221,7 @@ section {
 }
 
 .crewCard {
-  background: rgba(255,255,255,0.026);
+  background: rgba(255,255,255,0.0338);
   border: 1px solid rgba(255,255,255,0.08);
   padding: 32px;
   text-align: center;
