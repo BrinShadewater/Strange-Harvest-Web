@@ -20,6 +20,7 @@ export default function Hero() {
 
         <div className="heroCopy">
           <div className="heroKicker">{hero.tagline}</div>
+          <div className="heroSubtitle">{hero.subtitle}</div>
           <h1>{hero.title}</h1>
 
           <p>
