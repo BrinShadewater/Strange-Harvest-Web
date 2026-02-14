@@ -82,6 +82,8 @@ main {
 }
 
 section {
+  position: relative;
+  z-index: 1;
   padding: 40px 0;
   border-top: 1px solid rgba(255,255,255,0.08);
   scroll-margin-top: 90px;
@@ -631,6 +633,8 @@ section:first-of-type {
 }
 
 .watchCard {
+  position: relative;
+  z-index: 1;
   display: block;
   padding: 16px 16px;
   min-height: 44px; /* Ensure touch target meets WCAG AAA */
@@ -705,6 +709,8 @@ section:first-of-type {
 }
 
 .merchCard {
+  position: relative;
+  z-index: 1;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
