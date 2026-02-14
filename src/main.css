@@ -1115,7 +1115,7 @@ section {
 .subsectionTitle {
   font-size: 18px;
   letter-spacing: 2px;
-  font-weight: 400;
+  font-weight: 700;
   color: hsl(var(--primary));
   margin-bottom: 32px;
   text-transform: uppercase;
