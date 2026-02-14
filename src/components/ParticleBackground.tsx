@@ -11,9 +11,19 @@ interface Particle {
   rotationSpeed: number;
 }
 
+interface Fleck {
+  x: number;
+  y: number;
+  size: number;
+  speedX: number;
+  speedY: number;
+  opacity: number;
+}
+
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
+  const flecksRef = useRef<Fleck[]>([]);
   const imageRef = useRef<HTMLImageElement | null>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
   const animationFrameRef = useRef<number>();
@@ -58,6 +68,22 @@ export default function ParticleBackground() {
         });
       }
       particlesRef.current = particles;
+
+      // Create white flecks (more numerous, smaller)
+      const flecks: Fleck[] = [];
+      const fleckCount = Math.floor((canvas.width * canvas.height) / 15000); // More flecks
+
+      for (let i = 0; i < fleckCount; i++) {
+        flecks.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 2 + 0.5, // 0.5-2.5px tiny flecks
+          speedX: (Math.random() - 0.5) * 0.5,
+          speedY: (Math.random() - 0.5) * 0.5,
+          opacity: Math.random() * 0.3 + 0.1, // 0.1-0.4 opacity
+        });
+      }
+      flecksRef.current = flecks;
     };
     createParticles();
 
@@ -73,6 +99,41 @@ export default function ParticleBackground() {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // Draw white flecks first (behind symbols)
+      flecksRef.current.forEach((fleck) => {
+        // Subtle mouse repulsion for flecks
+        const dx = mouseRef.current.x - fleck.x;
+        const dy = mouseRef.current.y - fleck.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const forceDistance = 100;
+
+        if (distance < forceDistance) {
+          const force = (forceDistance - distance) / forceDistance;
+          fleck.x -= (dx / distance) * force * 1.5;
+          fleck.y -= (dy / distance) * force * 1.5;
+        }
+
+        // Update position
+        fleck.x += fleck.speedX;
+        fleck.y += fleck.speedY;
+
+        // Wrap around edges
+        if (fleck.x < 0) fleck.x = canvas.width;
+        if (fleck.x > canvas.width) fleck.x = 0;
+        if (fleck.y < 0) fleck.y = canvas.height;
+        if (fleck.y > canvas.height) fleck.y = 0;
+
+        // Draw white fleck
+        ctx.save();
+        ctx.globalAlpha = fleck.opacity;
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(fleck.x, fleck.y, fleck.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
+
+      // Draw symbol particles
       particlesRef.current.forEach((particle) => {
         // Subtle mouse repulsion
         const dx = mouseRef.current.x - particle.x;
