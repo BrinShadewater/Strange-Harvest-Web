@@ -13,7 +13,14 @@ export default function CastCrew() {
           <h3 className="subsectionTitle">{castCrew.leadDetectives.title}</h3>
           <div className="detectivesGrid">
             {castCrew.leadDetectives.members.map((member, idx) => (
-              <a key={idx} href={member.imdb} target="_blank" rel="noopener noreferrer" className="detectiveCard">
+              <a 
+                key={idx} 
+                href={member.imdb} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="detectiveCard"
+                aria-label={`View ${member.name} on IMDB`}
+              >
                 <img src={member.image} alt={member.name} className="detectiveImage" loading="lazy" />
                 <h4 className="detectiveName">{member.name}</h4>
                 <p className="detectiveRole">{member.role}</p>
@@ -27,7 +34,14 @@ export default function CastCrew() {
           <h3 className="subsectionTitle">{castCrew.cast.title}</h3>
           <div className="castGrid">
             {castCrew.cast.members.map((member, idx) => (
-              <a key={idx} href={member.imdb} target="_blank" rel="noopener noreferrer" className="castName">
+              <a 
+                key={idx} 
+                href={member.imdb} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="castName"
+                aria-label={`View ${member.name} on IMDB`}
+              >
                 {member.name}
               </a>
             ))}
@@ -42,7 +56,14 @@ export default function CastCrew() {
               <div key={idx} className="crewCard">
                 <h4 className="crewRole">{section.role}</h4>
                 {section.members.map((member, mIdx) => (
-                  <a key={mIdx} href={member.imdb} target="_blank" rel="noopener noreferrer" className="crewMember">
+                  <a 
+                    key={mIdx} 
+                    href={member.imdb} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="crewMember"
+                    aria-label={`View ${member.name} on IMDB`}
+                  >
                     {member.name}
                   </a>
                 ))}
