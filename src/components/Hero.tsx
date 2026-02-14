@@ -11,7 +11,7 @@ export default function Hero() {
             src="/images/strange-harvest-movie-poster-official.webp"
             alt="Strange Harvest Poster"
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high"
             decoding="async"
             width="600"
             height="900"
