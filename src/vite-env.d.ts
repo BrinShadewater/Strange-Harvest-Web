@@ -3,6 +3,7 @@
 interface ImportMetaEnv {
   readonly VITE_SHOPIFY_DOMAIN: string
   readonly VITE_SHOPIFY_STOREFRONT_TOKEN: string
+  readonly VITE_GA_MEASUREMENT_ID: string
 }
 
 interface ImportMeta {

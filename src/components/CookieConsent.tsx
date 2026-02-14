@@ -10,24 +10,78 @@ interface ConsentState {
 
 const CONSENT_KEY = "sh_consent";
 
-// Helper function to load analytics scripts
+// Google Analytics 4 Measurement ID from environment
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
+
+// Declare gtag function for TypeScript
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+  }
+}
+
+// Helper function to load Google Analytics 4
 const loadAnalytics = () => {
-  // Add your analytics scripts here (Google Analytics, Meta Pixel, etc.)
-  // Example:
-  // const script = document.createElement('script');
-  // script.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR_ID';
-  // document.head.appendChild(script);
+  // Check if GA is configured
+  if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') {
+    console.warn("Google Analytics not configured. Set VITE_GA_MEASUREMENT_ID in .env");
+    return;
+  }
+
+  if (typeof window.gtag !== 'undefined') {
+    console.log("Analytics already loaded");
+    return;
+  }
+
+  // Initialize dataLayer
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag() {
+    window.dataLayer.push(arguments);
+  };
   
-  console.log("Analytics scripts loaded");
+  // Set initial timestamp
+  window.gtag('js', new Date());
+  
+  // Configure GA4 with consent mode
+  window.gtag('consent', 'default', {
+    'analytics_storage': 'granted',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+  });
+  
+  // Configure GA4
+  window.gtag('config', GA_MEASUREMENT_ID, {
+    'anonymize_ip': true,
+    'cookie_flags': 'SameSite=None;Secure',
+  });
+
+  // Load the gtag.js script
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+  document.head.appendChild(script);
+  
+  console.log("Google Analytics 4 loaded");
 };
 
 const loadMarketingScripts = () => {
-  // Add your marketing scripts here
+  // Update consent for marketing/advertising
+  if (typeof window.gtag !== 'undefined') {
+    window.gtag('consent', 'update', {
+      'ad_storage': 'granted',
+      'ad_user_data': 'granted',
+      'ad_personalization': 'granted',
+    });
+  }
+  
+  // Add additional marketing scripts here (Meta Pixel, etc.)
   console.log("Marketing scripts loaded");
 };
 
 const loadPreferenceScripts = () => {
-  // Add your preference scripts here
+  // Add preference/personalization scripts here
   console.log("Preference scripts loaded");
 };
 
