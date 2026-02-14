@@ -61,6 +61,8 @@ p {
 }
 
 main {
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
   padding: 80px 120px 80px;
