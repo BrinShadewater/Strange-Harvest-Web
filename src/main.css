@@ -618,6 +618,149 @@ section:first-of-type {
   transform: translateY(-2px);
 }
 
+.pressCarousel {
+  position: relative;
+  max-width: 900px;
+  margin: 32px auto 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.carouselTrack {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+}
+
+.pressCard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 24px 24px 24px;
+  background: var(--container-bg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pressCard.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.pressCard:hover {
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.quoteDecoration {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  width: 60px;
+  height: auto;
+  opacity: 0.6;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.pressQuote {
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 0 20px;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+.pressSource {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+}
+
+.carouselButton {
+  background: var(--container-bg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  line-height: 1;
+  padding: 0;
+}
+
+.carouselButton:hover {
+  background: var(--container-bg-hover);
+  border-color: rgba(255, 255, 255, 0.24);
+  transform: scale(1.08);
+}
+
+.carouselDots {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.carouselDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carouselDot.active {
+  background: #fff;
+  border-color: #fff;
+}
+
+.carouselDot:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .carouselButton {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+
+  .carouselTrack {
+    height: 320px;
+  }
+
+  .pressCard {
+    padding: 24px;
+  }
+
+  .pressQuote {
+    font-size: 16px;
+  }
+}
+
 .sectionHead {
   text-align: center;
   margin-bottom: 18px;
@@ -1746,6 +1889,22 @@ input:focus + .cookieToggleSlider {
   outline: 2px solid hsl(var(--primary));
   outline-offset: 2px;
   border-radius: 2px;
+}
+
+/* Symbol Divider */
+.symbolDivider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 0;
+  opacity: 0.9;
+}
+
+.symbolImage {
+  width: 72px;
+  max-width: 20vw;
+  height: auto;
+  filter: brightness(1.25);
 }
 
 @media (max-width: 520px) {
