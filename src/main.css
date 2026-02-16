@@ -603,6 +603,14 @@ section:first-of-type {
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
+/* Reduce Certified Fresh, Letterboxd, and IMDb icons by 20% */
+.pressIcons a:nth-child(1) .pressIcon,
+.pressIcons a:nth-child(2) .pressIcon,
+.pressIcons a:nth-child(4) .pressIcon {
+  width: 94px;
+  height: 94px;
+}
+
 .pressIcons a:nth-child(3) {
   margin-top: 0;
   margin-left: 0;
@@ -649,7 +657,7 @@ section:first-of-type {
   flex-direction: column;
   justify-content: center;
   padding: 48px 24px 24px 24px;
-  background: var(--container-bg);
+  background: rgba(0, 0, 0, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
   text-decoration: none;
