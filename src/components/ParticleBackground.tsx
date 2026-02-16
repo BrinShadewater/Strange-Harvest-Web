@@ -32,6 +32,7 @@ interface BurstParticle {
   life: number;
   maxLife: number;
   opacity: number;
+  tint: number;
 }
 
 export default function ParticleBackground() {
@@ -76,13 +77,13 @@ export default function ParticleBackground() {
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           size: Math.random() * 40 + 20, // 20-60px
-          speedX: (Math.random() - 0.5) * 0.45,
-          speedY: (Math.random() - 0.5) * 0.45,
+          speedX: (Math.random() - 0.5) * 0.225,
+          speedY: (Math.random() - 0.5) * 0.225,
           opacity: Math.random() * 0.075 + 0.015, // Reduced 25%: 0.015-0.09
           rotation: Math.random() * Math.PI * 2,
-          rotationSpeed: (Math.random() - 0.5) * 0.018,
+          rotationSpeed: (Math.random() - 0.5) * 0.009,
           swirlOffset: Math.random() * Math.PI * 2,
-          swirlSpeed: Math.random() * 0.02 + 0.008,
+          swirlSpeed: Math.random() * 0.01 + 0.004,
         });
       }
       particlesRef.current = particles;
@@ -122,6 +123,7 @@ export default function ParticleBackground() {
           life: 0,
           maxLife: Math.random() * 28 + 22,
           opacity: Math.random() * 0.55 + 0.35,
+          tint: Math.random(),
         });
       }
 
@@ -187,16 +189,28 @@ export default function ParticleBackground() {
         const toCenterX = particle.x - centerX;
         const toCenterY = particle.y - centerY;
         const centerDistance = Math.max(Math.sqrt(toCenterX * toCenterX + toCenterY * toCenterY), 1);
-        const swirlStrength = (0.09 + Math.sin(time * particle.swirlSpeed + particle.swirlOffset) * 0.05) * 0.2;
+        const swirlStrength = (0.09 + Math.sin(time * particle.swirlSpeed + particle.swirlOffset) * 0.05) * 0.1;
         particle.speedX += (-toCenterY / centerDistance) * swirlStrength;
         particle.speedY += (toCenterX / centerDistance) * swirlStrength;
+
+        // Reduce visual clumping with a gentle outward spread from the center.
+        const spreadRadius = Math.min(canvas.width, canvas.height) * 0.22;
+        if (centerDistance < spreadRadius) {
+          const spreadForce = ((spreadRadius - centerDistance) / spreadRadius) * 0.012;
+          particle.speedX += (toCenterX / centerDistance) * spreadForce;
+          particle.speedY += (toCenterY / centerDistance) * spreadForce;
+        }
+
+        // Tiny random drift keeps symbols from settling into dense packs.
+        particle.speedX += (Math.random() - 0.5) * 0.002;
+        particle.speedY += (Math.random() - 0.5) * 0.002;
 
         // Mouse interaction
         const dx = mouseRef.current.x - particle.x;
         const dy = mouseRef.current.y - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         const forceDistance = 150;
-        const proximityExplosionDistance = 36;
+        const proximityExplosionDistance = Math.max(18, particle.size * 0.45);
 
         if (distance < forceDistance && mouseRef.current.active && distance > 0.001) {
           const force = (forceDistance - distance) / forceDistance;
@@ -205,7 +219,7 @@ export default function ParticleBackground() {
 
           // Cursor-near symbol mini explosion with global cooldown.
           const now = performance.now();
-          if (distance < proximityExplosionDistance && now - lastExplosionTimeRef.current > 85) {
+          if (distance < proximityExplosionDistance && now - lastExplosionTimeRef.current > 90) {
             createExplosion(particle.x, particle.y);
             lastExplosionTimeRef.current = now;
           }
@@ -252,9 +266,12 @@ export default function ParticleBackground() {
         const lifeRatio = 1 - burst.life / burst.maxLife;
         if (lifeRatio <= 0) return false;
 
+        const red = 255;
+        const green = Math.floor(25 + burst.tint * 80);
+        const blue = Math.floor(10 + burst.tint * 30);
         ctx.save();
         ctx.globalAlpha = burst.opacity * lifeRatio;
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;
         ctx.beginPath();
         ctx.arc(burst.x, burst.y, burst.size * lifeRatio, 0, Math.PI * 2);
         ctx.fill();

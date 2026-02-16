@@ -846,8 +846,8 @@ section:first-of-type {
 }
 
 .comingSoonContent {
-  background: var(--container-bg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
   border-radius: 12px;
   padding: 60px 40px;
 }
@@ -1044,8 +1044,8 @@ section {
   max-width: 600px;
   margin: 40px auto;
   padding: 40px;
-  background: var(--container-bg);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
   border-radius: 8px;
 }
 
@@ -1194,8 +1194,8 @@ section {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   padding: 16px;
-  background: var(--container-bg);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
   text-decoration: none;
   color: inherit;
   display: flex;
@@ -1206,8 +1206,8 @@ section {
 }
 
 .castName:hover {
-  background: var(--container-bg-hover);
-  border-color: hsl(var(--primary) / 0.4);
+  background: hsl(var(--card));
+  border-color: hsl(0, 65%, 45%);
 }
 
 .crewSection {
@@ -1223,8 +1223,8 @@ section {
 }
 
 .crewCard {
-  background: var(--container-bg);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
   padding: 32px;
   text-align: center;
 }
