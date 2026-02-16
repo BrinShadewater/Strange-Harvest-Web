@@ -49,6 +49,7 @@ export interface ShopifyProductsResponse {
 
 const SHOPIFY_DOMAIN = import.meta.env.VITE_SHOPIFY_DOMAIN;
 const STOREFRONT_TOKEN = import.meta.env.VITE_SHOPIFY_STOREFRONT_TOKEN;
+const isDev = import.meta.env.DEV;
 
 /**
  * Fetch products from Shopify Storefront API
@@ -57,7 +58,9 @@ const STOREFRONT_TOKEN = import.meta.env.VITE_SHOPIFY_STOREFRONT_TOKEN;
 export async function getProducts(): Promise<ShopifyProduct[]> {
   // Check if credentials are configured
   if (!SHOPIFY_DOMAIN || !STOREFRONT_TOKEN) {
-    console.warn("Shopify credentials not configured. Set VITE_SHOPIFY_DOMAIN and VITE_SHOPIFY_STOREFRONT_TOKEN in .env");
+    if (isDev) {
+      console.warn("Shopify credentials not configured. Set VITE_SHOPIFY_DOMAIN and VITE_SHOPIFY_STOREFRONT_TOKEN in .env");
+    }
     return [];
   }
 
@@ -123,7 +126,9 @@ export async function getProducts(): Promise<ShopifyProduct[]> {
     // Extract products from GraphQL response structure
     return json.data.products.edges.map((edge) => edge.node);
   } catch (error) {
-    console.error("Error fetching Shopify products:", error);
+    if (isDev) {
+      console.error("Error fetching Shopify products:", error);
+    }
     return [];
   }
 }

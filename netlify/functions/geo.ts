@@ -14,14 +14,16 @@ export async function handler(event: any) {
     headers['x-vercel-ip-country'] ||             // Vercel
     headers['x-country-code'] ||                  // Netlify Edge
     headers['cloudfront-viewer-country'] ||       // AWS CloudFront
-    'US';                                          // Default fallback
+    'XX';                                          // Default fallback
 
   // Return country code
   return {
     statusCode: 200,
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': 'public, max-age=3600', // Cache for 1 hour
+      // Country detection should not be shared across users.
+      'Cache-Control': 'private, no-store, max-age=0',
+      'Vary': 'cf-ipcountry, x-vercel-ip-country, x-country-code, cloudfront-viewer-country',
     },
     body: JSON.stringify({
       country: country.toUpperCase(),

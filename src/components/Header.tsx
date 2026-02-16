@@ -27,7 +27,7 @@ export default function Header() {
           className="cartIcon"
           aria-label="Open shopping cart"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="9" cy="21" r="1"/>

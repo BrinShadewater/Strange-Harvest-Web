@@ -1,5 +1,19 @@
 :root {
   color-scheme: dark;
+  --background: 0 0% 4%;
+  --foreground: 40 20% 90%;
+  --card: 0 0% 7%;
+  --card-foreground: 40 20% 90%;
+  --primary: 0 65% 35%;
+  --primary-foreground: 40 20% 95%;
+  --accent: 45 70% 50%;
+  --accent-foreground: 0 0% 4%;
+  --muted: 0 0% 12%;
+  --muted-foreground: 40 10% 64%;
+  --border: 0 0% 18%;
+  --radius: 0.5rem;
+  --font-display: "Assistant", sans-serif;
+  --font-body: "Assistant", sans-serif;
   --container-bg: rgba(255, 255, 255, 0.14);
   --container-bg-hover: rgba(255, 255, 255, 0.2);
 }
@@ -47,19 +61,6 @@ p {
   line-height: 1.65;
   font-size: 18px;
   color: rgba(255,255,255,0.9);
-}
-
-.siteHeader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background: rgba(14, 15, 16, 0.72);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  width: 100%;
 }
 
 main {
@@ -449,39 +450,6 @@ section:first-of-type {
 .cartIcon svg {
   width: 28px;
   height: 28px;
-}
-
-.cartIcon:hover {
-  color: hsl(0, 75%, 55%);
-  transform: scale(1.1);
-}
-
-@media (max-width: 520px) {
-  .siteHeaderInner {
-    padding: 14px 40px;
-  }
-  
-  .brand {
-    font-size: 16px;
-    gap: 10px;
-  }
-  
-  .brandSymbol {
-    width: 24px;
-  }
-  
-  .nav {
-    gap: 12px;
-  }
-  
-  .nav a {
-    font-size: 13px;
-  }
-  
-  .cartIcon svg {
-    width: 24px;
-    height: 24px;
-  }
 }
 
 .cartIcon:hover {

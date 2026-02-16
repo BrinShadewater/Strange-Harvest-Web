@@ -7,6 +7,7 @@ export default function Merch() {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const isDev = import.meta.env.DEV;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -20,7 +21,9 @@ export default function Merch() {
           setError(true);
         }
       } catch (err) {
-        console.error("Failed to load products:", err);
+        if (isDev) {
+          console.error("Failed to load products:", err);
+        }
         setError(true);
       } finally {
         setLoading(false);
@@ -49,7 +52,7 @@ export default function Merch() {
             <a 
               href={merch.shopifyUrl} 
               target="_blank" 
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="cta primary"
               style={{ marginTop: '24px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
             >
@@ -84,7 +87,7 @@ export default function Merch() {
                   <a
                     href={checkoutUrl}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="cta primary"
                   >
                     Buy Now

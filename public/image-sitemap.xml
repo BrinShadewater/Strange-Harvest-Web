@@ -49,7 +49,7 @@
 
   <!-- Press Page Images -->
   <url>
-    <loc>https://strangeharvestmovie.com/press</loc>
+    <loc>https://strangeharvestmovie.com/press.html</loc>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-movie-poster-official.webp</image:loc>
       <image:title>Strange Harvest Official Poster - Press Kit</image:title>
@@ -69,44 +69,44 @@
 
   <!-- Platform Icons -->
   <url>
-    <loc>https://strangeharvestmovie.com/#watch</loc>
+    <loc>https://strangeharvestmovie.com/</loc>
     <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-hulu-icon.webp</image:loc>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-streaming-hulu-icon.webp</image:loc>
       <image:title>Watch Strange Harvest on Hulu</image:title>
       <image:caption>Hulu streaming platform icon</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-appletv-icon.webp</image:loc>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-apple-tv-icon.webp</image:loc>
       <image:title>Rent Strange Harvest on Apple TV</image:title>
       <image:caption>Apple TV platform icon</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-primevideo-icon.webp</image:loc>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-amazon-prime-video-icon.webp</image:loc>
       <image:title>Watch Strange Harvest on Prime Video</image:title>
       <image:caption>Amazon Prime Video platform icon</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-youtube-icon.webp</image:loc>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-youtube-movies-icon.webp</image:loc>
       <image:title>Rent Strange Harvest on YouTube</image:title>
       <image:caption>YouTube Movies platform icon</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-fandago-icon.webp</image:loc>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-fandango-icon.webp</image:loc>
       <image:title>Watch Strange Harvest on Fandango</image:title>
       <image:caption>Fandango at Home platform icon</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-cosmogo-icon.webp</image:loc>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-cosmo-streaming-icon.webp</image:loc>
       <image:title>Watch Strange Harvest on Cosmo</image:title>
       <image:caption>Cosmo streaming platform icon</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-skystore-icon.webp</image:loc>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-sky-store-uk-icon.webp</image:loc>
       <image:title>Watch Strange Harvest on Sky Store UK</image:title>
       <image:caption>Sky Store UK platform icon</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-rakutentv-icon.webp</image:loc>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-watch-rakuten-tv-uk-icon.webp</image:loc>
       <image:title>Watch Strange Harvest on Rakuten TV</image:title>
       <image:caption>Rakuten TV UK platform icon</image:caption>
     </image:image>
@@ -114,19 +114,19 @@
 
   <!-- Press Icons -->
   <url>
-    <loc>https://strangeharvestmovie.com/#press</loc>
+    <loc>https://strangeharvestmovie.com/press.html</loc>
     <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-press-fresh-icon.webp</image:loc>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-rotten-tomatoes-fresh-icon.webp</image:loc>
       <image:title>Strange Harvest on Rotten Tomatoes</image:title>
       <image:caption>Rotten Tomatoes Fresh rating icon</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-press-letterboxd-icon.webp</image:loc>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-letterboxd-film-icon.webp</image:loc>
       <image:title>Strange Harvest on Letterboxd</image:title>
       <image:caption>Letterboxd film social platform icon</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-press-wiki-icon.webp</image:loc>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-wikipedia-icon.webp</image:loc>
       <image:title>Strange Harvest Wikipedia Page</image:title>
       <image:caption>Wikipedia encyclopedia icon</image:caption>
     </image:image>
@@ -146,17 +146,17 @@
       <image:caption>Facebook social media icon</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-social-twitter-icon.webp</image:loc>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-social-twitter-x-icon.webp</image:loc>
       <image:title>Strange Harvest on X Twitter</image:title>
       <image:caption>X (Twitter) social media icon</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-social-youtube-icon.webp</image:loc>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-social-youtube-channel-icon.webp</image:loc>
       <image:title>Strange Harvest YouTube Channel</image:title>
       <image:caption>YouTube channel icon</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-social-tomato-icon.webp</image:loc>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-rotten-tomatoes-icon.webp</image:loc>
       <image:title>Strange Harvest Rotten Tomatoes Link</image:title>
       <image:caption>Rotten Tomatoes review aggregator icon</image:caption>
     </image:image>

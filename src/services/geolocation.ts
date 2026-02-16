@@ -19,6 +19,7 @@ export interface WatchPlatform {
 
 const CACHE_KEY = 'sh_geo_region';
 const CACHE_DURATION = 1000 * 60 * 60 * 24; // 24 hours
+const isDev = import.meta.env.DEV;
 
 /**
  * Detect visitor region using multiple methods
@@ -46,7 +47,9 @@ export async function detectRegion(): Promise<GeoLocation> {
       return apiRegion;
     }
   } catch (error) {
-    console.warn('Region detection failed, using default:', error);
+    if (isDev) {
+      console.warn('Region detection failed, using default:', error);
+    }
   }
 
   // Default fallback
@@ -82,8 +85,7 @@ async function tryCloudflareDetection(): Promise<GeoLocation | null> {
       }
     }
   } catch (error) {
-    // Serverless function not available, will fallback
-    console.log('Serverless geo endpoint not available, using fallback');
+    // Serverless function not available, will fallback.
   }
 
   return null;
@@ -111,7 +113,9 @@ async function tryAPIDetection(): Promise<GeoLocation | null> {
       }
     }
   } catch (error) {
-    console.warn('API geolocation failed:', error);
+    if (isDev) {
+      console.warn('API geolocation failed:', error);
+    }
   }
 
   return null;
@@ -156,7 +160,9 @@ function cacheRegion(geo: GeoLocation): void {
     sessionStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
   } catch (error) {
     // SessionStorage not available or full
-    console.warn('Failed to cache region:', error);
+    if (isDev) {
+      console.warn('Failed to cache region:', error);
+    }
   }
 }
 
@@ -179,7 +185,9 @@ function getCachedRegion(): GeoLocation | null {
     sessionStorage.removeItem(CACHE_KEY);
   } catch (error) {
     // Invalid cache or sessionStorage unavailable
-    console.warn('Failed to read cached region:', error);
+    if (isDev) {
+      console.warn('Failed to read cached region:', error);
+    }
   }
 
   return null;
@@ -212,10 +220,10 @@ export function getPlatformsForRegion(region: Region): {
     
     case 'OTHER':
     default:
-      // Show all options for other regions
+      // Conservative fallback for unknown regions.
       return {
-        showStreaming: true,
-        showUSCA: true,
+        showStreaming: false,
+        showUSCA: false,
         showIntl: true,
       };
   }

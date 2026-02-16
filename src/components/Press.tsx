@@ -33,7 +33,7 @@ export default function Press() {
               key={icon.name}
               href={icon.href}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label={icon.name}
             >
               <img src={icon.icon} alt={icon.name} className="pressIcon" />
@@ -57,7 +57,7 @@ export default function Press() {
               key={idx}
               href={review.href}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={`pressCard ${idx === currentIndex ? 'active' : ''}`}
               style={{
                 transform: `translateX(${(idx - currentIndex) * 100}%)`,

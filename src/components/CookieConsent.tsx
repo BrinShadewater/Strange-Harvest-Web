@@ -9,6 +9,7 @@ interface ConsentState {
 }
 
 const CONSENT_KEY = "sh_consent";
+const isDev = import.meta.env.DEV;
 
 // Google Analytics 4 Measurement ID from environment
 const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
@@ -25,12 +26,13 @@ declare global {
 const loadAnalytics = () => {
   // Check if GA is configured
   if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') {
-    console.warn("Google Analytics not configured. Set VITE_GA_MEASUREMENT_ID in .env");
+    if (isDev) {
+      console.warn("Google Analytics not configured. Set VITE_GA_MEASUREMENT_ID in .env");
+    }
     return;
   }
 
   if (typeof window.gtag !== 'undefined') {
-    console.log("Analytics already loaded");
     return;
   }
 
@@ -63,7 +65,6 @@ const loadAnalytics = () => {
   script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
   document.head.appendChild(script);
   
-  console.log("Google Analytics 4 loaded");
 };
 
 const loadMarketingScripts = () => {
@@ -77,12 +78,10 @@ const loadMarketingScripts = () => {
   }
   
   // Add additional marketing scripts here (Meta Pixel, etc.)
-  console.log("Marketing scripts loaded");
 };
 
 const loadPreferenceScripts = () => {
   // Add preference/personalization scripts here
-  console.log("Preference scripts loaded");
 };
 
 export default function CookieConsent() {
@@ -108,7 +107,9 @@ export default function CookieConsent() {
         setConsent(parsed);
         loadConsentedScripts(parsed);
       } catch (error) {
-        console.error("Error parsing consent:", error);
+        if (isDev) {
+          console.error("Error parsing consent:", error);
+        }
         setIsVisible(true);
       }
     }

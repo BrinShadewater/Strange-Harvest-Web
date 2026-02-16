@@ -9,6 +9,7 @@ import {
 
 export default function Watch() {
   const { watch } = sitecopy;
+  const isDev = import.meta.env.DEV;
   const [geo, setGeo] = useState<GeoLocation | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -17,13 +18,10 @@ export default function Watch() {
       try {
         const detectedGeo = await detectRegion();
         setGeo(detectedGeo);
-        
-        // Log for debugging (remove in production if desired)
-        if (detectedGeo.detected) {
-          console.log(`Region detected: ${detectedGeo.region} (${detectedGeo.country})`);
-        }
       } catch (error) {
-        console.warn('Failed to detect region:', error);
+        if (isDev) {
+          console.warn('Failed to detect region:', error);
+        }
         setGeo({ country: 'XX', region: 'OTHER', detected: false });
       } finally {
         setLoading(false);
@@ -71,7 +69,7 @@ export default function Watch() {
                 className="watchCard featured"
                 href={p.href}
                 target={p.href.startsWith("http") ? "_blank" : undefined}
-                rel={p.href.startsWith("http") ? "noreferrer" : undefined}
+                rel={p.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 aria-label={`Watch on ${p.name}`}
               >
                 <img src={p.icon} alt="" className="watchIcon" />
@@ -95,7 +93,7 @@ export default function Watch() {
                 className="watchCard"
                 href={p.href}
                 target={p.href.startsWith("http") ? "_blank" : undefined}
-                rel={p.href.startsWith("http") ? "noreferrer" : undefined}
+                rel={p.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 aria-label={`Rent or buy on ${p.name}`}
               >
                 <img src={p.icon} alt="" className="watchIcon" />
@@ -119,7 +117,7 @@ export default function Watch() {
                 className="watchCard"
                 href={p.href}
                 target={p.href.startsWith("http") ? "_blank" : undefined}
-                rel={p.href.startsWith("http") ? "noreferrer" : undefined}
+                rel={p.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 aria-label={`Rent or buy on ${p.name}`}
               >
                 <img src={p.icon} alt="" className="watchIcon" />
