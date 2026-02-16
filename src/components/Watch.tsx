@@ -86,7 +86,7 @@ export default function Watch() {
             <p className="subhead">{watch.rentOwnUSCA}</p>
           </div>
 
-          <div className="watchGrid">
+          <div className="watchGrid watchGridRent">
             {uscaPlatforms.map((p) => (
               <a
                 key={p.name}
@@ -110,7 +110,7 @@ export default function Watch() {
             <p className="subhead">{watch.rentOwnIntl}</p>
           </div>
 
-          <div className="watchGrid">
+          <div className="watchGrid watchGridRent">
             {watch.intl.map((p) => (
               <a
                 key={p.name}

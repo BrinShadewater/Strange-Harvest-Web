@@ -596,8 +596,8 @@ section:first-of-type {
 }
 
 .pressIcon {
-  width: 168px;
-  height: 168px;
+  width: 118px;
+  height: 118px;
   object-fit: contain;
   opacity: 0.8;
   transition: opacity 0.2s ease, transform 0.2s ease;
@@ -610,8 +610,8 @@ section:first-of-type {
 }
 
 .pressIcons a:nth-child(3) .pressIcon {
-  width: 168px;
-  height: 168px;
+  width: 118px;
+  height: 118px;
 }
 
 .pressIcons a:hover .pressIcon {
@@ -815,6 +815,10 @@ section:first-of-type {
   gap: 14px;
   margin: 18px auto 0;
   max-width: 600px;
+}
+
+.watchGridRent {
+  max-width: 450px;
 }
 
 .watchCard {
@@ -1816,6 +1820,15 @@ input:focus + .cookieToggleSlider {
 .footerContent {
   max-width: 600px;
   margin: 0 auto;
+}
+
+.footerSymbol {
+  width: 80px;
+  height: auto;
+  margin: 0 auto 20px;
+  display: block;
+  opacity: 0.95;
+  filter: brightness(1.2);
 }
 
 .footerTitle {
