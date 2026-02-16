@@ -205,6 +205,183 @@
       margin-top: 18px;
     }
 
+    .bts-gallery {
+      margin-top: 28px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card);
+      padding: 22px;
+    }
+
+    .bts-gallery h2 {
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+      color: #fff;
+    }
+
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #000;
+      min-height: 420px;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.45s ease;
+      will-change: transform;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: zoom-in;
+      background: #000;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      max-height: 520px;
+      display: block;
+    }
+
+    .carousel-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 14px 16px;
+      font-size: 15px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.95);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.2));
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(0, 0, 0, 0.62);
+      color: #fff;
+      font-size: 26px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 3;
+    }
+
+    .carousel-button:hover {
+      background: rgba(0, 0, 0, 0.85);
+      border-color: rgba(255, 255, 255, 0.45);
+    }
+
+    .carousel-button.prev {
+      left: 10px;
+    }
+
+    .carousel-button.next {
+      right: 10px;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .carousel-dot.active {
+      background: #fff;
+      border-color: #fff;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-content {
+      width: min(1100px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      background: rgba(14, 15, 16, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      font-size: 24px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .lightbox-image {
+      width: 100%;
+      height: auto;
+      max-height: 72vh;
+      object-fit: contain;
+      border-radius: 8px;
+      display: block;
+      background: #000;
+    }
+
+    .lightbox-description {
+      margin-top: 14px;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.65;
+    }
+
     .section h2 {
       font-size: 24px;
       text-transform: uppercase;
@@ -246,6 +423,14 @@
       .nav a {
         flex: 1 1 auto;
         text-align: center;
+      }
+
+      .carousel {
+        min-height: 280px;
+      }
+
+      .carousel-slide img {
+        max-height: 360px;
       }
     }
   </style>
@@ -295,8 +480,26 @@
       <p>Made by a small, self-funded team, nearly every dollar went directly onto the screen. We built an internal lore archive filled with timelines, articles, and backstories that extend far beyond what audiences see. Locations were chosen for authenticity over scale. Performances were calibrated to feel natural and unpolished. Even Mr. Shiny’s mask evolved through numerous iterations before landing on its deceptively simple, unsettling final form. The finished film may feel unearthed, but behind it is years of careful assembly, collaboration, and an obsessive commitment to detail.</p>
     </section>
 
+    <section class="bts-gallery" aria-label="Behind-the-scenes photo carousel">
+      <h2>BTS Gallery</h2>
+      <div class="carousel" id="bts-carousel">
+        <button class="carousel-button prev" id="carousel-prev" aria-label="Previous photo">‹</button>
+        <div class="carousel-track" id="carousel-track"></div>
+        <button class="carousel-button next" id="carousel-next" aria-label="Next photo">›</button>
+      </div>
+      <div class="carousel-dots" id="carousel-dots" aria-label="Carousel slide navigation"></div>
+    </section>
+
     <a class="back-link" href="/">← Back to Home</a>
   </main>
+
+  <div class="lightbox" id="bts-lightbox" aria-hidden="true" role="dialog" aria-label="BTS image detail">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Close">×</button>
+      <img class="lightbox-image" id="lightbox-image" src="" alt="">
+      <p class="lightbox-description" id="lightbox-description"></p>
+    </div>
+  </div>
 
   <script>
     (() => {
@@ -312,6 +515,148 @@
 
       const logo = new Image();
       logo.src = "/images/strange-harvest-occult-symbol-horror-icon.webp?v=20260216c";
+
+      const btsGalleryItems = [
+        {
+          src: "/images/strange-harvest-bts2.webp",
+          alt: "BTS production still 2",
+          description: "Production setup from the Strange Harvest shoot, capturing the documentary-style visual approach used across the film."
+        },
+        {
+          src: "/images/strange-harvest-bts3.webp",
+          alt: "BTS production still 3",
+          description: "On-set composition work focused on realism and natural blocking to preserve the investigative tone."
+        },
+        {
+          src: "/images/strange-harvest-bts4.webp",
+          alt: "BTS production still 4",
+          description: "A behind-the-scenes look at scene preparation, balancing practical detail with narrative continuity."
+        },
+        {
+          src: "/images/strange-harvest-bts5.webp",
+          alt: "BTS production still 5",
+          description: "Crew-level coordination moment during principal photography, with emphasis on grounded performance and atmosphere."
+        },
+        {
+          src: "/images/strange-harvest-bts6.webp",
+          alt: "BTS production still 6",
+          description: "Location-driven setup chosen for authenticity, supporting the film’s archival and procedural aesthetic."
+        },
+        {
+          src: "/images/strange-harvest-bts7.webp",
+          alt: "BTS production still 7",
+          description: "A candid set moment reflecting the modular production workflow used to build the film over multiple phases."
+        },
+        {
+          src: "/images/strange-harvest-bts8.webp",
+          alt: "BTS production still 8",
+          description: "Technical staging and framing reference from the BTS archive, designed to maintain documentary believability."
+        },
+        {
+          src: "/images/strange-harvest-bts9.webp",
+          alt: "BTS production still 9",
+          description: "Another look into the practical execution of the film’s investigative tone and lived-in worldbuilding."
+        },
+        {
+          src: "/images/strange-harvest-bts-10.webp",
+          alt: "BTS production still 10",
+          description: "In-production still highlighting the small-team process and detail-first approach to visual storytelling."
+        },
+        {
+          src: "/images/strange-harvest-bts11.webp",
+          alt: "BTS production still 11",
+          description: "Performance calibration session focused on natural delivery and documentary-style character authenticity."
+        },
+        {
+          src: "/images/strange-harvest-bts12.webp",
+          alt: "BTS production still 12",
+          description: "Final-stage BTS capture from the archive, reflecting the layered, long-form assembly process behind Strange Harvest."
+        }
+      ];
+
+      const carouselTrack = document.getElementById("carousel-track");
+      const carouselDots = document.getElementById("carousel-dots");
+      const prevButton = document.getElementById("carousel-prev");
+      const nextButton = document.getElementById("carousel-next");
+      const lightbox = document.getElementById("bts-lightbox");
+      const lightboxImage = document.getElementById("lightbox-image");
+      const lightboxDescription = document.getElementById("lightbox-description");
+      const lightboxClose = document.getElementById("lightbox-close");
+      let activeSlide = 0;
+      let carouselTimer = null;
+
+      const renderCarousel = () => {
+        if (!carouselTrack || !carouselDots) return;
+
+        carouselTrack.innerHTML = "";
+        carouselDots.innerHTML = "";
+
+        btsGalleryItems.forEach((item, idx) => {
+          const slide = document.createElement("button");
+          slide.type = "button";
+          slide.className = "carousel-slide";
+          slide.setAttribute("aria-label", `Open BTS image ${idx + 1}`);
+          slide.innerHTML = `
+            <img src="${item.src}" alt="${item.alt}">
+            <span class="carousel-caption">${item.description}</span>
+          `;
+          slide.addEventListener("click", () => openLightbox(idx));
+          carouselTrack.appendChild(slide);
+
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "carousel-dot";
+          dot.setAttribute("aria-label", `Go to slide ${idx + 1}`);
+          dot.addEventListener("click", () => {
+            goToSlide(idx);
+            restartTimer();
+          });
+          carouselDots.appendChild(dot);
+        });
+
+        updateCarousel();
+      };
+
+      const updateCarousel = () => {
+        if (!carouselTrack || !carouselDots) return;
+        carouselTrack.style.transform = `translateX(-${activeSlide * 100}%)`;
+        [...carouselDots.children].forEach((dot, idx) => {
+          dot.classList.toggle("active", idx === activeSlide);
+        });
+      };
+
+      const goToSlide = (index) => {
+        const max = btsGalleryItems.length;
+        activeSlide = (index + max) % max;
+        updateCarousel();
+      };
+
+      const startTimer = () => {
+        if (carouselTimer) clearInterval(carouselTimer);
+        carouselTimer = setInterval(() => {
+          goToSlide(activeSlide + 1);
+        }, 5000);
+      };
+
+      const restartTimer = () => {
+        startTimer();
+      };
+
+      const openLightbox = (idx) => {
+        const item = btsGalleryItems[idx];
+        if (!item || !lightbox || !lightboxImage || !lightboxDescription) return;
+        lightboxImage.src = item.src;
+        lightboxImage.alt = item.alt;
+        lightboxDescription.textContent = item.description;
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+      };
+
+      const closeLightbox = () => {
+        if (!lightbox) return;
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+      };
 
       const resize = () => {
         canvas.width = window.innerWidth;
@@ -487,8 +832,33 @@
       window.addEventListener("mouseleave", () => {
         mouse.active = false;
       });
+      if (prevButton) {
+        prevButton.addEventListener("click", () => {
+          goToSlide(activeSlide - 1);
+          restartTimer();
+        });
+      }
+      if (nextButton) {
+        nextButton.addEventListener("click", () => {
+          goToSlide(activeSlide + 1);
+          restartTimer();
+        });
+      }
+      if (lightboxClose) {
+        lightboxClose.addEventListener("click", closeLightbox);
+      }
+      if (lightbox) {
+        lightbox.addEventListener("click", (event) => {
+          if (event.target === lightbox) closeLightbox();
+        });
+      }
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeLightbox();
+      });
 
       resize();
+      renderCarousel();
+      startTimer();
       animate();
     })();
   </script>
