@@ -77,13 +77,13 @@ export default function ParticleBackground() {
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           size: Math.random() * 40 + 20, // 20-60px
-          speedX: (Math.random() - 0.5) * 0.225,
-          speedY: (Math.random() - 0.5) * 0.225,
+          speedX: (Math.random() - 0.5) * 0.1125,
+          speedY: (Math.random() - 0.5) * 0.1125,
           opacity: Math.random() * 0.075 + 0.015, // Reduced 25%: 0.015-0.09
           rotation: Math.random() * Math.PI * 2,
-          rotationSpeed: (Math.random() - 0.5) * 0.009,
+          rotationSpeed: (Math.random() - 0.5) * 0.0045,
           swirlOffset: Math.random() * Math.PI * 2,
-          swirlSpeed: Math.random() * 0.01 + 0.004,
+          swirlSpeed: Math.random() * 0.005 + 0.002,
         });
       }
       particlesRef.current = particles;
@@ -97,8 +97,8 @@ export default function ParticleBackground() {
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           size: Math.random() * 2 + 0.5, // 0.5-2.5px tiny flecks
-          speedX: (Math.random() - 0.5) * 0.5,
-          speedY: (Math.random() - 0.5) * 0.5,
+          speedX: (Math.random() - 0.5) * 0.25,
+          speedY: (Math.random() - 0.5) * 0.25,
           opacity: Math.random() * 0.225 + 0.075, // Reduced 25%: 0.075-0.3
         });
       }
@@ -113,7 +113,7 @@ export default function ParticleBackground() {
 
       for (let i = 0; i < burstCount; i++) {
         const angle = (Math.PI * 2 * i) / burstCount + (Math.random() - 0.5) * 0.5;
-        const speed = Math.random() * 1.6 + 0.8;
+        const speed = Math.random() * 0.8 + 0.4;
         newBursts.push({
           x,
           y,
@@ -189,21 +189,21 @@ export default function ParticleBackground() {
         const toCenterX = particle.x - centerX;
         const toCenterY = particle.y - centerY;
         const centerDistance = Math.max(Math.sqrt(toCenterX * toCenterX + toCenterY * toCenterY), 1);
-        const swirlStrength = (0.09 + Math.sin(time * particle.swirlSpeed + particle.swirlOffset) * 0.05) * 0.1;
+        const swirlStrength = (0.09 + Math.sin(time * particle.swirlSpeed + particle.swirlOffset) * 0.05) * 0.05;
         particle.speedX += (-toCenterY / centerDistance) * swirlStrength;
         particle.speedY += (toCenterX / centerDistance) * swirlStrength;
 
         // Reduce visual clumping with a gentle outward spread from the center.
-        const spreadRadius = Math.min(canvas.width, canvas.height) * 0.22;
+        const spreadRadius = Math.min(canvas.width, canvas.height) * 0.35;
         if (centerDistance < spreadRadius) {
-          const spreadForce = ((spreadRadius - centerDistance) / spreadRadius) * 0.012;
+          const spreadForce = ((spreadRadius - centerDistance) / spreadRadius) * 0.02;
           particle.speedX += (toCenterX / centerDistance) * spreadForce;
           particle.speedY += (toCenterY / centerDistance) * spreadForce;
         }
 
         // Tiny random drift keeps symbols from settling into dense packs.
-        particle.speedX += (Math.random() - 0.5) * 0.002;
-        particle.speedY += (Math.random() - 0.5) * 0.002;
+        particle.speedX += (Math.random() - 0.5) * 0.0015;
+        particle.speedY += (Math.random() - 0.5) * 0.0015;
 
         // Mouse interaction
         const dx = mouseRef.current.x - particle.x;

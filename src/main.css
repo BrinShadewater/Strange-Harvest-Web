@@ -15,7 +15,7 @@
 /* Improve text rendering on mobile */
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: var(--font-body);
   background: #0e0f10;
   color: #e9e9e9;
   -webkit-font-smoothing: antialiased;
@@ -523,6 +523,63 @@ section:first-of-type {
   .cartIcon {
     min-width: 44px;
     min-height: 44px;
+  }
+}
+
+/* Mobile header layout: prevent squeeze/cutoff by splitting nav to a second row */
+@media (max-width: 700px) {
+  .siteHeaderInner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand cart"
+      "nav nav";
+    align-items: center;
+    gap: 8px 10px;
+    padding: 10px 14px;
+  }
+
+  .brand {
+    grid-area: brand;
+    font-size: 14px;
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .brandSymbol {
+    width: 20px;
+  }
+
+  .nav {
+    grid-area: nav;
+    width: 100%;
+    gap: 6px;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  .nav a {
+    font-size: 12px;
+    padding: 8px 6px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 auto;
+  }
+
+  .cartIcon {
+    grid-area: cart;
+    justify-self: end;
+    min-width: 44px;
+    min-height: 44px;
+    overflow: visible;
+  }
+
+  .cartIcon svg {
+    width: 26px;
+    height: 26px;
+    display: block;
   }
 }
 

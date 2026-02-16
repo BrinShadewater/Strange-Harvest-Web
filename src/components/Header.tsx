@@ -1,6 +1,9 @@
 import { HERO_LOGO_SRC } from "../constants/assets";
+import { sitecopy } from "./sitecopy";
 
 export default function Header() {
+  const { merch } = sitecopy;
+
   return (
     <header className="siteHeader">
       <a href="#main" className="skip-link">Skip to main content</a>
@@ -17,7 +20,13 @@ export default function Header() {
           <a href="#shop">Merch</a>
         </nav>
 
-        <a href="#shop" className="cartIcon" aria-label="Shop">
+        <a
+          href={merch.shopifyCartUrl}
+          className="cartIcon"
+          aria-label="Open shopping cart"
+          target="_blank"
+          rel="noreferrer"
+        >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="9" cy="21" r="1"/>
             <circle cx="20" cy="21" r="1"/>

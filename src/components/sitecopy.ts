@@ -321,6 +321,7 @@ export const sitecopy = {
     title: "Official Merch",
     blurb: "Wear the terror. Carry the mystery. Exclusive Strange Harvest merchandise for true believers.",
     shopifyUrl: "https://strangeharvestfilm.myshopify.com/pages/customer-notifications",
+    shopifyCartUrl: "https://strangeharvestfilm.myshopify.com/cart",
   },
 
   castCrew: {
