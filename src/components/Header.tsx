@@ -17,6 +17,8 @@ export default function Header() {
           <a href="#top">Home</a>
           <a href="#about">About</a>
           <a href="#watch">Watch</a>
+          <a href="#press">Press</a>
+          <a href="/bts.html">BTS</a>
           <a href="#shop">Merch</a>
         </nav>
 
