@@ -1,10 +1,12 @@
+import { HERO_LOGO_SRC } from "../constants/assets";
+
 export default function Header() {
   return (
     <header className="siteHeader">
       <a href="#main" className="skip-link">Skip to main content</a>
       <div className="siteHeaderInner">
         <a className="brand" href="#top" aria-label="Strange Harvest home">
-          <img src="/images/strange-harvest-occult-symbol-horror-icon.webp" alt="" className="brandSymbol" loading="eager" />
+          <img src={HERO_LOGO_SRC} alt="" className="brandSymbol" loading="eager" />
           Strange Harvest
         </a>
 

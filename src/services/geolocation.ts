@@ -11,6 +11,12 @@ export interface GeoLocation {
   detected: boolean;
 }
 
+export interface WatchPlatform {
+  name: string;
+  href: string;
+  icon: string;
+}
+
 const CACHE_KEY = 'sh_geo_region';
 const CACHE_DURATION = 1000 * 60 * 60 * 24; // 24 hours
 
@@ -45,8 +51,8 @@ export async function detectRegion(): Promise<GeoLocation> {
 
   // Default fallback
   const defaultRegion: GeoLocation = {
-    country: 'US',
-    region: 'US',
+    country: 'XX',
+    region: 'OTHER',
     detected: false,
   };
   
@@ -213,4 +219,30 @@ export function getPlatformsForRegion(region: Region): {
         showIntl: true,
       };
   }
+}
+
+/**
+ * Filter US/CA platform list with country-specific availability rules.
+ */
+export function filterUSCAPlatformsByCountry(
+  platforms: WatchPlatform[],
+  countryCode: string
+): WatchPlatform[] {
+  const code = countryCode.toUpperCase();
+
+  return platforms.filter((platform) => {
+    const name = platform.name.toLowerCase();
+
+    // Fandango At Home is US-only.
+    if (name.includes('fandango')) {
+      return code === 'US';
+    }
+
+    // Cosmo Go is Canada-only.
+    if (name.includes('cosmo')) {
+      return code === 'CA';
+    }
+
+    return true;
+  });
 }

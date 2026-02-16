@@ -1,5 +1,7 @@
 :root {
   color-scheme: dark;
+  --container-bg: rgba(255, 255, 255, 0.14);
+  --container-bg-hover: rgba(255, 255, 255, 0.2);
 }
 
 * {
@@ -190,21 +192,21 @@ section:first-of-type {
   }
 }
 
-.heroKicker {
+.heroKicker,
+.heroSubtitle {
   font-family: var(--font-display);
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-size: 12px;
   color: rgba(255, 255, 255, 1);
+}
+
+.heroKicker {
   margin-bottom: 4px;
 }
 
 .heroSubtitle {
-  font-family: var(--font-display);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 1);
   margin-bottom: 8px;
 }
 
@@ -650,7 +652,7 @@ section:first-of-type {
   min-height: 44px; /* Ensure touch target meets WCAG AAA */
   border-radius: 14px;
   text-decoration: none;
-  background: rgba(255,255,255,0.104);
+  background: var(--container-bg);
   border: 1px solid rgba(255,255,255,0.12);
   box-shadow: none;
   transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
@@ -659,7 +661,7 @@ section:first-of-type {
 
 .watchCard:hover {
   transform: translateY(-1px);
-  background: rgba(255,255,255,0.143);
+  background: var(--container-bg-hover);
   border-color: rgba(255,255,255,0.20);
 }
 
@@ -721,7 +723,7 @@ section:first-of-type {
 .merchCard {
   position: relative;
   z-index: 1;
-  background: rgba(255, 255, 255, 0.091);
+  background: var(--container-bg);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
   overflow: hidden;
@@ -806,7 +808,7 @@ section:first-of-type {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--container-bg);
 }
 
 .merchStoreIframe {
@@ -821,7 +823,7 @@ section:first-of-type {
 .merchStoreFallbackLink {
   padding: 16px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--container-bg);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -844,7 +846,7 @@ section:first-of-type {
 }
 
 .comingSoonContent {
-  background: rgba(255, 255, 255, 0.0507);
+  background: var(--container-bg);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 60px 40px;
@@ -1042,7 +1044,7 @@ section {
   max-width: 600px;
   margin: 40px auto;
   padding: 40px;
-  background: rgba(255,255,255,0.0338);
+  background: var(--container-bg);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 8px;
 }
@@ -1192,7 +1194,7 @@ section {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   padding: 16px;
-  background: rgba(255,255,255,0.026);
+  background: var(--container-bg);
   border: 1px solid rgba(255,255,255,0.08);
   text-decoration: none;
   color: inherit;
@@ -1204,7 +1206,7 @@ section {
 }
 
 .castName:hover {
-  background: rgba(255,255,255,0.065);
+  background: var(--container-bg-hover);
   border-color: hsl(var(--primary) / 0.4);
 }
 
@@ -1221,7 +1223,7 @@ section {
 }
 
 .crewCard {
-  background: rgba(255,255,255,0.0338);
+  background: var(--container-bg);
   border: 1px solid rgba(255,255,255,0.08);
   padding: 32px;
   text-align: center;
@@ -1481,7 +1483,7 @@ section {
 }
 
 .cookiePreferenceItem {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--container-bg);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius);
   padding: 20px;

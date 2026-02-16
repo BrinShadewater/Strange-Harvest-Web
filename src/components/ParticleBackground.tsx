@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { HERO_LOGO_SRC } from '../constants/assets';
 
 interface Particle {
   x: number;
@@ -9,6 +10,8 @@ interface Particle {
   opacity: number;
   rotation: number;
   rotationSpeed: number;
+  swirlOffset: number;
+  swirlSpeed: number;
 }
 
 interface Fleck {
@@ -20,12 +23,25 @@ interface Fleck {
   opacity: number;
 }
 
+interface BurstParticle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+  life: number;
+  maxLife: number;
+  opacity: number;
+}
+
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const flecksRef = useRef<Fleck[]>([]);
+  const burstsRef = useRef<BurstParticle[]>([]);
   const imageRef = useRef<HTMLImageElement | null>(null);
-  const mouseRef = useRef({ x: 0, y: 0 });
+  const mouseRef = useRef({ x: 0, y: 0, active: false });
+  const lastExplosionTimeRef = useRef(0);
   const animationFrameRef = useRef<number>();
 
   useEffect(() => {
@@ -45,7 +61,7 @@ export default function ParticleBackground() {
 
     // Load symbol image
     const img = new Image();
-    img.src = '/images/strange-harvest-occult-symbol-horror-icon.webp';
+    img.src = HERO_LOGO_SRC;
     img.onload = () => {
       imageRef.current = img;
     };
@@ -60,11 +76,13 @@ export default function ParticleBackground() {
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           size: Math.random() * 40 + 20, // 20-60px
-          speedX: (Math.random() - 0.5) * 0.3,
-          speedY: (Math.random() - 0.5) * 0.3,
+          speedX: (Math.random() - 0.5) * 0.45,
+          speedY: (Math.random() - 0.5) * 0.45,
           opacity: Math.random() * 0.075 + 0.015, // Reduced 25%: 0.015-0.09
           rotation: Math.random() * Math.PI * 2,
-          rotationSpeed: (Math.random() - 0.5) * 0.01,
+          rotationSpeed: (Math.random() - 0.5) * 0.018,
+          swirlOffset: Math.random() * Math.PI * 2,
+          swirlSpeed: Math.random() * 0.02 + 0.008,
         });
       }
       particlesRef.current = particles;
@@ -84,20 +102,50 @@ export default function ParticleBackground() {
         });
       }
       flecksRef.current = flecks;
+      burstsRef.current = [];
     };
     createParticles();
 
+    const createExplosion = (x: number, y: number) => {
+      const burstCount = 12;
+      const newBursts: BurstParticle[] = [];
+
+      for (let i = 0; i < burstCount; i++) {
+        const angle = (Math.PI * 2 * i) / burstCount + (Math.random() - 0.5) * 0.5;
+        const speed = Math.random() * 1.6 + 0.8;
+        newBursts.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          size: Math.random() * 2.5 + 1,
+          life: 0,
+          maxLife: Math.random() * 28 + 22,
+          opacity: Math.random() * 0.55 + 0.35,
+        });
+      }
+
+      burstsRef.current = [...burstsRef.current, ...newBursts].slice(-250);
+    };
+
     // Mouse move handler for subtle interaction
     const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
+      mouseRef.current = { x: e.clientX, y: e.clientY, active: true };
+    };
+    const handleMouseLeave = () => {
+      mouseRef.current.active = false;
     };
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseleave', handleMouseLeave);
 
     // Animation loop
     const animate = () => {
       if (!ctx || !canvas) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const time = performance.now() * 0.001;
+      const centerX = canvas.width * 0.5;
+      const centerY = canvas.height * 0.5;
 
       // Draw white flecks first (behind symbols)
       flecksRef.current.forEach((fleck) => {
@@ -135,22 +183,40 @@ export default function ParticleBackground() {
 
       // Draw symbol particles
       particlesRef.current.forEach((particle) => {
-        // Subtle mouse repulsion
+        // Add stronger swirling motion around the screen center.
+        const toCenterX = particle.x - centerX;
+        const toCenterY = particle.y - centerY;
+        const centerDistance = Math.max(Math.sqrt(toCenterX * toCenterX + toCenterY * toCenterY), 1);
+        const swirlStrength = (0.09 + Math.sin(time * particle.swirlSpeed + particle.swirlOffset) * 0.05) * 0.2;
+        particle.speedX += (-toCenterY / centerDistance) * swirlStrength;
+        particle.speedY += (toCenterX / centerDistance) * swirlStrength;
+
+        // Mouse interaction
         const dx = mouseRef.current.x - particle.x;
         const dy = mouseRef.current.y - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         const forceDistance = 150;
+        const proximityExplosionDistance = 36;
 
-        if (distance < forceDistance) {
+        if (distance < forceDistance && mouseRef.current.active && distance > 0.001) {
           const force = (forceDistance - distance) / forceDistance;
           particle.x -= (dx / distance) * force * 2;
           particle.y -= (dy / distance) * force * 2;
+
+          // Cursor-near symbol mini explosion with global cooldown.
+          const now = performance.now();
+          if (distance < proximityExplosionDistance && now - lastExplosionTimeRef.current > 85) {
+            createExplosion(particle.x, particle.y);
+            lastExplosionTimeRef.current = now;
+          }
         }
 
         // Update position
         particle.x += particle.speedX;
         particle.y += particle.speedY;
         particle.rotation += particle.rotationSpeed;
+        particle.speedX *= 0.992;
+        particle.speedY *= 0.992;
 
         // Wrap around edges
         if (particle.x < -particle.size) particle.x = canvas.width + particle.size;
@@ -175,6 +241,27 @@ export default function ParticleBackground() {
         }
       });
 
+      // Draw and update burst particles.
+      burstsRef.current = burstsRef.current.filter((burst) => {
+        burst.x += burst.vx;
+        burst.y += burst.vy;
+        burst.vx *= 0.97;
+        burst.vy *= 0.97;
+        burst.life += 1;
+
+        const lifeRatio = 1 - burst.life / burst.maxLife;
+        if (lifeRatio <= 0) return false;
+
+        ctx.save();
+        ctx.globalAlpha = burst.opacity * lifeRatio;
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(burst.x, burst.y, burst.size * lifeRatio, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+        return true;
+      });
+
       animationFrameRef.current = requestAnimationFrame(animate);
     };
     animate();
@@ -183,6 +270,7 @@ export default function ParticleBackground() {
     return () => {
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseleave', handleMouseLeave);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
