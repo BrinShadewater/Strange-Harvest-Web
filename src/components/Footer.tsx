@@ -1,4 +1,5 @@
 import { sitecopy } from "./sitecopy";
+import { HERO_LOGO_SRC } from "../constants/assets";
 
 export default function Footer() {
   const { footer } = sitecopy;
@@ -10,6 +11,7 @@ export default function Footer() {
   return (
     <footer className="siteFooter">
       <div className="footerContent">
+        <img src={HERO_LOGO_SRC} alt="" className="footerSymbol" aria-hidden="true" />
         <h2 className="footerTitle">{footer.title}</h2>
         <p className="footerTagline">{footer.tagline}</p>
         
