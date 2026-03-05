@@ -37,9 +37,8 @@ export default function Header() {
 
         <div className="headerActions">
           <div className="langToggle" aria-label={header.aria.language}>
-            <a href={buildLangHref("en")} className={siteLanguage === "en" ? "active" : ""}>{header.languageToggle.en}</a>
-            <span>/</span>
-            <a href={buildLangHref("es")} className={siteLanguage === "es" ? "active" : ""}>{header.languageToggle.es}</a>
+            <a href={buildLangHref("en")} className={`langToggleBtn ${siteLanguage === "en" ? "active" : ""}`}>{header.languageToggle.en}</a>
+            <a href={buildLangHref("es")} className={`langToggleBtn ${siteLanguage === "es" ? "active" : ""}`}>{header.languageToggle.es}</a>
           </div>
           <a
             href={merch.shopifyCartUrl}

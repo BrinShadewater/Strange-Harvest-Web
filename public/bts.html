@@ -271,7 +271,6 @@
       font-size: 12px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-left: 10px;
     }
 
     .langSwitch a {
@@ -282,6 +281,14 @@
 
     .langSwitch a.active {
       color: #fff;
+    }
+
+    .headerRight {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      justify-self: end;
+      white-space: nowrap;
     }
 
     main {
@@ -654,7 +661,7 @@
 
     @media (max-width: 900px) {
       .siteHeaderInner {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr auto;
         gap: 10px;
         padding: 10px 14px;
       }
@@ -669,6 +676,7 @@
       }
 
       .nav {
+        grid-column: 1 / -1;
         justify-content: center;
         gap: 8px;
       }
@@ -678,21 +686,14 @@
         padding: 6px 8px;
       }
 
-      .cartIcon {
-        position: absolute;
-        right: 10px;
-        top: 8px;
-      }
-
       .cartIcon svg {
         width: 24px;
         height: 24px;
       }
 
-      .langSwitch {
-        position: absolute;
-        right: 54px;
-        top: 16px;
+      .headerRight {
+        gap: 10px;
+        align-self: start;
       }
     }
   </style>
@@ -714,18 +715,20 @@
         <a href="/bts.html" class="active" aria-current="page">BTS</a>
         <a href="/#shop">Merch</a>
       </nav>
-      <div class="langSwitch" aria-label="Language selector">
-        <a id="lang-en" href="/bts.html">EN</a>
-        <span>/</span>
-        <a id="lang-es" href="/bts.html?lang=es">ES</a>
+      <div class="headerRight">
+        <div class="langSwitch" aria-label="Language selector">
+          <a id="lang-en" href="/bts.html">EN</a>
+          <span>/</span>
+          <a id="lang-es" href="/bts.html?lang=es">ES</a>
+        </div>
+        <a class="cartIcon" href="https://strangeharvestfilm.myshopify.com/cart" target="_blank" rel="noopener noreferrer" aria-label="Open merch cart">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </a>
       </div>
-      <a class="cartIcon" href="https://strangeharvestfilm.myshopify.com/cart" target="_blank" rel="noopener noreferrer" aria-label="Open merch cart">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="9" cy="21" r="1"></circle>
-          <circle cx="20" cy="21" r="1"></circle>
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-        </svg>
-      </a>
     </div>
   </header>
 
@@ -919,9 +922,9 @@
     ];
 
     const postersItems = [
-      { src: "/images/strange-harvest-official-movie-poster.webp", alt: "Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire", caption: isEs ? "Poster oficial principal." : "Main official poster.", downloadLabel: isEs ? "Descargar poster principal" : "Download Main Poster" },
-      { src: "/images/strange-harvest-alternate-movie-poster.webp", alt: "Alternate poster featuring the masked killer from the horror mockumentary Strange Harvest", caption: isEs ? "Poster alternativo de festival con el asesino enmascarado." : "Alternate Festival Run Poster featuring the masked killer.", downloadLabel: isEs ? "Descargar poster de festival" : "Download Festival Poster" },
-      { src: "/images/strange-harvest-los-asesinatos-de-mr-shiny-poster.webp", alt: "Official Spanish poster for Strange Harvest titled Los asesinatos de Mr. Shiny", caption: isEs ? "Poster oficial en espanol: Los asesinatos de Mr. Shiny." : "Official Spanish title poster: Los asesinatos de Mr. Shiny.", downloadLabel: isEs ? "Descargar poster en espanol" : "Download Spanish Poster" }
+      { src: "/images/strange-harvest-official-movie-poster.webp", downloadSrc: "/images/strange-harvest-official-movie-poster-1280w.jpg", alt: "Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire", caption: isEs ? "Poster oficial principal." : "Main official poster.", downloadLabel: isEs ? "Descargar poster principal" : "Download Main Poster" },
+      { src: "/images/strange-harvest-alternate-movie-poster.webp", downloadSrc: "/images/strange-harvest-alternate-movie-poster.jpg", alt: "Alternate poster featuring the masked killer from the horror mockumentary Strange Harvest", caption: isEs ? "Poster alternativo de festival con el asesino enmascarado." : "Alternate Festival Run Poster featuring the masked killer.", downloadLabel: isEs ? "Descargar poster de festival" : "Download Festival Poster" },
+      { src: "/images/strange-harvest-los-asesinatos-de-mr-shiny-poster.webp", downloadSrc: "/images/strange-harvest-los-asesinatos-de-mr-shiny-poster.jpg", alt: "Official Spanish poster for Strange Harvest titled Los asesinatos de Mr. Shiny", caption: isEs ? "Poster oficial en espanol: Los asesinatos de Mr. Shiny." : "Official Spanish title poster: Los asesinatos de Mr. Shiny.", downloadLabel: isEs ? "Descargar poster en espanol" : "Download Spanish Poster" }
     ];
 
     const festivalsItems = [
@@ -1066,7 +1069,7 @@
           actions.className = "posterActions";
           const download = document.createElement("a");
           download.className = "downloadBtn";
-          download.href = item.src;
+          download.href = item.downloadSrc || item.src;
           download.download = "";
           download.target = "_blank";
           download.rel = "noopener noreferrer";

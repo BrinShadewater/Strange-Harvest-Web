@@ -77,7 +77,7 @@ const sitecopyEn = {
     blurb:
       "A routine welfare check leads to a gruesome discovery — and the return of a killer thought gone forever.",
     posterToggle: {
-      official: "Offical Poster",
+      official: "Official Poster",
       festival: "Festival Poster",
     },
     ctas: {
@@ -446,6 +446,13 @@ const sitecopyEn = {
         { name: "Ross Turner", character: "Dr. Dennis Levine", imdb: "https://www.imdb.com/name/nm3129298/" },
         { name: "Coleen Tutton", character: "April Macenroe", imdb: "https://www.imdb.com/name/nm2601916/" },
         { name: "Paul Sean Ward", character: "Crime Scene Technician", imdb: "https://www.imdb.com/name/nm9939745/" },
+        { name: "Angie Jho Lee", character: "Reporter ('95)", imdb: "https://www.imdb.com/name/nm9187716/" },
+        { name: "Alistair David Herz", character: "Anchor ('95)", imdb: "https://www.imdb.com/name/nm2796307/" },
+        { name: "Garon Grigsby", character: "Anchor 1", imdb: "https://www.imdb.com/name/nm0341954/" },
+        { name: "Lisa Cole", character: "Anchor 2", imdb: "https://www.imdb.com/name/nm1565266/" },
+        { name: "Jennifer Titus", character: "Anchor 3", imdb: "https://www.imdb.com/name/nm2315616/" },
+        { name: "Sarah Murphree", character: "Reporter 2", imdb: "https://www.imdb.com/name/nm5648079/" },
+        { name: "Charley Rossman", character: "Lieutenant", imdb: "https://www.imdb.com/name/nm0744451/" },
       ],
     },
     crew: {

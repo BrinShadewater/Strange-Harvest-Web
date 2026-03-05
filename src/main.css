@@ -46,8 +46,8 @@ body {
 }
 
 body.festival-theme {
-  --primary: 210 95% 55%;
-  --primary-hover: 210 95% 62%;
+  --primary: 210 88% 42%;
+  --primary-hover: 210 88% 48%;
   --glow-core-rgb: 0, 130, 255;
   --glow-mid-rgb: 0, 90, 220;
   --glow-far-rgb: 40, 70, 200;
@@ -252,6 +252,7 @@ section:first-of-type {
 
 
 .posterFrame {
+  position: relative;
   width: 100%;
   height: clamp(520px, 72vh, 760px);
   display: flex;
@@ -266,6 +267,36 @@ section:first-of-type {
     0 0 120px rgba(var(--glow-far-rgb), 0.15),
     inset 0 0 0 1px rgba(var(--hero-inset-rgb), 0.2);
   overflow: hidden;
+}
+
+.posterDownloadIcon {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  z-index: 3;
+}
+
+.posterDownloadIcon:hover {
+  transform: translateY(-1px) scale(1.05);
+  background: rgba(0, 0, 0, 0.72);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.posterDownloadIcon svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
 }
 
 .heroPoster img {
@@ -343,6 +374,13 @@ section:first-of-type {
     min-height: 52px;
     font-size: 12px;
     padding: 12px 10px;
+  }
+
+  .posterDownloadIcon {
+    width: 46px;
+    height: 46px;
+    right: 10px;
+    bottom: 10px;
   }
 }
 
@@ -696,34 +734,42 @@ section:first-of-type {
 .headerActions {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
 }
 
 .langToggle {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  padding: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
 }
 
-.langToggle a {
-  color: rgba(255, 255, 255, 0.7);
+.langToggleBtn {
+  color: rgba(255, 255, 255, 0.72);
   text-decoration: none;
   font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  min-height: 30px;
+  min-width: 38px;
+  padding: 0 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-.langToggle a.active {
+.langToggleBtn.active {
+  background: hsl(var(--primary));
   color: #fff;
 }
 
-.langToggle a:hover {
+.langToggleBtn:hover {
   color: hsl(var(--primary));
-}
-
-.langToggle span {
-  color: rgba(255, 255, 255, 0.45);
 }
 
 @media (max-width: 520px) {
@@ -816,13 +862,14 @@ section:first-of-type {
   .headerActions {
     grid-area: cart;
     justify-self: end;
-    gap: 8px;
+    gap: 12px;
   }
 
-  .langToggle {
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    gap: 4px;
+  .langToggleBtn {
+    min-height: 28px;
+    min-width: 34px;
+    padding: 0 8px;
+    font-size: 10px;
   }
 
   .cartIcon svg {
@@ -962,6 +1009,7 @@ section:first-of-type {
   left: 16px;
   width: 60px;
   height: auto;
+  color: rgb(var(--glow-title-rgb));
   opacity: 0.6;
   z-index: 0;
   pointer-events: none;
@@ -1046,11 +1094,15 @@ section:first-of-type {
   }
 
   .pressCard {
-    padding: 24px;
+    padding: 36px 24px 24px;
   }
 
   .pressQuote {
     font-size: 16px;
+  }
+
+  .quoteDecoration {
+    top: 18px;
   }
 }
 

@@ -39,10 +39,12 @@ export default function Hero() {
   const poster = isFestivalPoster
     ? {
         src: "/images/strange-harvest-alternate-movie-poster.webp",
+        downloadSrc: "/images/strange-harvest-alternate-movie-poster.jpg",
         alt: "Alternate Festival Run Poster featuring the masked killer from the horror mockumentary Strange Harvest",
       }
     : {
         src: "/images/strange-harvest-official-movie-poster.webp",
+        downloadSrc: "/images/strange-harvest-official-movie-poster-1280w.jpg",
         srcSet:
           "/images/strange-harvest-official-movie-poster-640w.webp 640w, /images/strange-harvest-official-movie-poster-960w.webp 960w, /images/strange-harvest-official-movie-poster-1280w.webp 1280w",
         alt: "Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire",
@@ -64,6 +66,19 @@ export default function Hero() {
               width="600"
               height="900"
             />
+            <a
+              className="posterDownloadIcon"
+              href={poster.downloadSrc}
+              download=""
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={isFestivalPoster ? "Download festival poster JPG" : "Download official poster JPG"}
+              title={isFestivalPoster ? "Download festival poster (JPG)" : "Download official poster (JPG)"}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.29a1 1 0 1 1 1.4 1.42l-4 3.98a1 1 0 0 1-1.4 0l-4-3.98a1 1 0 0 1 1.4-1.42l2.3 2.29V4a1 1 0 0 1 1-1Zm-7 14a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z"/>
+              </svg>
+            </a>
           </div>
           <div className="posterToggle" role="group" aria-label="Choose poster version">
             <button
