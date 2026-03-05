@@ -2,6 +2,10 @@ import { sitecopy } from "./sitecopy";
 
 export default function Synopsis() {
   const { synopsis } = sitecopy;
+  const getSrcSet = (src: string) => {
+    const base = src.replace(".webp", "");
+    return `${base}-640w.webp 640w, ${base}-960w.webp 960w, ${base}-1280w.webp 1280w`;
+  };
 
   const highlightNames = (text: string) => {
     return text
@@ -36,9 +40,12 @@ export default function Synopsis() {
           {synopsis.images.map((img, idx) => (
             <img 
               key={idx} 
-              src={img} 
-              alt={`Crime scene evidence ${idx + 1}`} 
+              src={img.src}
+              srcSet={getSrcSet(img.src)}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              alt={img.alt}
               loading="lazy"
+              decoding="async"
             />
           ))}
         </div>

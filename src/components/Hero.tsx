@@ -8,8 +8,10 @@ export default function Hero() {
       <div className="heroGrid">
         <div className="heroPoster">
           <img
-            src="/images/strange-harvest-movie-poster-official.webp"
-            alt="Strange Harvest Poster"
+            src="/images/strange-harvest-official-movie-poster.webp"
+            srcSet="/images/strange-harvest-official-movie-poster-640w.webp 640w, /images/strange-harvest-official-movie-poster-960w.webp 960w, /images/strange-harvest-official-movie-poster-1280w.webp 1280w"
+            sizes="(max-width: 768px) 88vw, (max-width: 1200px) 45vw, 600px"
+            alt="Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire"
             loading="eager"
             fetchPriority="high"
             decoding="async"

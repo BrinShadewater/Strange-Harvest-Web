@@ -63,10 +63,22 @@ export const sitecopy = {
       attribution: "Detective Joe Kirby",
     },
     images: [
-      "/images/strange-harvest-crime-scene-pool-investigation.webp",
-      "/images/strange-harvest-crime-scene-kitchen-evidence.webp",
-      "/images/strange-harvest-forensic-evidence-weapon-knife.webp",
-      "/images/strange-harvest-forensic-evidence-bloody-handprint.webp",
+      {
+        src: "/images/strange-harvest-crime-scene-pool-investigation.webp",
+        alt: "Forensic investigators examining a drained swimming pool crime scene in the horror mockumentary Strange Harvest",
+      },
+      {
+        src: "/images/strange-harvest-crime-scene-kitchen-evidence.webp",
+        alt: "Occult symbol painted in blood on a kitchen wall at a crime scene in the horror mockumentary Strange Harvest",
+      },
+      {
+        src: "/images/strange-harvest-forensic-evidence-weapon-knife.webp",
+        alt: "Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest",
+      },
+      {
+        src: "/images/strange-harvest-forensic-evidence-bloody-handprint.webp",
+        alt: "Bloody handprint marked as forensic evidence at a crime scene in the horror mockumentary Strange Harvest",
+      },
     ],
     stats: [
       { value: "2025", label: "Release Year" },
@@ -317,7 +329,7 @@ export const sitecopy = {
     title: "Official Home Video Release",
     productTitle: "Strange Harvest (DVD)",
     description: "Official DVD release distributed by Sony Pictures Home Entertainment. Manufactured on demand.",
-    image: "/images/strange-harvest-movie-poster-official.webp",
+    image: "/images/strange-harvest-official-movie-poster.webp",
     cta: { label: "View on Amazon", href: "https://www.amazon.com/dp/B0FSMGS86V", target: "_blank" },
     disclaimer: "*Sold and fulfilled by Amazon.",
   },
@@ -338,12 +350,14 @@ export const sitecopy = {
           name: "Peter Zizzo",
           role: "Detective Joe Kirby",
           image: "/images/strange-harvest-detective-joe-kirby-peter-zizzo.webp",
+          imageAlt: "Detective Joe Kirby giving an interview about the investigation in the horror mockumentary Strange Harvest",
           imdb: "https://www.imdb.com/name/nm0970567/",
         },
         {
           name: "Terri Apple",
           role: "Detective Lexi Taylor",
           image: "/images/strange-harvest-detective-lexi-taylor-terri-apple.webp",
+          imageAlt: "Detective Lexi Taylor speaking during an investigative interview in the horror mockumentary Strange Harvest",
           imdb: "https://www.imdb.com/name/nm0032322/",
         },
       ],
