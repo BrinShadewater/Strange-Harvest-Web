@@ -1,23 +1,62 @@
+import { useEffect, useState } from "react";
 import { sitecopy } from "./sitecopy";
 
 export default function Hero() {
   const { hero } = sitecopy;
+  const [isFestivalPoster, setIsFestivalPoster] = useState(false);
+
+  useEffect(() => {
+    document.body.classList.toggle("festival-theme", isFestivalPoster);
+    return () => {
+      document.body.classList.remove("festival-theme");
+    };
+  }, [isFestivalPoster]);
+
+  const poster = isFestivalPoster
+    ? {
+        src: "/images/strange-harvest-alternate-movie-poster.webp",
+        alt: "Alternate Festival Run Poster featuring the masked killer from the horror mockumentary Strange Harvest",
+      }
+    : {
+        src: "/images/strange-harvest-official-movie-poster.webp",
+        srcSet:
+          "/images/strange-harvest-official-movie-poster-640w.webp 640w, /images/strange-harvest-official-movie-poster-960w.webp 960w, /images/strange-harvest-official-movie-poster-1280w.webp 1280w",
+        alt: "Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire",
+      };
 
   return (
     <section className="hero" id="top">
       <div className="heroGrid">
         <div className="heroPoster">
           <img
-            src="/images/strange-harvest-official-movie-poster.webp"
-            srcSet="/images/strange-harvest-official-movie-poster-640w.webp 640w, /images/strange-harvest-official-movie-poster-960w.webp 960w, /images/strange-harvest-official-movie-poster-1280w.webp 1280w"
+            src={poster.src}
+            srcSet={poster.srcSet}
             sizes="(max-width: 768px) 88vw, (max-width: 1200px) 45vw, 600px"
-            alt="Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire"
+            alt={poster.alt}
             loading="eager"
             fetchPriority="high"
             decoding="async"
             width="600"
             height="900"
           />
+          <div className="posterToggle" role="group" aria-label="Choose poster version">
+            <button
+              type="button"
+              className={`posterToggleBtn ${!isFestivalPoster ? "active" : ""}`}
+              onClick={() => setIsFestivalPoster(false)}
+              aria-pressed={!isFestivalPoster}
+            >
+              Main Poster
+            </button>
+            <button
+              type="button"
+              className={`posterToggleBtn ${isFestivalPoster ? "active" : ""}`}
+              onClick={() => setIsFestivalPoster(true)}
+              aria-pressed={isFestivalPoster}
+            >
+              Festival Poster
+            </button>
+          </div>
         </div>
 
         <div className="heroCopy">

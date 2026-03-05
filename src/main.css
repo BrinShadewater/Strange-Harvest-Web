@@ -16,6 +16,14 @@
   --font-body: "Assistant", sans-serif;
   --container-bg: rgba(255, 255, 255, 0.14);
   --container-bg-hover: rgba(255, 255, 255, 0.2);
+  --glow-core-rgb: 200, 0, 0;
+  --glow-mid-rgb: 180, 0, 0;
+  --glow-far-rgb: 160, 0, 0;
+  --glow-title-rgb: 200, 0, 0;
+  --glow-title-mid-rgb: 180, 0, 0;
+  --glow-title-far-rgb: 160, 0, 0;
+  --hero-border-rgb: 200, 0, 0;
+  --hero-inset-rgb: 220, 0, 0;
 }
 
 * {
@@ -35,6 +43,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+body.festival-theme {
+  --glow-core-rgb: 0, 130, 255;
+  --glow-mid-rgb: 0, 90, 220;
+  --glow-far-rgb: 40, 70, 200;
+  --glow-title-rgb: 90, 170, 255;
+  --glow-title-mid-rgb: 40, 120, 255;
+  --glow-title-far-rgb: 35, 90, 220;
+  --hero-border-rgb: 70, 160, 255;
+  --hero-inset-rgb: 100, 190, 255;
 }
 
 #root {
@@ -125,9 +144,9 @@ section:first-of-type {
   margin-bottom: 8px;
   line-height: 0.9;
   text-shadow: 
-    0 0 20px rgba(200, 0, 0, 0.4),
-    0 0 40px rgba(180, 0, 0, 0.25),
-    0 0 60px rgba(160, 0, 0, 0.15);
+    0 0 20px rgba(var(--glow-title-rgb), 0.4),
+    0 0 40px rgba(var(--glow-title-mid-rgb), 0.25),
+    0 0 60px rgba(var(--glow-title-far-rgb), 0.15);
 }
 
 .hero p {
@@ -165,19 +184,51 @@ section:first-of-type {
   width: 100%;
   height: auto;
   border-radius: var(--radius);
-  border: 1px solid rgba(200, 0, 0, 0.5);
+  border: 1px solid rgba(var(--hero-border-rgb), 0.5);
   box-shadow: 
-    0 0 40px rgba(200, 0, 0, 0.4),
-    0 0 80px rgba(180, 0, 0, 0.25),
-    0 0 120px rgba(160, 0, 0, 0.15),
-    inset 0 0 0 1px rgba(220, 0, 0, 0.2);
-  filter: drop-shadow(0 0 25px rgba(200, 0, 0, 0.3));
+    0 0 40px rgba(var(--glow-core-rgb), 0.4),
+    0 0 80px rgba(var(--glow-mid-rgb), 0.25),
+    0 0 120px rgba(var(--glow-far-rgb), 0.15),
+    inset 0 0 0 1px rgba(var(--hero-inset-rgb), 0.2);
+  filter: drop-shadow(0 0 25px rgba(var(--glow-core-rgb), 0.3));
 }
 
 .heroPoster {
   overflow: visible;
   padding: 50px;
   margin: -50px;
+}
+
+.posterToggle {
+  display: inline-flex;
+  margin-top: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.posterToggleBtn {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  border: none;
+  padding: 10px 14px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.posterToggleBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.posterToggleBtn.active {
+  background: rgba(var(--glow-title-rgb), 0.24);
+  color: #fff;
 }
 
 .heroCopy {
@@ -1106,9 +1157,9 @@ body::before {
   pointer-events: none;
   background: radial-gradient(
     circle 650px at 85% 100px,
-    rgba(200, 0, 0, 0.08) 0%,
-    rgba(180, 0, 0, 0.05) 15%,
-    rgba(160, 0, 0, 0.03) 30%,
+    rgba(var(--glow-core-rgb), 0.08) 0%,
+    rgba(var(--glow-mid-rgb), 0.05) 15%,
+    rgba(var(--glow-far-rgb), 0.03) 30%,
     rgba(140, 0, 0, 0.015) 45%,
     transparent 65%
   );
@@ -1128,14 +1179,14 @@ body::after {
   background: 
     radial-gradient(
       circle 800px at 20% 1400px,
-      rgba(180, 0, 0, 0.04) 0%,
-      rgba(160, 0, 0, 0.025) 20%,
+      rgba(var(--glow-mid-rgb), 0.04) 0%,
+      rgba(var(--glow-far-rgb), 0.025) 20%,
       transparent 60%
     ),
     radial-gradient(
       circle 900px at 85% 2800px,
-      rgba(180, 0, 0, 0.045) 0%,
-      rgba(160, 0, 0, 0.028) 20%,
+      rgba(var(--glow-mid-rgb), 0.045) 0%,
+      rgba(var(--glow-far-rgb), 0.028) 20%,
       transparent 65%
     );
   z-index: 10;
@@ -1149,7 +1200,7 @@ body::after {
   width: 100%;
   background:
     radial-gradient(900px 520px at 50% -160px, rgba(255,255,255,0.03), rgba(0,0,0,0) 60%),
-    radial-gradient(700px 520px at 20% 10%, rgba(120, 0, 0, 0.06), rgba(0,0,0,0) 55%),
+    radial-gradient(700px 520px at 20% 10%, rgba(var(--glow-far-rgb), 0.08), rgba(0,0,0,0) 55%),
     radial-gradient(900px 620px at 80% 15%, rgba(255, 210, 120, 0.02), rgba(0,0,0,0) 55%);
   z-index: 0;
 }
