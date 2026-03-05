@@ -46,6 +46,8 @@ body {
 }
 
 body.festival-theme {
+  --primary: 210 95% 55%;
+  --primary-hover: 210 95% 62%;
   --glow-core-rgb: 0, 130, 255;
   --glow-mid-rgb: 0, 90, 220;
   --glow-far-rgb: 40, 70, 200;
@@ -54,6 +56,51 @@ body.festival-theme {
   --glow-title-far-rgb: 35, 90, 220;
   --hero-border-rgb: 70, 160, 255;
   --hero-inset-rgb: 100, 190, 255;
+}
+
+body.festival-theme .synopsisTitle::after {
+  background: hsl(var(--primary));
+}
+
+body.festival-theme .highlight {
+  color: hsl(var(--primary));
+}
+
+body.festival-theme .synopsisQuote {
+  border-left-color: hsl(var(--primary));
+}
+
+body.festival-theme .synopsisStat:hover {
+  border-color: hsl(var(--primary));
+}
+
+body.festival-theme .statValue {
+  color: hsl(var(--primary));
+}
+
+body.festival-theme .nav a:hover,
+body.festival-theme .cartIcon,
+body.festival-theme .cartIcon:hover {
+  color: hsl(var(--primary));
+}
+
+body.festival-theme .cta:hover {
+  background: rgba(40, 120, 255, 0.2);
+  border-color: hsl(var(--primary));
+}
+
+body.festival-theme .cta.primary {
+  background: hsl(var(--primary));
+}
+
+body.festival-theme .cta.primary:hover {
+  background: hsl(var(--primary-hover));
+}
+
+body.festival-theme .breadcrumb a:hover,
+body.festival-theme .homeVideoCta,
+body.festival-theme .homeVideoCta:hover {
+  color: hsl(var(--primary));
 }
 
 #root {

@@ -209,6 +209,7 @@
       letter-spacing: 0.02em;
       min-width: 0;
       white-space: nowrap;
+      justify-self: start;
     }
 
     .brand img { width: 24px; height: auto; display: block; }
@@ -258,7 +259,7 @@
       margin: 0 auto;
       padding: 120px 20px 80px;
       position: relative;
-      z-index: 1;
+      z-index: 5;
     }
 
     main::before {
@@ -282,10 +283,20 @@
       inset: 0;
       pointer-events: none;
       opacity: 0.06;
-      z-index: 0;
+      z-index: 2;
       background-image:
         repeating-linear-gradient(0deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06) 1px, rgba(0,0,0,0) 2px, rgba(0,0,0,0) 4px),
         repeating-linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.04) 1px, rgba(0,0,0,0) 2px, rgba(0,0,0,0) 5px);
+    }
+
+    .particleCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.85;
     }
 
     .heroKicker {
@@ -302,7 +313,7 @@
       font-size: clamp(30px, 5vw, 52px);
       line-height: 1.1;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 36px;
     }
 
     .heroFigure {
@@ -344,7 +355,7 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-size: 32px;
-      margin-bottom: 14px;
+      margin-bottom: 22px;
       font-weight: 800;
     }
 
@@ -495,7 +506,7 @@
       margin-top: 100px;
       text-align: center;
       position: relative;
-      z-index: 1;
+      z-index: 5;
     }
 
     .footerContent {
@@ -619,7 +630,7 @@
       }
 
       .brand {
-        justify-self: center;
+        justify-self: start;
         font-size: 14px;
       }
 
@@ -652,6 +663,7 @@
 </head>
 <body>
   <div class="grainOverlay" aria-hidden="true"></div>
+  <canvas class="particleCanvas" id="particle-canvas" aria-hidden="true"></canvas>
   <header class="siteHeader" role="banner">
     <div class="siteHeaderInner">
       <a class="brand" href="/" aria-label="Strange Harvest home">
@@ -661,11 +673,10 @@
       <nav class="nav" aria-label="Primary">
         <a href="/#top">Home</a>
         <a href="/#about">About</a>
-        <a href="/#trailer">Trailer</a>
+        <a href="/#watch">Watch</a>
         <a href="/#press">Press</a>
         <a href="/bts.html" class="active" aria-current="page">BTS</a>
-        <a href="/#watch">Watch</a>
-        <a href="/#shop">Shop</a>
+        <a href="/#shop">Merch</a>
       </nav>
       <a class="cartIcon" href="https://strangeharvestfilm.myshopify.com/cart" target="_blank" rel="noopener noreferrer" aria-label="Open merch cart">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -690,13 +701,13 @@
         fetchpriority="high"
         decoding="async"
       >
-      <figcaption>Film crew preparing an interview scene during production of the horror mockumentary Strange Harvest.</figcaption>
     </figure>
 
     <section class="introCopy" aria-label="Behind the scenes overview">
       <p>Behind the scenes of Strange Harvest, the process resembled building an investigative archive more than producing a conventional feature. Interviews, archival broadcasts, reenactments, and investigative threads were developed as standalone pieces and refined over multiple years before final assembly.</p>
       <p>The production relied on a compact team focused on realism, continuity, and worldbuilding detail. The result is a fully fabricated case file presented with documentary precision across performance, locations, props, and visual storytelling.</p>
     </section>
+    <div class="symbolDivider" aria-hidden="true"><img src="/images/strange-harvest-occult-symbol-horror-icon.webp" alt=""></div>
 
     <section class="gallerySection" id="carousel-bts-section" aria-label="Behind The Scenes carousel">
       <h2>Behind The Scenes</h2>
@@ -825,6 +836,88 @@
       { src: "/images/strange-harvest-fantastic-fest-poster-photo-group.webp", alt: "Filmmakers posing in front of the Fantastic Fest 2024 poster during Strange Harvest premiere", caption: "Filmmakers posing in front of the Fantastic Fest 2024 poster during the Strange Harvest premiere." }
     ];
 
+    function initParticleCanvas() {
+      const canvas = document.getElementById("particle-canvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const particleCount = prefersReducedMotion ? 20 : 72;
+      const particles = [];
+      let rafId = null;
+
+      function resize() {
+        const ratio = Math.max(window.devicePixelRatio || 1, 1);
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        canvas.width = Math.floor(width * ratio);
+        canvas.height = Math.floor(height * ratio);
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      }
+
+      function randomParticle() {
+        return {
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          r: Math.random() * 2.4 + 0.8,
+          vx: (Math.random() - 0.5) * 0.22,
+          vy: (Math.random() - 0.5) * 0.22,
+          a: Math.random() * 0.55 + 0.3
+        };
+      }
+
+      function initParticles() {
+        particles.length = 0;
+        for (let i = 0; i < particleCount; i += 1) {
+          particles.push(randomParticle());
+        }
+      }
+
+      function tick() {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach((p) => {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < -10) p.x = w + 10;
+          if (p.x > w + 10) p.x = -10;
+          if (p.y < -10) p.y = h + 10;
+          if (p.y > h + 10) p.y = -10;
+
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(201, 69, 56, ${p.a})`;
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        rafId = requestAnimationFrame(tick);
+      }
+
+      resize();
+      initParticles();
+      window.addEventListener("resize", () => {
+        resize();
+        initParticles();
+      });
+      tick();
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden && rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+          return;
+        }
+        if (!document.hidden && !rafId) {
+          tick();
+        }
+      });
+    }
+
     function initCarousel(containerId, dotsId, items) {
       const container = document.getElementById(containerId);
       const dotsWrap = document.getElementById(dotsId);
@@ -879,6 +972,15 @@
           download.rel = "noopener noreferrer";
           download.textContent = item.downloadLabel;
           actions.appendChild(download);
+
+          const enlarge = document.createElement("a");
+          enlarge.className = "downloadBtn";
+          enlarge.href = item.src;
+          enlarge.target = "_blank";
+          enlarge.rel = "noopener noreferrer";
+          enlarge.textContent = "Enlarge";
+          actions.appendChild(enlarge);
+
           cap.appendChild(actions);
         }
 
@@ -919,6 +1021,7 @@
       render();
     }
 
+    initParticleCanvas();
     initCarousel("carousel-bts", "dots-bts", btsItems);
     initCarousel("carousel-stills", "dots-stills", stillsItems);
     initCarousel("carousel-posters", "dots-posters", postersItems);
