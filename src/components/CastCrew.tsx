@@ -1,4 +1,15 @@
-import { sitecopy } from "./sitecopy";
+import { sitecopy, siteLanguage } from "./sitecopy";
+
+function localizeCrewRole(role: string): string {
+  if (siteLanguage !== "es") return role;
+  const map: Record<string, string> = {
+    "Director & Writer": "Director y guionista",
+    Producers: "Productores",
+    "Executive Producers": "Productores ejecutivos",
+    "Associate Producers": "Productores asociados",
+  };
+  return map[role] ?? role;
+}
 
 export default function CastCrew() {
   const { castCrew } = sitecopy;
@@ -55,7 +66,7 @@ export default function CastCrew() {
           <div className="crewGrid">
             {castCrew.crew.sections.map((section, idx) => (
               <div key={idx} className="crewCard">
-                <h4 className="crewRole">{section.role}</h4>
+                <h4 className="crewRole">{localizeCrewRole(section.role)}</h4>
                 {section.members.map((member, mIdx) => (
                   <a 
                     key={mIdx} 

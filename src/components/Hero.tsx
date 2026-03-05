@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { sitecopy } from "./sitecopy";
 
 export default function Hero() {
   const { hero } = sitecopy;
   const [isFestivalPoster, setIsFestivalPoster] = useState(false);
+  const [titleVisible, setTitleVisible] = useState(false);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
 
   useEffect(() => {
     document.body.classList.toggle("festival-theme", isFestivalPoster);
@@ -11,6 +13,28 @@ export default function Hero() {
       document.body.classList.remove("festival-theme");
     };
   }, [isFestivalPoster]);
+
+  useEffect(() => {
+    const node = titleRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") {
+      setTitleVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry?.isIntersecting) {
+          setTitleVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   const poster = isFestivalPoster
     ? {
@@ -48,7 +72,7 @@ export default function Hero() {
               onClick={() => setIsFestivalPoster(false)}
               aria-pressed={!isFestivalPoster}
             >
-              Main Poster
+              {hero.posterToggle.official}
             </button>
             <button
               type="button"
@@ -56,7 +80,7 @@ export default function Hero() {
               onClick={() => setIsFestivalPoster(true)}
               aria-pressed={isFestivalPoster}
             >
-              Festival Poster
+              {hero.posterToggle.festival}
             </button>
           </div>
         </div>
@@ -64,12 +88,9 @@ export default function Hero() {
         <div className="heroCopy">
           <div className="heroKicker">{hero.tagline}</div>
           <div className="heroSubtitle">{hero.subtitle}</div>
-          <h1>{hero.title}</h1>
+          <h1 ref={titleRef} className={`heroTitle ${titleVisible ? "is-visible" : ""}`}>{hero.title}</h1>
 
-          <p>
-            A routine welfare check leads to a gruesome discovery — and the return of a killer
-            thought gone forever.
-          </p>
+          <p>{hero.blurb}</p>
 
           <div className="ctaRow">
             <a className="cta primary" href={hero.ctas.primary.href}>

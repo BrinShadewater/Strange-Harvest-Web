@@ -40,15 +40,15 @@ export default function Merch() {
       
       {loading && (
         <div className="merchLoading">
-          <p>Loading merchandise...</p>
+          <p>{merch.loadingMessage}</p>
         </div>
       )}
 
       {error && !loading && (
         <div className="merchComingSoon">
           <div className="comingSoonContent">
-            <h3>Merch Coming Soon</h3>
-            <p>Our merchandise store is currently being updated. Check back soon!</p>
+            <h3>{merch.comingSoonTitle}</h3>
+            <p>{merch.comingSoonBody}</p>
             <a 
               href={merch.shopifyUrl} 
               target="_blank" 
@@ -57,7 +57,7 @@ export default function Merch() {
               style={{ marginTop: '24px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
             >
               <img src="/images/svgcons/still-icon-notify.svg" alt="" style={{ width: '20px', height: '20px', filter: 'brightness(0) invert(1)' }} />
-              Notify me
+              {merch.notifyMe}
             </a>
           </div>
         </div>
@@ -90,7 +90,7 @@ export default function Merch() {
                     rel="noopener noreferrer"
                     className="cta primary"
                   >
-                    Buy Now
+                    {merch.buyNow}
                   </a>
                 </div>
               </article>

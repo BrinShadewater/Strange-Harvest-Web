@@ -15,6 +15,9 @@
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://strangeharvestmovie.com/press.html">
+    <link rel="alternate" hreflang="en" href="https://strangeharvestmovie.com/press.html">
+    <link rel="alternate" hreflang="es" href="https://strangeharvestmovie.com/press.html?lang=es">
+    <link rel="alternate" hreflang="x-default" href="https://strangeharvestmovie.com/press.html">
     
     <!-- SEO Meta Tags -->
     <title>Strange Harvest Press Kit | Official Media & Reviews</title>
@@ -357,6 +360,26 @@
             color: var(--primary);
             border-color: var(--primary);
         }
+
+        .lang-switch {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+        
+        .lang-switch a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .lang-switch a.active {
+            color: #fff;
+        }
         
         @media (max-width: 768px) {
             .container {
@@ -380,6 +403,11 @@
 </head>
 <body>
     <div class="container">
+        <div class="lang-switch" aria-label="Language selector">
+            <a id="lang-en" href="/press.html">EN</a>
+            <span>/</span>
+            <a id="lang-es" href="/press.html?lang=es">ES</a>
+        </div>
         <header>
             <h1>Strange Harvest</h1>
             <p class="tagline">Press & Media Kit</p>
@@ -514,5 +542,81 @@
 
         <a href="/" class="back-link">← Back to Strange Harvest Home</a>
     </div>
+    <script>
+      (function () {
+        const isEs = new URLSearchParams(window.location.search).get("lang") === "es";
+        document.documentElement.lang = isEs ? "es" : "en";
+        document.getElementById("lang-en")?.classList.toggle("active", !isEs);
+        document.getElementById("lang-es")?.classList.toggle("active", isEs);
+
+        if (!isEs) return;
+
+        document.title = "Strange Harvest Press Kit | Prensa y Medios Oficiales";
+        document.querySelector('meta[name="description"]')?.setAttribute("content", "Kit de prensa oficial de Strange Harvest. Imagenes en alta resolucion, materiales promocionales y resenas destacadas.");
+        document.querySelector('meta[name="keywords"]')?.setAttribute("content", "Strange Harvest press kit, kit de prensa, horror, mockumentary, Stuart Ortiz");
+        document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Strange Harvest Press Kit | Prensa y Medios Oficiales");
+        document.querySelector('meta[property="og:description"]')?.setAttribute("content", "Kit de prensa oficial de Strange Harvest con imagenes promocionales y resenas.");
+        document.querySelector('meta[property="og:locale"]')?.setAttribute("content", "es_ES");
+        document.querySelector('meta[property="og:url"]')?.setAttribute("content", "https://strangeharvestmovie.com/press.html?lang=es");
+        document.querySelector('meta[property="twitter:title"]')?.setAttribute("content", "Strange Harvest Press Kit | Prensa y Medios Oficiales");
+        document.querySelector('meta[property="twitter:description"]')?.setAttribute("content", "Kit de prensa oficial de Strange Harvest con imagenes y resenas.");
+        document.querySelector('meta[property="twitter:url"]')?.setAttribute("content", "https://strangeharvestmovie.com/press.html?lang=es");
+        document.querySelector('link[rel="canonical"]')?.setAttribute("href", "https://strangeharvestmovie.com/press.html?lang=es");
+
+        const tagline = document.querySelector(".tagline");
+        if (tagline) tagline.textContent = "Kit de prensa y medios";
+
+        const h2s = document.querySelectorAll("section h2");
+        const h2Map = [
+          "Sobre la pelicula",
+          "Aclamacion critica",
+          "Streaming y disponibilidad",
+          "Imagenes de prensa",
+          "Enlaces oficiales",
+          "Contacto de prensa",
+        ];
+        h2s.forEach((node, i) => {
+          if (h2Map[i]) node.textContent = h2Map[i];
+        });
+
+        const firstSynopsis = document.querySelector(".synopsis p");
+        if (firstSynopsis) firstSynopsis.textContent = "Un control de bienestar de rutina en los suburbios de San Bernardino conduce a un descubrimiento espeluznante: una familia de tres ha sido atada, desangrada y colocada bajo un simbolo extrano escrito con sangre en el techo. Los detectives Joe Kirby y Lexi Taylor reconocen el simbolo como la firma de un asesino de hace 15 anos que aparentemente ha regresado.";
+        const synopsisParagraphs = document.querySelectorAll(".synopsis p");
+        if (synopsisParagraphs[1]) synopsisParagraphs[1].textContent = "Poco despues, \"Mr. Shiny\" deja nuevas escenas aterradoras: una victima atrapada en una piscina con sanguijuelas vivas y otra desollada ritualmente en un parque publico.";
+        if (synopsisParagraphs[2]) synopsisParagraphs[2].textContent = "Pronto resulta evidente que el caso no es rutinario y que los asesinatos pueden formar parte de una agenda siniestra relacionada con fenomenos cosmicos y fuerzas malignas.";
+
+        const detailHeaders = document.querySelectorAll(".detail-card strong");
+        const detailMap = ["Ano de estreno", "Duracion", "Clasificacion", "Genero"];
+        detailHeaders.forEach((node, i) => { if (detailMap[i]) node.textContent = detailMap[i]; });
+
+        const h3s = document.querySelectorAll("section h3");
+        if (h3s[0]) h3s[0].textContent = "Director y guionista";
+        if (h3s[1]) h3s[1].textContent = "Reparto principal";
+
+        const directorLine = h3s[0]?.nextElementSibling;
+        if (directorLine) directorLine.innerHTML = "<strong>Stuart Ortiz</strong> - Conocido por su enfoque innovador del terror found footage y la estetica true crime.";
+
+        const streamPs = h2s[2]?.parentElement?.querySelectorAll("p");
+        if (streamPs && streamPs[0]) streamPs[0].innerHTML = "<strong>Streaming:</strong> Hulu";
+        if (streamPs && streamPs[1]) streamPs[1].innerHTML = "<strong>Alquiler/Compra:</strong> Apple TV, Amazon Prime Video, YouTube, Fandango at Home, Cosmo";
+        if (streamPs && streamPs[2]) streamPs[2].innerHTML = "<strong>Internacional:</strong> Sky Store (UK), Rakuten TV (UK), Filmin (Espana)";
+        if (streamPs && streamPs[3]) streamPs[3].innerHTML = "<strong>Formato fisico:</strong> DVD disponible en Amazon (Sony Pictures Home Entertainment)";
+
+        const imagesIntro = h2s[3]?.nextElementSibling;
+        if (imagesIntro && imagesIntro.tagName === "P") imagesIntro.textContent = "Imagenes promocionales en alta resolucion disponibles para uso editorial:";
+
+        const watchBtn = [...document.querySelectorAll(".download-btn")].find((btn) => btn.textContent?.trim() === "Watch on Hulu");
+        if (watchBtn) watchBtn.textContent = "Ver en Hulu";
+
+        const contactP = document.querySelector(".contact p");
+        if (contactP) contactP.textContent = "Para consultas de prensa, solicitudes de entrevistas o materiales adicionales:";
+
+        const backLink = document.querySelector(".back-link");
+        if (backLink) {
+          backLink.textContent = "← Volver al inicio de Strange Harvest";
+          backLink.setAttribute("href", "/?lang=es");
+        }
+      })();
+    </script>
 </body>
 </html>

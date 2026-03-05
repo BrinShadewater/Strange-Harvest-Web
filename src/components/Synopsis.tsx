@@ -1,11 +1,25 @@
+import { useEffect, useState } from "react";
 import { sitecopy } from "./sitecopy";
 
 export default function Synopsis() {
   const { synopsis } = sitecopy;
+  const [expandedImage, setExpandedImage] = useState<null | { src: string; alt: string }>(null);
+  const [expandedStat, setExpandedStat] = useState<null | { value: string; label: string }>(null);
   const getSrcSet = (src: string) => {
     const base = src.replace(".webp", "");
     return `${base}-640w.webp 640w, ${base}-960w.webp 960w, ${base}-1280w.webp 1280w`;
   };
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setExpandedImage(null);
+        setExpandedStat(null);
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   const highlightNames = (text: string) => {
     return text
@@ -38,15 +52,22 @@ export default function Synopsis() {
       {synopsis.images && (
         <div className="synopsisImages">
           {synopsis.images.map((img, idx) => (
-            <img 
-              key={idx} 
-              src={img.src}
-              srcSet={getSrcSet(img.src)}
-              sizes="(max-width: 768px) 100vw, 50vw"
-              alt={img.alt}
-              loading="lazy"
-              decoding="async"
-            />
+            <button
+              key={idx}
+              className="synopsisMediaButton"
+              type="button"
+              onClick={() => setExpandedImage({ src: img.src, alt: img.alt })}
+              aria-label={`Expand image: ${img.alt}`}
+            >
+              <img
+                src={img.src}
+                srcSet={getSrcSet(img.src)}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                alt={img.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
           ))}
         </div>
       )}
@@ -54,11 +75,55 @@ export default function Synopsis() {
       {synopsis.stats && (
         <div className="synopsisStats">
           {synopsis.stats.map((stat, idx) => (
-            <div key={idx} className="synopsisStat">
+            <button
+              key={idx}
+              className="synopsisStat synopsisStatButton"
+              type="button"
+              onClick={() => setExpandedStat({ value: stat.value, label: stat.label })}
+              aria-label={`Expand stat: ${stat.label} ${stat.value}`}
+            >
               <div className="statValue">{stat.value}</div>
               <div className="statLabel">{stat.label}</div>
-            </div>
+            </button>
           ))}
+        </div>
+      )}
+
+      {expandedImage && (
+        <div className="synopsisLightbox" role="dialog" aria-modal="true" onClick={() => setExpandedImage(null)}>
+          <button
+            className="synopsisLightboxClose"
+            type="button"
+            onClick={() => setExpandedImage(null)}
+            aria-label="Close expanded image"
+          >
+            ×
+          </button>
+          <img
+            src={expandedImage.src}
+            srcSet={getSrcSet(expandedImage.src)}
+            sizes="100vw"
+            alt={expandedImage.alt}
+            className="synopsisLightboxImage"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
+
+      {expandedStat && (
+        <div className="synopsisLightbox" role="dialog" aria-modal="true" onClick={() => setExpandedStat(null)}>
+          <button
+            className="synopsisLightboxClose"
+            type="button"
+            onClick={() => setExpandedStat(null)}
+            aria-label="Close expanded stat"
+          >
+            ×
+          </button>
+          <div className="synopsisStatExpanded" onClick={(e) => e.stopPropagation()}>
+            <div className="statValue">{expandedStat.value}</div>
+            <div className="statLabel">{expandedStat.label}</div>
+          </div>
         </div>
       )}
     </article>

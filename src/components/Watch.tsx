@@ -41,7 +41,7 @@ export default function Watch() {
         </div>
 
         <p className="watchNote" style={{ marginTop: 24 }}>
-          Checking platform availability for your region...
+          {watch.loadingMessage}
         </p>
       </section>
     );
@@ -72,7 +72,7 @@ export default function Watch() {
                 href={p.href}
                 target={p.href.startsWith("http") ? "_blank" : undefined}
                 rel={p.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                aria-label={`Watch on ${p.name}`}
+                aria-label={`${watch.ariaWatchOn} ${p.name}`}
               >
                 <img src={p.icon} alt="" className="watchIcon" />
                 <div className="watchName">{p.name}</div>
@@ -96,7 +96,7 @@ export default function Watch() {
                 href={p.href}
                 target={p.href.startsWith("http") ? "_blank" : undefined}
                 rel={p.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                aria-label={`Rent or buy on ${p.name}`}
+                aria-label={`${watch.ariaRentBuyOn} ${p.name}`}
               >
                 <img src={p.icon} alt="" className="watchIcon" />
                 <div className="watchName">{p.name}</div>
@@ -120,7 +120,7 @@ export default function Watch() {
                 href={p.href}
                 target={p.href.startsWith("http") ? "_blank" : undefined}
                 rel={p.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                aria-label={`Rent or buy on ${p.name}`}
+                aria-label={`${watch.ariaRentBuyOn} ${p.name}`}
               >
                 <img src={p.icon} alt="" className="watchIcon" />
                 <div className="watchName">{p.name}</div>

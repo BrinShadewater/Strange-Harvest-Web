@@ -43,7 +43,7 @@ export default function Footer() {
             className="footerCookieSettings"
             aria-label="Manage cookie preferences"
           >
-            Cookie Settings
+            {footer.cookieSettingsLabel}
           </button>
         </div>
       </div>

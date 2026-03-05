@@ -6,19 +6,22 @@
   <meta name="theme-color" content="#0a0a0a">
 
   <title>Behind the Scenes of Strange Harvest | Official BTS Gallery</title>
-  <meta name="description" content="Behind the scenes, stills, official posters, and festival screening photos for Strange Harvest.">
+  <meta name="description" content="Behind the scenes, stills, official posters, including Los asesinatos de Mr. Shiny Spanish artwork, and festival screening photos for Strange Harvest.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://strangeharvestmovie.com/bts.html">
+  <link rel="alternate" hreflang="en" href="https://strangeharvestmovie.com/bts.html">
+  <link rel="alternate" hreflang="es" href="https://strangeharvestmovie.com/bts.html?lang=es">
+  <link rel="alternate" hreflang="x-default" href="https://strangeharvestmovie.com/bts.html">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Behind the Scenes of Strange Harvest">
-  <meta property="og:description" content="Official BTS gallery for Strange Harvest with production photos, stills, posters, and festival screenings.">
+  <meta property="og:description" content="Official BTS gallery for Strange Harvest with production photos, stills, posters (including Los asesinatos de Mr. Shiny), and festival screenings.">
   <meta property="og:url" content="https://strangeharvestmovie.com/bts.html">
   <meta property="og:image" content="https://strangeharvestmovie.com/images/strange-harvest-film-crew-behind-the-scenes.webp">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Behind the Scenes of Strange Harvest">
-  <meta name="twitter:description" content="Official BTS gallery for Strange Harvest with production photos, stills, posters, and festival screenings.">
+  <meta name="twitter:description" content="Official BTS gallery for Strange Harvest with production photos, stills, posters (including Los asesinatos de Mr. Shiny), and festival screenings.">
   <meta name="twitter:image" content="https://strangeharvestmovie.com/images/strange-harvest-film-crew-behind-the-scenes.webp">
 
   <script type="application/ld+json">
@@ -77,6 +80,13 @@
         "caption": "Alternate poster featuring the masked killer from Strange Harvest.",
         "width": 1365,
         "height": 2048
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://strangeharvestmovie.com/bts.html#img-poster-es",
+        "contentUrl": "https://strangeharvestmovie.com/images/strange-harvest-los-asesinatos-de-mr-shiny-poster.webp",
+        "name": "Los asesinatos de Mr. Shiny Spanish poster",
+        "caption": "Official Spanish poster artwork for Strange Harvest titled Los asesinatos de Mr. Shiny."
       },
       {
         "@type": "ImageObject",
@@ -252,6 +262,26 @@
       color: hsl(0, 75%, 55%);
       transform: scale(1.08);
       background: rgba(255,255,255,0.05);
+    }
+
+    .langSwitch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-left: 10px;
+    }
+
+    .langSwitch a {
+      color: rgba(255, 255, 255, 0.72);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .langSwitch a.active {
+      color: #fff;
     }
 
     main {
@@ -658,6 +688,12 @@
         width: 24px;
         height: 24px;
       }
+
+      .langSwitch {
+        position: absolute;
+        right: 54px;
+        top: 16px;
+      }
     }
   </style>
 </head>
@@ -678,6 +714,11 @@
         <a href="/bts.html" class="active" aria-current="page">BTS</a>
         <a href="/#shop">Merch</a>
       </nav>
+      <div class="langSwitch" aria-label="Language selector">
+        <a id="lang-en" href="/bts.html">EN</a>
+        <span>/</span>
+        <a id="lang-es" href="/bts.html?lang=es">ES</a>
+      </div>
       <a class="cartIcon" href="https://strangeharvestfilm.myshopify.com/cart" target="_blank" rel="noopener noreferrer" aria-label="Open merch cart">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="9" cy="21" r="1"></circle>
@@ -727,7 +768,7 @@
 
     <section class="gallerySection" id="carousel-posters-section" aria-label="Official Posters carousel">
       <h2>Official Posters</h2>
-      <p class="galleryIntro">Primary and alternate theatrical poster artwork for Strange Harvest, used across official site, press, and release promotion materials.</p>
+      <p class="galleryIntro">Primary, alternate, and Spanish theatrical poster artwork for Strange Harvest, including Los asesinatos de Mr. Shiny branding used across official site, press, and release promotion materials.</p>
       <div class="carousel" id="carousel-posters"></div>
       <div class="dots" id="dots-posters" aria-label="Official Posters slide navigation"></div>
     </section>
@@ -777,6 +818,64 @@
   </footer>
 
   <script>
+    const isEs = new URLSearchParams(window.location.search).get("lang") === "es";
+
+    function localizeBtsPage() {
+      document.documentElement.lang = isEs ? "es" : "en";
+      document.getElementById("lang-en")?.classList.toggle("active", !isEs);
+      document.getElementById("lang-es")?.classList.toggle("active", isEs);
+      if (!isEs) return;
+
+      document.title = "Detras de camaras de Strange Harvest | Galeria BTS oficial";
+      document.querySelector('meta[name="description"]')?.setAttribute("content", "Detras de camaras, stills, posters oficiales y fotos de festivales de Strange Harvest.");
+      document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Detras de camaras de Strange Harvest");
+      document.querySelector('meta[property="og:description"]')?.setAttribute("content", "Galeria BTS oficial de Strange Harvest con fotos de produccion, stills, posters y festivales.");
+      document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", "Detras de camaras de Strange Harvest");
+      document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", "Galeria BTS oficial de Strange Harvest con fotos de produccion, stills, posters y festivales.");
+      document.querySelector('meta[property="og:url"]')?.setAttribute("content", "https://strangeharvestmovie.com/bts.html?lang=es");
+      document.querySelector('link[rel="canonical"]')?.setAttribute("href", "https://strangeharvestmovie.com/bts.html?lang=es");
+
+      const navLinks = document.querySelectorAll(".nav a");
+      const navMap = ["Inicio", "Sinopsis", "Ver", "Prensa", "BTS", "Merch"];
+      navLinks.forEach((node, idx) => {
+        if (navMap[idx]) node.textContent = navMap[idx];
+      });
+      const navHrefs = ["/?lang=es#top", "/?lang=es#about", "/?lang=es#watch", "/?lang=es#press", "/bts.html?lang=es", "/?lang=es#shop"];
+      navLinks.forEach((node, idx) => {
+        if (navHrefs[idx]) node.setAttribute("href", navHrefs[idx]);
+      });
+      const brand = document.querySelector(".brand");
+      if (brand) brand.setAttribute("href", "/?lang=es#top");
+
+      const h1 = document.querySelector("main h1");
+      if (h1) h1.textContent = "Detras de camaras de Strange Harvest";
+
+      const introParagraphs = document.querySelectorAll(".introCopy p");
+      if (introParagraphs[0]) introParagraphs[0].textContent = "Detras de camaras de Strange Harvest, el proceso se parecio mas a construir un archivo de investigacion que a producir una pelicula convencional. Entrevistas, emisiones de archivo, recreaciones y lineas investigativas se desarrollaron como piezas independientes y se refinaron durante varios anos antes del montaje final.";
+      if (introParagraphs[1]) introParagraphs[1].textContent = "Esta galeria incluye fotografia de produccion, stills oficiales, posters y cobertura de festivales para documentar el universo visual del filme.";
+
+      const sectionTitles = document.querySelectorAll(".gallerySection h2");
+      const sectionMap = ["Detras de camaras", "Stills", "Posters oficiales", "Festivales y proyecciones"];
+      sectionTitles.forEach((node, idx) => {
+        if (sectionMap[idx]) node.textContent = sectionMap[idx];
+      });
+
+      const intros = document.querySelectorAll(".galleryIntro");
+      if (intros[0]) intros[0].textContent = "Fotografia de produccion del set de Strange Harvest, incluyendo entrevistas, newsroom setups, scouting y preparacion de escenas.";
+      if (intros[1]) intros[1].textContent = "Stills oficiales de Strange Harvest con escenas del crimen, evidencia forense, entrevistas y simbolismo ocultista.";
+      if (intros[2]) intros[2].textContent = "Poster principal, alternativo y version en espanol de Strange Harvest para promocion oficial y prensa.";
+      if (intros[3]) intros[3].textContent = "Cobertura de festivales y proyecciones de Strange Harvest, incluyendo Fantastic Fest y Beyond Fest.";
+
+      const footerOfficial = document.querySelector(".footerOfficial");
+      if (footerOfficial) footerOfficial.textContent = "Sitio web oficial de Strange Harvest (2025)";
+      const cookie = document.querySelector(".footerCookieSettings");
+      if (cookie) cookie.textContent = "Configuracion de cookies";
+      const privacyLink = document.querySelector('.footerCookieSettings[href="/privacy.html"]');
+      if (privacyLink) privacyLink.setAttribute("href", "/privacy.html?lang=es");
+    }
+
+    localizeBtsPage();
+
     const btsItems = [
       { src: "/images/strange-harvest-mockumentary-news-reporter-scene-bts.webp", alt: "Behind the scenes photo of a news reporter filming an interview scene for the horror mockumentary Strange Harvest", caption: "Behind the scenes photo of a news reporter filming an interview scene for the horror mockumentary Strange Harvest." },
       { src: "/images/strange-harvest-behind-the-scenes-interview-setup.webp", alt: "Behind the scenes monitor view of an interview setup for the horror mockumentary Strange Harvest with associate producer James Pearce standing in during lighting and camera setup.", caption: "Behind the scenes monitor view of an interview setup with associate producer James Pearce standing in during lighting and camera setup." },
@@ -820,8 +919,9 @@
     ];
 
     const postersItems = [
-      { src: "/images/strange-harvest-official-movie-poster.webp", alt: "Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire", caption: "Main official poster.", downloadLabel: "Download Main Poster" },
-      { src: "/images/strange-harvest-alternate-movie-poster.webp", alt: "Alternate poster featuring the masked killer from the horror mockumentary Strange Harvest", caption: "Alternate Festival Run Poster featuring the masked killer.", downloadLabel: "Download Festival Poster" }
+      { src: "/images/strange-harvest-official-movie-poster.webp", alt: "Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire", caption: isEs ? "Poster oficial principal." : "Main official poster.", downloadLabel: isEs ? "Descargar poster principal" : "Download Main Poster" },
+      { src: "/images/strange-harvest-alternate-movie-poster.webp", alt: "Alternate poster featuring the masked killer from the horror mockumentary Strange Harvest", caption: isEs ? "Poster alternativo de festival con el asesino enmascarado." : "Alternate Festival Run Poster featuring the masked killer.", downloadLabel: isEs ? "Descargar poster de festival" : "Download Festival Poster" },
+      { src: "/images/strange-harvest-los-asesinatos-de-mr-shiny-poster.webp", alt: "Official Spanish poster for Strange Harvest titled Los asesinatos de Mr. Shiny", caption: isEs ? "Poster oficial en espanol: Los asesinatos de Mr. Shiny." : "Official Spanish title poster: Los asesinatos de Mr. Shiny.", downloadLabel: isEs ? "Descargar poster en espanol" : "Download Spanish Poster" }
     ];
 
     const festivalsItems = [
@@ -978,7 +1078,7 @@
           enlarge.href = item.src;
           enlarge.target = "_blank";
           enlarge.rel = "noopener noreferrer";
-          enlarge.textContent = "Enlarge";
+          enlarge.textContent = isEs ? "Ampliar" : "Enlarge";
           actions.appendChild(enlarge);
 
           cap.appendChild(actions);

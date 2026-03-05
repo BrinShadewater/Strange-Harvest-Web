@@ -18,6 +18,9 @@
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://strangeharvestmovie.com/transcript.html">
+    <link rel="alternate" hreflang="en" href="https://strangeharvestmovie.com/transcript.html">
+    <link rel="alternate" hreflang="es" href="https://strangeharvestmovie.com/transcript.html?lang=es">
+    <link rel="alternate" hreflang="x-default" href="https://strangeharvestmovie.com/transcript.html">
     
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -176,6 +179,22 @@
             font-size: 14px;
             color: rgba(255, 255, 255, 0.7);
         }
+
+        .lang-switch {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+        .lang-switch a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .lang-switch a.active { color: #fff; }
         
         @media (max-width: 768px) {
             .container {
@@ -195,6 +214,11 @@
 </head>
 <body>
     <div class="container">
+        <div class="lang-switch" aria-label="Language selector">
+            <a id="lang-en" href="/transcript.html">EN</a>
+            <span>/</span>
+            <a id="lang-es" href="/transcript.html?lang=es">ES</a>
+        </div>
         <header>
             <h1>Strange Harvest</h1>
             <p class="subtitle">Official Trailer Transcript</p>
@@ -330,5 +354,38 @@
 
         <a href="/" class="back-link">← Back to Strange Harvest Home</a>
     </div>
+    <script>
+      (function () {
+        const isEs = new URLSearchParams(window.location.search).get("lang") === "es";
+        document.documentElement.lang = isEs ? "es" : "en";
+        document.getElementById("lang-en")?.classList.toggle("active", !isEs);
+        document.getElementById("lang-es")?.classList.toggle("active", isEs);
+
+        if (!isEs) return;
+
+        document.title = "Strange Harvest Trailer Oficial - Transcripcion";
+        document.querySelector('meta[name="description"]')?.setAttribute("content", "Transcripcion completa del trailer oficial de Strange Harvest.");
+        document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Strange Harvest - Transcripcion del Trailer");
+        document.querySelector('meta[property="og:description"]')?.setAttribute("content", "Transcripcion completa del trailer oficial de Strange Harvest.");
+        document.querySelector('meta[property="og:url"]')?.setAttribute("content", "https://strangeharvestmovie.com/transcript.html?lang=es");
+        document.querySelector('link[rel="canonical"]')?.setAttribute("href", "https://strangeharvestmovie.com/transcript.html?lang=es");
+
+        const subtitle = document.querySelector(".subtitle");
+        if (subtitle) subtitle.textContent = "Transcripcion del trailer oficial";
+        const iframe = document.querySelector(".video-embed iframe");
+        if (iframe) iframe.setAttribute("title", "Trailer oficial de Strange Harvest");
+        const note = document.querySelector(".accessibility-note");
+        if (note) note.innerHTML = "<strong>Nota de accesibilidad:</strong> Esta transcripcion proporciona una version en texto del contenido de audio y video del trailer oficial de Strange Harvest para fines de accesibilidad.";
+        const transcriptHeading = document.querySelector(".transcript h2");
+        if (transcriptHeading) transcriptHeading.textContent = "Transcripcion del trailer";
+        const warning = document.querySelector('.transcript p[style*="margin-top: 40px"]');
+        if (warning) warning.innerHTML = "<strong>Advertencia de contenido:</strong> Este trailer contiene imagenes perturbadoras, referencias a violencia y elementos de terror. Se recomienda discrecion.";
+        const backLink = document.querySelector(".back-link");
+        if (backLink) {
+          backLink.textContent = "← Volver al inicio de Strange Harvest";
+          backLink.setAttribute("href", "/?lang=es");
+        }
+      })();
+    </script>
 </body>
 </html>

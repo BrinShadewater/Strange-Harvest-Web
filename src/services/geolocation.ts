@@ -213,7 +213,8 @@ export function getPlatformsForRegion(region: Region): {
     case 'UK':
     case 'EU':
       return {
-        showStreaming: false, // Hulu not available
+        // Some EU countries have region-specific streaming options (e.g. Filmin in ES).
+        showStreaming: true,
         showUSCA: false,
         showIntl: true,
       };
@@ -222,7 +223,7 @@ export function getPlatformsForRegion(region: Region): {
     default:
       // Conservative fallback for unknown regions.
       return {
-        showStreaming: false,
+        showStreaming: true,
         showUSCA: false,
         showIntl: true,
       };
@@ -275,6 +276,11 @@ export function filterStreamingPlatformsByCountry(
     // Paramount+ link provided is Canada-only.
     if (name.includes('paramount+')) {
       return code === 'CA';
+    }
+
+    // Filmin is Spain-only for this title.
+    if (name.includes('filmin')) {
+      return code === 'ES';
     }
 
     return true;

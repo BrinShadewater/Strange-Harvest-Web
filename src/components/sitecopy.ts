@@ -1,4 +1,14 @@
-export const sitecopy = {
+export type SiteLanguage = "en" | "es";
+
+function detectSiteLanguage(): SiteLanguage {
+  if (typeof window === "undefined") return "en";
+  const lang = new URLSearchParams(window.location.search).get("lang")?.toLowerCase();
+  return lang === "es" ? "es" : "en";
+}
+
+export const siteLanguage = detectSiteLanguage();
+
+const sitecopyEn = {
   cookieConsent: {
     title: "Cookie Notice",
     message:
@@ -39,14 +49,41 @@ export const sitecopy = {
     },
   },
 
+  header: {
+    skipToContent: "Skip to main content",
+    nav: {
+      home: "Home",
+      about: "About",
+      watch: "Watch",
+      press: "Press",
+      bts: "BTS",
+      merch: "Merch",
+    },
+    aria: {
+      home: "Strange Harvest home",
+      cart: "Open shopping cart",
+      language: "Language selector",
+    },
+    languageToggle: {
+      en: "EN",
+      es: "ES",
+    },
+  },
+
   hero: {
     title: "STRANGE HARVEST",
     tagline: "TRUE-CRIME FOUND FOOTAGE HORROR MOCKUMENTARY",
     subtitle: "OFFICIAL WEBSITE",
+    blurb:
+      "A routine welfare check leads to a gruesome discovery — and the return of a killer thought gone forever.",
+    posterToggle: {
+      official: "Offical Poster",
+      festival: "Festival Poster",
+    },
     ctas: {
       primary: { label: "Trailer", href: "#trailer" },
       secondary: { label: "Watch", href: "#watch" },
-      tertiary: { label: "Shop Merch", href: "#shop" },
+      tertiary: { label: "Merch", href: "#shop" },
     },
   },
 
@@ -86,6 +123,11 @@ export const sitecopy = {
       { value: "RESTRICTED", label: "Disturbing / Grisly Violent Content And Language" },
       { value: "True Crime / Horror", label: "Genre" },
     ],
+  },
+
+  trailer: {
+    title: "Official Trailer",
+    iframeTitle: "Strange Harvest Official Trailer",
   },
 
   press: {
@@ -267,6 +309,9 @@ export const sitecopy = {
     streamingOn: "STREAMING ON",
     rentOwnUSCA: "RENT / OWN",
     rentOwnIntl: "RENT / OWN (UK & INTERNATIONAL)",
+    loadingMessage: "Checking platform availability for your region...",
+    ariaWatchOn: "Watch on",
+    ariaRentBuyOn: "Rent or buy on",
     streamingPlatforms: [
       {
         name: "Hulu",
@@ -277,6 +322,11 @@ export const sitecopy = {
         name: "Paramount+",
         href: "https://www.paramountplus.com/ca/movies/video/_rwhlpI_KPDSpgSqI41q70Q6VVwGC2lG/",
         icon: "/images/strange-harvest-watch-paramount-plus-icon.webp",
+      },
+      {
+        name: "Filmin",
+        href: "https://www.filmin.es/pelicula/los-asesinatos-de-mr-shiny",
+        icon: "/images/strange-harvest-watch-streaming-filmin-icon.webp",
       },
     ],
     usca: [
@@ -339,6 +389,11 @@ export const sitecopy = {
     blurb: "Wear the terror. Carry the mystery. Exclusive Strange Harvest merchandise for true believers.",
     shopifyUrl: "https://strangeharvestfilm.myshopify.com/pages/customer-notifications",
     shopifyCartUrl: "https://strangeharvestfilm.myshopify.com/cart",
+    loadingMessage: "Loading merchandise...",
+    comingSoonTitle: "Merch Coming Soon",
+    comingSoonBody: "Our merchandise store is currently being updated. Check back soon!",
+    notifyMe: "Notify me",
+    buyNow: "Buy Now",
   },
 
   castCrew: {
@@ -441,7 +496,168 @@ export const sitecopy = {
     officialNotice: "Official Website of Strange Harvest (2025)",
     copyright: "© 2024 Strange Harvest. All rights reserved.",
     musicCredit: "Adorable Damage & Pathogen Pictures",
+    cookieSettingsLabel: "Cookie Settings",
     disclaimer:
       "All material on this website is fictional and presented for entertainment. Any resemblance to real people, organizations, places, or events is coincidental and not intended as factual representation.",
   },
 };
+
+type DeepPartial<T> = {
+  [K in keyof T]?: T[K] extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T[K] extends Record<string, any>
+      ? DeepPartial<T[K]>
+      : T[K];
+};
+
+function deepMerge<T extends Record<string, any>>(base: T, override: DeepPartial<T>): T {
+  const output: Record<string, any> = { ...base };
+  Object.keys(override).forEach((key) => {
+    const baseValue = base[key];
+    const overrideValue = override[key];
+
+    if (
+      baseValue &&
+      overrideValue &&
+      typeof baseValue === "object" &&
+      typeof overrideValue === "object" &&
+      !Array.isArray(baseValue) &&
+      !Array.isArray(overrideValue)
+    ) {
+      output[key] = deepMerge(baseValue, overrideValue);
+      return;
+    }
+
+    output[key] = overrideValue;
+  });
+  return output as T;
+}
+
+const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
+  cookieConsent: {
+    title: "Aviso de Cookies",
+    message:
+      "Este sitio web utiliza cookies para mejorar tu experiencia de navegacion y analizar el trafico. Puedes elegir que cookies aceptar.",
+    acceptAllButton: "Aceptar todo",
+    essentialOnlyButton: "Solo cookies esenciales",
+    manageButton: "Administrar preferencias",
+    saveButton: "Guardar preferencias",
+    privacyLink: {
+      label: "Politica de Privacidad",
+    },
+    preferences: {
+      title: "Preferencias de Cookies",
+      description:
+        "Elige que tipos de cookies deseas permitir. Las cookies esenciales no se pueden desactivar porque son necesarias para el funcionamiento del sitio.",
+      categories: {
+        essential: {
+          label: "Cookies esenciales",
+          description: "Necesarias para el funcionamiento basico del sitio. No se pueden desactivar.",
+        },
+        analytics: {
+          label: "Cookies analiticas",
+          description: "Nos ayudan a entender como los visitantes interactuan con el sitio.",
+        },
+        marketing: {
+          label: "Cookies de marketing",
+          description: "Se utilizan para rastrear a los visitantes en diferentes sitios web con fines publicitarios.",
+        },
+        preferences: {
+          label: "Cookies de preferencias",
+          description: "Recuerdan tu configuracion y preferencias para futuras visitas.",
+        },
+      },
+    },
+  },
+  header: {
+    skipToContent: "Saltar al contenido principal",
+    nav: {
+      home: "Inicio",
+      about: "Sinopsis",
+      watch: "Ver",
+      press: "Prensa",
+      merch: "Merch",
+    },
+    aria: {
+      cart: "Abrir carrito de compras",
+      language: "Selector de idioma",
+    },
+  },
+  hero: {
+    tagline: "MOCKUMENTARY DE TERROR TRUE CRIME Y FOUND FOOTAGE",
+    subtitle: "SITIO OFICIAL",
+    blurb:
+      "Un control de bienestar de rutina conduce a un hallazgo espeluznante y al regreso de un asesino que se creia desaparecido para siempre.",
+    ctas: {
+      primary: { label: "Trailer" },
+    },
+    posterToggle: {
+      official: "Poster Oficial",
+      festival: "Poster Festival",
+    },
+  },
+  trailer: {
+    title: "Trailer oficial",
+    iframeTitle: "Trailer oficial de Strange Harvest",
+  },
+  synopsis: {
+    title: "Sinopsis",
+    body: [
+      "Un control de bienestar de rutina en los suburbios de San Bernardino conduce a un descubrimiento espeluznante: una familia de tres ha sido atada, desangrada y colocada bajo un extrano simbolo escrito con sangre en el techo. Los detectives Joe Kirby y Lexi Taylor reconocen el simbolo como la firma de un asesino de hace 15 anos que aparentemente ha regresado para continuar su ola de crimenes.",
+      "Poco despues, \"Mr. Shiny\" comienza a dejar nuevas escenas aterradoras; una victima queda atrapada en una piscina con sanguijuelas vivas mientras otra es desollada ritualmente y expuesta en un parque publico.",
+      "Pronto se hace evidente que el caso no tiene nada de rutinario y que los asesinatos, y su autor, pueden formar parte de una agenda siniestra y de otro mundo relacionada con fenomenos cosmicos y fuerzas malignas mas alla de nuestra comprension.",
+    ],
+    quote: {
+      text: "Algunos misterios no se resuelven. Solo se vuelven mas extranos cuanto mas los miras.",
+    },
+    stats: [
+      { value: "2025", label: "Ano de estreno" },
+      { value: "134m", label: "Duracion" },
+      { value: "RESTRINGIDA", label: "Contenido perturbador / violencia explicita y lenguaje fuerte" },
+      { value: "True Crime / Horror", label: "Genero" },
+    ],
+  },
+  press: {
+    title: "Prensa y menciones",
+  },
+  watch: {
+    title: "Ver ahora",
+    rentOwnUSCA: "ALQUILER / COMPRA",
+    rentOwnIntl: "ALQUILER / COMPRA (REINO UNIDO E INTERNACIONAL)",
+    loadingMessage: "Comprobando disponibilidad de plataformas para tu region...",
+    ariaWatchOn: "Ver en",
+    ariaRentBuyOn: "Alquilar o comprar en",
+  },
+  homeVideo: {
+    title: "Lanzamiento oficial en video domestico",
+    description: "Lanzamiento oficial en DVD distribuido por Sony Pictures Home Entertainment. Fabricado bajo demanda.",
+    cta: { label: "Ver en Amazon" },
+    disclaimer: "*Vendido y gestionado por Amazon.",
+  },
+  merch: {
+    title: "Merch oficial",
+    blurb: "Viste el terror. Lleva el misterio. Merch oficial exclusiva de Strange Harvest para verdaderos creyentes.",
+    loadingMessage: "Cargando merchandising...",
+    comingSoonTitle: "Merch proximamente",
+    comingSoonBody: "Nuestra tienda de merch se esta actualizando. Vuelve pronto.",
+    notifyMe: "Avisarme",
+    buyNow: "Comprar ahora",
+  },
+  castCrew: {
+    title: "Reparto y equipo",
+    leadDetectives: { title: "DETECTIVES PRINCIPALES" },
+    cast: { title: "REPARTO" },
+    crew: {
+      title: "EQUIPO",
+    },
+  },
+  footer: {
+    tagline: "Mockumentary de True Crime y Found Footage",
+    officialNotice: "Sitio web oficial de Strange Harvest (2025)",
+    cookieSettingsLabel: "Configuracion de cookies",
+    disclaimer:
+      "Todo el material de este sitio web es ficticio y se presenta con fines de entretenimiento. Cualquier similitud con personas, organizaciones, lugares o eventos reales es coincidencia y no pretende representar hechos reales.",
+  },
+};
+
+export const sitecopy = siteLanguage === "es" ? deepMerge(sitecopyEn, sitecopyEs) : sitecopyEn;

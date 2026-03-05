@@ -1,40 +1,60 @@
 import { HERO_LOGO_SRC } from "../constants/assets";
-import { sitecopy } from "./sitecopy";
+import { sitecopy, siteLanguage } from "./sitecopy";
 
 export default function Header() {
-  const { merch } = sitecopy;
+  const { merch, header } = sitecopy;
+
+  const buildLangHref = (lang: "en" | "es") => {
+    if (typeof window === "undefined") return "/";
+    const url = new URL(window.location.href);
+    if (lang === "es") {
+      url.searchParams.set("lang", "es");
+    } else {
+      url.searchParams.delete("lang");
+    }
+    return `${url.pathname}${url.search}${url.hash}`;
+  };
+
+  const btsHref = siteLanguage === "es" ? "/bts.html?lang=es" : "/bts.html";
 
   return (
     <header className="siteHeader">
-      <a href="#main" className="skip-link">Skip to main content</a>
+      <a href="#main" className="skip-link">{header.skipToContent}</a>
       <div className="siteHeaderInner">
-        <a className="brand" href="#top" aria-label="Strange Harvest home">
+        <a className="brand" href="#top" aria-label={header.aria.home}>
           <img src={HERO_LOGO_SRC} alt="" className="brandSymbol" loading="eager" />
           Strange Harvest
         </a>
 
         <nav className="nav">
-          <a href="#top">Home</a>
-          <a href="#about">About</a>
-          <a href="#watch">Watch</a>
-          <a href="#press">Press</a>
-          <a href="/bts.html">BTS</a>
-          <a href="#shop">Merch</a>
+          <a href="#top">{header.nav.home}</a>
+          <a href="#about">{header.nav.about}</a>
+          <a href="#watch">{header.nav.watch}</a>
+          <a href="#press">{header.nav.press}</a>
+          <a href={btsHref}>{header.nav.bts}</a>
+          <a href="#shop">{header.nav.merch}</a>
         </nav>
 
-        <a
-          href={merch.shopifyCartUrl}
-          className="cartIcon"
-          aria-label="Open shopping cart"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="9" cy="21" r="1"/>
-            <circle cx="20" cy="21" r="1"/>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-          </svg>
-        </a>
+        <div className="headerActions">
+          <div className="langToggle" aria-label={header.aria.language}>
+            <a href={buildLangHref("en")} className={siteLanguage === "en" ? "active" : ""}>{header.languageToggle.en}</a>
+            <span>/</span>
+            <a href={buildLangHref("es")} className={siteLanguage === "es" ? "active" : ""}>{header.languageToggle.es}</a>
+          </div>
+          <a
+            href={merch.shopifyCartUrl}
+            className="cartIcon"
+            aria-label={header.aria.cart}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="9" cy="21" r="1"/>
+              <circle cx="20" cy="21" r="1"/>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </header>
   );
