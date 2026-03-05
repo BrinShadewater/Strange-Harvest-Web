@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { sitecopy } from "./sitecopy";
 import {
   detectRegion,
+  filterStreamingPlatformsByCountry,
   filterUSCAPlatformsByCountry,
   getPlatformsForRegion,
   type GeoLocation,
@@ -48,6 +49,7 @@ export default function Watch() {
 
   // Get region-specific platform visibility
   const { showStreaming, showUSCA, showIntl } = getPlatformsForRegion(geo.region);
+  const streamingPlatforms = filterStreamingPlatformsByCountry(watch.streamingPlatforms, geo.country);
   const uscaPlatforms = filterUSCAPlatformsByCountry(watch.usca, geo.country);
 
   return (
@@ -56,14 +58,14 @@ export default function Watch() {
         <h2>{watch.title}</h2>
       </div>
 
-      {showStreaming && watch.streamingPlatforms.length > 0 && (
+      {showStreaming && streamingPlatforms.length > 0 && (
         <>
           <div className="sectionHead" style={{ marginTop: 24 }}>
             <p className="subhead">{watch.streaming}</p>
           </div>
 
           <div className="watchGrid" style={{ gridTemplateColumns: '1fr', maxWidth: '300px' }}>
-            {watch.streamingPlatforms.map((p) => (
+            {streamingPlatforms.map((p) => (
               <a
                 key={p.name}
                 className="watchCard featured"

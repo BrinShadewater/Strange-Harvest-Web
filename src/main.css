@@ -857,9 +857,10 @@ section:first-of-type {
 .watchIcon {
   width: 84px !important;
   height: 84px !important;
-  object-fit: cover;
+  object-fit: contain;
   margin-bottom: 10px;
   display: block;
+  image-rendering: auto;
 }
 
 .watchName {

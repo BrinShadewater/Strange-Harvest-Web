@@ -259,7 +259,12 @@ export const sitecopy = {
       {
         name: "Hulu",
         href: "https://www.hulu.com/movie/strange-harvest-e931d642-fe34-4b92-b6da-96f4c7573fac",
-        icon: "/images/strange-harvest-streaming-hulu-icon.webp",
+        icon: "/images/strange-harvest-watch-streaming-hulu-icon.webp",
+      },
+      {
+        name: "Paramount+",
+        href: "https://www.paramountplus.com/ca/movies/video/_rwhlpI_KPDSpgSqI41q70Q6VVwGC2lG/",
+        icon: "/images/strange-harvest-watch-paramount-plus-icon.webp",
       },
     ],
     usca: [

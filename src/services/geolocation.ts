@@ -254,3 +254,29 @@ export function filterUSCAPlatformsByCountry(
     return true;
   });
 }
+
+/**
+ * Filter streaming platform list with country-specific availability rules.
+ */
+export function filterStreamingPlatformsByCountry(
+  platforms: WatchPlatform[],
+  countryCode: string
+): WatchPlatform[] {
+  const code = countryCode.toUpperCase();
+
+  return platforms.filter((platform) => {
+    const name = platform.name.toLowerCase();
+
+    // Hulu is US-only.
+    if (name.includes('hulu')) {
+      return code === 'US';
+    }
+
+    // Paramount+ link provided is Canada-only.
+    if (name.includes('paramount+')) {
+      return code === 'CA';
+    }
+
+    return true;
+  });
+}
