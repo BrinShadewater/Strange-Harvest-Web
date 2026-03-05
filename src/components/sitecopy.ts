@@ -44,8 +44,8 @@ export const sitecopy = {
     tagline: "TRUE-CRIME FOUND FOOTAGE HORROR MOCKUMENTARY",
     subtitle: "OFFICIAL WEBSITE",
     ctas: {
-      primary: { label: "Watch Trailer", href: "#trailer" },
-      secondary: { label: "Rent / Own", href: "#watch" },
+      primary: { label: "Trailer", href: "#trailer" },
+      secondary: { label: "Watch", href: "#watch" },
       tertiary: { label: "Shop Merch", href: "#shop" },
     },
   },

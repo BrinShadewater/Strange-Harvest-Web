@@ -188,13 +188,13 @@
     }
 
     .siteHeaderInner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 14px 20px;
+      max-width: 100%;
+      margin: 0;
+      padding: 18px 40px;
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: center;
-      gap: 14px;
+      gap: 20px;
       position: relative;
     }
 
@@ -204,20 +204,20 @@
       font-weight: 700;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      font-size: 16px;
+      gap: 12px;
+      font-size: 18px;
       letter-spacing: 0.02em;
       min-width: 0;
       white-space: nowrap;
       justify-self: start;
     }
 
-    .brand img { width: 24px; height: auto; display: block; }
+    .brand img { width: 36px; height: auto; display: block; }
 
     .nav {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 24px;
       flex-wrap: wrap;
       justify-content: center;
       justify-self: center;
@@ -225,11 +225,11 @@
     .nav a {
       color: rgba(255, 255, 255, 0.88);
       text-decoration: none;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.03em;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
       text-transform: uppercase;
-      padding: 8px 6px;
+      padding: 8px 4px;
       border-radius: 8px;
       transition: color 0.2s ease, background 0.2s ease;
     }
@@ -625,26 +625,26 @@
     @media (max-width: 900px) {
       .siteHeaderInner {
         grid-template-columns: 1fr;
-        gap: 8px;
+        gap: 10px;
         padding: 10px 14px;
       }
 
       .brand {
         justify-self: start;
-        font-size: 14px;
+        font-size: 15px;
       }
 
       .brand img {
-        width: 22px;
+        width: 24px;
       }
 
       .nav {
         justify-content: center;
-        gap: 4px;
+        gap: 8px;
       }
 
       .nav a {
-        font-size: 12px;
+        font-size: 13px;
         padding: 6px 8px;
       }
 
@@ -890,7 +890,7 @@
           if (p.y > h + 10) p.y = -10;
 
           ctx.beginPath();
-          ctx.fillStyle = `rgba(201, 69, 56, ${p.a})`;
+          ctx.fillStyle = `rgba(255, 255, 255, ${p.a})`;
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
           ctx.fill();
         });
