@@ -4,23 +4,23 @@
     <loc>https://strangeharvestmovie.com/</loc>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-official-movie-poster.webp</image:loc>
-      <image:title>Strange Harvest Official Poster</image:title>
+      <image:title>Strange Harvest Official Movie Poster</image:title>
       <image:caption>Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-alternate-movie-poster.webp</image:loc>
-      <image:title>Strange Harvest Alternate Poster</image:title>
-      <image:caption>Alternate poster featuring the masked killer from Strange Harvest.</image:caption>
+      <image:title>Strange Harvest Alternate Festival Run Poster</image:title>
+      <image:caption>Alternate Festival Run Poster featuring the masked killer from the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-crime-scene-pool-investigation.webp</image:loc>
       <image:title>Crime Scene Pool Investigation</image:title>
-      <image:caption>Forensic investigators examining a drained swimming pool crime scene in Strange Harvest.</image:caption>
+      <image:caption>Forensic investigators examining a drained swimming pool crime scene in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-crime-scene-kitchen-evidence.webp</image:loc>
       <image:title>Kitchen Crime Scene Symbol</image:title>
-      <image:caption>Occult symbol painted in blood on a kitchen wall at a crime scene in Strange Harvest.</image:caption>
+      <image:caption>Occult symbol painted in blood on a kitchen wall at a crime scene in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-forensic-evidence-weapon-knife.webp</image:loc>
@@ -30,17 +30,17 @@
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-forensic-evidence-bloody-handprint.webp</image:loc>
       <image:title>Bloody Handprint Evidence</image:title>
-      <image:caption>Bloody handprint marked as forensic evidence at a crime scene in Strange Harvest.</image:caption>
+      <image:caption>Bloody handprint marked as forensic evidence at a crime scene in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-detective-joe-kirby-peter-zizzo.webp</image:loc>
       <image:title>Detective Joe Kirby Interview</image:title>
-      <image:caption>Detective Joe Kirby giving an interview about the investigation in Strange Harvest.</image:caption>
+      <image:caption>Detective Joe Kirby giving an interview about the investigation in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-detective-lexi-taylor-terri-apple.webp</image:loc>
       <image:title>Detective Lexi Taylor Interview</image:title>
-      <image:caption>Detective Lexi Taylor speaking during an investigative interview in Strange Harvest.</image:caption>
+      <image:caption>Detective Lexi Taylor speaking during an investigative interview in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
   </url>
   <url>
@@ -48,250 +48,265 @@
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-official-movie-poster.webp</image:loc>
       <image:title>Strange Harvest Press Poster</image:title>
-      <image:caption>Official movie poster used in the Strange Harvest press kit.</image:caption>
+      <image:caption>Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-detective-joe-kirby-peter-zizzo.webp</image:loc>
+      <image:title>Detective Joe Kirby Press Still</image:title>
+      <image:caption>Detective Joe Kirby giving an interview about the investigation in the horror mockumentary Strange Harvest.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-detective-lexi-taylor-terri-apple.webp</image:loc>
+      <image:title>Detective Lexi Taylor Press Still</image:title>
+      <image:caption>Detective Lexi Taylor speaking during an investigative interview in the horror mockumentary Strange Harvest.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-crime-scene-pool-investigation.webp</image:loc>
+      <image:title>Pool Crime Scene Press Still</image:title>
+      <image:caption>Forensic investigators examining a drained swimming pool crime scene in the horror mockumentary Strange Harvest.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-crime-scene-kitchen-evidence.webp</image:loc>
+      <image:title>Kitchen Symbol Press Still</image:title>
+      <image:caption>Occult symbol painted in blood on a kitchen wall at a crime scene in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://strangeharvestmovie.com/bts.html</loc>
     <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-film-crew-behind-the-scenes.webp</image:loc>
-      <image:title>Strange Harvest film crew behind the scenes</image:title>
-      <image:caption>Strange Harvest film crew behind the scenes image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
-    </image:image>
-    <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-mockumentary-news-reporter-scene-bts.webp</image:loc>
-      <image:title>Strange Harvest mockumentary news reporter scene bts</image:title>
-      <image:caption>Strange Harvest mockumentary news reporter scene bts image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Mockumentary News Reporter Scene BTS</image:title>
+      <image:caption>Behind the scenes photo of a news reporter filming an interview scene for the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-behind-the-scenes-interview-setup.webp</image:loc>
-      <image:title>Strange Harvest behind the scenes interview setup</image:title>
-      <image:caption>Strange Harvest behind the scenes interview setup image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Behind The Scenes Interview Setup</image:title>
+      <image:caption>Behind the scenes monitor view of an interview setup for the horror mockumentary Strange Harvest with associate producer James Pearce standing in during lighting and camera setup.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-behind-the-scenes-newsroom-scene.webp</image:loc>
-      <image:title>Strange Harvest behind the scenes newsroom scene</image:title>
-      <image:caption>Strange Harvest behind the scenes newsroom scene image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Behind The Scenes Newsroom Scene</image:title>
+      <image:caption>Behind the scenes photo of Matthew M Garcia preparing for a newsroom interview scene in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/stuart-ortiz-editing-strange-harvest-horror-mockumentary.webp</image:loc>
-      <image:title>stuart ortiz editing Strange Harvest horror mockumentary</image:title>
-      <image:caption>stuart ortiz editing Strange Harvest horror mockumentary image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Stuart Ortiz Editing Strange Harvest Horror Mockumentary</image:title>
+      <image:caption>Director Stuart Ortiz editing scenes for the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-bts-newsroom-set-jordon-moser-sound.webp</image:loc>
-      <image:title>Strange Harvest bts newsroom set jordon moser sound</image:title>
-      <image:caption>Strange Harvest bts newsroom set jordon moser sound image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest BTS Newsroom Set Jordon Moser Sound</image:title>
+      <image:caption>Behind the scenes of the newsroom set for the horror mockumentary Strange Harvest, with associate producer and sound recordist Jordon Moser preparing the scene.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/stuart-ortiz-location-scout-strange-harvest-elderly-care-home.webp</image:loc>
-      <image:title>stuart ortiz location scout Strange Harvest elderly care home</image:title>
-      <image:caption>stuart ortiz location scout Strange Harvest elderly care home image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Stuart Ortiz Location Scout Strange Harvest Elderly Care Home</image:title>
+      <image:caption>Director Stuart Ortiz scouting the exterior elderly care home location for the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-bts-swat-team-mr-shiny-home-scene.webp</image:loc>
-      <image:title>Strange Harvest bts swat team mr shiny home scene</image:title>
-      <image:caption>Strange Harvest bts swat team mr shiny home scene image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest BTS Swat Team Mr Shiny Home Scene</image:title>
+      <image:caption>SWAT team actors and law enforcement advisor on set inside Mr. Shiny’s home during filming of the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/peter-zizzo-detective-joe-kirby-interview-strange-harvest-bts.webp</image:loc>
-      <image:title>peter zizzo detective joe kirby interview Strange Harvest bts</image:title>
-      <image:caption>peter zizzo detective joe kirby interview Strange Harvest bts image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Peter Zizzo Detective Joe Kirby Interview Strange Harvest BTS</image:title>
+      <image:caption>Peter Zizzo as Detective Joe Kirby filming an interview scene during production of the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-bts-hospital-scene-kale-hicks-stand-in.webp</image:loc>
-      <image:title>Strange Harvest bts hospital scene kale hicks stand in</image:title>
-      <image:caption>Strange Harvest bts hospital scene kale hicks stand in image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-ritual-symbol-crime-scene.webp</image:loc>
-      <image:title>Strange Harvest ritual symbol crime scene</image:title>
-      <image:caption>Strange Harvest ritual symbol crime scene image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/glen-sandweiss-victim-interview-strange-harvest.webp</image:loc>
-      <image:title>glen sandweiss victim interview Strange Harvest</image:title>
-      <image:caption>glen sandweiss victim interview Strange Harvest image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest BTS Hospital Scene Kale Hicks Stand In</image:title>
+      <image:caption>Kale Hicks standing in for actor Victoria Macenroe during a hospital scene setup for the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-sheriff-investigating-barbed-wire-pool.webp</image:loc>
-      <image:title>Strange Harvest sheriff investigating barbed wire pool</image:title>
-      <image:caption>Strange Harvest sheriff investigating barbed wire pool image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Sheriff Investigating Barbed Wire Pool</image:title>
+      <image:caption>Sheriff investigating a barbed wire filled pool crime scene in the horror mockumentary Strange Harvest.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-ritual-symbol-crime-scene.webp</image:loc>
+      <image:title>Strange Harvest Ritual Symbol Crime Scene</image:title>
+      <image:caption>Ritual symbol made of sticks at a crime scene in the horror mockumentary Strange Harvest.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/glen-sandweiss-victim-interview-strange-harvest.webp</image:loc>
+      <image:title>Glen Sandweiss Victim Interview Strange Harvest</image:title>
+      <image:caption>Glen Sandweiss appearing as a victim during an interview in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/mr-shiny-handwritten-note-strange-harvest.webp</image:loc>
-      <image:title>mr shiny handwritten note Strange Harvest</image:title>
-      <image:caption>mr shiny handwritten note Strange Harvest image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Mr Shiny Handwritten Note Strange Harvest</image:title>
+      <image:caption>Handwritten note from Mr Shiny discovered during the investigation in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/mr-shiny-found-footage-bedroom-strange-harvest.webp</image:loc>
-      <image:title>mr shiny found footage bedroom Strange Harvest</image:title>
-      <image:caption>mr shiny found footage bedroom Strange Harvest image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Mr Shiny Found Footage Bedroom Strange Harvest</image:title>
+      <image:caption>Mr Shiny appearing in a bedroom in found footage from the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-blood-buckets-evidence.webp</image:loc>
-      <image:title>Strange Harvest blood buckets evidence</image:title>
-      <image:caption>Strange Harvest blood buckets evidence image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Blood Buckets Evidence</image:title>
+      <image:caption>Buckets filled with blood discovered as evidence in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-kitchen-crime-scene-victim.webp</image:loc>
-      <image:title>Strange Harvest kitchen crime scene victim</image:title>
-      <image:caption>Strange Harvest kitchen crime scene victim image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Kitchen Crime Scene Victim</image:title>
+      <image:caption>Victim discovered in a restaurant kitchen crime scene in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-security-footage-donut-shop-massacre.webp</image:loc>
-      <image:title>Strange Harvest security footage donut shop massacre</image:title>
-      <image:caption>Strange Harvest security footage donut shop massacre image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Security Footage Donut Shop Massacre</image:title>
+      <image:caption>Security camera footage of a violent crime scene inside a donut shop in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-news-interview-saroj-mallick-witness.webp</image:loc>
-      <image:title>Strange Harvest news interview saroj mallick witness</image:title>
-      <image:caption>Strange Harvest news interview saroj mallick witness image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest News Interview Saroj Mallick Witness</image:title>
+      <image:caption>Saroj Mallick giving a witness interview during a breaking news report about Mr Shiny in Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/mr-shiny-vhs-evidence-tape-strange-harvest.webp</image:loc>
-      <image:title>mr shiny vhs evidence tape Strange Harvest</image:title>
-      <image:caption>mr shiny vhs evidence tape Strange Harvest image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Mr Shiny Vhs Evidence Tape Strange Harvest</image:title>
+      <image:caption>Evidence VHS tape with a handwritten message from Mr Shiny discovered during the investigation in Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-astronomical-photo-investigation-clue.webp</image:loc>
-      <image:title>Strange Harvest astronomical photo investigation clue</image:title>
-      <image:caption>Strange Harvest astronomical photo investigation clue image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Astronomical Photo Investigation Clue</image:title>
+      <image:caption>Investigator examining a mysterious astronomical photograph connected to the case in Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/hail-azragor-blood-message-strange-harvest.webp</image:loc>
-      <image:title>hail azragor blood message Strange Harvest</image:title>
-      <image:caption>hail azragor blood message Strange Harvest image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Hail Azragor Blood Message Strange Harvest</image:title>
+      <image:caption>Blood message reading HAIL AZRAGOR discovered during the investigation in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-cult-journal-leech-lives.webp</image:loc>
-      <image:title>Strange Harvest cult journal leech lives</image:title>
-      <image:caption>Strange Harvest cult journal leech lives image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Cult Journal Leech Lives</image:title>
+      <image:caption>Disturbing handwritten cult journal discovered during the investigation in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-crime-scene-paint-tray-evidence.webp</image:loc>
-      <image:title>Strange Harvest crime scene paint tray evidence</image:title>
-      <image:caption>Strange Harvest crime scene paint tray evidence image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Crime Scene Paint Tray Evidence</image:title>
+      <image:caption>Blood covered paint tray and roller marked as evidence at a crime scene in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-jamie-kim-news-report.webp</image:loc>
-      <image:title>Strange Harvest jamie kim news report</image:title>
-      <image:caption>Strange Harvest jamie kim news report image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Jamie Kim News Report</image:title>
+      <image:caption>Reporter Jamie Kim delivering a live news report during the investigation in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-bloody-oxygen-tank-crime-scene-evidence.webp</image:loc>
-      <image:title>Strange Harvest bloody oxygen tank crime scene evidence</image:title>
-      <image:caption>Strange Harvest bloody oxygen tank crime scene evidence image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Bloody Oxygen Tank Crime Scene Evidence</image:title>
+      <image:caption>Blood covered oxygen tank marked as crime scene evidence in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-triple-murder-news-report.webp</image:loc>
-      <image:title>Strange Harvest triple murder news report</image:title>
-      <image:caption>Strange Harvest triple murder news report image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Triple Murder News Report</image:title>
+      <image:caption>Breaking news coverage of a triple murder investigation in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-crime-scene-paint-bucket-evidence.webp</image:loc>
-      <image:title>Strange Harvest crime scene paint bucket evidence</image:title>
-      <image:caption>Strange Harvest crime scene paint bucket evidence image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Crime Scene Paint Bucket Evidence</image:title>
+      <image:caption>Crime scene evidence including a blood filled bucket and paint roller used in the murders in Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-occult-ritual-jar-candles.webp</image:loc>
-      <image:title>Strange Harvest occult ritual jar candles</image:title>
-      <image:caption>Strange Harvest occult ritual jar candles image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Occult Ritual Jar Candles</image:title>
+      <image:caption>Occult ritual site with candles and a jar containing leeches discovered during the investigation in Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-river-body-recovery.webp</image:loc>
-      <image:title>Strange Harvest river body recovery</image:title>
-      <image:caption>Strange Harvest river body recovery image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest River Body Recovery</image:title>
+      <image:caption>Forensic investigators recovering a body from a river crime scene in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-forest-cult-structures.webp</image:loc>
-      <image:title>Strange Harvest forest cult structures</image:title>
-      <image:caption>Strange Harvest forest cult structures image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Forest Cult Structures</image:title>
+      <image:caption>Strange wooden ritual structures discovered in a remote forest during the investigation in Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-dining-room-murder-scene.webp</image:loc>
-      <image:title>Strange Harvest dining room murder scene</image:title>
-      <image:caption>Strange Harvest dining room murder scene image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Dining Room Murder Scene</image:title>
+      <image:caption>Crime scene investigators examine victims seated at a dining table in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-nursery-surveillance-footage.webp</image:loc>
-      <image:title>Strange Harvest nursery surveillance footage</image:title>
-      <image:caption>Strange Harvest nursery surveillance footage image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Nursery Surveillance Footage</image:title>
+      <image:caption>Disturbing surveillance footage showing an intruder leaning over a baby crib in Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-abduction-investigation-flashlight.webp</image:loc>
-      <image:title>Strange Harvest abduction investigation flashlight</image:title>
-      <image:caption>Strange Harvest abduction investigation flashlight image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Abduction Investigation Flashlight</image:title>
+      <image:caption>Investigators searching a dark room with flashlights during an abduction investigation in Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-evidence-mask-forensic-photo.webp</image:loc>
-      <image:title>Strange Harvest evidence mask forensic photo</image:title>
-      <image:caption>Strange Harvest evidence mask forensic photo image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Evidence Mask Forensic Photo</image:title>
+      <image:caption>Disturbing mask recovered as forensic evidence in the investigation featured in Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-power-drill-crime-scene-evidence.webp</image:loc>
-      <image:title>Strange Harvest power drill crime scene evidence</image:title>
-      <image:caption>Strange Harvest power drill crime scene evidence image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Power Drill Crime Scene Evidence</image:title>
+      <image:caption>Power drill photographed as forensic evidence during the investigation in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-cult-ritual-night-forest.webp</image:loc>
-      <image:title>Strange Harvest cult ritual night forest</image:title>
-      <image:caption>Strange Harvest cult ritual night forest image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-cast-crew-screening-theater.webp</image:loc>
-      <image:title>Strange Harvest cast crew screening theater</image:title>
-      <image:caption>Strange Harvest cast crew screening theater image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-fantastic-fest-qa-panel.webp</image:loc>
-      <image:title>Strange Harvest fantastic fest qa panel</image:title>
-      <image:caption>Strange Harvest fantastic fest qa panel image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-beyond-fest-screening-introduction.webp</image:loc>
-      <image:title>Strange Harvest beyond fest screening introduction</image:title>
-      <image:caption>Strange Harvest beyond fest screening introduction image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-fantastic-fest-panel-discussion.webp</image:loc>
-      <image:title>Strange Harvest fantastic fest panel discussion</image:title>
-      <image:caption>Strange Harvest fantastic fest panel discussion image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-fantastic-fest-afterparty.webp</image:loc>
-      <image:title>Strange Harvest fantastic fest afterparty</image:title>
-      <image:caption>Strange Harvest fantastic fest afterparty image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-beyond-fest-theater-screening.webp</image:loc>
-      <image:title>Strange Harvest beyond fest theater screening</image:title>
-      <image:caption>Strange Harvest beyond fest theater screening image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-beyond-fest-panel-stage.webp</image:loc>
-      <image:title>Strange Harvest beyond fest panel stage</image:title>
-      <image:caption>Strange Harvest beyond fest panel stage image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-fantastic-fest-poster-photo.webp</image:loc>
-      <image:title>Strange Harvest fantastic fest poster photo</image:title>
-      <image:caption>Strange Harvest fantastic fest poster photo image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-fantastic-fest-poster-photo-group.webp</image:loc>
-      <image:title>Strange Harvest fantastic fest poster photo group</image:title>
-      <image:caption>Strange Harvest fantastic fest poster photo group image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Cult Ritual Night Forest</image:title>
+      <image:caption>Occult ritual structure illuminated by firelight deep in the forest in the horror mockumentary Strange Harvest.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-official-movie-poster.webp</image:loc>
-      <image:title>Strange Harvest official movie poster</image:title>
-      <image:caption>Strange Harvest official movie poster image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Official Movie Poster</image:title>
+      <image:caption>Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://strangeharvestmovie.com/images/strange-harvest-alternate-movie-poster.webp</image:loc>
-      <image:title>Strange Harvest alternate movie poster</image:title>
-      <image:caption>Strange Harvest alternate movie poster image from the official Strange Harvest behind the scenes and stills gallery.</image:caption>
+      <image:title>Strange Harvest Alternate Movie Poster</image:title>
+      <image:caption>Alternate poster featuring the masked killer from the horror mockumentary Strange Harvest.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-beyond-fest-theater-screening.webp</image:loc>
+      <image:title>Strange Harvest Beyond Fest Theater Screening</image:title>
+      <image:caption>Audience watching Strange Harvest during the Beyond Fest screening.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-cast-crew-screening-theater.webp</image:loc>
+      <image:title>Strange Harvest Cast Crew Screening Theater</image:title>
+      <image:caption>Empty theater before the cast and crew screening of the horror film Strange Harvest.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-fantastic-fest-qa-panel.webp</image:loc>
+      <image:title>Strange Harvest Fantastic Fest Q&amp;A Panel</image:title>
+      <image:caption>Filmmakers on stage during the Strange Harvest Q&amp;A panel at Fantastic Fest.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-beyond-fest-screening-introduction.webp</image:loc>
+      <image:title>Strange Harvest Beyond Fest Screening Introduction</image:title>
+      <image:caption>Hosts introducing Strange Harvest at the Beyond Fest screening.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-fantastic-fest-panel-discussion.webp</image:loc>
+      <image:title>Strange Harvest Fantastic Fest Panel Discussion</image:title>
+      <image:caption>Cast and filmmakers discussing Strange Harvest during a Fantastic Fest panel.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-fantastic-fest-afterparty.webp</image:loc>
+      <image:title>Strange Harvest Fantastic Fest Afterparty</image:title>
+      <image:caption>Filmmakers celebrating Strange Harvest at the Fantastic Fest afterparty.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-beyond-fest-panel-stage.webp</image:loc>
+      <image:title>Strange Harvest Beyond Fest Panel Stage</image:title>
+      <image:caption>Strange Harvest filmmakers speaking on stage during the Beyond Fest Q&amp;A.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-fantastic-fest-poster-photo.webp</image:loc>
+      <image:title>Strange Harvest Fantastic Fest Poster Photo</image:title>
+      <image:caption>Filmmaker posing with the Fantastic Fest 2024 poster during Strange Harvest festival run.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://strangeharvestmovie.com/images/strange-harvest-fantastic-fest-poster-photo-group.webp</image:loc>
+      <image:title>Strange Harvest Fantastic Fest Poster Photo Group</image:title>
+      <image:caption>Filmmakers posing in front of the Fantastic Fest 2024 poster during Strange Harvest premiere.</image:caption>
     </image:image>
   </url>
 </urlset>

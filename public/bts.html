@@ -38,6 +38,8 @@
         "contentUrl": "https://strangeharvestmovie.com/images/strange-harvest-film-crew-behind-the-scenes.webp",
         "name": "Strange Harvest film crew behind the scenes",
         "caption": "Film crew preparing an interview scene during production of the horror mockumentary Strange Harvest.",
+        "width": 1677,
+        "height": 1263,
         "representativeOfPage": true
       },
       {
@@ -45,42 +47,54 @@
         "@id": "https://strangeharvestmovie.com/bts.html#img-bts-1",
         "contentUrl": "https://strangeharvestmovie.com/images/strange-harvest-mockumentary-news-reporter-scene-bts.webp",
         "name": "Behind the scenes reporter interview setup",
-        "caption": "Behind the scenes photo of a news reporter filming an interview scene for Strange Harvest."
+        "caption": "Behind the scenes photo of a news reporter filming an interview scene for Strange Harvest.",
+        "width": 1677,
+        "height": 1263
       },
       {
         "@type": "ImageObject",
         "@id": "https://strangeharvestmovie.com/bts.html#img-stills-1",
         "contentUrl": "https://strangeharvestmovie.com/images/strange-harvest-ritual-symbol-crime-scene.webp",
         "name": "Ritual symbol crime scene still",
-        "caption": "Ritual symbol made of sticks at a crime scene in Strange Harvest."
+        "caption": "Ritual symbol made of sticks at a crime scene in Strange Harvest.",
+        "width": 1551,
+        "height": 1183
       },
       {
         "@type": "ImageObject",
         "@id": "https://strangeharvestmovie.com/bts.html#img-poster-main",
         "contentUrl": "https://strangeharvestmovie.com/images/strange-harvest-official-movie-poster.webp",
         "name": "Strange Harvest official movie poster",
-        "caption": "Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire."
+        "caption": "Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire.",
+        "width": 1368,
+        "height": 1824
       },
       {
         "@type": "ImageObject",
         "@id": "https://strangeharvestmovie.com/bts.html#img-poster-alt",
         "contentUrl": "https://strangeharvestmovie.com/images/strange-harvest-alternate-movie-poster.webp",
         "name": "Strange Harvest alternate movie poster",
-        "caption": "Alternate poster featuring the masked killer from Strange Harvest."
+        "caption": "Alternate poster featuring the masked killer from Strange Harvest.",
+        "width": 1365,
+        "height": 2048
       },
       {
         "@type": "ImageObject",
         "@id": "https://strangeharvestmovie.com/bts.html#img-fest-1",
         "contentUrl": "https://strangeharvestmovie.com/images/strange-harvest-fantastic-fest-qa-panel.webp",
         "name": "Fantastic Fest Q and A panel",
-        "caption": "Filmmakers on stage during the Strange Harvest Q and A panel at Fantastic Fest."
+        "caption": "Filmmakers on stage during the Strange Harvest Q and A panel at Fantastic Fest.",
+        "width": 1677,
+        "height": 1263
       },
       {
         "@type": "ImageObject",
         "@id": "https://strangeharvestmovie.com/bts.html#img-fest-2",
         "contentUrl": "https://strangeharvestmovie.com/images/strange-harvest-beyond-fest-screening-introduction.webp",
         "name": "Beyond Fest screening introduction",
-        "caption": "Hosts introducing Strange Harvest at the Beyond Fest screening."
+        "caption": "Hosts introducing Strange Harvest at the Beyond Fest screening.",
+        "width": 1677,
+        "height": 1263
       }
     ]
   }
@@ -113,15 +127,64 @@
       color: var(--foreground);
       min-height: 100vh;
       line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 700px;
+      pointer-events: none;
+      background: radial-gradient(
+        circle 650px at 85% 100px,
+        rgba(200, 0, 0, 0.08) 0%,
+        rgba(180, 0, 0, 0.05) 15%,
+        rgba(160, 0, 0, 0.03) 30%,
+        rgba(140, 0, 0, 0.015) 45%,
+        transparent 65%
+      );
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          circle 800px at 20% 1400px,
+          rgba(180, 0, 0, 0.04) 0%,
+          rgba(160, 0, 0, 0.025) 20%,
+          transparent 60%
+        ),
+        radial-gradient(
+          circle 900px at 85% 2800px,
+          rgba(180, 0, 0, 0.045) 0%,
+          rgba(160, 0, 0, 0.028) 20%,
+          transparent 65%
+        );
+      z-index: 0;
     }
 
     .siteHeader {
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 10;
-      background: rgba(14, 15, 16, 0.78);
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(14, 15, 16, 0.72);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .siteHeaderInner {
@@ -132,6 +195,7 @@
       grid-template-columns: auto 1fr auto;
       align-items: center;
       gap: 14px;
+      position: relative;
     }
 
     .brand {
@@ -143,12 +207,20 @@
       gap: 10px;
       font-size: 16px;
       letter-spacing: 0.02em;
+      min-width: 0;
       white-space: nowrap;
     }
 
     .brand img { width: 24px; height: auto; display: block; }
 
-    .nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      justify-self: center;
+    }
     .nav a {
       color: rgba(255, 255, 255, 0.88);
       text-decoration: none;
@@ -158,26 +230,62 @@
       text-transform: uppercase;
       padding: 8px 6px;
       border-radius: 8px;
+      transition: color 0.2s ease, background 0.2s ease;
     }
     .nav a:hover,
     .nav a.active { color: #fff; background: rgba(255, 255, 255, 0.08); }
 
     .cartIcon {
       color: hsl(0, 65%, 45%);
-      min-width: 44px;
-      min-height: 44px;
+      transition: color 0.2s ease, transform 0.2s ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      justify-self: end;
+      min-width: 44px;
+      min-height: 44px;
       border-radius: 10px;
     }
-    .cartIcon:hover { background: rgba(255,255,255,0.06); }
     .cartIcon svg { width: 28px; height: 28px; display: block; }
+    .cartIcon:hover {
+      color: hsl(0, 75%, 55%);
+      transform: scale(1.08);
+      background: rgba(255,255,255,0.05);
+    }
 
     main {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 44px 20px 80px;
+      padding: 120px 20px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    main::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background:
+        radial-gradient(900px 520px at 50% -160px, rgba(255,255,255,0.03), rgba(0,0,0,0) 60%),
+        radial-gradient(700px 520px at 20% 10%, rgba(120, 0, 0, 0.06), rgba(0,0,0,0) 55%),
+        radial-gradient(900px 620px at 80% 15%, rgba(255, 210, 120, 0.02), rgba(0,0,0,0) 55%);
+      z-index: -1;
+    }
+
+    .grainOverlay {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      z-index: 0;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06) 1px, rgba(0,0,0,0) 2px, rgba(0,0,0,0) 4px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.04) 1px, rgba(0,0,0,0) 2px, rgba(0,0,0,0) 5px);
     }
 
     .heroKicker {
@@ -209,22 +317,22 @@
 
     .heroFigure figcaption {
       padding: 12px 14px;
-      font-size: 14px;
+      font-size: 18px;
       color: rgba(255,255,255,0.8);
       border-top: 1px solid var(--border);
       background: rgba(255,255,255,0.04);
     }
 
     .introCopy {
-      margin: 26px 0 22px;
+      margin: 36px 0 26px;
       max-width: 90ch;
     }
 
-    .introCopy p { font-size: 18px; color: rgba(255,255,255,0.9); }
+    .introCopy p { font-size: 20px; color: rgba(255,255,255,0.9); }
     .introCopy p + p { margin-top: 16px; }
 
     .gallerySection {
-      margin-top: 32px;
+      margin-top: 30px;
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 20px;
@@ -235,16 +343,18 @@
       color: #fff;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      font-size: 24px;
+      font-size: 32px;
       margin-bottom: 14px;
+      font-weight: 800;
     }
 
     .galleryIntro {
       margin: 0 0 14px;
       color: rgba(255,255,255,0.82);
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.55;
       max-width: 78ch;
+      font-weight: 700;
     }
 
     .carousel {
@@ -253,6 +363,8 @@
       border-radius: 10px;
       border: 1px solid var(--border);
       background: rgba(0,0,0,0.35);
+      max-width: 80%;
+      margin: 0 auto;
     }
 
     .carouselTrack {
@@ -267,13 +379,20 @@
     }
 
     .slide figure { margin: 0; }
+    .slideMedia {
+      height: 52vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
     .slide img {
       display: block;
-      width: 100%;
+      width: auto;
       height: auto;
-      max-height: 66vh;
+      max-width: 100%;
+      max-height: 100%;
       object-fit: contain;
-      background: #000;
     }
 
     .slide figcaption {
@@ -282,6 +401,36 @@
       line-height: 1.45;
       color: rgba(255,255,255,0.84);
       border-top: 1px solid var(--border);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .posterActions {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .downloadBtn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 10px 16px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .downloadBtn:hover {
+      background: rgba(201, 69, 56, 0.2);
+      border-color: rgba(201, 69, 56, 0.7);
     }
 
     .carouselButton {
@@ -324,13 +473,130 @@
 
     .dot.active { background: #fff; border-color: #fff; }
 
-    .footer {
-      border-top: 1px solid var(--border);
-      margin-top: 44px;
-      padding-top: 18px;
-      color: rgba(255,255,255,0.65);
-      font-size: 13px;
+    .symbolDivider {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 34px 0 2px;
+      opacity: 0.9;
+    }
+
+    .symbolDivider img {
+      width: 76px;
+      height: auto;
+      display: block;
+      filter: brightness(1.2);
+    }
+
+    .siteFooter {
+      background: rgba(0, 0, 0, 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 80px 20px 40px;
+      margin-top: 100px;
       text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footerContent {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .footerSymbol {
+      width: 80px;
+      height: auto;
+      margin: 0 auto 20px;
+      display: block;
+      opacity: 0.95;
+      filter: brightness(1.2);
+    }
+
+    .footerTitle {
+      font-size: 24px;
+      letter-spacing: 4px;
+      margin-bottom: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .footerTagline {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 32px;
+      letter-spacing: 1px;
+    }
+
+    .footerSocials {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .socialIcon {
+      width: 32px;
+      height: 32px;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+      filter: brightness(0) invert(1);
+    }
+
+    .socialIcon.noFilter {
+      filter: invert(1);
+    }
+
+    .socialIcon:hover {
+      opacity: 1;
+    }
+
+    .footerBottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px;
+    }
+
+    .footerOfficial {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.65);
+      margin: 12px 0 8px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .footerCopyright,
+    .footerMusic,
+    .footerDisclaimer {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.5);
+      margin: 8px 0;
+      letter-spacing: 0.5px;
+    }
+
+    .footerDisclaimer {
+      max-width: 62ch;
+      margin: 12px auto 0;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .footerCookieSettings {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 0;
+      margin: 12px 0 0;
+      transition: color 0.2s ease;
+      font-family: inherit;
+    }
+
+    .footerCookieSettings:hover {
+      color: hsl(0, 65%, 45%);
     }
 
     @media (max-width: 800px) {
@@ -338,15 +604,59 @@
       .gallerySection { padding: 14px; }
       .slide figcaption { font-size: 13px; }
       .introCopy p { font-size: 16px; }
+      .carousel { max-width: 100%; }
+      .slideMedia { height: 40vh; }
+      .footerTitle { font-size: 20px; }
+      .footerSocials { gap: 20px; }
+      .socialIcon { width: 28px; height: 28px; }
+    }
+
+    @media (max-width: 900px) {
+      .siteHeaderInner {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 10px 14px;
+      }
+
+      .brand {
+        justify-self: center;
+        font-size: 14px;
+      }
+
+      .brand img {
+        width: 22px;
+      }
+
+      .nav {
+        justify-content: center;
+        gap: 4px;
+      }
+
+      .nav a {
+        font-size: 12px;
+        padding: 6px 8px;
+      }
+
+      .cartIcon {
+        position: absolute;
+        right: 10px;
+        top: 8px;
+      }
+
+      .cartIcon svg {
+        width: 24px;
+        height: 24px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="grainOverlay" aria-hidden="true"></div>
   <header class="siteHeader" role="banner">
     <div class="siteHeaderInner">
       <a class="brand" href="/" aria-label="Strange Harvest home">
         <img src="/images/strange-harvest-occult-symbol-horror-icon.webp" alt="" aria-hidden="true">
-        <span>STRANGE HARVEST</span>
+        <span>Strange Harvest</span>
       </a>
       <nav class="nav" aria-label="Primary">
         <a href="/#top">Home</a>
@@ -358,7 +668,11 @@
         <a href="/#shop">Shop</a>
       </nav>
       <a class="cartIcon" href="https://strangeharvestfilm.myshopify.com/cart" target="_blank" rel="noopener noreferrer" aria-label="Open merch cart">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4h-2l-1 2v2h2l2.6 7.6c.3.9 1.1 1.4 2 1.4h7.3c.9 0 1.7-.5 2-1.4l2.1-6.1h-11.9l-.5-1.5h12.8v-2h-13.5l-.6-1.9c-.2-.6-.8-1-1.4-1zm4 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
       </a>
     </div>
   </header>
@@ -390,6 +704,7 @@
       <div class="carousel" id="carousel-bts"></div>
       <div class="dots" id="dots-bts" aria-label="Behind The Scenes slide navigation"></div>
     </section>
+    <div class="symbolDivider" aria-hidden="true"><img src="/images/strange-harvest-occult-symbol-horror-icon.webp" alt=""></div>
 
     <section class="gallerySection" id="carousel-stills-section" aria-label="Stills carousel">
       <h2>Stills</h2>
@@ -397,6 +712,7 @@
       <div class="carousel" id="carousel-stills"></div>
       <div class="dots" id="dots-stills" aria-label="Stills slide navigation"></div>
     </section>
+    <div class="symbolDivider" aria-hidden="true"><img src="/images/strange-harvest-occult-symbol-horror-icon.webp" alt=""></div>
 
     <section class="gallerySection" id="carousel-posters-section" aria-label="Official Posters carousel">
       <h2>Official Posters</h2>
@@ -404,6 +720,7 @@
       <div class="carousel" id="carousel-posters"></div>
       <div class="dots" id="dots-posters" aria-label="Official Posters slide navigation"></div>
     </section>
+    <div class="symbolDivider" aria-hidden="true"><img src="/images/strange-harvest-occult-symbol-horror-icon.webp" alt=""></div>
 
     <section class="gallerySection" id="carousel-festivals-section" aria-label="Festival and screenings carousel">
       <h2>Festival &amp; Screenings</h2>
@@ -412,8 +729,41 @@
       <div class="dots" id="dots-festivals" aria-label="Festival and screenings slide navigation"></div>
     </section>
 
-    <p class="footer">© 2026 Strange Harvest. All rights reserved.</p>
   </main>
+
+  <footer class="siteFooter">
+    <div class="footerContent">
+      <img src="/images/strange-harvest-occult-symbol-horror-icon.webp" alt="" class="footerSymbol" aria-hidden="true">
+      <h2 class="footerTitle">STRANGE HARVEST</h2>
+      <p class="footerTagline">True Crime Found Footage Mockumentary</p>
+
+      <div class="footerSocials">
+        <a href="https://www.rottentomatoes.com/m/strange_harvest" target="_blank" rel="noopener noreferrer" aria-label="Rotten Tomatoes">
+          <img src="/images/strange-harvest-rotten-tomatoes-icon.webp" alt="Rotten Tomatoes" class="socialIcon">
+        </a>
+        <a href="https://www.instagram.com/strangeharvestmovie/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <img src="/images/strange-harvest-social-instagram-icon.webp" alt="Instagram" class="socialIcon">
+        </a>
+        <a href="https://www.facebook.com/Strangeharvestmovie/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <img src="/images/strange-harvest-social-facebook-icon.webp" alt="Facebook" class="socialIcon">
+        </a>
+        <a href="https://x.com/Strange_Harvest" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+          <img src="/images/strange-harvest-social-twitter-x-icon.webp" alt="X (Twitter)" class="socialIcon noFilter">
+        </a>
+        <a href="https://www.youtube.com/@strangeharvestfilm" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <img src="/images/strange-harvest-social-youtube-channel-icon.webp" alt="YouTube" class="socialIcon">
+        </a>
+      </div>
+
+      <div class="footerBottom">
+        <p class="footerOfficial">Official Website of Strange Harvest (2025)</p>
+        <p class="footerCopyright">© 2024 Strange Harvest. All rights reserved.</p>
+        <p class="footerMusic">Adorable Damage &amp; Pathogen Pictures</p>
+        <p class="footerDisclaimer">All material on this website is fictional and presented for entertainment. Any resemblance to real people, organizations, places, or events is coincidental and not intended as factual representation.</p>
+        <a href="/privacy.html" class="footerCookieSettings" aria-label="Manage cookie preferences">Cookie Settings</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
     const btsItems = [
@@ -429,9 +779,9 @@
     ];
 
     const stillsItems = [
+      { src: "/images/strange-harvest-sheriff-investigating-barbed-wire-pool.webp", alt: "Sheriff investigating a barbed wire filled pool crime scene in the horror mockumentary Strange Harvest", caption: "Sheriff investigating a barbed wire filled pool crime scene." },
       { src: "/images/strange-harvest-ritual-symbol-crime-scene.webp", alt: "Ritual symbol made of sticks at a crime scene in the horror mockumentary Strange Harvest", caption: "Ritual symbol made of sticks at a crime scene." },
       { src: "/images/glen-sandweiss-victim-interview-strange-harvest.webp", alt: "Glen Sandweiss appearing as a victim during an interview in the horror mockumentary Strange Harvest", caption: "Glen Sandweiss appearing as a victim during an interview." },
-      { src: "/images/strange-harvest-sheriff-investigating-barbed-wire-pool.webp", alt: "Sheriff investigating a barbed wire filled pool crime scene in the horror mockumentary Strange Harvest", caption: "Sheriff investigating a barbed wire filled pool crime scene." },
       { src: "/images/mr-shiny-handwritten-note-strange-harvest.webp", alt: "Handwritten note from Mr Shiny discovered during the investigation in the horror mockumentary Strange Harvest", caption: "Handwritten note from Mr. Shiny discovered during the investigation." },
       { src: "/images/mr-shiny-found-footage-bedroom-strange-harvest.webp", alt: "Mr Shiny appearing in a bedroom in found footage from the horror mockumentary Strange Harvest", caption: "Mr. Shiny appearing in a bedroom in found footage." },
       { src: "/images/strange-harvest-blood-buckets-evidence.webp", alt: "Buckets filled with blood discovered as evidence in the horror mockumentary Strange Harvest", caption: "Buckets filled with blood discovered as evidence." },
@@ -459,17 +809,17 @@
     ];
 
     const postersItems = [
-      { src: "/images/strange-harvest-official-movie-poster.webp", alt: "Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire", caption: "Main official poster." },
-      { src: "/images/strange-harvest-alternate-movie-poster.webp", alt: "Alternate poster featuring the masked killer from the horror mockumentary Strange Harvest", caption: "Alternate poster featuring the masked killer." }
+      { src: "/images/strange-harvest-official-movie-poster.webp", alt: "Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire", caption: "Main official poster.", downloadLabel: "Download Main Poster" },
+      { src: "/images/strange-harvest-alternate-movie-poster.webp", alt: "Alternate poster featuring the masked killer from the horror mockumentary Strange Harvest", caption: "Alternate Festival Run Poster featuring the masked killer.", downloadLabel: "Download Festival Poster" }
     ];
 
     const festivalsItems = [
+      { src: "/images/strange-harvest-beyond-fest-theater-screening.webp", alt: "Audience watching Strange Harvest during the Beyond Fest screening", caption: "Audience watching Strange Harvest during the Beyond Fest screening." },
       { src: "/images/strange-harvest-cast-crew-screening-theater.webp", alt: "Empty theater before the cast and crew screening of the horror film Strange Harvest", caption: "Empty theater before the cast and crew screening." },
       { src: "/images/strange-harvest-fantastic-fest-qa-panel.webp", alt: "Filmmakers on stage during the Strange Harvest Q&A panel at Fantastic Fest", caption: "Filmmakers on stage during the Strange Harvest Q&A panel at Fantastic Fest." },
       { src: "/images/strange-harvest-beyond-fest-screening-introduction.webp", alt: "Hosts introducing Strange Harvest at the Beyond Fest screening", caption: "Hosts introducing Strange Harvest at the Beyond Fest screening." },
       { src: "/images/strange-harvest-fantastic-fest-panel-discussion.webp", alt: "Cast and filmmakers discussing Strange Harvest during a Fantastic Fest panel", caption: "Cast and filmmakers discussing Strange Harvest during a Fantastic Fest panel." },
       { src: "/images/strange-harvest-fantastic-fest-afterparty.webp", alt: "Filmmakers celebrating Strange Harvest at the Fantastic Fest afterparty", caption: "Filmmakers celebrating Strange Harvest at the Fantastic Fest afterparty." },
-      { src: "/images/strange-harvest-beyond-fest-theater-screening.webp", alt: "Audience watching Strange Harvest during the Beyond Fest screening", caption: "Audience watching Strange Harvest during the Beyond Fest screening." },
       { src: "/images/strange-harvest-beyond-fest-panel-stage.webp", alt: "Strange Harvest filmmakers speaking on stage during the Beyond Fest Q&A", caption: "Strange Harvest filmmakers speaking on stage during the Beyond Fest Q&A." },
       { src: "/images/strange-harvest-fantastic-fest-poster-photo.webp", alt: "Filmmaker posing with the Fantastic Fest 2024 poster during Strange Harvest festival run", caption: "Filmmaker posing with the Fantastic Fest 2024 poster." },
       { src: "/images/strange-harvest-fantastic-fest-poster-photo-group.webp", alt: "Filmmakers posing in front of the Fantastic Fest 2024 poster during Strange Harvest premiere", caption: "Filmmakers posing in front of the Fantastic Fest 2024 poster during the Strange Harvest premiere." }
@@ -506,6 +856,8 @@
         slide.className = "slide";
 
         const figure = document.createElement("figure");
+        const media = document.createElement("div");
+        media.className = "slideMedia";
         const img = document.createElement("img");
         img.src = item.src;
         img.alt = item.alt;
@@ -513,9 +865,25 @@
         img.decoding = "async";
 
         const cap = document.createElement("figcaption");
-        cap.textContent = item.caption;
+        const capText = document.createElement("div");
+        capText.textContent = item.caption;
+        cap.appendChild(capText);
+        if (item.downloadLabel) {
+          const actions = document.createElement("div");
+          actions.className = "posterActions";
+          const download = document.createElement("a");
+          download.className = "downloadBtn";
+          download.href = item.src;
+          download.download = "";
+          download.target = "_blank";
+          download.rel = "noopener noreferrer";
+          download.textContent = item.downloadLabel;
+          actions.appendChild(download);
+          cap.appendChild(actions);
+        }
 
-        figure.appendChild(img);
+        media.appendChild(img);
+        figure.appendChild(media);
         figure.appendChild(cap);
         slide.appendChild(figure);
         track.appendChild(slide);
