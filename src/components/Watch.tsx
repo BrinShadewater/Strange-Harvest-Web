@@ -64,7 +64,7 @@ export default function Watch() {
             <p className="subhead">{watch.streaming}</p>
           </div>
 
-          <div className="watchGrid" style={{ gridTemplateColumns: '1fr', maxWidth: '300px' }}>
+          <div className="watchGrid" style={{ gridTemplateColumns: '1fr', maxWidth: '210px' }}>
             {streamingPlatforms.map((p) => (
               <a
                 key={p.name}

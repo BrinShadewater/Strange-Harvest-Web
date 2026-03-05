@@ -37,6 +37,7 @@ export default function Footer() {
           <p className="footerOfficial">{footer.officialNotice}</p>
           <p className="footerCopyright">{footer.copyright}</p>
           <p className="footerMusic">{footer.musicCredit}</p>
+          <p className="footerDisclaimer">{footer.disclaimer}</p>
           <button 
             onClick={handleCookieSettings}
             className="footerCookieSettings"

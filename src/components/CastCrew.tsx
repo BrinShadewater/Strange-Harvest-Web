@@ -42,7 +42,8 @@ export default function CastCrew() {
                 className="castName"
                 aria-label={`View ${member.name} on IMDB`}
               >
-                {member.name}
+                <span className="castPersonName">{member.name}</span>
+                <span className="castCharacterName">{member.character}</span>
               </a>
             ))}
           </div>
