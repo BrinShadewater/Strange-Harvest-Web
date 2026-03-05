@@ -28,17 +28,19 @@ export default function Hero() {
     <section className="hero" id="top">
       <div className="heroGrid">
         <div className="heroPoster">
-          <img
-            src={poster.src}
-            srcSet={poster.srcSet}
-            sizes="(max-width: 768px) 88vw, (max-width: 1200px) 45vw, 600px"
-            alt={poster.alt}
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-            width="600"
-            height="900"
-          />
+          <div className="posterFrame">
+            <img
+              src={poster.src}
+              srcSet={poster.srcSet}
+              sizes="(max-width: 768px) 88vw, (max-width: 1200px) 45vw, 600px"
+              alt={poster.alt}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              width="600"
+              height="900"
+            />
+          </div>
           <div className="posterToggle" role="group" aria-label="Choose poster version">
             <button
               type="button"
