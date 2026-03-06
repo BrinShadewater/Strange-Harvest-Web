@@ -12,6 +12,7 @@ interface Particle {
   rotationSpeed: number;
   swirlOffset: number;
   swirlSpeed: number;
+  active: boolean;
 }
 
 interface Fleck {
@@ -44,6 +45,7 @@ export default function ParticleBackground() {
   const mouseRef = useRef({ x: 0, y: 0, active: false });
   const lastExplosionTimeRef = useRef(0);
   const hoverStartTimesRef = useRef<number[]>([]);
+  const removedCountRef = useRef(0);
   const animationFrameRef = useRef<number>();
 
   useEffect(() => {
@@ -52,6 +54,14 @@ export default function ParticleBackground() {
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+    const ARG_REMOVED_COUNT_KEY = 'sh_arg_removed_symbol_count';
+
+    const persistRemovedCount = (value: number) => {
+      removedCountRef.current = value;
+      window.localStorage.setItem(ARG_REMOVED_COUNT_KEY, String(value));
+      (window as Window & { shArgRemovedSymbols?: number }).shArgRemovedSymbols = value;
+      window.dispatchEvent(new CustomEvent('sh:arg-symbol-removed', { detail: { removedCount: value } }));
+    };
 
     // Set canvas size
     const resizeCanvas = () => {
@@ -85,6 +95,7 @@ export default function ParticleBackground() {
           rotationSpeed: (Math.random() - 0.5) * 0.0045,
           swirlOffset: Math.random() * Math.PI * 2,
           swirlSpeed: Math.random() * 0.005 + 0.002,
+          active: true,
         });
       }
       particlesRef.current = particles;
@@ -189,6 +200,11 @@ export default function ParticleBackground() {
 
       // Draw symbol particles
       particlesRef.current.forEach((particle, index) => {
+        if (!particle.active) {
+          hoverStartTimesRef.current[index] = 0;
+          return;
+        }
+
         // Add stronger swirling motion around the screen center.
         const toCenterX = particle.x - centerX;
         const toCenterY = particle.y - centerY;
@@ -236,6 +252,9 @@ export default function ParticleBackground() {
               createExplosion(particle.x, particle.y, 'major');
               lastExplosionTimeRef.current = now;
               hoverStartTimesRef.current[index] = 0;
+              particle.active = false;
+              persistRemovedCount(removedCountRef.current + 1);
+              return;
             }
           } else {
             hoverStartTimesRef.current[index] = 0;
@@ -307,6 +326,10 @@ export default function ParticleBackground() {
       animationFrameRef.current = requestAnimationFrame(animate);
     };
     animate();
+
+    // Restore persisted ARG state.
+    const storedCount = Number(window.localStorage.getItem(ARG_REMOVED_COUNT_KEY) ?? 0);
+    persistRemovedCount(Number.isFinite(storedCount) ? storedCount : 0);
 
     // Cleanup
     return () => {

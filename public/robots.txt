@@ -6,6 +6,7 @@ Disallow: /cookie-test.html
 # Sitemap location
 Sitemap: https://strangeharvestmovie.com/sitemap.xml
 Sitemap: https://strangeharvestmovie.com/image-sitemap.xml
+Sitemap: https://strangeharvestmovie.com/video-sitemap.xml
 
 # Preferred host
 Host: strangeharvestmovie.com

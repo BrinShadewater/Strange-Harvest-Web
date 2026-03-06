@@ -4,6 +4,8 @@
   "description": "Promotional website for Strange Harvest film",
   "type": "module",
   "scripts": {
+    "seo:generate-sitemaps": "node scripts/generate-sitemaps.mjs",
+    "prebuild": "npm run seo:generate-sitemaps",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
