@@ -445,7 +445,6 @@ const sitecopyEn = {
         { name: "Samantha Stephens", character: "Chelsea Lunsford", imdb: "https://www.imdb.com/name/nm5560648/" },
         { name: "Ross Turner", character: "Dr. Dennis Levine", imdb: "https://www.imdb.com/name/nm3129298/" },
         { name: "Coleen Tutton", character: "April Macenroe", imdb: "https://www.imdb.com/name/nm2601916/" },
-        { name: "Paul Sean Ward", character: "Crime Scene Technician", imdb: "https://www.imdb.com/name/nm9939745/" },
         { name: "Angie Jho Lee", character: "Reporter ('95)", imdb: "https://www.imdb.com/name/nm9187716/" },
         { name: "Alistair David Herz", character: "Anchor ('95)", imdb: "https://www.imdb.com/name/nm2796307/" },
         { name: "Garon Grigsby", character: "Anchor 1", imdb: "https://www.imdb.com/name/nm0341954/" },

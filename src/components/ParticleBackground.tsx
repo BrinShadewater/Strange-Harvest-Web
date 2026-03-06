@@ -43,6 +43,7 @@ export default function ParticleBackground() {
   const imageRef = useRef<HTMLImageElement | null>(null);
   const mouseRef = useRef({ x: 0, y: 0, active: false });
   const lastExplosionTimeRef = useRef(0);
+  const hoverStartTimesRef = useRef<number[]>([]);
   const animationFrameRef = useRef<number>();
 
   useEffect(() => {
@@ -87,6 +88,7 @@ export default function ParticleBackground() {
         });
       }
       particlesRef.current = particles;
+      hoverStartTimesRef.current = new Array(particles.length).fill(0);
 
       // Create white flecks (more numerous, smaller)
       const flecks: Fleck[] = [];
@@ -107,21 +109,21 @@ export default function ParticleBackground() {
     };
     createParticles();
 
-    const createExplosion = (x: number, y: number) => {
-      const burstCount = 12;
+    const createExplosion = (x: number, y: number, intensity: 'mini' | 'major' = 'mini') => {
+      const burstCount = intensity === 'major' ? 36 : 12;
       const newBursts: BurstParticle[] = [];
 
       for (let i = 0; i < burstCount; i++) {
         const angle = (Math.PI * 2 * i) / burstCount + (Math.random() - 0.5) * 0.5;
-        const speed = Math.random() * 0.8 + 0.4;
+        const speed = intensity === 'major' ? Math.random() * 2 + 1.2 : Math.random() * 0.8 + 0.4;
         newBursts.push({
           x,
           y,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
-          size: Math.random() * 2.5 + 1,
+          size: intensity === 'major' ? Math.random() * 3 + 1.6 : Math.random() * 2.5 + 1,
           life: 0,
-          maxLife: Math.random() * 28 + 22,
+          maxLife: intensity === 'major' ? Math.random() * 38 + 28 : Math.random() * 28 + 22,
           opacity: Math.random() * 0.55 + 0.35,
           tint: Math.random(),
         });
@@ -146,6 +148,8 @@ export default function ParticleBackground() {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const time = performance.now() * 0.001;
+      const now = performance.now();
+      const isFestivalTheme = document.body.classList.contains('festival-theme');
       const centerX = canvas.width * 0.5;
       const centerY = canvas.height * 0.5;
 
@@ -176,7 +180,7 @@ export default function ParticleBackground() {
         // Draw white fleck
         ctx.save();
         ctx.globalAlpha = fleck.opacity;
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = isFestivalTheme ? 'rgba(170, 220, 255, 0.95)' : '#ffffff';
         ctx.beginPath();
         ctx.arc(fleck.x, fleck.y, fleck.size, 0, Math.PI * 2);
         ctx.fill();
@@ -184,7 +188,7 @@ export default function ParticleBackground() {
       });
 
       // Draw symbol particles
-      particlesRef.current.forEach((particle) => {
+      particlesRef.current.forEach((particle, index) => {
         // Add stronger swirling motion around the screen center.
         const toCenterX = particle.x - centerX;
         const toCenterY = particle.y - centerY;
@@ -211,6 +215,7 @@ export default function ParticleBackground() {
         const distance = Math.sqrt(dx * dx + dy * dy);
         const forceDistance = 150;
         const proximityExplosionDistance = Math.max(18, particle.size * 0.45);
+        const hoverExplosionDistance = Math.max(36, particle.size * 0.7);
 
         if (distance < forceDistance && mouseRef.current.active && distance > 0.001) {
           const force = (forceDistance - distance) / forceDistance;
@@ -218,11 +223,25 @@ export default function ParticleBackground() {
           particle.y -= (dy / distance) * force * 2;
 
           // Cursor-near symbol mini explosion with global cooldown.
-          const now = performance.now();
           if (distance < proximityExplosionDistance && now - lastExplosionTimeRef.current > 90) {
             createExplosion(particle.x, particle.y);
             lastExplosionTimeRef.current = now;
           }
+
+          // Hover dwell trigger for larger symbol explosion.
+          if (distance < hoverExplosionDistance) {
+            if (!hoverStartTimesRef.current[index]) {
+              hoverStartTimesRef.current[index] = now;
+            } else if (now - hoverStartTimesRef.current[index] > 700 && now - lastExplosionTimeRef.current > 140) {
+              createExplosion(particle.x, particle.y, 'major');
+              lastExplosionTimeRef.current = now;
+              hoverStartTimesRef.current[index] = 0;
+            }
+          } else {
+            hoverStartTimesRef.current[index] = 0;
+          }
+        } else {
+          hoverStartTimesRef.current[index] = 0;
         }
 
         // Update position
@@ -251,6 +270,12 @@ export default function ParticleBackground() {
             particle.size,
             particle.size
           );
+          if (isFestivalTheme) {
+            ctx.globalCompositeOperation = 'source-atop';
+            ctx.fillStyle = 'rgba(90, 170, 255, 0.45)';
+            ctx.fillRect(-particle.size / 2, -particle.size / 2, particle.size, particle.size);
+            ctx.globalCompositeOperation = 'source-over';
+          }
           ctx.restore();
         }
       });
@@ -266,9 +291,9 @@ export default function ParticleBackground() {
         const lifeRatio = 1 - burst.life / burst.maxLife;
         if (lifeRatio <= 0) return false;
 
-        const red = 255;
-        const green = Math.floor(25 + burst.tint * 80);
-        const blue = Math.floor(10 + burst.tint * 30);
+        const red = isFestivalTheme ? Math.floor(30 + burst.tint * 50) : 255;
+        const green = isFestivalTheme ? Math.floor(120 + burst.tint * 100) : Math.floor(25 + burst.tint * 80);
+        const blue = isFestivalTheme ? Math.floor(220 + burst.tint * 35) : Math.floor(10 + burst.tint * 30);
         ctx.save();
         ctx.globalAlpha = burst.opacity * lifeRatio;
         ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;

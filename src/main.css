@@ -205,7 +205,7 @@ section:first-of-type {
 }
 
 .heroTitle.is-visible {
-  animation: fluorescentFlickerOn 1.3s linear forwards;
+  animation: fluorescentFlickerOn 2s linear forwards;
 }
 
 @keyframes fluorescentFlickerOn {

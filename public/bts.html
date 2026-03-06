@@ -267,28 +267,45 @@
     .langSwitch {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      padding: 3px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
     }
 
-    .langSwitch a {
+    .langSwitchBtn {
       color: rgba(255, 255, 255, 0.72);
       text-decoration: none;
       font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      min-height: 30px;
+      min-width: 38px;
+      padding: 0 10px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
-    .langSwitch a.active {
+    .langSwitchBtn.active {
+      background: hsl(0, 65%, 45%);
       color: #fff;
+    }
+
+    .langSwitchBtn:hover {
+      color: hsl(0, 65%, 45%);
     }
 
     .headerRight {
       display: inline-flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
       justify-self: end;
       white-space: nowrap;
+      flex-wrap: nowrap;
     }
 
     main {
@@ -661,14 +678,18 @@
 
     @media (max-width: 900px) {
       .siteHeaderInner {
-        grid-template-columns: 1fr auto;
-        gap: 10px;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+          "brand actions"
+          "nav nav";
+        gap: 8px 10px;
         padding: 10px 14px;
       }
 
       .brand {
+        grid-area: brand;
         justify-self: start;
-        font-size: 15px;
+        font-size: 16px;
       }
 
       .brand img {
@@ -676,7 +697,7 @@
       }
 
       .nav {
-        grid-column: 1 / -1;
+        grid-area: nav;
         justify-content: center;
         gap: 8px;
       }
@@ -692,8 +713,17 @@
       }
 
       .headerRight {
+        grid-area: actions;
         gap: 10px;
-        align-self: start;
+        align-self: center;
+        justify-self: end;
+      }
+
+      .langSwitchBtn {
+        min-height: 28px;
+        min-width: 34px;
+        padding: 0 8px;
+        font-size: 10px;
       }
     }
   </style>
@@ -717,9 +747,8 @@
       </nav>
       <div class="headerRight">
         <div class="langSwitch" aria-label="Language selector">
-          <a id="lang-en" href="/bts.html">EN</a>
-          <span>/</span>
-          <a id="lang-es" href="/bts.html?lang=es">ES</a>
+          <a id="lang-en" class="langSwitchBtn" href="/bts.html">EN</a>
+          <a id="lang-es" class="langSwitchBtn" href="/bts.html?lang=es">ES</a>
         </div>
         <a class="cartIcon" href="https://strangeharvestfilm.myshopify.com/cart" target="_blank" rel="noopener noreferrer" aria-label="Open merch cart">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

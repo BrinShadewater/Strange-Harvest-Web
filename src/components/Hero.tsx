@@ -6,6 +6,7 @@ export default function Hero() {
   const [isFestivalPoster, setIsFestivalPoster] = useState(false);
   const [titleVisible, setTitleVisible] = useState(false);
   const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const flickerTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     document.body.classList.toggle("festival-theme", isFestivalPoster);
@@ -35,6 +36,25 @@ export default function Hero() {
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    return () => {
+      if (flickerTimeoutRef.current) {
+        window.clearTimeout(flickerTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handlePosterToggle = (festivalMode: boolean) => {
+    setIsFestivalPoster(festivalMode);
+    setTitleVisible(false);
+    if (flickerTimeoutRef.current) {
+      window.clearTimeout(flickerTimeoutRef.current);
+    }
+    flickerTimeoutRef.current = window.setTimeout(() => {
+      setTitleVisible(true);
+    }, 40);
+  };
 
   const poster = isFestivalPoster
     ? {
@@ -84,7 +104,7 @@ export default function Hero() {
             <button
               type="button"
               className={`posterToggleBtn ${!isFestivalPoster ? "active" : ""}`}
-              onClick={() => setIsFestivalPoster(false)}
+              onClick={() => handlePosterToggle(false)}
               aria-pressed={!isFestivalPoster}
             >
               {hero.posterToggle.official}
@@ -92,7 +112,7 @@ export default function Hero() {
             <button
               type="button"
               className={`posterToggleBtn ${isFestivalPoster ? "active" : ""}`}
-              onClick={() => setIsFestivalPoster(true)}
+              onClick={() => handlePosterToggle(true)}
               aria-pressed={isFestivalPoster}
             >
               {hero.posterToggle.festival}
