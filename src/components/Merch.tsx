@@ -1,3 +1,5 @@
+"use client";
+
 import { sitecopy } from "./sitecopy";
 import { useState, useEffect } from "react";
 import { getProducts, getCheckoutUrl, formatPrice, type ShopifyProduct } from "../services/shopify";
@@ -7,7 +9,7 @@ export default function Merch() {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const isDev = import.meta.env.DEV;
+  const isDev = process.env.NODE_ENV === 'development';
 
   useEffect(() => {
     const fetchProducts = async () => {

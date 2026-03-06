@@ -1,4 +1,7 @@
+"use client";
+
 import { sitecopy } from "./sitecopy";
+import LazyYoutube from "./LazyYoutube";
 
 export default function Trailer() {
   const { trailer } = sitecopy;
@@ -10,14 +13,7 @@ export default function Trailer() {
       </div>
 
       <div style={{ marginTop: '48px' }} className="videoWrapper">
-        <iframe
-          src="https://www.youtube.com/embed/tYyTpuk8Zuk?cc_load_policy=1"
-          title={trailer.iframeTitle}
-          frameBorder="0"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
+        <LazyYoutube videoId="tYyTpuk8Zuk" title={trailer.iframeTitle} />
       </div>
     </section>
   );

@@ -1,3 +1,5 @@
+"use client";
+
 import { HERO_LOGO_SRC } from "../constants/assets";
 
 export default function SymbolDivider() {

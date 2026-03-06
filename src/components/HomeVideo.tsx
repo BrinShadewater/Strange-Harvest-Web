@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { sitecopy } from "./sitecopy";
 import { detectRegion } from "../services/geolocation";

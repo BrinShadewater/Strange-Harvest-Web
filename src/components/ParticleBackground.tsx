@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from 'react';
 import { HERO_LOGO_SRC } from '../constants/assets';
 
@@ -49,6 +51,9 @@ export default function ParticleBackground() {
   const animationFrameRef = useRef<number>();
 
   useEffect(() => {
+    // Respect prefers-reduced-motion — skip animation entirely
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -327,6 +332,22 @@ export default function ParticleBackground() {
     };
     animate();
 
+    // Pause animation when tab is hidden (saves CPU/battery on mobile)
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current);
+          animationFrameRef.current = undefined;
+        }
+      } else {
+        // Resume — only start if not already running
+        if (!animationFrameRef.current) {
+          animationFrameRef.current = requestAnimationFrame(animate);
+        }
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     // Restore persisted ARG state.
     const storedCount = Number(window.localStorage.getItem(ARG_REMOVED_COUNT_KEY) ?? 0);
     persistRemovedCount(Number.isFinite(storedCount) ? storedCount : 0);
@@ -336,6 +357,7 @@ export default function ParticleBackground() {
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }

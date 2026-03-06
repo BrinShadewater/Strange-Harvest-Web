@@ -2395,3 +2395,53 @@ body {
 #root {
   overflow-x: hidden;
 }
+
+
+/* ── YouTube Facade ─────────────────────────────────────── */
+.youtubeFacade {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.youtubeThumbnail {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: opacity 0.2s;
+}
+
+.youtubeFacade:hover .youtubeThumbnail {
+  opacity: 0.85;
+}
+
+.youtubePlayBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 48px;
+  transition: transform 0.15s;
+  pointer-events: none;
+}
+
+.youtubeFacade:hover .youtubePlayBtn {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.youtubeIframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 8px;
+  display: block;
+}

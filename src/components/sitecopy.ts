@@ -2,8 +2,10 @@ export type SiteLanguage = "en" | "es";
 
 function detectSiteLanguage(): SiteLanguage {
   if (typeof window === "undefined") return "en";
-  const lang = new URLSearchParams(window.location.search).get("lang")?.toLowerCase();
-  return lang === "es" ? "es" : "en";
+  // Detect from pathname for /es/ route (Next.js)
+  const pathname = window.location.pathname;
+  if (pathname === "/es" || pathname.startsWith("/es/")) return "es";
+  return "en";
 }
 
 export const siteLanguage = detectSiteLanguage();

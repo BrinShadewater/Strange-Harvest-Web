@@ -1,3 +1,5 @@
+"use client";
+
 import { sitecopy, siteLanguage } from "./sitecopy";
 
 function localizeCrewRole(role: string): string {

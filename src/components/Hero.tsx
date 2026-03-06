@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { sitecopy } from "./sitecopy";
 
@@ -143,13 +145,16 @@ export default function Hero() {
       from_variant: previousVariant,
       to_variant: nextVariant,
     });
-    setTitleVisible(false);
-    if (flickerTimeoutRef.current) {
-      window.clearTimeout(flickerTimeoutRef.current);
+    // Skip flicker animation if user prefers reduced motion
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setTitleVisible(false);
+      if (flickerTimeoutRef.current) {
+        window.clearTimeout(flickerTimeoutRef.current);
+      }
+      flickerTimeoutRef.current = window.setTimeout(() => {
+        setTitleVisible(true);
+      }, 40);
     }
-    flickerTimeoutRef.current = window.setTimeout(() => {
-      setTitleVisible(true);
-    }, 40);
   };
 
   const handleCtaClick = (label: string) => {

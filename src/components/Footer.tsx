@@ -1,3 +1,5 @@
+"use client";
+
 import { sitecopy } from "./sitecopy";
 import { HERO_LOGO_SRC } from "../constants/assets";
 

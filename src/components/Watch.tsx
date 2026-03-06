@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { sitecopy } from "./sitecopy";
 import {
@@ -10,7 +12,7 @@ import {
 
 export default function Watch() {
   const { watch } = sitecopy;
-  const isDev = import.meta.env.DEV;
+  const isDev = process.env.NODE_ENV === 'development';
   const [geo, setGeo] = useState<GeoLocation | null>(null);
   const [loading, setLoading] = useState(true);
 

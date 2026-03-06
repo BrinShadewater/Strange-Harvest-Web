@@ -1,18 +1,29 @@
+"use client";
+
 import { sitecopy } from "./sitecopy";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 
 export default function Press() {
   const { press } = sitecopy;
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const prefersReducedMotion = useRef(false);
 
   const quotesLength = useMemo(() => press.quotes.length, [press.quotes.length]);
 
   useEffect(() => {
+    prefersReducedMotion.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // If user prefers reduced motion, start paused
+    if (prefersReducedMotion.current) setIsPaused(true);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % quotesLength);
     }, 8000);
     return () => clearInterval(interval);
-  }, [quotesLength]);
+  }, [quotesLength, isPaused]);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + quotesLength) % quotesLength);
@@ -42,9 +53,17 @@ export default function Press() {
         </div>
       )}
       
-      <div className="pressCarousel" aria-label="Press reviews carousel" aria-live="polite">
-        <button 
-          className="carouselButton carouselButtonPrev" 
+      <div className="pressCarousel" aria-label="Press reviews carousel" aria-live={isPaused ? "off" : "polite"}>
+        <button
+          className="carouselButton carouselButtonPause"
+          onClick={() => setIsPaused((p) => !p)}
+          aria-label={isPaused ? "Resume auto-advancing reviews" : "Pause auto-advancing reviews"}
+          aria-pressed={isPaused}
+        >
+          {isPaused ? "▶" : "⏸"}
+        </button>
+        <button
+          className="carouselButton carouselButtonPrev"
           onClick={goToPrevious}
           aria-label="Previous review"
         >

@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { sitecopy } from "./sitecopy";
 
@@ -9,10 +11,10 @@ interface ConsentState {
 }
 
 const CONSENT_KEY = "sh_consent";
-const isDev = import.meta.env.DEV;
+const isDev = process.env.NODE_ENV === 'development';
 
 // Google Analytics 4 Measurement ID from environment
-const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 // Declare gtag function for TypeScript
 declare global {
@@ -27,7 +29,7 @@ const loadAnalytics = () => {
   // Check if GA is configured
   if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') {
     if (isDev) {
-      console.warn("Google Analytics not configured. Set VITE_GA_MEASUREMENT_ID in .env");
+      console.warn("Google Analytics not configured. Set NEXT_PUBLIC_GA_MEASUREMENT_ID in .env");
     }
     return;
   }

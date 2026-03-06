@@ -47,9 +47,9 @@ export interface ShopifyProductsResponse {
   };
 }
 
-const SHOPIFY_DOMAIN = import.meta.env.VITE_SHOPIFY_DOMAIN;
-const STOREFRONT_TOKEN = import.meta.env.VITE_SHOPIFY_STOREFRONT_TOKEN;
-const isDev = import.meta.env.DEV;
+const SHOPIFY_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN;
+const STOREFRONT_TOKEN = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN;
+const isDev = process.env.NODE_ENV === 'development';
 
 /**
  * Fetch products from Shopify Storefront API
@@ -59,7 +59,7 @@ export async function getProducts(): Promise<ShopifyProduct[]> {
   // Check if credentials are configured
   if (!SHOPIFY_DOMAIN || !STOREFRONT_TOKEN) {
     if (isDev) {
-      console.warn("Shopify credentials not configured. Set VITE_SHOPIFY_DOMAIN and VITE_SHOPIFY_STOREFRONT_TOKEN in .env");
+      console.warn("Shopify credentials not configured. Set NEXT_PUBLIC_SHOPIFY_DOMAIN and NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN in .env");
     }
     return [];
   }

@@ -19,7 +19,7 @@ export interface WatchPlatform {
 
 const CACHE_KEY = 'sh_geo_region';
 const CACHE_DURATION = 1000 * 60 * 60 * 24; // 24 hours
-const isDev = import.meta.env.DEV;
+const isDev = process.env.NODE_ENV === 'development';
 
 /**
  * Detect visitor region using multiple methods
