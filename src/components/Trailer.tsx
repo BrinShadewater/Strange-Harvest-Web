@@ -12,7 +12,7 @@ export default function Trailer() {
         <h2>{trailer.title}</h2>
       </div>
 
-      <div style={{ marginTop: '48px' }} className="videoWrapper">
+      <div className="videoWrapper">
         <LazyYoutube videoId="tYyTpuk8Zuk" title={trailer.iframeTitle} />
       </div>
     </section>

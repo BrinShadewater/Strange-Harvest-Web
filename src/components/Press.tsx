@@ -55,14 +55,6 @@ export default function Press() {
       
       <div className="pressCarousel" aria-label="Press reviews carousel" aria-live={isPaused ? "off" : "polite"}>
         <button
-          className="carouselButton carouselButtonPause"
-          onClick={() => setIsPaused((p) => !p)}
-          aria-label={isPaused ? "Resume auto-advancing reviews" : "Pause auto-advancing reviews"}
-          aria-pressed={isPaused}
-        >
-          {isPaused ? "▶" : "⏸"}
-        </button>
-        <button
           className="carouselButton carouselButtonPrev"
           onClick={goToPrevious}
           aria-label="Previous review"
@@ -89,8 +81,8 @@ export default function Press() {
           ))}
         </div>
 
-        <button 
-          className="carouselButton carouselButtonNext" 
+        <button
+          className="carouselButton carouselButtonNext"
           onClick={goToNext}
           aria-label="Next review"
         >
@@ -98,16 +90,26 @@ export default function Press() {
         </button>
       </div>
 
-      <div className="carouselDots">
-        {press.quotes.map((review, idx) => (
-          <button
-            key={idx}
-            className={`carouselDot ${idx === currentIndex ? 'active' : ''}`}
-            onClick={() => setCurrentIndex(idx)}
-            aria-label={`Go to review from ${review.source.split('/')[0].trim()}`}
-            aria-current={idx === currentIndex ? 'true' : 'false'}
-          />
-        ))}
+      <div className="carouselControls">
+        <button
+          className="carouselButton carouselButtonPause"
+          onClick={() => setIsPaused((p) => !p)}
+          aria-label={isPaused ? "Resume auto-advancing reviews" : "Pause auto-advancing reviews"}
+          aria-pressed={isPaused}
+        >
+          {isPaused ? "▶" : "⏸"}
+        </button>
+        <div className="carouselDots">
+          {press.quotes.map((review, idx) => (
+            <button
+              key={idx}
+              className={`carouselDot ${idx === currentIndex ? 'active' : ''}`}
+              onClick={() => setCurrentIndex(idx)}
+              aria-label={`Go to review from ${review.source.split('/')[0].trim()}`}
+              aria-current={idx === currentIndex ? 'true' : 'false'}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

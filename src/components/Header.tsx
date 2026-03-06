@@ -7,14 +7,7 @@ export default function Header() {
   const { merch, header } = sitecopy;
 
   const buildLangHref = (lang: "en" | "es") => {
-    if (typeof window === "undefined") return "/";
-    const url = new URL(window.location.href);
-    if (lang === "es") {
-      url.searchParams.set("lang", "es");
-    } else {
-      url.searchParams.delete("lang");
-    }
-    return `${url.pathname}${url.search}${url.hash}`;
+    return lang === "es" ? "/es" : "/";
   };
 
   const btsHref = siteLanguage === "es" ? "/bts.html?lang=es" : "/bts.html";

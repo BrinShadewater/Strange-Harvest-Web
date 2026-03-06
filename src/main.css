@@ -1009,8 +1009,8 @@ section:first-of-type {
   left: 16px;
   width: 60px;
   height: auto;
-  color: rgb(var(--glow-title-rgb));
-  opacity: 0.6;
+  color: hsl(var(--primary));
+  opacity: 0.5;
   z-index: 0;
   pointer-events: none;
 }
@@ -1055,11 +1055,25 @@ section:first-of-type {
   transform: scale(1.08);
 }
 
+.carouselControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.carouselButtonPause {
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
 .carouselDots {
   display: flex;
   gap: 10px;
-  justify-content: center;
-  margin-top: 24px;
+  align-items: center;
 }
 
 .carouselDot {
@@ -1134,15 +1148,15 @@ section:first-of-type {
 
 .videoWrapper {
   position: relative;
-  padding-top: 56.25%; /* 16:9 */
+  aspect-ratio: 16 / 9;
   margin-top: 18px;
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: none;
   border: 1px solid rgba(255,255,255,0.10);
 }
 
-.videoWrapper iframe {
+.videoWrapper iframe,
+.videoWrapper .youtubeFacade {
   position: absolute;
   inset: 0;
   width: 100%;
