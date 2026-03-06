@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 const BASE_URL = "https://strangeharvestmovie.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-03-06");
+  const lastModified = new Date("2026-03-06"); // Last updated: BTS + press.html polish pass
 
   return [
     {

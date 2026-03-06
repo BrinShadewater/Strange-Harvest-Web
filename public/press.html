@@ -111,7 +111,7 @@
             "@type": "Organization",
             "name": "Adorable Damage"
           },
-          "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
+          "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
           "license": "https://strangeharvestmovie.com/press.html",
           "acquireLicensePage": "https://strangeharvestmovie.com/press.html"
         },
@@ -124,7 +124,7 @@
           "width": 1600,
           "height": 900,
           "creditText": "Adorable Damage / Pathogen Pictures",
-          "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
+          "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
           "license": "https://strangeharvestmovie.com/press.html"
         },
         {
@@ -136,7 +136,7 @@
           "width": 1600,
           "height": 900,
           "creditText": "Adorable Damage / Pathogen Pictures",
-          "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
+          "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
           "license": "https://strangeharvestmovie.com/press.html"
         },
         {
@@ -148,7 +148,7 @@
           "width": 1600,
           "height": 900,
           "creditText": "Adorable Damage / Pathogen Pictures",
-          "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
+          "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
           "license": "https://strangeharvestmovie.com/press.html"
         },
         {
@@ -160,7 +160,7 @@
           "width": 1600,
           "height": 900,
           "creditText": "Adorable Damage / Pathogen Pictures",
-          "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
+          "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
           "license": "https://strangeharvestmovie.com/press.html"
         }
       ]
@@ -178,6 +178,23 @@
             --font-body: "Assistant", sans-serif;
         }
         
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 16px;
+            background: var(--primary);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 0 0 6px 6px;
+            font-weight: 700;
+            font-size: 14px;
+            font-family: var(--font-body);
+            z-index: 9999;
+            text-decoration: none;
+            transition: top 0.15s;
+        }
+        .skip-link:focus { top: 0; }
+
         * {
             margin: 0;
             padding: 0;
@@ -425,7 +442,8 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <div id="main-content" class="container">
         <div class="lang-switch" aria-label="Language selector">
             <a id="lang-en" href="/press.html">EN</a>
             <span>/</span>
@@ -637,7 +655,7 @@
         const backLink = document.querySelector(".back-link");
         if (backLink) {
           backLink.textContent = "← Volver al inicio de Strange Harvest";
-          backLink.setAttribute("href", "/?lang=es");
+          backLink.setAttribute("href", "/es");
         }
       })();
     </script>

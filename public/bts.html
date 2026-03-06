@@ -52,7 +52,7 @@
           "@type": "Organization",
           "name": "Adorable Damage"
         },
-        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html",
         "acquireLicensePage": "https://strangeharvestmovie.com/press.html"
       },
@@ -65,7 +65,7 @@
         "width": 1677,
         "height": 1263,
         "creditText": "Adorable Damage / Pathogen Pictures",
-        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html"
       },
       {
@@ -77,7 +77,7 @@
         "width": 1551,
         "height": 1183,
         "creditText": "Adorable Damage / Pathogen Pictures",
-        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html"
       },
       {
@@ -89,7 +89,7 @@
         "width": 1368,
         "height": 1824,
         "creditText": "Adorable Damage / Pathogen Pictures",
-        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html"
       },
       {
@@ -101,7 +101,7 @@
         "width": 1365,
         "height": 2048,
         "creditText": "Adorable Damage / Pathogen Pictures",
-        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html"
       },
       {
@@ -111,7 +111,7 @@
         "name": "Los asesinatos de Mr. Shiny Spanish poster",
         "caption": "Official Spanish poster artwork for Strange Harvest titled Los asesinatos de Mr. Shiny.",
         "creditText": "Adorable Damage / Pathogen Pictures",
-        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html"
       },
       {
@@ -123,7 +123,7 @@
         "width": 1677,
         "height": 1263,
         "creditText": "Adorable Damage / Pathogen Pictures",
-        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html"
       },
       {
@@ -135,7 +135,7 @@
         "width": 1677,
         "height": 1263,
         "creditText": "Adorable Damage / Pathogen Pictures",
-        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html"
       }
     ]
@@ -160,6 +160,22 @@
       --card: rgba(255, 255, 255, 0.06);
       --card-hover: rgba(255, 255, 255, 0.1);
     }
+
+    .skipLink {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 0 0 6px 6px;
+      font-weight: 700;
+      font-size: 14px;
+      z-index: 9999;
+      text-decoration: none;
+      transition: top 0.15s;
+    }
+    .skipLink:focus { top: 0; }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -400,6 +416,10 @@
       line-height: 1.1;
       text-transform: uppercase;
       margin-bottom: 36px;
+      text-shadow:
+        0 0 20px rgba(200, 0, 0, 0.4),
+        0 0 40px rgba(180, 0, 0, 0.25),
+        0 0 60px rgba(160, 0, 0, 0.15);
     }
 
     .heroFigure {
@@ -443,6 +463,26 @@
       font-size: 32px;
       margin-bottom: 22px;
       font-weight: 800;
+      text-shadow:
+        0 0 20px rgba(200, 0, 0, 0.4),
+        0 0 40px rgba(180, 0, 0, 0.25),
+        0 0 60px rgba(160, 0, 0, 0.15);
+    }
+
+    @keyframes fluorescentFlickerOn {
+      0%   { opacity: 0;    filter: brightness(0.1); }
+      8%   { opacity: 0.95; filter: brightness(2.2); }
+      12%  { opacity: 0.2;  filter: brightness(0.35); }
+      18%  { opacity: 1;    filter: brightness(2.1); }
+      26%  { opacity: 0.45; filter: brightness(0.6); }
+      34%  { opacity: 1;    filter: brightness(1.9); }
+      46%  { opacity: 0.6;  filter: brightness(0.8); }
+      60%  { opacity: 1;    filter: brightness(1.35); }
+      100% { opacity: 1;    filter: brightness(1); }
+    }
+
+    .flicker-active {
+      animation: fluorescentFlickerOn 2s linear forwards;
     }
 
     .galleryIntro {
@@ -761,6 +801,7 @@
   </style>
 </head>
 <body>
+  <a href="#main" class="skipLink">Skip to content</a>
   <div class="grainOverlay" aria-hidden="true"></div>
   <canvas class="particleCanvas" id="particle-canvas" aria-hidden="true"></canvas>
   <header class="siteHeader" role="banner">
@@ -793,7 +834,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <p class="heroKicker">Production Archive</p>
     <h1>Behind the Scenes of Strange Harvest</h1>
 
@@ -873,7 +914,7 @@
 
       <div class="footerBottom">
         <p class="footerOfficial">Official Website of Strange Harvest (2025)</p>
-        <p class="footerCopyright">© 2024 Strange Harvest. All rights reserved.</p>
+        <p class="footerCopyright">© 2025 Strange Harvest. All rights reserved.</p>
         <p class="footerMusic">Adorable Damage &amp; Pathogen Pictures</p>
         <p class="footerDisclaimer">All material on this website is fictional and presented for entertainment. Any resemblance to real people, organizations, places, or events is coincidental and not intended as factual representation.</p>
         <a href="/privacy.html" class="footerCookieSettings" aria-label="Manage cookie preferences">Cookie Settings</a>
@@ -904,12 +945,12 @@
       navLinks.forEach((node, idx) => {
         if (navMap[idx]) node.textContent = navMap[idx];
       });
-      const navHrefs = ["/?lang=es#top", "/?lang=es#about", "/?lang=es#watch", "/?lang=es#press", "/bts.html?lang=es", "/?lang=es#shop"];
+      const navHrefs = ["/es#top", "/es#about", "/es#watch", "/es#press", "/bts.html?lang=es", "/es#shop"];
       navLinks.forEach((node, idx) => {
         if (navHrefs[idx]) node.setAttribute("href", navHrefs[idx]);
       });
       const brand = document.querySelector(".brand");
-      if (brand) brand.setAttribute("href", "/?lang=es#top");
+      if (brand) brand.setAttribute("href", "/es#top");
 
       const h1 = document.querySelector("main h1");
       if (h1) h1.textContent = "Detras de camaras de Strange Harvest";
@@ -1190,6 +1231,26 @@
     initCarousel("carousel-stills", "dots-stills", stillsItems);
     initCarousel("carousel-posters", "dots-posters", postersItems);
     initCarousel("carousel-festivals", "dots-festivals", festivalsItems);
+
+    // Flicker-on effect for headings as they enter the viewport
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const flickerTargets = [
+        ...document.querySelectorAll("main h1"),
+        ...document.querySelectorAll(".gallerySection h2"),
+      ];
+      const flickerObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("flicker-active");
+              flickerObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+      flickerTargets.forEach((el) => flickerObserver.observe(el));
+    }
   </script>
 </body>
 </html>
