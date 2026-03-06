@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import type { SiteLanguage } from "./sitecopy";
 import { LanguageProvider } from "./LanguageProvider";
 import Header from "./Header";
@@ -17,6 +18,25 @@ import CookieConsent from "./CookieConsent";
 import ParticleBackground from "./ParticleBackground";
 
 export default function ClientPage({ lang }: { lang: SiteLanguage }) {
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const headings = document.querySelectorAll<HTMLElement>("section h2");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("flicker-active");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    headings.forEach((h) => observer.observe(h));
+    return () => observer.disconnect();
+  }, []);
   return (
     <LanguageProvider lang={lang}>
       <ParticleBackground />

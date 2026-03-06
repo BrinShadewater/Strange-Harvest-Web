@@ -74,7 +74,17 @@ export default function Press() {
                 transform: `translateX(${(idx - currentIndex) * 100}%)`,
               }}
             >
-              <img src="/images/quote-marks.svg" alt="" className="quoteDecoration" aria-hidden="true" />
+              <svg
+                className="quoteDecoration"
+                aria-hidden="true"
+                width="100"
+                height="80"
+                viewBox="0 0 100 80"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M20 0C8.954 0 0 8.954 0 20v15c0 11.046 8.954 20 20 20h5c2.761 0 5-2.239 5-5V30c0-2.761-2.239-5-5-5h-5c-5.523 0-10-4.477-10-10s4.477-10 10-10c2.761 0 5-2.239 5-5S22.761 0 20 0zm50 0c-11.046 0-20 8.954-20 20v15c0 11.046 8.954 20 20 20h5c2.761 0 5-2.239 5-5V30c0-2.761-2.239-5-5-5h-5c-5.523 0-10-4.477-10-10s4.477-10 10-10c2.761 0 5-2.239 5-5S72.761 0 70 0z" fill="currentColor" />
+              </svg>
               <blockquote className="pressQuote">"{review.quote}"</blockquote>
               <p className="pressSource">— {review.source}</p>
             </a>

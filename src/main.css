@@ -123,6 +123,10 @@ h1, h2, h3 {
 h2 {
   font-size: 40px;
   margin-bottom: 14px;
+  text-shadow:
+    0 0 20px rgba(var(--glow-title-rgb), 0.4),
+    0 0 40px rgba(var(--glow-title-mid-rgb), 0.25),
+    0 0 60px rgba(var(--glow-title-far-rgb), 0.15);
 }
 
 p {
@@ -205,6 +209,11 @@ section:first-of-type {
 }
 
 .heroTitle.is-visible {
+  animation: fluorescentFlickerOn 2s linear forwards;
+}
+
+/* Section headings — same flicker triggered by IntersectionObserver on scroll */
+section h2.flicker-active {
   animation: fluorescentFlickerOn 2s linear forwards;
 }
 
@@ -984,7 +993,7 @@ section:first-of-type {
   flex-direction: column;
   justify-content: center;
   padding: 48px 24px 24px 24px;
-  background: rgba(0, 0, 0, 0.55);
+  background: var(--container-bg);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
   text-decoration: none;
