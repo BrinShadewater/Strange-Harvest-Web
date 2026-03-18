@@ -16,13 +16,15 @@ import SymbolDivider from "./SymbolDivider";
 import CookieConsent from "./CookieConsent";
 import ParticleBackground from "./ParticleBackground";
 
-export default function ClientPage({ lang }: { lang: SiteLanguage }) {
+type ThemeVariant = "red" | "blue";
+
+export default function ClientPage({ lang, abVariant = "red" }: { lang: SiteLanguage; abVariant?: ThemeVariant }) {
   return (
     <LanguageProvider lang={lang}>
       <ParticleBackground />
       <Header />
       <main id="main">
-        <Hero />
+        <Hero initialVariant={abVariant} />
         <SymbolDivider />
         <Synopsis />
         <SymbolDivider />

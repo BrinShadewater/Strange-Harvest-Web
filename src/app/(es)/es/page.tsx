@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import ClientPage from "@/components/ClientPage";
 
 const BASE_URL = "https://strangeharvestmovie.com";
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    type: "website",
+    type: "video.movie",
     locale: "es_ES",
     url: BASE_URL + "/es",
     title: "Strange Harvest (2025) | Sitio Oficial de la Pelicula",
@@ -41,6 +42,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function EsHomePage() {
-  return <ClientPage lang="es" />;
+export default async function EsHomePage() {
+  const cookieStore = await cookies();
+  const abVariant = (cookieStore.get("sh_ab_theme_v1")?.value ?? "red") as "red" | "blue";
+  return <ClientPage lang="es" abVariant={abVariant} />;
 }

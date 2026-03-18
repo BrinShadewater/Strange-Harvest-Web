@@ -212,10 +212,6 @@ section:first-of-type {
   animation: fluorescentFlickerOn 2s linear forwards;
 }
 
-/* Section headings — same flicker triggered by IntersectionObserver on scroll */
-section h2.flicker-active {
-  animation: fluorescentFlickerOn 2s linear forwards;
-}
 
 @keyframes fluorescentFlickerOn {
   0% { opacity: 0; filter: brightness(0.1); }
@@ -263,7 +259,7 @@ section h2.flicker-active {
 .posterFrame {
   position: relative;
   width: 100%;
-  height: clamp(520px, 72vh, 760px);
+  height: clamp(520px, 72svh, 760px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -369,8 +365,21 @@ section h2.flicker-active {
     text-align: center;
   }
 
+  /* Remove overflow-glow padding on mobile — it collapses poster width */
+  .heroPoster {
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Same fix for heroCopy — prevents potential overflow clip of glow on mobile */
+  .heroCopy {
+    padding: 0;
+    margin: 0;
+  }
+
+  /* svh = small viewport height (stable, ignores URL bar show/hide) */
   .posterFrame {
-    height: clamp(430px, 66vh, 620px);
+    height: clamp(430px, 66svh, 620px);
   }
 
   .posterToggle {

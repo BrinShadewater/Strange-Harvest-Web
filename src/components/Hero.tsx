@@ -8,16 +8,6 @@ type ThemeVariant = "red" | "blue";
 const AB_VARIANT_KEY = "sh_ab_theme_variant_v1";
 const AB_STATS_KEY = "sh_ab_theme_stats_v1";
 
-function chooseInitialVariant(): ThemeVariant {
-  if (typeof window === "undefined") return "red";
-  const stored = window.localStorage.getItem(AB_VARIANT_KEY);
-  if (stored === "red" || stored === "blue") return stored;
-
-  const byte = window.crypto?.getRandomValues?.(new Uint8Array(1))?.[0];
-  const variant: ThemeVariant = (byte ?? Math.floor(Math.random() * 255)) % 2 === 0 ? "red" : "blue";
-  window.localStorage.setItem(AB_VARIANT_KEY, variant);
-  return variant;
-}
 
 function emitAbEvent(eventName: string, payload: Record<string, string | number | boolean>) {
   if (typeof window === "undefined") return;
@@ -50,26 +40,21 @@ function updateAbStats(mutator: (current: any) => any) {
   window.localStorage.setItem(AB_STATS_KEY, JSON.stringify(next));
 }
 
-export default function Hero() {
+export default function Hero({ initialVariant = "red" }: { initialVariant?: ThemeVariant }) {
   const { hero } = sitecopy;
-  const [assignedVariant] = useState<ThemeVariant>(() => chooseInitialVariant());
-  const [isFestivalPoster, setIsFestivalPoster] = useState(assignedVariant === "blue");
+  // initialVariant comes from the server (cookie-assigned) — no SSR mismatch
+  const [assignedVariant] = useState<ThemeVariant>(initialVariant);
+  const [isFestivalPoster, setIsFestivalPoster] = useState(initialVariant === "blue");
   const [titleVisible, setTitleVisible] = useState(false);
   const titleRef = useRef<HTMLHeadingElement | null>(null);
   const flickerTimeoutRef = useRef<number | null>(null);
-  const currentVariantRef = useRef<ThemeVariant>(assignedVariant === "blue" ? "blue" : "red");
+  const currentVariantRef = useRef<ThemeVariant>(initialVariant);
   const finalChoiceSavedRef = useRef(false);
 
-  // Sync visual state with the actual client-side variant after hydration.
-  // chooseInitialVariant() returns "red" during SSR (window undefined), so
-  // isFestivalPoster and assignedVariant can be wrong until this runs.
+  // Sync the cookie-assigned variant to localStorage for analytics backward-compat
   useEffect(() => {
-    const clientVariant = chooseInitialVariant();
-    if (clientVariant === "blue") {
-      setIsFestivalPoster(true);
-      currentVariantRef.current = "blue";
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    window.localStorage.setItem(AB_VARIANT_KEY, initialVariant);
+  }, [initialVariant]);
 
   useEffect(() => {
     document.body.classList.toggle("festival-theme", isFestivalPoster);
