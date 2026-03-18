@@ -11,6 +11,8 @@ export default function SymbolDivider() {
         className="symbolImage"
         loading={"lazy"}
         decoding={"async"}
+        width={3000}
+        height={3000}
       />
     </div>
   );

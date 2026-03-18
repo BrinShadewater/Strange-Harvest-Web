@@ -80,7 +80,7 @@ export default function Merch() {
               <article key={product.id} className="merchCard">
                 {imageUrl && (
                   <div className="merchCardImage">
-                    <img src={imageUrl} alt={imageAlt} loading="lazy" decoding={"async"} />
+                    <img src={imageUrl} alt={imageAlt} loading="lazy" decoding={"async"} width={600} height={600} />
                   </div>
                 )}
                 <div className="merchCardContent">

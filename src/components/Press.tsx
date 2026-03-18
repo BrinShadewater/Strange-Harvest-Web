@@ -47,7 +47,7 @@ export default function Press() {
               rel="noopener noreferrer"
               aria-label={icon.name}
             >
-              <img src={icon.icon} alt={icon.name} className="pressIcon" loading={"lazy"} decoding={"async"} />
+              <img src={icon.icon} alt={icon.name} className="pressIcon" loading={"lazy"} decoding={"async"} width={icon.iconWidth} height={icon.iconHeight} />
             </a>
           ))}
         </div>

@@ -17,7 +17,7 @@ export default function Header() {
       <a href="#main" className="skip-link">{header.skipToContent}</a>
       <div className="siteHeaderInner">
         <a className="brand" href="#top" aria-label={header.aria.home}>
-          <img src={HERO_LOGO_SRC} alt="" aria-hidden="true" className="brandSymbol" loading="eager" decoding={"async"} />
+          <img src={HERO_LOGO_SRC} alt="" aria-hidden="true" className="brandSymbol" loading="eager" decoding={"async"} width={3000} height={3000} />
           Strange Harvest
         </a>
 

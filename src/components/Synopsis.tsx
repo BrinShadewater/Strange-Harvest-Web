@@ -68,6 +68,8 @@ export default function Synopsis() {
                 alt={img.alt}
                 loading="lazy"
                 decoding="async"
+                width={1600}
+                height={900}
               />
             </button>
           ))}
@@ -110,6 +112,8 @@ export default function Synopsis() {
             onClick={(e) => e.stopPropagation()}
             loading="lazy"
             decoding="async"
+            width={1600}
+            height={900}
           />
         </div>
       )}

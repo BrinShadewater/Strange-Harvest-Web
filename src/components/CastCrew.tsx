@@ -34,7 +34,7 @@ export default function CastCrew() {
                 className="detectiveCard"
                 aria-label={`View ${member.name} on IMDB`}
               >
-                <img src={member.image} alt={member.imageAlt} className="detectiveImage" loading="lazy" decoding={"async"} />
+                <img src={member.image} alt={member.imageAlt} className="detectiveImage" loading="lazy" decoding={"async"} width={1600} height={900} />
                 <h4 className="detectiveName">{member.name}</h4>
                 <p className="detectiveRole">{member.role}</p>
               </a>

@@ -13,7 +13,7 @@ export default function Footer() {
   return (
     <footer className="siteFooter">
       <div className="footerContent">
-        <img src={HERO_LOGO_SRC} alt="" className="footerSymbol" aria-hidden="true" loading={"lazy"} decoding={"async"} />
+        <img src={HERO_LOGO_SRC} alt="" className="footerSymbol" aria-hidden="true" loading={"lazy"} decoding={"async"} width={3000} height={3000} />
         <h2 className="footerTitle">{footer.title}</h2>
         <p className="footerTagline">{footer.tagline}</p>
         

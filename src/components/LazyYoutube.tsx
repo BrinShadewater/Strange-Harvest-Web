@@ -37,6 +37,8 @@ export default function LazyYoutube({ videoId, title }: LazyYoutubeProps) {
         className="youtubeThumbnail"
         loading="lazy"
         decoding="async"
+        width={1280}
+        height={720}
       />
       <div className="youtubePlayBtn" aria-hidden="true">
         {/* YouTube play button SVG */}
