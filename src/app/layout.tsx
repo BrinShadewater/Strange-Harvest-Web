@@ -187,6 +187,7 @@ const jsonLd = {
       logo: BASE_URL + "/images/strange-harvest-occult-symbol-horror-icon.webp",
       sameAs: [
         "https://en.wikipedia.org/wiki/Strange_Harvest_(film)",
+        "https://www.wikidata.org/wiki/Q130379751",
         "https://www.imdb.com/title/tt33400719/",
         "https://www.instagram.com/strangeharvestfilm",
         "https://www.facebook.com/strangeharvestfilm",
