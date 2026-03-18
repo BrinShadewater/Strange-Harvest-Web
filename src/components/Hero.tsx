@@ -60,6 +60,17 @@ export default function Hero() {
   const currentVariantRef = useRef<ThemeVariant>(assignedVariant === "blue" ? "blue" : "red");
   const finalChoiceSavedRef = useRef(false);
 
+  // Sync visual state with the actual client-side variant after hydration.
+  // chooseInitialVariant() returns "red" during SSR (window undefined), so
+  // isFestivalPoster and assignedVariant can be wrong until this runs.
+  useEffect(() => {
+    const clientVariant = chooseInitialVariant();
+    if (clientVariant === "blue") {
+      setIsFestivalPoster(true);
+      currentVariantRef.current = "blue";
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     document.body.classList.toggle("festival-theme", isFestivalPoster);
     currentVariantRef.current = isFestivalPoster ? "blue" : "red";
