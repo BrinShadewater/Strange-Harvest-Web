@@ -389,8 +389,8 @@ const sitecopyEn = {
   merch: {
     title: "Official Merch",
     blurb: "Wear the terror. Carry the mystery. Exclusive Strange Harvest merchandise for true believers.",
-    shopifyUrl: "https://strangeharvestfilm.myshopify.com/pages/customer-notifications",
-    shopifyCartUrl: "https://strangeharvestfilm.myshopify.com/cart",
+    shopifyUrl: "https://strangeharvestmovie.myshopify.com",
+    shopifyCartUrl: "https://strangeharvestmovie.myshopify.com/cart",
     loadingMessage: "Loading merchandise...",
     comingSoonTitle: "Merch Coming Soon",
     comingSoonBody: "Our merchandise store is currently being updated. Check back soon!",

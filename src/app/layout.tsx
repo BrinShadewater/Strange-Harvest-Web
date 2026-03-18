@@ -228,7 +228,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://www.hulu.com" />
         <link rel="dns-prefetch" href="https://tv.apple.com" />
         <link rel="dns-prefetch" href="https://www.primevideo.com" />
-        <link rel="dns-prefetch" href="https://strangeharvestfilm.myshopify.com" />
+        <link rel="dns-prefetch" href="https://strangeharvestmovie.myshopify.com" />
         <link rel="preconnect" href="https://www.youtube.com" crossOrigin="" />
         {/* Preload hero image */}
         <link
