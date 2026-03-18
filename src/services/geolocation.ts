@@ -15,6 +15,8 @@ export interface WatchPlatform {
   name: string;
   href: string;
   icon: string;
+  iconWidth?: number;
+  iconHeight?: number;
 }
 
 const CACHE_KEY = 'sh_geo_region';
