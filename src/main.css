@@ -2319,6 +2319,20 @@ input:focus + .cookieToggleSlider {
   border-radius: 2px;
 }
 
+.footerPrivacyLink {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-decoration: underline;
+  display: block;
+  margin: 12px 0 0;
+  transition: color 0.2s ease;
+}
+
+.footerPrivacyLink:hover {
+  color: hsl(var(--primary));
+}
+
 /* Symbol Divider */
 .symbolDivider {
   display: flex;
