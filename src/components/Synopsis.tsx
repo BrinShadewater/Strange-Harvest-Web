@@ -108,6 +108,8 @@ export default function Synopsis() {
             alt={expandedImage.alt}
             className="synopsisLightboxImage"
             onClick={(e) => e.stopPropagation()}
+            loading="lazy"
+            decoding="async"
           />
         </div>
       )}

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: "Strange Harvest (2025) | Official Movie Website",
   description:
-    "Strange Harvest (2025) is the official website for the horror mockumentary film. Watch trailers, read reviews, explore the story, and access streaming and theatrical information.",
+    "Strange Harvest (2025) is a horror mockumentary streaming on Hulu. Watch the trailer, read reviews, and explore the Mr. Shiny story on the official site.",
   keywords: [
     "Strange Harvest",
     "Los asesinatos de Mr. Shiny",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     url: BASE_URL + "/",
     title: "Strange Harvest (2025) | Official Movie Website",
     description:
-      "Strange Harvest (2025) is the official website for the horror mockumentary film. Watch trailers, read reviews, explore the story, and access streaming and theatrical information.",
+      "Strange Harvest (2025) is a horror mockumentary streaming on Hulu. Watch the trailer, read reviews, and explore the Mr. Shiny story on the official site.",
     images: [
       {
         url: BASE_URL + "/images/strange-harvest-official-movie-poster.webp",
@@ -57,14 +57,6 @@ export const metadata: Metadata = {
         type: "image/webp",
         alt: "Strange Harvest movie poster featuring dark horror imagery",
         secureUrl: BASE_URL + "/images/strange-harvest-official-movie-poster.webp",
-      },
-      {
-        url: BASE_URL + "/images/strange-harvest-official-movie-poster-1280w.jpg",
-        width: 1200,
-        height: 630,
-        type: "image/jpeg",
-        alt: "Strange Harvest movie poster featuring dark horror imagery",
-        secureUrl: BASE_URL + "/images/strange-harvest-official-movie-poster-1280w.jpg",
       },
     ],
     siteName: "Strange Harvest Official",
@@ -75,9 +67,9 @@ export const metadata: Metadata = {
     creator: "@strangeharvestfilm",
     title: "Strange Harvest (2025) | Official Movie Website",
     description:
-      "Strange Harvest (2025) is the official website for the horror mockumentary film. Watch trailers, read reviews, explore the story, and access streaming and theatrical information.",
+      "Strange Harvest (2025) is a horror mockumentary streaming on Hulu. Watch the trailer, read reviews, and explore the Mr. Shiny story on the official site.",
     images: {
-      url: BASE_URL + "/images/strange-harvest-official-movie-poster-1280w.jpg",
+      url: BASE_URL + "/images/strange-harvest-official-movie-poster.webp",
       alt: "Strange Harvest movie poster featuring dark horror imagery",
     },
   },
@@ -193,10 +185,11 @@ const jsonLd = {
       url: BASE_URL + "/",
       logo: BASE_URL + "/images/strange-harvest-occult-symbol-horror-icon.webp",
       sameAs: [
+        "https://en.wikipedia.org/wiki/Strange_Harvest_(film)",
+        "https://www.imdb.com/title/tt33400719/",
         "https://www.instagram.com/strangeharvestfilm",
         "https://www.facebook.com/strangeharvestfilm",
         "https://www.twitter.com/strangeharvestfilm",
-        "https://www.youtube.com/@strangeharvestfilm",
       ],
     },
     {

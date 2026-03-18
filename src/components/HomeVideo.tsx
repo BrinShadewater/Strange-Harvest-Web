@@ -68,7 +68,7 @@ export default function HomeVideo() {
 
       <div className="homeVideoCard">
         <div className="homeVideoImageWrapper">
-          <img src={homeVideo.image} alt={homeVideo.productTitle} className="homeVideoImage" width="300" height="450" loading="lazy" />
+          <img src={homeVideo.image} alt={homeVideo.productTitle} className="homeVideoImage" width="300" height="450" loading="lazy" decoding={"async"} />
         </div>
         
         <div className="homeVideoContent">

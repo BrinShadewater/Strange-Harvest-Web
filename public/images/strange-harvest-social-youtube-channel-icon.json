@@ -1,0 +1,120 @@
+{
+  "version": "2.3.0",
+  "id": "strange-harvest-social-youtube-channel-icon",
+  "input": {
+    "path": "/sessions/gifted-charming-lovelace/mnt/Claude/Projects/Strange Harvest Web/public/images/strange-harvest-social-youtube-channel-icon.webp",
+    "format": "webp",
+    "bytes": 5620
+  },
+  "output": {
+    "mode": "metadata-only",
+    "fit_mode": "cover",
+    "main": {
+      "path": "/sessions/gifted-charming-lovelace/mnt/Claude/Projects/Strange Harvest Web/public/images/strange-harvest-social-youtube-channel-icon.webp",
+      "src": "/images/strange-harvest-social-youtube-channel-icon.webp",
+      "format": "webp",
+      "width": 512,
+      "height": 512,
+      "bytes": 5620
+    },
+    "variants": [
+      {
+        "path": "/sessions/gifted-charming-lovelace/mnt/Claude/Projects/Strange Harvest Web/public/images/strange-harvest-social-youtube-channel-icon-480w.webp",
+        "src": "/images/strange-harvest-social-youtube-channel-icon-480w.webp",
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 9332
+      }
+    ],
+    "focus": {
+      "framing": "balanced",
+      "preset": "center",
+      "x": 0.5,
+      "y": 0.5
+    }
+  },
+  "recipe": {
+    "name": "blog-cover",
+    "description": "Editorial or blog cover image with responsive widths.",
+    "aspect_ratio": "16:9",
+    "fit_mode": "cover",
+    "default_accessibility_mode": "descriptive",
+    "default_framing": "balanced",
+    "default_dimensions": {
+      "width": 1600,
+      "height": 900
+    },
+    "responsive_by_default": true,
+    "responsive_widths": [
+      480,
+      768,
+      1200,
+      1600
+    ],
+    "default_loading": "lazy",
+    "default_fetch_priority": null,
+    "emit_snippets_by_default": true
+  },
+  "metadata": {
+    "inputs": {
+      "subject": "YouTube",
+      "context": "Strange Harvest (2025) | Official Movie Website",
+      "purpose": "blog cover image",
+      "visible_text": null,
+      "framing": "balanced"
+    },
+    "accessibility_mode": "descriptive",
+    "provenance": "heuristic",
+    "generated": {
+      "slug": "strange-harvest-social-youtube-channel-icon",
+      "alt": "YouTube for Strange Harvest (2025) | Official Movie Website",
+      "title": "YouTube - blog cover image",
+      "caption": "YouTube used as a blog cover image for Strange Harvest (2025) | Official Movie Website"
+    },
+    "usage_overrides": {
+      "strangeharvestmovie-com.strange-harvest-social-youtube-channel-icon": {
+        "alt": "YouTube for Strange Harvest (2025) | Official Movie Website",
+        "title": "YouTube - blog cover image",
+        "caption": "YouTube used as a blog cover image for Strange Harvest (2025) | Official Movie Website",
+        "accessibility_mode": "descriptive",
+        "provenance": "manual"
+      }
+    }
+  },
+  "snippets": {
+    "enabled": true,
+    "src": "/images/strange-harvest-social-youtube-channel-icon.webp",
+    "srcset": "/images/strange-harvest-social-youtube-channel-icon-480w.webp 480w, /images/strange-harvest-social-youtube-channel-icon.webp 512w",
+    "sizes": "100vw",
+    "loading": "lazy",
+    "fetch_priority": null,
+    "usage_key": "strangeharvestmovie-com.strange-harvest-social-youtube-channel-icon",
+    "targets": {
+      "astro": {
+        "markup": "<img src=\"/images/strange-harvest-social-youtube-channel-icon.webp\" alt=\"YouTube for Strange Harvest (2025) | Official Movie Website\" width=\"512\" height=\"512\" title=\"YouTube - blog cover image\" sizes=\"100vw\" loading=\"lazy\" decoding=\"async\" />"
+      },
+      "html": {
+        "markup": "<img src=\"/images/strange-harvest-social-youtube-channel-icon.webp\" alt=\"YouTube for Strange Harvest (2025) | Official Movie Website\" width=\"512\" height=\"512\" title=\"YouTube - blog cover image\" srcset=\"/images/strange-harvest-social-youtube-channel-icon-480w.webp 480w, /images/strange-harvest-social-youtube-channel-icon.webp 512w\" sizes=\"100vw\" loading=\"lazy\" decoding=\"async\" />"
+      },
+      "next": {
+        "markup": "import Image from \"next/image\";\n\n<Image src={\"/images/strange-harvest-social-youtube-channel-icon.webp\"} alt={\"YouTube for Strange Harvest (2025) | Official Movie Website\"} width={512} height={512} title={\"YouTube - blog cover image\"} sizes={\"100vw\"} loading={\"lazy\"} decoding={\"async\"} />"
+      },
+      "react": {
+        "markup": "<img src={\"/images/strange-harvest-social-youtube-channel-icon.webp\"} alt={\"YouTube for Strange Harvest (2025) | Official Movie Website\"} width={512} height={512} title={\"YouTube - blog cover image\"} srcSet={\"/images/strange-harvest-social-youtube-channel-icon-480w.webp 480w, /images/strange-harvest-social-youtube-channel-icon.webp 512w\"} sizes={\"100vw\"} loading={\"lazy\"} decoding={\"async\"} />"
+      }
+    }
+  },
+  "analysis": {
+    "compression": {
+      "source_bytes": 5620,
+      "output_bytes": 5620,
+      "reduction_percent": 0.0
+    },
+    "lints": {
+      "blocking": [],
+      "warnings": []
+    },
+    "status": "ok"
+  }
+}

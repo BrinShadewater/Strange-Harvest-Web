@@ -1,0 +1,128 @@
+{
+  "version": "2.3.0",
+  "id": "strange-harvest-rotten-tomatoes-fresh-icon",
+  "input": {
+    "path": "/sessions/gifted-charming-lovelace/mnt/Claude/Projects/Strange Harvest Web/public/images/strange-harvest-rotten-tomatoes-fresh-icon.webp",
+    "format": "webp",
+    "bytes": 90070
+  },
+  "output": {
+    "mode": "metadata-only",
+    "fit_mode": "cover",
+    "main": {
+      "path": "/sessions/gifted-charming-lovelace/mnt/Claude/Projects/Strange Harvest Web/public/images/strange-harvest-rotten-tomatoes-fresh-icon.webp",
+      "src": "/images/strange-harvest-rotten-tomatoes-fresh-icon.webp",
+      "format": "webp",
+      "width": 1000,
+      "height": 884,
+      "bytes": 90070
+    },
+    "variants": [
+      {
+        "path": "/sessions/gifted-charming-lovelace/mnt/Claude/Projects/Strange Harvest Web/public/images/strange-harvest-rotten-tomatoes-fresh-icon-480w.webp",
+        "src": "/images/strange-harvest-rotten-tomatoes-fresh-icon-480w.webp",
+        "format": "webp",
+        "width": 480,
+        "height": 424,
+        "bytes": 36424
+      },
+      {
+        "path": "/sessions/gifted-charming-lovelace/mnt/Claude/Projects/Strange Harvest Web/public/images/strange-harvest-rotten-tomatoes-fresh-icon-768w.webp",
+        "src": "/images/strange-harvest-rotten-tomatoes-fresh-icon-768w.webp",
+        "format": "webp",
+        "width": 768,
+        "height": 679,
+        "bytes": 58750
+      }
+    ],
+    "focus": {
+      "framing": "balanced",
+      "preset": "center",
+      "x": 0.5,
+      "y": 0.5
+    }
+  },
+  "recipe": {
+    "name": "blog-cover",
+    "description": "Editorial or blog cover image with responsive widths.",
+    "aspect_ratio": "16:9",
+    "fit_mode": "cover",
+    "default_accessibility_mode": "descriptive",
+    "default_framing": "balanced",
+    "default_dimensions": {
+      "width": 1600,
+      "height": 900
+    },
+    "responsive_by_default": true,
+    "responsive_widths": [
+      480,
+      768,
+      1200,
+      1600
+    ],
+    "default_loading": "lazy",
+    "default_fetch_priority": null,
+    "emit_snippets_by_default": true
+  },
+  "metadata": {
+    "inputs": {
+      "subject": "Rotten Tomatoes",
+      "context": "Strange Harvest (2025) | Official Movie Website",
+      "purpose": "blog cover image",
+      "visible_text": null,
+      "framing": "balanced"
+    },
+    "accessibility_mode": "descriptive",
+    "provenance": "heuristic",
+    "generated": {
+      "slug": "strange-harvest-rotten-tomatoes-fresh-icon",
+      "alt": "Rotten Tomatoes for Strange Harvest (2025) | Official Movie Website",
+      "title": "Rotten Tomatoes - blog cover image",
+      "caption": "Rotten Tomatoes used as a blog cover image for Strange Harvest (2025) | Official Movie Website"
+    },
+    "usage_overrides": {
+      "strangeharvestmovie-com.strange-harvest-rotten-tomatoes-fresh-icon": {
+        "alt": "Rotten Tomatoes for Strange Harvest (2025) | Official Movie Website",
+        "title": "Rotten Tomatoes - blog cover image",
+        "caption": "Rotten Tomatoes used as a blog cover image for Strange Harvest (2025) | Official Movie Website",
+        "accessibility_mode": "descriptive",
+        "provenance": "manual"
+      }
+    }
+  },
+  "snippets": {
+    "enabled": true,
+    "src": "/images/strange-harvest-rotten-tomatoes-fresh-icon.webp",
+    "srcset": "/images/strange-harvest-rotten-tomatoes-fresh-icon-480w.webp 480w, /images/strange-harvest-rotten-tomatoes-fresh-icon-768w.webp 768w, /images/strange-harvest-rotten-tomatoes-fresh-icon.webp 1000w",
+    "sizes": "100vw",
+    "loading": "lazy",
+    "fetch_priority": null,
+    "usage_key": "strangeharvestmovie-com.strange-harvest-rotten-tomatoes-fresh-icon",
+    "targets": {
+      "astro": {
+        "markup": "<img src=\"/images/strange-harvest-rotten-tomatoes-fresh-icon.webp\" alt=\"Rotten Tomatoes for Strange Harvest (2025) | Official Movie Website\" width=\"1000\" height=\"884\" title=\"Rotten Tomatoes - blog cover image\" sizes=\"100vw\" loading=\"lazy\" decoding=\"async\" />"
+      },
+      "html": {
+        "markup": "<img src=\"/images/strange-harvest-rotten-tomatoes-fresh-icon.webp\" alt=\"Rotten Tomatoes for Strange Harvest (2025) | Official Movie Website\" width=\"1000\" height=\"884\" title=\"Rotten Tomatoes - blog cover image\" srcset=\"/images/strange-harvest-rotten-tomatoes-fresh-icon-480w.webp 480w, /images/strange-harvest-rotten-tomatoes-fresh-icon-768w.webp 768w, /images/strange-harvest-rotten-tomatoes-fresh-icon.webp 1000w\" sizes=\"100vw\" loading=\"lazy\" decoding=\"async\" />"
+      },
+      "next": {
+        "markup": "import Image from \"next/image\";\n\n<Image src={\"/images/strange-harvest-rotten-tomatoes-fresh-icon.webp\"} alt={\"Rotten Tomatoes for Strange Harvest (2025) | Official Movie Website\"} width={1000} height={884} title={\"Rotten Tomatoes - blog cover image\"} sizes={\"100vw\"} loading={\"lazy\"} decoding={\"async\"} />"
+      },
+      "react": {
+        "markup": "<img src={\"/images/strange-harvest-rotten-tomatoes-fresh-icon.webp\"} alt={\"Rotten Tomatoes for Strange Harvest (2025) | Official Movie Website\"} width={1000} height={884} title={\"Rotten Tomatoes - blog cover image\"} srcSet={\"/images/strange-harvest-rotten-tomatoes-fresh-icon-480w.webp 480w, /images/strange-harvest-rotten-tomatoes-fresh-icon-768w.webp 768w, /images/strange-harvest-rotten-tomatoes-fresh-icon.webp 1000w\"} sizes={\"100vw\"} loading={\"lazy\"} decoding={\"async\"} />"
+      }
+    }
+  },
+  "analysis": {
+    "compression": {
+      "source_bytes": 90070,
+      "output_bytes": 90070,
+      "reduction_percent": 0.0
+    },
+    "lints": {
+      "blocking": [],
+      "warnings": []
+    },
+    "status": "ok"
+  }
+}

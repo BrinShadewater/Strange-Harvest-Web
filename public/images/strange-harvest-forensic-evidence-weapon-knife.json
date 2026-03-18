@@ -1,0 +1,139 @@
+{
+  "version": "2.3.0",
+  "id": "strange-harvest-forensic-evidence-weapon-knife",
+  "input": {
+    "path": "/sessions/gifted-charming-lovelace/mnt/Claude/Projects/Strange Harvest Web/public/images/strange-harvest-forensic-evidence-weapon-knife.webp",
+    "format": "webp",
+    "bytes": 1534814
+  },
+  "output": {
+    "mode": "metadata-only",
+    "fit_mode": "cover",
+    "main": {
+      "path": "/sessions/gifted-charming-lovelace/mnt/Claude/Projects/Strange Harvest Web/public/images/strange-harvest-forensic-evidence-weapon-knife.webp",
+      "src": "/images/strange-harvest-forensic-evidence-weapon-knife.webp",
+      "format": "webp",
+      "width": 1600,
+      "height": 900,
+      "bytes": 1534814
+    },
+    "variants": [
+      {
+        "path": "/sessions/gifted-charming-lovelace/mnt/Claude/Projects/Strange Harvest Web/public/images/strange-harvest-forensic-evidence-weapon-knife-480w.webp",
+        "src": "/images/strange-harvest-forensic-evidence-weapon-knife-480w.webp",
+        "format": "webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 24474
+      },
+      {
+        "path": "/sessions/gifted-charming-lovelace/mnt/Claude/Projects/Strange Harvest Web/public/images/strange-harvest-forensic-evidence-weapon-knife-768w.webp",
+        "src": "/images/strange-harvest-forensic-evidence-weapon-knife-768w.webp",
+        "format": "webp",
+        "width": 768,
+        "height": 432,
+        "bytes": 60574
+      },
+      {
+        "path": "/sessions/gifted-charming-lovelace/mnt/Claude/Projects/Strange Harvest Web/public/images/strange-harvest-forensic-evidence-weapon-knife-1200w.webp",
+        "src": "/images/strange-harvest-forensic-evidence-weapon-knife-1200w.webp",
+        "format": "webp",
+        "width": 1200,
+        "height": 675,
+        "bytes": 127240
+      }
+    ],
+    "focus": {
+      "framing": "balanced",
+      "preset": "center",
+      "x": 0.5,
+      "y": 0.5
+    }
+  },
+  "recipe": {
+    "name": "blog-cover",
+    "description": "Editorial or blog cover image with responsive widths.",
+    "aspect_ratio": "16:9",
+    "fit_mode": "cover",
+    "default_accessibility_mode": "descriptive",
+    "default_framing": "balanced",
+    "default_dimensions": {
+      "width": 1600,
+      "height": 900
+    },
+    "responsive_by_default": true,
+    "responsive_widths": [
+      480,
+      768,
+      1200,
+      1600
+    ],
+    "default_loading": "lazy",
+    "default_fetch_priority": null,
+    "emit_snippets_by_default": true
+  },
+  "metadata": {
+    "inputs": {
+      "subject": "Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest",
+      "context": "Strange Harvest (2025) | Official Movie Website",
+      "purpose": "blog cover image",
+      "visible_text": null,
+      "framing": "balanced"
+    },
+    "accessibility_mode": "descriptive",
+    "provenance": "heuristic",
+    "generated": {
+      "slug": "strange-harvest-forensic-evidence-weapon-knife",
+      "alt": "Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest for Strange Harvest (2025) | Official Movie Website",
+      "title": "Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest - blog cover image",
+      "caption": "Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest used as a blog cover image for Strange Harvest (2025) | Official Movie Website"
+    },
+    "usage_overrides": {
+      "strangeharvestmovie-com.strange-harvest-forensic-evidence-weapon-knife": {
+        "alt": "Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest for Strange Harvest (2025) | Official Movie Website",
+        "title": "Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest - blog cover image",
+        "caption": "Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest used as a blog cover image for Strange Harvest (2025) | Official Movie Website",
+        "accessibility_mode": "descriptive",
+        "provenance": "manual"
+      }
+    }
+  },
+  "snippets": {
+    "enabled": true,
+    "src": "/images/strange-harvest-forensic-evidence-weapon-knife.webp",
+    "srcset": "/images/strange-harvest-forensic-evidence-weapon-knife-480w.webp 480w, /images/strange-harvest-forensic-evidence-weapon-knife-768w.webp 768w, /images/strange-harvest-forensic-evidence-weapon-knife-1200w.webp 1200w, /images/strange-harvest-forensic-evidence-weapon-knife.webp 1600w",
+    "sizes": "100vw",
+    "loading": "lazy",
+    "fetch_priority": null,
+    "usage_key": "strangeharvestmovie-com.strange-harvest-forensic-evidence-weapon-knife",
+    "targets": {
+      "astro": {
+        "markup": "<img src=\"/images/strange-harvest-forensic-evidence-weapon-knife.webp\" alt=\"Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest for Strange Harvest (2025) | Official Movie Website\" width=\"1600\" height=\"900\" title=\"Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest - blog cover image\" sizes=\"100vw\" loading=\"lazy\" decoding=\"async\" />"
+      },
+      "html": {
+        "markup": "<img src=\"/images/strange-harvest-forensic-evidence-weapon-knife.webp\" alt=\"Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest for Strange Harvest (2025) | Official Movie Website\" width=\"1600\" height=\"900\" title=\"Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest - blog cover image\" srcset=\"/images/strange-harvest-forensic-evidence-weapon-knife-480w.webp 480w, /images/strange-harvest-forensic-evidence-weapon-knife-768w.webp 768w, /images/strange-harvest-forensic-evidence-weapon-knife-1200w.webp 1200w, /images/strange-harvest-forensic-evidence-weapon-knife.webp 1600w\" sizes=\"100vw\" loading=\"lazy\" decoding=\"async\" />"
+      },
+      "next": {
+        "markup": "import Image from \"next/image\";\n\n<Image src={\"/images/strange-harvest-forensic-evidence-weapon-knife.webp\"} alt={\"Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest for Strange Harvest (2025) | Official Movie Website\"} width={1600} height={900} title={\"Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest - blog cover image\"} sizes={\"100vw\"} loading={\"lazy\"} decoding={\"async\"} />"
+      },
+      "react": {
+        "markup": "<img src={\"/images/strange-harvest-forensic-evidence-weapon-knife.webp\"} alt={\"Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest for Strange Harvest (2025) | Official Movie Website\"} width={1600} height={900} title={\"Blood stained knife labeled as forensic evidence during a murder investigation in Strange Harvest - blog cover image\"} srcSet={\"/images/strange-harvest-forensic-evidence-weapon-knife-480w.webp 480w, /images/strange-harvest-forensic-evidence-weapon-knife-768w.webp 768w, /images/strange-harvest-forensic-evidence-weapon-knife-1200w.webp 1200w, /images/strange-harvest-forensic-evidence-weapon-knife.webp 1600w\"} sizes={\"100vw\"} loading={\"lazy\"} decoding={\"async\"} />"
+      }
+    }
+  },
+  "analysis": {
+    "compression": {
+      "source_bytes": 1534814,
+      "output_bytes": 1534814,
+      "reduction_percent": 0.0
+    },
+    "lints": {
+      "blocking": [],
+      "warnings": [
+        "alt_too_long",
+        "oversized_for_recipe"
+      ]
+    },
+    "status": "warning"
+  }
+}

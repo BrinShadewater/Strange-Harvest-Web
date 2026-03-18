@@ -9,6 +9,8 @@ export default function SymbolDivider() {
         src={HERO_LOGO_SRC}
         alt="Strange Harvest symbol"
         className="symbolImage"
+        loading={"lazy"}
+        decoding={"async"}
       />
     </div>
   );

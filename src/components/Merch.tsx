@@ -58,7 +58,7 @@ export default function Merch() {
               className="cta primary"
               style={{ marginTop: '24px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
             >
-              <img src="/images/svgcons/still-icon-notify.svg" alt="" style={{ width: '20px', height: '20px', filter: 'brightness(0) invert(1)' }} />
+              <img src="/images/svgcons/still-icon-notify.svg" alt="" style={{ width: '20px', height: '20px', filter: 'brightness(0) invert(1)' }} loading={"lazy"} decoding={"async"} />
               {merch.notifyMe}
             </a>
           </div>
@@ -80,7 +80,7 @@ export default function Merch() {
               <article key={product.id} className="merchCard">
                 {imageUrl && (
                   <div className="merchCardImage">
-                    <img src={imageUrl} alt={imageAlt} loading="lazy" />
+                    <img src={imageUrl} alt={imageAlt} loading="lazy" decoding={"async"} />
                   </div>
                 )}
                 <div className="merchCardContent">

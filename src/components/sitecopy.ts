@@ -93,9 +93,9 @@ const sitecopyEn = {
   synopsis: {
     title: "About",
     body: [
-      `A routine welfare check in the San Bernardino suburbs leads to a gruesome discovery — a family of three has been bound, bled and posed below a strange symbol written in blood on the ceiling. Detective Joe Kirby and Lexi Taylor recognize the symbol as the calling card of a killer from 15 years earlier who has seemingly returned to continue his murder spree.`,
-      `It's not long before "Mr. Shiny" begins leaving horrifying new crime scenes in his wake; one victim is trapped in a swimming pool with live leeches while another is ritualistically flayed and displayed in a public park.`,
-      `It soon becomes evident the case is anything but routine and that the murders, and their perpetrator, may be part of some sinister, otherworldly agenda involving cosmic phenomena and evil forces from beyond.`,
+      `A routine welfare check in the San Bernardino suburbs ends in horror. A family of three has been bound, bled, and posed beneath a strange symbol written in blood on the ceiling. Detectives Joe Kirby and Lexi Taylor recognize the mark. It's the calling card of a killer from 15 years ago — and he's back.`,
+      `Mr. Shiny doesn't stop. New crime scenes surface fast. One victim is found trapped in a swimming pool with live leeches. Another is ritualistically flayed and left on display in a public park.`,
+      `The case stops feeling routine. The murders seem connected to something larger — something sinister. The evidence points toward cosmic phenomena and forces far beyond human understanding.`,
     ],
     quote: {
       text: "Some mysteries don't get solved. They just get stranger the longer you look at them.",
@@ -611,9 +611,9 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
   synopsis: {
     title: "Sinopsis",
     body: [
-      "Un control de bienestar de rutina en los suburbios de San Bernardino conduce a un descubrimiento espeluznante: una familia de tres ha sido atada, desangrada y colocada bajo un extrano simbolo escrito con sangre en el techo. Los detectives Joe Kirby y Lexi Taylor reconocen el simbolo como la firma de un asesino de hace 15 anos que aparentemente ha regresado para continuar su ola de crimenes.",
-      "Poco despues, \"Mr. Shiny\" comienza a dejar nuevas escenas aterradoras; una victima queda atrapada en una piscina con sanguijuelas vivas mientras otra es desollada ritualmente y expuesta en un parque publico.",
-      "Pronto se hace evidente que el caso no tiene nada de rutinario y que los asesinatos, y su autor, pueden formar parte de una agenda siniestra y de otro mundo relacionada con fenomenos cosmicos y fuerzas malignas mas alla de nuestra comprension.",
+      "Un control de bienestar de rutina en los suburbios de San Bernardino termina en horror. Una familia de tres ha sido atada, desangrada y colocada bajo un extrano simbolo escrito con sangre en el techo. Los detectives Joe Kirby y Lexi Taylor reconocen la marca. Es la firma de un asesino de hace 15 anos — y ha regresado.",
+      "Mr. Shiny no se detiene. Nuevas escenas del crimen aparecen rapidamente. Una victima es encontrada atrapada en una piscina con sanguijuelas vivas. Otra es desollada ritualmente y expuesta en un parque publico.",
+      "El caso deja de parecer rutinario. Los asesinatos parecen conectados a algo mas grande — algo siniestro. Las pruebas apuntan hacia fenomenos cosmicos y fuerzas que van mucho mas alla de la comprension humana.",
     ],
     quote: {
       text: "Algunos misterios no se resuelven. Solo se vuelven mas extranos cuanto mas los miras.",
