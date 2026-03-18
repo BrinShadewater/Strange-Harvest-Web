@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
+import { Assistant } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import "../main.css";
+
+const assistant = Assistant({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-assistant",
+  preload: true,
+});
 
 const BASE_URL = "https://strangeharvestmovie.com";
 
@@ -215,15 +224,8 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={assistant.variable}>
       <head>
-        {/* Google Fonts — loaded at runtime, not build time */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&display=swap"
-        />
         {/* DNS prefetch for streaming platforms */}
         <link rel="dns-prefetch" href="https://www.youtube.com" />
         <link rel="dns-prefetch" href="https://www.hulu.com" />
@@ -231,7 +233,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://www.primevideo.com" />
         <link rel="dns-prefetch" href="https://strangeharvestmovie.myshopify.com" />
         <link rel="preconnect" href="https://www.youtube.com" crossOrigin="" />
-        {/* Preload hero image */}
+        {/* Preload hero poster — both variants preloaded since A/B is client-side */}
         <link
           rel="preload"
           href="/images/strange-harvest-official-movie-poster.webp"
@@ -239,6 +241,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="image/webp"
           // @ts-expect-error imagesrcset is valid HTML but not in React types
           imagesrcset="/images/strange-harvest-official-movie-poster-640w.webp 640w, /images/strange-harvest-official-movie-poster-960w.webp 960w, /images/strange-harvest-official-movie-poster-1280w.webp 1280w"
+          imagesizes="(max-width: 768px) 88vw, (max-width: 1200px) 45vw, 600px"
+        />
+        <link
+          rel="preload"
+          href="/images/strange-harvest-alternate-movie-poster.webp"
+          as="image"
+          type="image/webp"
+          // @ts-expect-error imagesrcset is valid HTML but not in React types
+          imagesrcset="/images/strange-harvest-alternate-movie-poster-640w.webp 640w, /images/strange-harvest-alternate-movie-poster-960w.webp 960w, /images/strange-harvest-alternate-movie-poster-1280w.webp 1280w"
           imagesizes="(max-width: 768px) 88vw, (max-width: 1200px) 45vw, 600px"
         />
         {/* JSON-LD Structured Data */}

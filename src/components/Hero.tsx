@@ -202,6 +202,8 @@ export default function Hero() {
   const poster = isFestivalPoster
     ? {
         src: "/images/strange-harvest-alternate-movie-poster.webp",
+        srcSet:
+          "/images/strange-harvest-alternate-movie-poster-640w.webp 640w, /images/strange-harvest-alternate-movie-poster-960w.webp 960w, /images/strange-harvest-alternate-movie-poster-1280w.webp 1280w",
         downloadSrc: "/images/strange-harvest-alternate-movie-poster.jpg",
         alt: "Alternate Festival Run Poster featuring the masked killer from the horror mockumentary Strange Harvest",
       }

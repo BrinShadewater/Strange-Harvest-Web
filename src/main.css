@@ -12,8 +12,8 @@
   --muted-foreground: 40 10% 64%;
   --border: 0 0% 18%;
   --radius: 0.5rem;
-  --font-display: "Assistant", sans-serif;
-  --font-body: "Assistant", sans-serif;
+  --font-display: var(--font-assistant, "Assistant", sans-serif);
+  --font-body: var(--font-assistant, "Assistant", sans-serif);
   --container-bg: rgba(255, 255, 255, 0.14);
   --container-bg-hover: rgba(255, 255, 255, 0.2);
   --glow-core-rgb: 200, 0, 0;
