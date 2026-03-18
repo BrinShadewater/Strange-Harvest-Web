@@ -63,8 +63,6 @@ export default function Synopsis() {
             >
               <img
                 src={img.src}
-                srcSet={getSrcSet(img.src)}
-                sizes="(max-width: 768px) 100vw, 50vw"
                 alt={img.alt}
                 loading="lazy"
                 decoding="async"
@@ -105,8 +103,6 @@ export default function Synopsis() {
           </button>
           <img
             src={expandedImage.src}
-            srcSet={getSrcSet(expandedImage.src)}
-            sizes="100vw"
             alt={expandedImage.alt}
             className="synopsisLightboxImage"
             onClick={(e) => e.stopPropagation()}
