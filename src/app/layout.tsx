@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    type: "website",
+    type: "video.movie",
     locale: "en_US",
     url: BASE_URL + "/",
     title: "Strange Harvest (2025) | Official Movie Website",
@@ -182,6 +182,7 @@ const jsonLd = {
       "@type": "Organization",
       "@id": BASE_URL + "/#organization",
       name: "Strange Harvest Official Website",
+      description: "Strange Harvest is a 2025 horror mockumentary directed by Stuart Ortiz, streaming on Hulu (US) and Paramount+ (Canada).",
       url: BASE_URL + "/",
       logo: BASE_URL + "/images/strange-harvest-occult-symbol-horror-icon.webp",
       sameAs: [
