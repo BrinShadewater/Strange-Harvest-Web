@@ -1,68 +1,88 @@
 # ACTION-PLAN
 
 - URL: `https://strangeharvestmovie.com/`
-- Generated: `2026-03-16T12:30:21.965402`
+- Generated: 2026-03-17
+- Score: 85/100
 
 ## Image Remediation Workflow
-- Preview the generated handoff with `python C:/Users/Alex/.codex/skills/webp-me-daddy/scripts/webp_me_daddy.py seo-handoff "C:\Users\Alex\Desktop\Projects\Claude\Projects\Strange Harvest Web\seo-image-handoff.json" --dry-run --json seo-image-apply-report.json`
-- Apply it with `python C:/Users/Alex/.codex/skills/webp-me-daddy/scripts/webp_me_daddy.py seo-handoff "C:\Users\Alex\Desktop\Projects\Claude\Projects\Strange Harvest Web\seo-image-handoff.json" --yes --overwrite --json seo-image-apply-report.json`
+- Preview with: `python <WEBP_SKILL_DIR>/scripts/webp_me_daddy.py seo-handoff seo-image-handoff.json --dry-run --json seo-image-apply-report.json`
+- Apply with: `python <WEBP_SKILL_DIR>/scripts/webp_me_daddy.py seo-handoff seo-image-handoff.json --yes --overwrite --json seo-image-apply-report.json`
 
 ## Critical
-- No actions queued.
-
+- No critical actions queued.
 
 ## High
-1. Meta description length is out of range
-Evidence: Current meta description length is 178 characters.
-Fix: Rewrite the meta description so it is concise, descriptive, and closer to 150-160 characters.
+
+1. **20 images missing width/height attributes**
+Evidence: parse_html found 20 img tags without width or height.
+Fix: Run `audit --apply-autofix` against the project src/ to patch markup automatically. Review output before committing.
 Source: `onpage`
 
-2. Some page images are missing alt text
-Evidence: 2 image(s) have empty or missing alt attributes.
-Fix: Add descriptive alt text or use empty alt only for decorative images.
+2. **2 images missing aria-hidden**
+Evidence: strange-harvest-occult-symbol-horror-icon.webp appears twice with alt="" but no aria-hidden.
+Fix: Add `aria-hidden="true"` to both instances in the header and footer components.
 Source: `onpage`
 
-3. Some page images are missing dimensions
-Evidence: 25 image(s) are missing width and/or height attributes.
-Fix: Add width and height attributes or an equivalent reserved aspect ratio to reduce CLS.
-Source: `onpage`
+3. **AI crawlers not explicitly managed in robots.txt**
+Evidence: robots_checker found 11 AI bots inheriting wildcard rules.
+Fix: Add explicit `User-agent: GPTBot / Allow: /` blocks (and equivalents for ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended, Bytespider, CCBot, anthropic-ai, FacebookBot, Amazonbot, ChatGPT-User) to public/robots.txt.
+Source: `robots`
 
-4. Broken links were detected
-Evidence: 2 broken link(s) were found during the crawl.
-Fix: Repair, redirect, or remove the broken links starting with internal navigation and high-value pages.
-Source: `broken_links`
+4. **llms.txt has no links**
+Evidence: llms_txt_checker: 0 links found, score 70/100.
+Fix: Add markdown links under each section in public/llms.txt. Example:
+```
+## Streaming
+- [Stream on Hulu (US)](https://www.hulu.com/movie/strange-harvest-...)
+- [Stream on Paramount+ (Canada)](https://...)
 
-5. Potential orphan pages were detected
-Evidence: 1 page(s) appear to have weak internal linking.
-Fix: Add contextual internal links from relevant hub or supporting pages.
-Source: `internal_links`
+## Key Pages
+- [Official Trailer](https://strangeharvestmovie.com/#trailer)
+- [Press & Reviews](https://strangeharvestmovie.com/#press)
+- [Cast & Crew](https://strangeharvestmovie.com/#cast)
 
-6. Readability is difficult
-Evidence: Flesch Reading Ease is 34.5; average sentence length is 18.9.
-Fix: Shorten sentences and paragraphs and introduce clearer subheadings.
-Source: `readability`
-
-## Medium
-1. Below-the-fold images are missing lazy loading
-Evidence: 17 non-primary image(s) are missing loading="lazy".
-Fix: Add loading="lazy" to non-LCP images.
-Source: `onpage`
-
-2. Some page images still use PNG or JPEG
-Evidence: 1 image(s) could move to WebP or AVIF.
-Fix: Convert suitable PNG/JPEG assets to next-gen formats and add responsive variants where useful.
-Source: `onpage`
-
-3. llms.txt is missing
-Evidence: No llms.txt file was detected.
-Fix: Add llms.txt with a concise site summary and key URLs for AI crawlers.
+## External References
+- [Wikipedia](https://en.wikipedia.org/wiki/Strange_Harvest_(film))
+- [IMDB](https://www.imdb.com/title/tt33400719/)
+- [Rotten Tomatoes](https://www.rottentomatoes.com/m/strange_harvest)
+```
 Source: `llms_txt`
 
-4. Entity SEO signals are incomplete
-Evidence: 5 entity issue(s) were reported.
-Fix: Strengthen sameAs links and external knowledge-graph signals where relevant.
+## Medium
+
+1. **Create Wikidata entity for Strange Harvest (2025)**
+Evidence: entity_checker: wikidata_found=false; no Q-number in sameAs.
+Fix: Go to wikidata.org and create a new item. Add: instance of (film), title, director, cast, release date, streaming platform, IMDB ID, Wikipedia article. Then add the Wikidata URL to sameAs in Organization schema.
 Source: `entity`
 
-## Low
-- No actions queued.
+2. **Add lang="en" to html element**
+Evidence: parse_html: lang=None on root element.
+Fix: Add `<html lang="en">` (or set via Next.js root layout). Small addition, improves a11y + crawl signals.
+Source: `onpage`
 
+3. **Add Organization description to schema**
+Evidence: entity schema has empty description field in Organization block.
+Fix: Add `"description": "Strange Harvest is a 2025 horror mockumentary directed by Stuart Ortiz, streaming on Hulu."` to the Organization entity in layout.tsx JSON-LD.
+Source: `schema`
+
+4. **Change og:type from "website" to "video.movie"**
+Evidence: social_meta: og:type=website.
+Fix: Update og:type to `video.movie` in layout.tsx openGraph config for richer Facebook and social sharing.
+Source: `onpage`
+
+5. **Verify and fix Shopify merch link**
+Evidence: broken_links: 2-hop redirect (301→302) to password-protected Shopify store.
+Fix: If store is live, update URL to the direct canonical. If closed, replace with the DVD buy link or remove the cart link.
+Source: `broken_links`
+
+## Low
+
+1. **Get Core Web Vitals data**
+Evidence: pagespeed.py rate-limited — no LCP/INP/CLS data.
+Fix: Run `python scripts/pagespeed.py https://strangeharvestmovie.com/ --strategy mobile --api-key YOUR_KEY` or check Google PageSpeed Insights directly.
+Source: `pagespeed`
+
+2. **Add llms-full.txt**
+Evidence: llms_txt_checker: llms-full.txt not found.
+Fix: Create /public/llms-full.txt with complete film synopsis, cast bios, and press quotes for deep AI crawler indexing.
+Source: `llms_txt`
