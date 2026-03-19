@@ -748,47 +748,111 @@
       .socialIcon { width: 28px; height: 28px; }
     }
 
-    @media (max-width: 900px) {
+    /* ── Hamburger button (hidden on desktop) ── */
+    .navToggle {
+      display: none;
+    }
+
+    @media (max-width: 700px) {
+      /* Single-row header */
       .siteHeaderInner {
-        grid-template-columns: minmax(0, 1fr) auto;
-        grid-template-areas:
-          "brand actions"
-          "nav nav";
-        gap: 8px 10px;
-        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 16px;
+        gap: 12px;
       }
 
       .brand {
-        grid-area: brand;
-        justify-self: start;
-        font-size: 16px;
-      }
-
-      .brand img {
-        width: 24px;
-      }
-
-      .nav {
-        grid-area: nav;
-        justify-content: center;
+        font-size: 14px;
         gap: 8px;
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
+      .brand img { width: 22px; }
+
+      /* Hero padding matches shorter single-row header */
+      main { padding-top: 90px !important; }
+
+      /* Nav hidden by default — display:none guarantees removal from layout */
+      .nav {
+        display: none;
+      }
+
+      /* Dropdown anchored below the fixed header */
+      .nav.is-open {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(10, 10, 12, 0.97);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 99;
+        animation: navSlideIn 0.22s ease forwards;
+      }
+
+      @keyframes navSlideIn {
+        from { opacity: 0; transform: translateY(-6px); }
+        to   { opacity: 1; transform: translateY(0); }
       }
 
       .nav a {
-        font-size: 13px;
-        padding: 6px 8px;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 16px 24px;
+        min-height: 52px;
+        display: flex;
+        align-items: center;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        letter-spacing: 0.06em;
       }
 
-      .cartIcon svg {
-        width: 24px;
-        height: 24px;
+      .nav a:last-child { border-bottom: none; }
+      .nav a:hover { background: rgba(255, 255, 255, 0.05); }
+
+      /* Hamburger button */
+      .navToggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 44px;
+        height: 44px;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 8px;
+        cursor: pointer;
+        padding: 0;
+        flex-shrink: 0;
       }
+
+      .navToggleBar {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 2px;
+        transform-origin: center;
+        transition: transform 0.22s ease, opacity 0.22s ease, width 0.22s ease;
+      }
+
+      .navToggle.is-open .navToggleBar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .navToggle.is-open .navToggleBar:nth-child(2) { opacity: 0; width: 0; }
+      .navToggle.is-open .navToggleBar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
       .headerRight {
-        grid-area: actions;
-        gap: 10px;
-        align-self: center;
-        justify-self: end;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
       }
 
       .langSwitchBtn {
@@ -797,7 +861,12 @@
         padding: 0 8px;
         font-size: 10px;
       }
+
+      .cartIcon svg { width: 26px; height: 26px; }
+      .cartIcon { min-width: 40px; min-height: 40px; }
     }
+
+    body.nav-open { overflow: hidden; }
   </style>
 </head>
 <body>
@@ -810,7 +879,7 @@
         <img src="/images/strange-harvest-occult-symbol-horror-icon.webp" alt="" aria-hidden="true">
         <span>Strange Harvest</span>
       </a>
-      <nav class="nav" aria-label="Primary">
+      <nav class="nav" id="main-nav" aria-label="Primary">
         <a href="/#top">Home</a>
         <a href="/#about">About</a>
         <a href="/#watch">Watch</a>
@@ -830,6 +899,11 @@
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
           </svg>
         </a>
+        <button class="navToggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open navigation menu" type="button">
+          <span class="navToggleBar"></span>
+          <span class="navToggleBar"></span>
+          <span class="navToggleBar"></span>
+        </button>
       </div>
     </div>
   </header>
@@ -1248,6 +1322,54 @@
       );
       flickerTargets.forEach((el) => flickerObserver.observe(el));
     }
+
+    // ── Hamburger nav ────────────────────────────────────────
+    (function () {
+      const toggle = document.getElementById("nav-toggle");
+      const nav    = document.getElementById("main-nav");
+      if (!toggle || !nav) return;
+
+      function openNav() {
+        nav.classList.add("is-open");
+        toggle.classList.add("is-open");
+        toggle.setAttribute("aria-expanded", "true");
+        toggle.setAttribute("aria-label", "Close navigation menu");
+        document.body.classList.add("nav-open");
+      }
+
+      function closeNav() {
+        nav.classList.remove("is-open");
+        toggle.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open navigation menu");
+        document.body.classList.remove("nav-open");
+      }
+
+      toggle.addEventListener("click", function () {
+        nav.classList.contains("is-open") ? closeNav() : openNav();
+      });
+
+      // Close on Escape
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && nav.classList.contains("is-open")) {
+          closeNav();
+          toggle.focus();
+        }
+      });
+
+      // Close on outside click
+      document.addEventListener("mousedown", function (e) {
+        if (nav.classList.contains("is-open") &&
+            !nav.contains(e.target) && !toggle.contains(e.target)) {
+          closeNav();
+        }
+      });
+
+      // Close when a nav link is tapped
+      nav.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", closeNav);
+      });
+    })();
   </script>
 </body>
 </html>
