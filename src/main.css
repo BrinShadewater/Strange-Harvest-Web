@@ -272,6 +272,7 @@ section:first-of-type {
     0 0 120px rgba(var(--glow-far-rgb), 0.15),
     inset 0 0 0 1px rgba(var(--hero-inset-rgb), 0.2);
   overflow: hidden;
+  will-change: transform; /* promote to GPU layer — prevents scroll-triggered composite flush */
 }
 
 .posterDownloadIcon {
@@ -306,6 +307,7 @@ section:first-of-type {
 
 .heroPoster img {
   width: 100%;
+  max-width: 100%; /* override .hero img max-width: 80vw */
   height: 100%;
   filter: drop-shadow(0 0 25px rgba(var(--glow-core-rgb), 0.3));
   object-fit: cover;
@@ -377,9 +379,13 @@ section:first-of-type {
     margin: 0;
   }
 
-  /* svh = small viewport height (stable, ignores URL bar show/hide) */
+  /* Use aspect-ratio instead of viewport-unit height — eliminates iOS scroll jump.
+     svh is stable but still triggers a composite flush when the address bar collapses;
+     aspect-ratio derives height from width (no viewport dependency). */
   .posterFrame {
-    height: clamp(430px, 66svh, 620px);
+    height: auto;
+    aspect-ratio: 2 / 3;
+    max-height: 75svh; /* safety cap on very tall phones in landscape */
   }
 
   .posterToggle {
@@ -791,96 +797,137 @@ section:first-of-type {
 }
 
 @media (max-width: 520px) {
+  /* ≤520px is now covered by the ≤700px hamburger block.
+     Only override what needs further adjustment on very small screens. */
   .siteHeaderInner {
-    padding: 14px 20px;
+    padding: 10px 12px;
   }
-  
+
   .brand {
-    font-size: 16px;
-    gap: 10px;
-  }
-  
-  .brandSymbol {
-    width: 26px;
-  }
-  
-  .nav {
-    gap: 8px;
-  }
-  
-  .nav a {
     font-size: 13px;
-    padding: 8px 4px;
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-  }
-  
-  .cartIcon svg {
-    width: 28px;
-    height: 28px;
-  }
-  
-  .cartIcon {
-    min-width: 44px;
-    min-height: 44px;
-  }
-}
-
-/* Mobile header layout: prevent squeeze/cutoff by splitting nav to a second row */
-@media (max-width: 700px) {
-  .siteHeaderInner {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "brand cart"
-      "nav nav";
-    align-items: center;
-    gap: 8px 10px;
-    padding: 10px 14px;
-  }
-
-  .brand {
-    grid-area: brand;
-    font-size: 14px;
-    min-width: 0;
-    gap: 8px;
+    gap: 7px;
   }
 
   .brandSymbol {
     width: 20px;
   }
+}
 
-  .nav {
-    grid-area: nav;
-    width: 100%;
-    gap: 6px;
+/* ─── Hamburger toggle button (hidden on desktop) ─── */
+.navToggle {
+  display: none;
+}
+
+/* ─── Mobile header: single row with hamburger dropdown ─── */
+@media (max-width: 700px) {
+  .siteHeaderInner {
+    display: flex;
+    align-items: center;
     justify-content: space-between;
-    flex-wrap: nowrap;
+    padding: 10px 16px;
+    gap: 12px;
+  }
+
+  .brand {
+    font-size: 14px;
+    gap: 8px;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .brandSymbol {
+    width: 22px;
+  }
+
+  /* Nav becomes a slide-down dropdown anchored below the fixed header */
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(10, 10, 12, 0.97);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+    z-index: 99;
+  }
+
+  .nav.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .nav a {
-    font-size: 12px;
-    padding: 8px 6px;
-    min-height: 40px;
-    display: inline-flex;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 24px;
+    min-height: 52px;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    flex: 1 1 auto;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    letter-spacing: 0.06em;
   }
 
-  .cartIcon {
-    grid-area: cart;
-    justify-self: end;
-    min-width: 44px;
-    min-height: 44px;
-    overflow: visible;
+  .nav a:last-child {
+    border-bottom: none;
+  }
+
+  .nav a:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Hamburger button */
+  .navToggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .navToggleBar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 2px;
+    transform-origin: center;
+    transition: transform 0.22s ease, opacity 0.22s ease, width 0.22s ease;
+  }
+
+  /* Animate to X when open */
+  .navToggle.is-open .navToggleBar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .navToggle.is-open .navToggleBar:nth-child(2) {
+    opacity: 0;
+    width: 0;
+  }
+  .navToggle.is-open .navToggleBar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
   }
 
   .headerActions {
-    grid-area: cart;
-    justify-self: end;
-    gap: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
   }
 
   .langToggleBtn {
@@ -893,8 +940,17 @@ section:first-of-type {
   .cartIcon svg {
     width: 26px;
     height: 26px;
-    display: block;
   }
+
+  .cartIcon {
+    min-width: 40px;
+    min-height: 40px;
+  }
+}
+
+/* Prevent scroll behind open mobile nav */
+body.nav-open {
+  overflow: hidden;
 }
 
 .cta {
