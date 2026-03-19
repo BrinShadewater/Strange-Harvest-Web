@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useState } from "react";
-import { HERO_LOGO_SRC } from "../constants/assets";
+import { HERO_LOGO_SRC_OPTIMISED, HERO_LOGO_SRCSET } from "../constants/assets";
 import { sitecopy, siteLanguage } from "./sitecopy";
 
 export default function Header() {
@@ -58,7 +58,7 @@ export default function Header() {
       <a href="#main" className="skip-link">{header.skipToContent}</a>
       <div className="siteHeaderInner">
         <a className="brand" href="#top" aria-label={header.aria.home}>
-          <img src={HERO_LOGO_SRC} alt="" aria-hidden="true" className="brandSymbol" loading="eager" decoding={"async"} width={3000} height={3000} />
+          <img src={HERO_LOGO_SRC_OPTIMISED} srcSet={HERO_LOGO_SRCSET} sizes="48px" alt="" aria-hidden="true" className="brandSymbol" loading="eager" decoding={"async"} width={512} height={512} />
           Strange Harvest
         </a>
 

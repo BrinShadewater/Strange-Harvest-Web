@@ -1,7 +1,7 @@
 "use client";
 
 import { sitecopy } from "./sitecopy";
-import { HERO_LOGO_SRC } from "../constants/assets";
+import { HERO_LOGO_SRC_OPTIMISED, HERO_LOGO_SRCSET } from "../constants/assets";
 
 export default function Footer() {
   const { footer } = sitecopy;
@@ -13,7 +13,7 @@ export default function Footer() {
   return (
     <footer className="siteFooter">
       <div className="footerContent">
-        <img src={HERO_LOGO_SRC} alt="" className="footerSymbol" aria-hidden="true" loading={"lazy"} decoding={"async"} width={3000} height={3000} />
+        <img src={HERO_LOGO_SRC_OPTIMISED} srcSet={HERO_LOGO_SRCSET} sizes="120px" alt="" className="footerSymbol" aria-hidden="true" loading={"lazy"} decoding={"async"} width={512} height={512} />
         <h2 className="footerTitle">{footer.title}</h2>
         <p className="footerTagline">{footer.tagline}</p>
         
