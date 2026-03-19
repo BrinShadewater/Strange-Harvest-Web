@@ -754,13 +754,18 @@
     }
 
     @media (max-width: 700px) {
-      /* Single-row header */
+      /* Single-row header.
+         position: static here is intentional — it lets .nav.is-open (position:absolute)
+         skip past siteHeaderInner and anchor to siteHeader (position:fixed) instead.
+         Without this, top:100% would be relative to siteHeaderInner's height, not the
+         full fixed header, causing the dropdown to appear mid-page. */
       .siteHeaderInner {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 10px 16px;
         gap: 12px;
+        position: static;
       }
 
       .brand {
