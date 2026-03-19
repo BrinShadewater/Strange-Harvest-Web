@@ -3,7 +3,10 @@ import { Assistant } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { PosterPreload } from "@/components/PosterPreload";
-import "../../main.css";
+import DeferredCSS from "@/components/DeferredCSS";
+// critical.css covers above-fold rules only (header, hero, CTAs, ~3KB compressed).
+// The full stylesheet is loaded non-blocking by <DeferredCSS /> after first paint.
+import "../../critical.css";
 
 const assistant = Assistant({
   subsets: ["latin"],
@@ -175,6 +178,7 @@ export default function EsRootLayout({ children }: { children: React.ReactNode }
       </head>
       <body>
         {children}
+        <DeferredCSS />
         <SpeedInsights />
         <Analytics />
       </body>
