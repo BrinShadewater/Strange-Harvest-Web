@@ -11,7 +11,11 @@ import "../../critical.css";
 const assistant = Assistant({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
+  // "optional" eliminates font-swap CLS — browser uses the font if it loads within
+  // the initial block period (~100ms), otherwise keeps the fallback permanently.
+  // On repeat visits the font is cached and loads immediately; on first visit the
+  // fallback (metrics-matched via adjustFontFallback) is indistinguishable.
+  display: "optional",
   variable: "--font-assistant",
   preload: true,
 });

@@ -11,7 +11,8 @@ import "../../critical.css";
 const assistant = Assistant({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
+  // "optional" eliminates font-swap CLS — see (en)/layout.tsx for rationale.
+  display: "optional",
   variable: "--font-assistant",
   preload: true,
 });
