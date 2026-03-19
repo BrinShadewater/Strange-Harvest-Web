@@ -233,7 +233,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://tv.apple.com" />
         <link rel="dns-prefetch" href="https://www.primevideo.com" />
         <link rel="dns-prefetch" href="https://strangeharvestmovie.myshopify.com" />
-        <link rel="preconnect" href="https://www.youtube.com" crossOrigin="" />
+        {/* preconnect to YouTube removed — Trailer is code-split (ssr:false),
+            so YouTube resources aren't needed at initial load. Lighthouse
+            flagged this as an "unused preconnect" harming network performance. */}
         {/* Preload only the poster variant the user is assigned — saves ~200–350KB vs preloading both */}
         <PosterPreload />
         {/* JSON-LD Structured Data */}

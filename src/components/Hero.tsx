@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+// NOTE: titleVisible defaults to true so the h1 is server-rendered with
+// the is-visible class. This makes the fluorescentFlickerOn animation start
+// as soon as CSS loads (~500ms) rather than waiting for React hydration +
+// IntersectionObserver (~2.4s), which was inflating mobile LCP to 3.1s.
 import { sitecopy } from "./sitecopy";
 
 type ThemeVariant = "red" | "blue";
@@ -45,8 +49,8 @@ export default function Hero({ initialVariant = "red" }: { initialVariant?: Them
   // initialVariant comes from the server (cookie-assigned) — no SSR mismatch
   const [assignedVariant] = useState<ThemeVariant>(initialVariant);
   const [isFestivalPoster, setIsFestivalPoster] = useState(initialVariant === "blue");
-  const [titleVisible, setTitleVisible] = useState(false);
-  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  // true from the start so SSR emits is-visible — animation plays at CSS load time, not hydration time
+  const [titleVisible, setTitleVisible] = useState(true);
   const flickerTimeoutRef = useRef<number | null>(null);
   const currentVariantRef = useRef<ThemeVariant>(initialVariant);
   const finalChoiceSavedRef = useRef(false);
@@ -75,27 +79,8 @@ export default function Hero({ initialVariant = "red" }: { initialVariant?: Them
     emitAbEvent("ab_theme_exposure", { assigned_variant: assignedVariant });
   }, [assignedVariant]);
 
-  useEffect(() => {
-    const node = titleRef.current;
-    if (!node || typeof IntersectionObserver === "undefined") {
-      setTitleVisible(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry?.isIntersecting) {
-          setTitleVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.4 }
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
+  // IntersectionObserver removed — titleVisible now defaults true so the h1
+  // gets is-visible in SSR HTML and the CSS animation fires at CSS-parse time.
 
   useEffect(() => {
     return () => {
@@ -254,7 +239,7 @@ export default function Hero({ initialVariant = "red" }: { initialVariant?: Them
         <div className="heroCopy">
           <div className="heroKicker">{hero.tagline}</div>
           <div className="heroSubtitle">{hero.subtitle}</div>
-          <h1 ref={titleRef} className={`heroTitle ${titleVisible ? "is-visible" : ""}`}>{hero.title}</h1>
+          <h1 className={`heroTitle ${titleVisible ? "is-visible" : ""}`}>{hero.title}</h1>
 
           <p>{hero.blurb}</p>
 
