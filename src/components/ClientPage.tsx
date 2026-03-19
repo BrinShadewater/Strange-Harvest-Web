@@ -1,20 +1,24 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import type { SiteLanguage } from "./sitecopy";
 import { LanguageProvider } from "./LanguageProvider";
 import Header from "./Header";
 import Hero from "./Hero";
-import Synopsis from "./Synopsis";
-import Trailer from "./Trailer";
-import Watch from "./Watch";
-import HomeVideo from "./HomeVideo";
-import Merch from "./Merch";
-import Press from "./Press";
-import CastCrew from "./CastCrew";
-import Footer from "./Footer";
-import SymbolDivider from "./SymbolDivider";
-import CookieConsent from "./CookieConsent";
-import ParticleBackground from "./ParticleBackground";
+
+// Below-fold and non-critical components — code-split so their JS is NOT
+// in the initial bundle, directly reducing the "unused JS" Lighthouse flag.
+const ParticleBackground = dynamic(() => import("./ParticleBackground"), { ssr: false });
+const Synopsis    = dynamic(() => import("./Synopsis"));
+const Trailer     = dynamic(() => import("./Trailer"));
+const Watch       = dynamic(() => import("./Watch"));
+const HomeVideo   = dynamic(() => import("./HomeVideo"));
+const Merch       = dynamic(() => import("./Merch"));
+const Press       = dynamic(() => import("./Press"));
+const CastCrew    = dynamic(() => import("./CastCrew"));
+const Footer      = dynamic(() => import("./Footer"));
+const SymbolDivider = dynamic(() => import("./SymbolDivider"));
+const CookieConsent = dynamic(() => import("./CookieConsent"), { ssr: false });
 
 type ThemeVariant = "red" | "blue";
 
