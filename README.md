@@ -1,12 +1,12 @@
-# Strange Harvest Web
+# Strange Harvest Web 🎬
 
 Official website for **Strange Harvest**, the 2025 horror mockumentary feature.
 
 This repo holds the production web experience for the film: trailer and watch surfaces, press material, cast and crew sections, merch routing, international pages, structured metadata, sitemaps, consent UI, geolocation support, and the image system behind the public-facing release.
 
-The site is part official film destination, part evidence table. It needs to feel polished enough for press and distribution partners while still preserving the unsettling texture of the movie.
+The site is part official film destination, part evidence table, part cursed media shelf. It needs to feel polished enough for press and distribution partners while still preserving the unsettling texture of the movie.
 
-## What This Site Does
+## 🎞️ What This Site Does
 
 - Presents the official film identity, synopsis, trailers, cast, crew, and watch paths.
 - Maintains press, review, behind-the-scenes, and platform assets.
@@ -15,7 +15,7 @@ The site is part official film destination, part evidence table. It needs to fee
 - Handles cookie consent, analytics, speed insights, and location-aware availability.
 - Keeps a large library of optimized posters, stills, icons, and social/watch assets.
 
-## Stack
+## 🧰 Stack
 
 - Next.js 15
 - React 18
@@ -23,11 +23,11 @@ The site is part official film destination, part evidence table. It needs to fee
 - Vercel Analytics and Speed Insights
 - Netlify/Vercel deployment configuration
 
-## Repository Status
+## 🚦 Repository Status
 
 Production site. Treat changes as public-facing unless they are clearly internal docs.
 
-## Local Development
+## ⚙️ Local Development
 
 ```shell
 npm install
@@ -46,7 +46,7 @@ Start a built app:
 npm run start
 ```
 
-## Project Map
+## 🗺️ Project Map
 
 ```text
 src/app/             Next.js routes, robots, sitemap, API routes
@@ -58,7 +58,7 @@ netlify/functions/   Netlify geolocation fallback
 api/                 Vercel geolocation endpoint
 ```
 
-## Key Surfaces
+## 🔦 Key Surfaces
 
 - `src/components/sitecopy.ts` keeps major site copy centralized.
 - `src/components/Watch.tsx` and `src/components/Merch.tsx` affect conversion paths.
@@ -66,7 +66,7 @@ api/                 Vercel geolocation endpoint
 - `src/middleware.ts` and geolocation services affect regional behavior.
 - `public/press.html`, `public/privacy.html`, and `public/bts.html` are standalone static pages.
 
-## Documentation
+## 📚 Documentation
 
 - `ACTION-PLAN.md`
 - `SITE-AUDIT.md`
@@ -77,11 +77,11 @@ api/                 Vercel geolocation endpoint
 - `docs/PROJECT-BRIEF.md`
 - `docs/MAINTENANCE.md`
 
-## Working Style
+## 🕯️ Working Style
 
 The site should feel like an official film destination, not a generic template. Keep copy precise, keep metadata current, and treat images as part of the storytelling system.
 
-## Review Checklist
+## ✅ Review Checklist
 
 - Build passes with `npm run build`.
 - Changed pages have been viewed locally.
@@ -89,6 +89,6 @@ The site should feel like an official film destination, not a generic template. 
 - Metadata changes include title, description, OG/Twitter, sitemap, and canonical implications where relevant.
 - New image assets are optimized and named descriptively.
 
-## Release Notes
+## 📝 Release Notes
 
 Use `CHANGELOG.md` for notable public-facing changes, metadata updates, deployment changes, and content additions.
