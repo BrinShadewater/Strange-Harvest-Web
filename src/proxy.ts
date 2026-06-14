@@ -4,7 +4,7 @@ import type { NextRequest } from "next/server";
 const AB_COOKIE = "sh_ab_theme_v1";
 const AB_COOKIE_MAX_AGE = 60 * 60 * 24 * 30; // 30 days
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const response = NextResponse.next();
 
   if (!request.cookies.has(AB_COOKIE)) {

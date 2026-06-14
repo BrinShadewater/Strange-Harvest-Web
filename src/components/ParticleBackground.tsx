@@ -48,7 +48,7 @@ export default function ParticleBackground() {
   const lastExplosionTimeRef = useRef(0);
   const hoverStartTimesRef = useRef<number[]>([]);
   const removedCountRef = useRef(0);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
     // Respect prefers-reduced-motion — skip animation entirely
@@ -335,13 +335,13 @@ export default function ParticleBackground() {
     // Pause animation when tab is hidden (saves CPU/battery on mobile)
     const handleVisibilityChange = () => {
       if (document.hidden) {
-        if (animationFrameRef.current) {
+        if (animationFrameRef.current !== null) {
           cancelAnimationFrame(animationFrameRef.current);
-          animationFrameRef.current = undefined;
+          animationFrameRef.current = null;
         }
       } else {
         // Resume — only start if not already running
-        if (!animationFrameRef.current) {
+        if (animationFrameRef.current === null) {
           animationFrameRef.current = requestAnimationFrame(animate);
         }
       }
@@ -358,7 +358,7 @@ export default function ParticleBackground() {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
-      if (animationFrameRef.current) {
+      if (animationFrameRef.current !== null) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
