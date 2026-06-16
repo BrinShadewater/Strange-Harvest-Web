@@ -85,7 +85,7 @@ export default function Press() {
               >
                 <path d="M20 0C8.954 0 0 8.954 0 20v15c0 11.046 8.954 20 20 20h5c2.761 0 5-2.239 5-5V30c0-2.761-2.239-5-5-5h-5c-5.523 0-10-4.477-10-10s4.477-10 10-10c2.761 0 5-2.239 5-5S22.761 0 20 0zm50 0c-11.046 0-20 8.954-20 20v15c0 11.046 8.954 20 20 20h5c2.761 0 5-2.239 5-5V30c0-2.761-2.239-5-5-5h-5c-5.523 0-10-4.477-10-10s4.477-10 10-10c2.761 0 5-2.239 5-5S72.761 0 70 0z" fill="currentColor" />
               </svg>
-              <blockquote className="pressQuote">"{review.quote}"</blockquote>
+              <blockquote className="pressQuote">&ldquo;{review.quote}&rdquo;</blockquote>
               <p className="pressSource">— {review.source}</p>
             </a>
           ))}

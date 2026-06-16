@@ -543,14 +543,14 @@ const sitecopyEn = {
 type DeepPartial<T> = {
   [K in keyof T]?: T[K] extends Array<infer U>
     ? Array<DeepPartial<U>>
-    : T[K] extends Record<string, any>
+    : T[K] extends Record<string, unknown>
       ? DeepPartial<T[K]>
       : T[K];
 };
 
-function deepMerge<T extends Record<string, any>>(base: T, override: DeepPartial<T>): T {
-  const output: Record<string, any> = { ...base };
-  Object.keys(override).forEach((key) => {
+function deepMerge<T extends Record<string, unknown>>(base: T, override: DeepPartial<T>): T {
+  const output: Record<string, unknown> = { ...base };
+  (Object.keys(override) as Array<keyof T>).forEach((key) => {
     const baseValue = base[key];
     const overrideValue = override[key];
 
@@ -562,11 +562,14 @@ function deepMerge<T extends Record<string, any>>(base: T, override: DeepPartial
       !Array.isArray(baseValue) &&
       !Array.isArray(overrideValue)
     ) {
-      output[key] = deepMerge(baseValue, overrideValue);
+      output[key as string] = deepMerge(
+        baseValue as Record<string, unknown>,
+        overrideValue as DeepPartial<Record<string, unknown>>
+      );
       return;
     }
 
-    output[key] = overrideValue;
+    output[key as string] = overrideValue;
   });
   return output as T;
 }

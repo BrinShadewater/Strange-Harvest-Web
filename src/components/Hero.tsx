@@ -8,10 +8,52 @@ import { useEffect, useRef, useState } from "react";
 import { sitecopy } from "./sitecopy";
 
 type ThemeVariant = "red" | "blue";
+type VariantCounters = Record<ThemeVariant, number>;
+
+interface AbStats {
+  exposures: VariantCounters;
+  ctaClicks: VariantCounters;
+  posterDownloads: VariantCounters;
+  toggleToRed: number;
+  toggleToBlue: number;
+  finalChoice: VariantCounters;
+}
+
+type StoredAbStats = Partial<Omit<AbStats, "exposures" | "ctaClicks" | "posterDownloads" | "finalChoice">> & {
+  exposures?: Partial<VariantCounters>;
+  ctaClicks?: Partial<VariantCounters>;
+  posterDownloads?: Partial<VariantCounters>;
+  finalChoice?: Partial<VariantCounters>;
+};
 
 const AB_VARIANT_KEY = "sh_ab_theme_variant_v1";
 const AB_STATS_KEY = "sh_ab_theme_stats_v1";
 
+const createDefaultAbStats = (): AbStats => ({
+  exposures: { red: 0, blue: 0 },
+  ctaClicks: { red: 0, blue: 0 },
+  posterDownloads: { red: 0, blue: 0 },
+  toggleToRed: 0,
+  toggleToBlue: 0,
+  finalChoice: { red: 0, blue: 0 },
+});
+
+const normalizeCounter = (
+  value: Partial<VariantCounters> | undefined,
+  fallback: VariantCounters
+): VariantCounters => ({
+  red: typeof value?.red === "number" ? value.red : fallback.red,
+  blue: typeof value?.blue === "number" ? value.blue : fallback.blue,
+});
+
+const normalizeAbStats = (stored: StoredAbStats | null, fallback: AbStats): AbStats => ({
+  exposures: normalizeCounter(stored?.exposures, fallback.exposures),
+  ctaClicks: normalizeCounter(stored?.ctaClicks, fallback.ctaClicks),
+  posterDownloads: normalizeCounter(stored?.posterDownloads, fallback.posterDownloads),
+  toggleToRed: typeof stored?.toggleToRed === "number" ? stored.toggleToRed : fallback.toggleToRed,
+  toggleToBlue: typeof stored?.toggleToBlue === "number" ? stored.toggleToBlue : fallback.toggleToBlue,
+  finalChoice: normalizeCounter(stored?.finalChoice, fallback.finalChoice),
+});
 
 function emitAbEvent(eventName: string, payload: Record<string, string | number | boolean>) {
   if (typeof window === "undefined") return;
@@ -23,24 +65,17 @@ function emitAbEvent(eventName: string, payload: Record<string, string | number 
   window.dispatchEvent(new CustomEvent("sh:ab-theme-event", { detail: { eventName, ...data } }));
 }
 
-function updateAbStats(mutator: (current: any) => any) {
+function updateAbStats(mutator: (current: AbStats) => AbStats) {
   if (typeof window === "undefined") return;
-  const fallback = {
-    exposures: { red: 0, blue: 0 },
-    ctaClicks: { red: 0, blue: 0 },
-    posterDownloads: { red: 0, blue: 0 },
-    toggleToRed: 0,
-    toggleToBlue: 0,
-    finalChoice: { red: 0, blue: 0 },
-  };
+  const fallback = createDefaultAbStats();
   const parsed = (() => {
     try {
-      return JSON.parse(window.localStorage.getItem(AB_STATS_KEY) ?? "null");
+      return JSON.parse(window.localStorage.getItem(AB_STATS_KEY) ?? "null") as StoredAbStats | null;
     } catch {
       return null;
     }
   })();
-  const next = mutator(parsed ?? fallback);
+  const next = mutator(normalizeAbStats(parsed, fallback));
   window.localStorage.setItem(AB_STATS_KEY, JSON.stringify(next));
 }
 

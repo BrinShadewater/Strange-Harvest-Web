@@ -5,7 +5,11 @@
  */
 
 // Netlify Functions format
-export async function handler(event: any) {
+type GeoEvent = {
+  headers?: Record<string, string | undefined>;
+};
+
+export async function handler(event: GeoEvent) {
   const headers = event.headers || {};
 
   // Try various header sources in priority order

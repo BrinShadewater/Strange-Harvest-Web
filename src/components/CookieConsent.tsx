@@ -19,8 +19,8 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 // Declare gtag function for TypeScript
 declare global {
   interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
+    dataLayer: unknown[][];
+    gtag: (command: string, ...args: unknown[]) => void;
   }
 }
 
@@ -40,8 +40,8 @@ const loadAnalytics = () => {
 
   // Initialize dataLayer
   window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag() {
-    window.dataLayer.push(arguments);
+  window.gtag = (command: string, ...args: unknown[]) => {
+    window.dataLayer.push([command, ...args]);
   };
   
   // Set initial timestamp
@@ -86,6 +86,18 @@ const loadPreferenceScripts = () => {
   // Add preference/personalization scripts here
 };
 
+const loadConsentedScripts = (consentState: ConsentState) => {
+  if (consentState.analytics) {
+    loadAnalytics();
+  }
+  if (consentState.marketing) {
+    loadMarketingScripts();
+  }
+  if (consentState.preferences) {
+    loadPreferenceScripts();
+  }
+};
+
 export default function CookieConsent() {
   const [isVisible, setIsVisible] = useState(false);
   const [showPreferences, setShowPreferences] = useState(false);
@@ -116,18 +128,6 @@ export default function CookieConsent() {
       }
     }
   }, []);
-
-  const loadConsentedScripts = (consentState: ConsentState) => {
-    if (consentState.analytics) {
-      loadAnalytics();
-    }
-    if (consentState.marketing) {
-      loadMarketingScripts();
-    }
-    if (consentState.preferences) {
-      loadPreferenceScripts();
-    }
-  };
 
   const saveConsent = (newConsent: ConsentState) => {
     localStorage.setItem(CONSENT_KEY, JSON.stringify(newConsent));
