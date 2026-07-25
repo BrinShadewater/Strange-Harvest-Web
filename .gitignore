@@ -25,3 +25,17 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Generated SEO/audit output (added 2026-07-25). These are regenerated on demand
+# and should not be committed. ACTION-PLAN.md is deliberately NOT ignored: it is
+# tracked and hand-maintained, and a tool overwrote it once with hardcoded paths
+# from the previous machine, losing 68 lines of findings.
+FULL-AUDIT-REPORT.md
+SEO-REPORT.html
+seo-page.html
+seo-report-*.html
+seo-image-handoff.json
+seo-image-apply-report.json
+
+# Scratch from image-pipeline write tests
+public/images/test-write.tmp
