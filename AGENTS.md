@@ -3,7 +3,8 @@
 Agent-neutral. Claude and Codex both read this file; `CLAUDE.md` points here.
 
 The public website for **Strange Harvest**, the 2025 horror mockumentary — `strangeharvestmovie.com`.
-Repo root is this folder, on `main...origin/main`. npm project (`strange-harvest-web`), scripts
+Repo root is this folder, tracking a GitHub remote — compute branch state fresh rather than
+reading it here. npm project (`strange-harvest-web`), scripts
 `dev`, `build`, `start`, `lint`. Confirm hosting and domain before any deployment.
 
 Audience is film viewers, press, festival and distribution contacts, collaborators, and fans
