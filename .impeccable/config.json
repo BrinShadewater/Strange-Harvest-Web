@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "src/constants/assets.ts"
+        ],
+        "createdAt": "2026-07-29T02:50:59.758Z",
+        "reason": "False positive: matches the literal text <img> inside a code comment; all referenced webp assets exist"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/main.css"
+        ],
+        "createdAt": "2026-07-29T02:50:59.821Z",
+        "reason": "synopsisQuote blockquote: blood-red left rule is the film brand, a pull-quote convention here, not a card/alert tab"
+      }
+    ]
+  }
+}
