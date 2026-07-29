@@ -31,13 +31,12 @@ components:
 # Strange Harvest Web — Design System
 
 > Recorded 2026-07-29 in scan mode from `src/theme.css`, `src/main.css`,
-> `src/critical.css`, and components, during impeccable rollout. Tokens are extracted
-> from shipped code. The Creative North Star is **provisional (inferred)** — confirm
-> or rename it.
+> `src/critical.css`, and components, during impeccable rollout. North Star confirmed
+> by Alex 2026-07-28; tokens and rules are extracted from shipped code.
 
 ## Overview
 
-**Creative North Star (provisional): The Evidence Table.** The README's own framing —
+**Creative North Star: The Evidence Table.** The README's own framing —
 "part official film destination, part evidence table, part cursed media shelf." A
 darkened room where materials from the film have been laid out for examination:
 near-black surfaces, a single overhead pool of light (the radial-gradient body wash),
