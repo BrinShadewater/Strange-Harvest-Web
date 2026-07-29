@@ -681,7 +681,7 @@ section:first-of-type {
     background: rgba(255, 255, 255, 0.85);
     border-radius: 2px;
     transform-origin: center;
-    transition: transform 0.22s ease, opacity 0.22s ease, width 0.22s ease;
+    transition: transform 0.22s ease, opacity 0.22s ease;
   }
 
   /* Animate to X when open */
@@ -690,7 +690,7 @@ section:first-of-type {
   }
   .navToggle.is-open .navToggleBar:nth-child(2) {
     opacity: 0;
-    width: 0;
+    transform: scaleX(0);
   }
   .navToggle.is-open .navToggleBar:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
