@@ -468,6 +468,13 @@ section:first-of-type {
 /* Synopsis Section */
 .synopsis {
   text-align: center;
+  /* Synopsis is an <article>, so it never picked up the shared
+     `section { padding: 40px 0 }` rule. Its heading landed 41px tighter to the
+     divider above it than every other section's — the one break in the
+     divider/section rhythm. The border-top is deliberately not copied: at 6%
+     white it is functionally invisible, and adding a rule directly under the
+     hero would be a new element rather than a consistency repair. */
+  padding: 40px 0;
 }
 
 .synopsisTitle {

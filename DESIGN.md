@@ -86,6 +86,11 @@ typeface to "add character"; character comes from the imagery and the copy.
 ## Layout
 
 - Content max-width 1200px; breakpoints at 1200px and 900px.
+- **Vertical rhythm.** Sections are separated by roughly 220px: 40px of section
+  padding, a 140px `SymbolDivider`, then 40px again. Headings sit 40px below the
+  section start and 14px above their content. Any new top-level block must carry
+  `padding: 40px 0` — `.synopsis` is an `<article>` and so missed the shared
+  `section` rule, which left its heading 41px tighter than every other one.
 - `main` owns `--page-gutter` (120px → 60px → 20px across those breakpoints).
   Full-bleed sections must derive their bleed from it, never from a fixed value:
   `.hero` uses `--hero-bleed: min(50px, var(--page-gutter))` so it reaches the
