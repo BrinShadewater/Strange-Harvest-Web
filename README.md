@@ -1,5 +1,7 @@
 # Strange Harvest Web 🎬
 
+![Licence](https://img.shields.io/badge/licence-all%20rights%20reserved-lightgrey?style=flat-square) ![Live](https://img.shields.io/badge/live-strangeharvestmovie.com-brightgreen?style=flat-square) ![Shadewater Labs](https://img.shields.io/badge/Shadewater%20Labs-%E2%9A%97%EF%B8%8F-6b4fa2?style=flat-square)
+
 Official website for **Strange Harvest**, the 2025 horror mockumentary feature.
 
 This repo holds the production web experience for the film: trailer and watch surfaces, press material, cast and crew sections, merch routing, international pages, structured metadata, sitemaps, consent UI, geolocation support, and the image system behind the public-facing release.
@@ -92,3 +94,9 @@ The site should feel like an official film destination, not a generic template. 
 ## 📝 Release Notes
 
 Use `CHANGELOG.md` for notable public-facing changes, metadata updates, deployment changes, and content additions.
+
+---
+
+## 📄 Licence
+
+All rights reserved. This repository is public so the work can be read and referenced, not relicensed. The code, copy, and film and creative assets remain © Brin Shadewater / Shadewater Labs. If you want to use something here, ask.
