@@ -127,6 +127,10 @@ const sitecopyEn = {
   trailer: {
     title: "Official Trailer",
     iframeTitle: "Strange Harvest Official Trailer",
+    transcriptLink: {
+      label: "Read the trailer transcript",
+      href: "/transcript.html",
+    },
   },
 
   press: {
@@ -650,6 +654,8 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
   trailer: {
     title: "Trailer oficial",
     iframeTitle: "Trailer oficial de Strange Harvest",
+    // "trailer" unaccented to match the existing ES copy above, not "tráiler".
+    transcriptLink: { label: "Leer la transcripción del trailer" },
   },
   synopsis: {
     title: "Sinopsis",

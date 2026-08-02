@@ -15,6 +15,14 @@ export default function Trailer() {
       <div className="videoWrapper">
         <LazyYoutube videoId="tYyTpuk8Zuk" title={trailer.iframeTitle} />
       </div>
+
+      {/* /transcript.html had zero inbound links from anywhere on the site — a
+          true orphan, reachable only by knowing the URL. It is this video's
+          transcript, so this is where it belongs, and it doubles as the text
+          alternative for the trailer. */}
+      <p className="transcriptLink">
+        <a href={trailer.transcriptLink.href}>{trailer.transcriptLink.label}</a>
+      </p>
     </section>
   );
 }

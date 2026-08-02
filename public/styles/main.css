@@ -1244,14 +1244,19 @@ body.nav-open {
   border-radius: 50%;
 }
 
-.pressKitLink {
+/* Quiet secondary routes out of a section — the press kit and the trailer
+   transcript. Both were orphaned pages before 2026-08-02; they earn a link but
+   not the weight of a CTA. */
+.pressKitLink,
+.transcriptLink {
   margin-top: 28px;
   text-align: center;
   font-size: 0.9375rem;
   letter-spacing: 0.04em;
 }
 
-.pressKitLink a {
+.pressKitLink a,
+.transcriptLink a {
   color: hsl(var(--muted-foreground));
   text-decoration: none;
   border-bottom: 1px solid hsl(var(--border));
@@ -1259,7 +1264,8 @@ body.nav-open {
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.pressKitLink a:hover {
+.pressKitLink a:hover,
+.transcriptLink a:hover {
   color: hsl(var(--accent));
   border-bottom-color: hsl(var(--accent));
 }
@@ -2401,6 +2407,13 @@ input:focus + .cookieToggleSlider {
   letter-spacing: 4px;
   margin-bottom: 12px;
   font-weight: 400;
+  /* Carried over from the global h2 rule. This was an <h2> until 2026-08-02 and
+     inherited the glow from there; demoting it to a div would have silently
+     dropped the glow, so it is stated explicitly here. */
+  text-shadow:
+    0 0 20px rgba(var(--glow-title-rgb), 0.4),
+    0 0 40px rgba(var(--glow-title-mid-rgb), 0.25),
+    0 0 60px rgba(var(--glow-title-far-rgb), 0.15);
 }
 
 .footerTagline {

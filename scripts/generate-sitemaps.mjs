@@ -8,9 +8,14 @@
  * Its outputs are COMMITTED, deliberately, decided 2026-08-02:
  *
  *  - public/sitemap.xml is a static file and therefore SHADOWS any /sitemap.xml
- *    route. src/app/sitemap.ts used to exist and was dead code for exactly that
- *    reason; it was deleted. Do not reintroduce a sitemap route — it will look
- *    authoritative and never serve.
+ *    route. Do not reintroduce a sitemap route — with this file present it will
+ *    look authoritative and never serve.
+ *
+ *    Careful with that claim, though: src/app/sitemap.ts was NOT dead code in
+ *    production. public/sitemap.xml had never been committed, so production
+ *    served the route (5 URLs, hardcoded lastmod 2026-03-06) while local disk
+ *    served the static file. Checking one and generalising to the other is how
+ *    that got missed; the 2026-08-02 SEO audit caught it.
  *  - Committing them keeps deploys deterministic: robots.txt advertises all
  *    three sitemaps, so a build that somehow skipped this script would still
  *    serve the last known-good files rather than 404.
@@ -46,6 +51,11 @@ const resolveLastMod = async (relativePath) => {
   return toDate(Date.now());
 };
 
+// Only canonical URLs get a <loc>. The ?lang=es variants of press/bts/transcript/
+// privacy all return 200 but self-canonicalise to their non-query version, so
+// listing them as separate <loc> entries contradicts their own canonical tag and
+// spends crawl budget on duplicates. They stay as hreflang alternates below,
+// which is the correct way to express them. (SEO audit 2026-08-02.)
 const pageEntries = [
   {
     loc: "https://strangeharvestmovie.com/",
@@ -81,32 +91,10 @@ const pageEntries = [
     ],
   },
   {
-    loc: "https://strangeharvestmovie.com/press.html?lang=es",
-    file: "public/press.html",
-    changefreq: "monthly",
-    priority: "0.7",
-    alternates: [
-      { hreflang: "en", href: "https://strangeharvestmovie.com/press.html" },
-      { hreflang: "es", href: "https://strangeharvestmovie.com/press.html?lang=es" },
-      { hreflang: "x-default", href: "https://strangeharvestmovie.com/press.html" },
-    ],
-  },
-  {
     loc: "https://strangeharvestmovie.com/bts.html",
     file: "public/bts.html",
     changefreq: "monthly",
     priority: "0.8",
-    alternates: [
-      { hreflang: "en", href: "https://strangeharvestmovie.com/bts.html" },
-      { hreflang: "es", href: "https://strangeharvestmovie.com/bts.html?lang=es" },
-      { hreflang: "x-default", href: "https://strangeharvestmovie.com/bts.html" },
-    ],
-  },
-  {
-    loc: "https://strangeharvestmovie.com/bts.html?lang=es",
-    file: "public/bts.html",
-    changefreq: "monthly",
-    priority: "0.7",
     alternates: [
       { hreflang: "en", href: "https://strangeharvestmovie.com/bts.html" },
       { hreflang: "es", href: "https://strangeharvestmovie.com/bts.html?lang=es" },
@@ -125,32 +113,10 @@ const pageEntries = [
     ],
   },
   {
-    loc: "https://strangeharvestmovie.com/transcript.html?lang=es",
-    file: "public/transcript.html",
-    changefreq: "yearly",
-    priority: "0.4",
-    alternates: [
-      { hreflang: "en", href: "https://strangeharvestmovie.com/transcript.html" },
-      { hreflang: "es", href: "https://strangeharvestmovie.com/transcript.html?lang=es" },
-      { hreflang: "x-default", href: "https://strangeharvestmovie.com/transcript.html" },
-    ],
-  },
-  {
     loc: "https://strangeharvestmovie.com/privacy.html",
     file: "public/privacy.html",
     changefreq: "yearly",
     priority: "0.3",
-    alternates: [
-      { hreflang: "en", href: "https://strangeharvestmovie.com/privacy.html" },
-      { hreflang: "es", href: "https://strangeharvestmovie.com/privacy.html?lang=es" },
-      { hreflang: "x-default", href: "https://strangeharvestmovie.com/privacy.html" },
-    ],
-  },
-  {
-    loc: "https://strangeharvestmovie.com/privacy.html?lang=es",
-    file: "public/privacy.html",
-    changefreq: "yearly",
-    priority: "0.2",
     alternates: [
       { hreflang: "en", href: "https://strangeharvestmovie.com/privacy.html" },
       { hreflang: "es", href: "https://strangeharvestmovie.com/privacy.html?lang=es" },
