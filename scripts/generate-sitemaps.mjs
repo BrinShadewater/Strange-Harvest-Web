@@ -31,18 +31,18 @@ const pageEntries = [
     priority: "1.0",
     alternates: [
       { hreflang: "en", href: "https://strangeharvestmovie.com/" },
-      { hreflang: "es", href: "https://strangeharvestmovie.com/?lang=es" },
+      { hreflang: "es", href: "https://strangeharvestmovie.com/es" },
       { hreflang: "x-default", href: "https://strangeharvestmovie.com/" },
     ],
   },
   {
-    loc: "https://strangeharvestmovie.com/?lang=es",
-    file: "src/app/(en)/page.tsx",
+    loc: "https://strangeharvestmovie.com/es",
+    file: "src/app/(es)/es/page.tsx",
     changefreq: "weekly",
     priority: "0.9",
     alternates: [
       { hreflang: "en", href: "https://strangeharvestmovie.com/" },
-      { hreflang: "es", href: "https://strangeharvestmovie.com/?lang=es" },
+      { hreflang: "es", href: "https://strangeharvestmovie.com/es" },
       { hreflang: "x-default", href: "https://strangeharvestmovie.com/" },
     ],
   },
