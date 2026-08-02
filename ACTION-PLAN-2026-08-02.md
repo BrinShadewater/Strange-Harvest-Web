@@ -56,18 +56,29 @@ the first time. Worth a manual resubmit rather than waiting for a recrawl.
 
 ## Backlog — worth doing, not urgent
 
-### 4. Measure Core Web Vitals for real
+### 4. Measure Core Web Vitals — DONE 2026-08-02
 
-CWV has **never actually been measured** on this site — both the March 2026 and this run hit
-the PageSpeed rate limit and scored it 0/n-a. That is a blind spot, not a good result.
+Key created and set; CWV measured for the first time on this site.
 
-```bash
-$env:PAGESPEED_API_KEY="<key>"
-python "C:/Users/Alex4/.claude/skills/shadewater-seo/scripts/pagespeed.py" https://strangeharvestmovie.com/ --strategy mobile
-```
+| | Mobile | Desktop |
+|---|---|---|
+| Score | 87 | 100 |
+| LCP | 2.9s (over) | 2.2s ok |
+| **INP** | **376ms — FAILS** | 128ms ok |
+| CLS | 0 | 0 |
 
-Get a free key from the Google Cloud console (PageSpeed Insights API). Until then, treat any
-performance claim about this site as unverified.
+**Follow-up, now the real performance item: INP 376ms on mobile.** It is the only Core Web
+Vital in the red, against a 200ms target. PageSpeed's top opportunity is "reduce unused
+JavaScript (~300ms)".
+
+Two things before anyone starts:
+
+1. **These figures describe the previous build.** CrUX is a 28-day rolling window and the
+   deploy is hours old. Re-measure in a few weeks before concluding anything about today's
+   changes.
+2. **Do not chase `ParticleBackground`.** ~6 particles on a phone, and it already exits under
+   `prefers-reduced-motion`. It is not the cost. Diagnosing INP needs a profiling pass against
+   real taps, not a guess at the culprit.
 
 ### 5. Fix the duplicate H2 — DONE
 
