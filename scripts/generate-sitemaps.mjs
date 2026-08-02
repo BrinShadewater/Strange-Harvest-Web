@@ -6,6 +6,10 @@ const PUBLIC_DIR = path.join(ROOT, "public");
 
 const toDate = (value) => new Date(value).toISOString().slice(0, 10);
 
+// lastmod sources must be files that still exist and still represent the page.
+// The home-page entries used to stat the root index.html, a Vite-era leftover that
+// Next never served; when it went, this would have silently fallen back to the
+// build date for every home-page lastmod.
 const resolveLastMod = async (relativePath) => {
   const candidates = [path.join(ROOT, relativePath), path.join(PUBLIC_DIR, relativePath)];
   for (const candidate of candidates) {
@@ -22,7 +26,7 @@ const resolveLastMod = async (relativePath) => {
 const pageEntries = [
   {
     loc: "https://strangeharvestmovie.com/",
-    file: "index.html",
+    file: "src/app/(en)/page.tsx",
     changefreq: "weekly",
     priority: "1.0",
     alternates: [
@@ -33,7 +37,7 @@ const pageEntries = [
   },
   {
     loc: "https://strangeharvestmovie.com/?lang=es",
-    file: "index.html",
+    file: "src/app/(en)/page.tsx",
     changefreq: "weekly",
     priority: "0.9",
     alternates: [
@@ -199,7 +203,7 @@ const main = async () => {
   const sitemapXml = buildSitemapXml(withDates);
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap.xml"), sitemapXml, "utf8");
 
-  const videoLastMod = await resolveLastMod("index.html");
+  const videoLastMod = await resolveLastMod("src/app/(en)/page.tsx");
   const videoSitemapXml = buildVideoSitemapXml(videoLastMod);
   await fs.writeFile(path.join(PUBLIC_DIR, "video-sitemap.xml"), videoSitemapXml, "utf8");
 };

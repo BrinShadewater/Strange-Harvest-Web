@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/cookie-test.html", "/api/"],
+        disallow: ["/api/"],
       },
       // AI crawlers — explicitly allowed for citation and AI search readiness
       { userAgent: "GPTBot", allow: "/" },

@@ -30,9 +30,14 @@ components:
 
 # Strange Harvest Web — Design System
 
-> Recorded 2026-07-29 in scan mode from `src/theme.css`, `src/main.css`,
-> `src/critical.css`, and components, during impeccable rollout. North Star confirmed
-> by Alex 2026-07-28; tokens and rules are extracted from shipped code.
+> Recorded 2026-07-29 in scan mode from `src/main.css`, `src/critical.css`, and
+> components, during impeccable rollout. North Star confirmed by Alex 2026-07-28;
+> tokens and rules are extracted from shipped code. Revised 2026-08-01 with the
+> stylesheet pipeline, the accent's role, and the gutter token.
+>
+> (`src/theme.css` was also scanned in 2026-07-29 but was imported by nothing and
+> described an older design; it was deleted 2026-08-01. The live tokens are the
+> `:root` block in `src/main.css` and `src/critical.css`.)
 
 ## Overview
 
