@@ -2,6 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+    <script>
+      /* Set the document language before the body renders. The full text swap
+         still runs at the end of <body>; this only owns the lang attribute,
+         which otherwise stayed "en" through the entire parse even on ?lang=es.
+         Placed after <meta charset> so the encoding declaration stays first. */
+      if (new URLSearchParams(location.search).get("lang") === "es") {
+        document.documentElement.lang = "es";
+      }
+    </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0a0a0a">
 
@@ -1007,12 +1016,12 @@
       document.getElementById("lang-es")?.classList.toggle("active", isEs);
       if (!isEs) return;
 
-      document.title = "Detras de camaras de Strange Harvest | Galeria BTS oficial";
-      document.querySelector('meta[name="description"]')?.setAttribute("content", "Detras de camaras, stills, posters oficiales y fotos de festivales de Strange Harvest.");
-      document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Detras de camaras de Strange Harvest");
-      document.querySelector('meta[property="og:description"]')?.setAttribute("content", "Galeria BTS oficial de Strange Harvest con fotos de produccion, stills, posters y festivales.");
-      document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", "Detras de camaras de Strange Harvest");
-      document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", "Galeria BTS oficial de Strange Harvest con fotos de produccion, stills, posters y festivales.");
+      document.title = "Detrás de cámaras de Strange Harvest | Galería BTS oficial";
+      document.querySelector('meta[name="description"]')?.setAttribute("content", "Detrás de cámaras, stills, posters oficiales y fotos de festivales de Strange Harvest.");
+      document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Detrás de cámaras de Strange Harvest");
+      document.querySelector('meta[property="og:description"]')?.setAttribute("content", "Galería BTS oficial de Strange Harvest con fotos de producción, stills, posters y festivales.");
+      document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", "Detrás de cámaras de Strange Harvest");
+      document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", "Galería BTS oficial de Strange Harvest con fotos de producción, stills, posters y festivales.");
       document.querySelector('meta[property="og:url"]')?.setAttribute("content", "https://strangeharvestmovie.com/bts.html?lang=es");
       document.querySelector('link[rel="canonical"]')?.setAttribute("href", "https://strangeharvestmovie.com/bts.html?lang=es");
 
@@ -1029,22 +1038,22 @@
       if (brand) brand.setAttribute("href", "/es#top");
 
       const h1 = document.querySelector("main h1");
-      if (h1) h1.textContent = "Detras de camaras de Strange Harvest";
+      if (h1) h1.textContent = "Detrás de cámaras de Strange Harvest";
 
       const introParagraphs = document.querySelectorAll(".introCopy p");
-      if (introParagraphs[0]) introParagraphs[0].textContent = "Detras de camaras de Strange Harvest, el proceso se parecio mas a construir un archivo de investigacion que a producir una pelicula convencional. Entrevistas, emisiones de archivo, recreaciones y lineas investigativas se desarrollaron como piezas independientes y se refinaron durante varios anos antes del montaje final.";
-      if (introParagraphs[1]) introParagraphs[1].textContent = "Esta galeria incluye fotografia de produccion, stills oficiales, posters y cobertura de festivales para documentar el universo visual del filme.";
+      if (introParagraphs[0]) introParagraphs[0].textContent = "Detrás de cámaras de Strange Harvest, el proceso se parecio más a construir un archivo de investigacion que a producir una película convencional. Entrevistas, emisiones de archivo, recreaciones y lineas investigativas se desarrollaron como piezas independientes y se refinaron durante varios años antes del montaje final.";
+      if (introParagraphs[1]) introParagraphs[1].textContent = "Esta galería incluye fotografía de producción, stills oficiales, posters y cobertura de festivales para documentar el universo visual del filme.";
 
       const sectionTitles = document.querySelectorAll(".gallerySection h2");
-      const sectionMap = ["Detras de camaras", "Stills", "Posters oficiales", "Festivales y proyecciones"];
+      const sectionMap = ["Detrás de cámaras", "Stills", "Posters oficiales", "Festivales y proyecciones"];
       sectionTitles.forEach((node, idx) => {
         if (sectionMap[idx]) node.textContent = sectionMap[idx];
       });
 
       const intros = document.querySelectorAll(".galleryIntro");
-      if (intros[0]) intros[0].textContent = "Fotografia de produccion del set de Strange Harvest, incluyendo entrevistas, newsroom setups, scouting y preparacion de escenas.";
+      if (intros[0]) intros[0].textContent = "Fotografia de producción del set de Strange Harvest, incluyendo entrevistas, newsroom setups, scouting y preparacion de escenas.";
       if (intros[1]) intros[1].textContent = "Stills oficiales de Strange Harvest con escenas del crimen, evidencia forense, entrevistas y simbolismo ocultista.";
-      if (intros[2]) intros[2].textContent = "Poster principal, alternativo y version en espanol de Strange Harvest para promocion oficial y prensa.";
+      if (intros[2]) intros[2].textContent = "Poster principal, alternativo y versión en espanol de Strange Harvest para promocion oficial y prensa.";
       if (intros[3]) intros[3].textContent = "Cobertura de festivales y proyecciones de Strange Harvest, incluyendo Fantastic Fest y Beyond Fest.";
 
       const footerOfficial = document.querySelector(".footerOfficial");

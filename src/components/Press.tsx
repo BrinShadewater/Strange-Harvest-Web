@@ -7,6 +7,11 @@ export default function Press() {
   const { press } = useSitecopy();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  // Starts true so the carousel fails OPEN: if IntersectionObserver never
+  // delivers a callback, behaviour is exactly what it was before this
+  // optimisation rather than a carousel that silently never advances.
+  const [inView, setInView] = useState(true);
+  const sectionRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useRef(false);
 
   const quotesLength = useMemo(() => press.quotes.length, [press.quotes.length]);
@@ -17,13 +22,32 @@ export default function Press() {
     if (prefersReducedMotion.current) setIsPaused(true);
   }, []);
 
+  // Only run the carousel while it is actually on screen. It used to tick every
+  // 8s for the whole session, re-rendering 28 cards each time even when the
+  // section was nowhere near the viewport — periodic main-thread work competing
+  // with input on slower devices, for something nobody could see.
   useEffect(() => {
-    if (isPaused) return;
+    const el = sectionRef.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setInView(true); // no IO support: leave it running
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isPaused || !inView) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % quotesLength);
     }, 8000);
     return () => clearInterval(interval);
-  }, [quotesLength, isPaused]);
+  }, [quotesLength, isPaused, inView]);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + quotesLength) % quotesLength);
@@ -38,7 +62,7 @@ export default function Press() {
     .replace("{total}", String(quotesLength));
 
   return (
-    <section className="press" id="press">
+    <section className="press" id="press" ref={sectionRef}>
       <h2>{press.title}</h2>
       
       {press.icons && (

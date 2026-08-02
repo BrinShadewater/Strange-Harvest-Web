@@ -11,18 +11,38 @@ type ThemeVariant = "red" | "blue";
 type VariantCounters = Record<ThemeVariant, number>;
 
 interface AbStats {
+  /** Keyed by ASSIGNED variant. The denominator for any rate. */
   exposures: VariantCounters;
+  /** Keyed by ASSIGNED variant — intention-to-treat. Compare against exposures. */
   ctaClicks: VariantCounters;
+  /** Keyed by the variant on screen at click time. Do NOT divide by exposures. */
+  ctaClicksActive: VariantCounters;
+  /** Keyed by ASSIGNED variant — intention-to-treat. */
   posterDownloads: VariantCounters;
+  /** Keyed by the variant on screen at download time. */
+  posterDownloadsActive: VariantCounters;
   toggleToRed: number;
   toggleToBlue: number;
+  /** Keyed by the variant the visitor settled on. A preference signal, not an outcome. */
   finalChoice: VariantCounters;
 }
 
-type StoredAbStats = Partial<Omit<AbStats, "exposures" | "ctaClicks" | "posterDownloads" | "finalChoice">> & {
+type StoredAbStats = Partial<
+  Omit<
+    AbStats,
+    | "exposures"
+    | "ctaClicks"
+    | "ctaClicksActive"
+    | "posterDownloads"
+    | "posterDownloadsActive"
+    | "finalChoice"
+  >
+> & {
   exposures?: Partial<VariantCounters>;
   ctaClicks?: Partial<VariantCounters>;
+  ctaClicksActive?: Partial<VariantCounters>;
   posterDownloads?: Partial<VariantCounters>;
+  posterDownloadsActive?: Partial<VariantCounters>;
   finalChoice?: Partial<VariantCounters>;
 };
 
@@ -32,7 +52,9 @@ const AB_STATS_KEY = "sh_ab_theme_stats_v1";
 const createDefaultAbStats = (): AbStats => ({
   exposures: { red: 0, blue: 0 },
   ctaClicks: { red: 0, blue: 0 },
+  ctaClicksActive: { red: 0, blue: 0 },
   posterDownloads: { red: 0, blue: 0 },
+  posterDownloadsActive: { red: 0, blue: 0 },
   toggleToRed: 0,
   toggleToBlue: 0,
   finalChoice: { red: 0, blue: 0 },
@@ -49,7 +71,9 @@ const normalizeCounter = (
 const normalizeAbStats = (stored: StoredAbStats | null, fallback: AbStats): AbStats => ({
   exposures: normalizeCounter(stored?.exposures, fallback.exposures),
   ctaClicks: normalizeCounter(stored?.ctaClicks, fallback.ctaClicks),
+  ctaClicksActive: normalizeCounter(stored?.ctaClicksActive, fallback.ctaClicksActive),
   posterDownloads: normalizeCounter(stored?.posterDownloads, fallback.posterDownloads),
+  posterDownloadsActive: normalizeCounter(stored?.posterDownloadsActive, fallback.posterDownloadsActive),
   toggleToRed: typeof stored?.toggleToRed === "number" ? stored.toggleToRed : fallback.toggleToRed,
   toggleToBlue: typeof stored?.toggleToBlue === "number" ? stored.toggleToBlue : fallback.toggleToBlue,
   finalChoice: normalizeCounter(stored?.finalChoice, fallback.finalChoice),
@@ -177,9 +201,19 @@ export default function Hero({ initialVariant = "red" }: { initialVariant?: Them
     const variant = currentVariantRef.current;
     updateAbStats((stats) => ({
       ...stats,
+      // Intention-to-treat: keyed by the ASSIGNED bucket so it shares a
+      // denominator with `exposures`. Keyed by the active variant — as it was
+      // until 2026-08-02 — ctaClicks/exposures divided outcomes by the wrong
+      // group for every visitor who touched the poster toggle.
       ctaClicks: {
         ...stats.ctaClicks,
-        [variant]: (stats.ctaClicks[variant] ?? 0) + 1,
+        [assignedVariant]: (stats.ctaClicks[assignedVariant] ?? 0) + 1,
+      },
+      // What was actually on screen when they clicked. A different question;
+      // kept separately so it can never be divided by `exposures` by accident.
+      ctaClicksActive: {
+        ...stats.ctaClicksActive,
+        [variant]: (stats.ctaClicksActive[variant] ?? 0) + 1,
       },
     }));
     emitAbEvent("ab_theme_cta_click", {
@@ -195,7 +229,11 @@ export default function Hero({ initialVariant = "red" }: { initialVariant?: Them
       ...stats,
       posterDownloads: {
         ...stats.posterDownloads,
-        [variant]: (stats.posterDownloads[variant] ?? 0) + 1,
+        [assignedVariant]: (stats.posterDownloads[assignedVariant] ?? 0) + 1,
+      },
+      posterDownloadsActive: {
+        ...stats.posterDownloadsActive,
+        [variant]: (stats.posterDownloadsActive[variant] ?? 0) + 1,
       },
     }));
     emitAbEvent("ab_theme_poster_download", {

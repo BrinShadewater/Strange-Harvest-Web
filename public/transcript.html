@@ -2,6 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script>
+      /* Set the document language before the body renders. The full text swap
+         still runs at the end of <body>; this only owns the lang attribute,
+         which otherwise stayed "en" through the entire parse even on ?lang=es.
+         Placed after <meta charset> so the encoding declaration stays first. */
+      if (new URLSearchParams(location.search).get("lang") === "es") {
+        document.documentElement.lang = "es";
+      }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0a0a0a">
     
@@ -363,23 +372,23 @@
 
         if (!isEs) return;
 
-        document.title = "Strange Harvest Trailer Oficial - Transcripcion";
-        document.querySelector('meta[name="description"]')?.setAttribute("content", "Transcripcion completa del trailer oficial de Strange Harvest.");
-        document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Strange Harvest - Transcripcion del Trailer");
-        document.querySelector('meta[property="og:description"]')?.setAttribute("content", "Transcripcion completa del trailer oficial de Strange Harvest.");
+        document.title = "Strange Harvest Trailer Oficial - Transcripción";
+        document.querySelector('meta[name="description"]')?.setAttribute("content", "Transcripción completa del trailer oficial de Strange Harvest.");
+        document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Strange Harvest - Transcripción del Trailer");
+        document.querySelector('meta[property="og:description"]')?.setAttribute("content", "Transcripción completa del trailer oficial de Strange Harvest.");
         document.querySelector('meta[property="og:url"]')?.setAttribute("content", "https://strangeharvestmovie.com/transcript.html?lang=es");
         document.querySelector('link[rel="canonical"]')?.setAttribute("href", "https://strangeharvestmovie.com/transcript.html?lang=es");
 
         const subtitle = document.querySelector(".subtitle");
-        if (subtitle) subtitle.textContent = "Transcripcion del trailer oficial";
+        if (subtitle) subtitle.textContent = "Transcripción del trailer oficial";
         const iframe = document.querySelector(".video-embed iframe");
         if (iframe) iframe.setAttribute("title", "Trailer oficial de Strange Harvest");
         const note = document.querySelector(".accessibility-note");
-        if (note) note.innerHTML = "<strong>Nota de accesibilidad:</strong> Esta transcripcion proporciona una version en texto del contenido de audio y video del trailer oficial de Strange Harvest para fines de accesibilidad.";
+        if (note) note.innerHTML = "<strong>Nota de accesibilidad:</strong> Esta transcripción proporciona una versión en texto del contenido de audio y video del trailer oficial de Strange Harvest para fines de accesibilidad.";
         const transcriptHeading = document.querySelector(".transcript h2");
-        if (transcriptHeading) transcriptHeading.textContent = "Transcripcion del trailer";
+        if (transcriptHeading) transcriptHeading.textContent = "Transcripción del trailer";
         const warning = document.querySelector('.transcript p[style*="margin-top: 40px"]');
-        if (warning) warning.innerHTML = "<strong>Advertencia de contenido:</strong> Este trailer contiene imagenes perturbadoras, referencias a violencia y elementos de terror. Se recomienda discrecion.";
+        if (warning) warning.innerHTML = "<strong>Advertencia de contenido:</strong> Este trailer contiene imágenes perturbadoras, referencias a violencia y elementos de terror. Se recomienda discrecion.";
         const backLink = document.querySelector(".back-link");
         if (backLink) {
           backLink.textContent = "← Volver al inicio de Strange Harvest";

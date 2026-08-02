@@ -2,6 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script>
+      /* Set the document language before the body renders. The full text swap
+         still runs at the end of <body>; this only owns the lang attribute,
+         which otherwise stayed "en" through the entire parse even on ?lang=es.
+         Placed after <meta charset> so the encoding declaration stays first. */
+      if (new URLSearchParams(location.search).get("lang") === "es") {
+        document.documentElement.lang = "es";
+      }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0a0a0a">
     
@@ -137,24 +146,24 @@
 
         if (!isEs) return;
 
-        document.title = "Politica de Privacidad | Strange Harvest";
-        document.querySelector('meta[name="description"]')?.setAttribute("content", "Politica de privacidad del sitio web de Strange Harvest. Informacion sobre cookies, recopilacion de datos, servicios de terceros y tus derechos de privacidad.");
-        document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Politica de Privacidad | Strange Harvest");
-        document.querySelector('meta[property="og:description"]')?.setAttribute("content", "Politica de privacidad del sitio web de Strange Harvest.");
+        document.title = "Política de Privacidad | Strange Harvest";
+        document.querySelector('meta[name="description"]')?.setAttribute("content", "Política de privacidad del sitio web de Strange Harvest. Información sobre cookies, recopilación de datos, servicios de terceros y tus derechos de privacidad.");
+        document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Política de Privacidad | Strange Harvest");
+        document.querySelector('meta[property="og:description"]')?.setAttribute("content", "Política de privacidad del sitio web de Strange Harvest.");
         document.querySelector('meta[property="og:url"]')?.setAttribute("content", "https://strangeharvestmovie.com/privacy.html?lang=es");
         document.querySelector('link[rel="canonical"]')?.setAttribute("href", "https://strangeharvestmovie.com/privacy.html?lang=es");
 
         const replacements = [
-          ["h1", "Politica de Privacidad"],
-          ["p strong", "Ultima actualizacion:"],
-          ["h2:nth-of-type(1)", "Informacion que recopilamos"],
-          ["h2:nth-of-type(2)", "Como usamos la informacion"],
+          ["h1", "Política de Privacidad"],
+          ["p strong", "Última actualización:"],
+          ["h2:nth-of-type(1)", "Información que recopilamos"],
+          ["h2:nth-of-type(2)", "Cómo usamos la información"],
           ["h2:nth-of-type(3)", "Servicios de terceros"],
           ["h2:nth-of-type(4)", "Tus derechos"],
           ["h2:nth-of-type(5)", "Seguridad de datos"],
           ["h2:nth-of-type(6)", "Privacidad de menores"],
-          ["h2:nth-of-type(7)", "Cambios en esta politica"],
-          ["h2:nth-of-type(8)", "Contactanos"],
+          ["h2:nth-of-type(7)", "Cambios en esta política"],
+          ["h2:nth-of-type(8)", "Contáctanos"],
         ];
         replacements.forEach(([selector, text]) => {
           const node = document.querySelector(selector);
@@ -163,13 +172,13 @@
 
         const paragraphs = document.querySelectorAll("p");
         if (paragraphs[1]) paragraphs[1].textContent = "Cuando visitas strangeharvestmovie.com, podemos recopilar:";
-        if (paragraphs[2]) paragraphs[2].textContent = "Usamos la informacion recopilada para:";
-        if (paragraphs[3]) paragraphs[3].textContent = "Nuestro sitio web usa los siguientes servicios de terceros, cada uno con su propia politica de privacidad:";
+        if (paragraphs[2]) paragraphs[2].textContent = "Usamos la información recopilada para:";
+        if (paragraphs[3]) paragraphs[3].textContent = "Nuestro sitio web usa los siguientes servicios de terceros, cada uno con su propia política de privacidad:";
         if (paragraphs[4]) paragraphs[4].textContent = "Tienes derecho a:";
-        if (paragraphs[5]) paragraphs[5].textContent = "Implementamos medidas de seguridad para proteger tu informacion. Sin embargo, ninguna transmision por internet es 100% segura.";
-        if (paragraphs[6]) paragraphs[6].textContent = "Nuestro sitio web no esta dirigido a menores de 13 anos. No recopilamos informacion de menores intencionalmente.";
-        if (paragraphs[7]) paragraphs[7].textContent = "Podemos actualizar esta politica periodicamente. Los cambios se publicaran en esta pagina con una fecha actualizada.";
-        if (paragraphs[8]) paragraphs[8].textContent = "Para preguntas o inquietudes sobre privacidad, contactanos a traves de nuestras redes sociales enlazadas en el sitio principal.";
+        if (paragraphs[5]) paragraphs[5].textContent = "Implementamos medidas de seguridad para proteger tu información. Sin embargo, ninguna transmision por internet es 100% segura.";
+        if (paragraphs[6]) paragraphs[6].textContent = "Nuestro sitio web no está dirigido a menores de 13 años. No recopilamos información de menores intencionalmente.";
+        if (paragraphs[7]) paragraphs[7].textContent = "Podemos actualizar esta política periódicamente. Los cambios se publicarán en esta página con una fecha actualizada.";
+        if (paragraphs[8]) paragraphs[8].textContent = "Para preguntas o inquietudes sobre privacidad, contáctanos a través de nuestras redes sociales enlazadas en el sitio principal.";
 
         const listItems = document.querySelectorAll("li");
         if (listItems[0]) listItems[0].innerHTML = "<strong>Cookies:</strong> Usamos cookies para recordar tus preferencias de consentimiento.";
@@ -178,7 +187,7 @@
         if (listItems[3]) listItems[3].textContent = "Mejorar la funcionalidad del sitio y la experiencia de usuario";
         if (listItems[4]) listItems[4].textContent = "Analizar el trafico del sitio y los patrones de uso";
         if (listItems[5]) listItems[5].textContent = "Procesar pedidos de merchandising (gestionados por Shopify)";
-        if (listItems[8]) listItems[8].innerHTML = "<strong>Plataformas de streaming:</strong> Los enlaces a Hulu, Apple TV, Amazon Prime, etc. se rigen por sus respectivas politicas de privacidad";
+        if (listItems[8]) listItems[8].innerHTML = "<strong>Plataformas de streaming:</strong> Los enlaces a Hulu, Apple TV, Amazon Prime, etc. se rigen por sus respectivas políticas de privacidad";
         if (listItems[9]) listItems[9].textContent = "Rechazar cookies (mediante nuestro banner de consentimiento)";
         if (listItems[10]) listItems[10].textContent = "Solicitar la eliminacion de cualquier dato personal que conservemos";
         if (listItems[11]) listItems[11].textContent = "Contactarnos con inquietudes de privacidad";
