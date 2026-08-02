@@ -1,9 +1,10 @@
 "use client";
 
-import { sitecopy, siteLanguage } from "./sitecopy";
+import { useLanguageContext, useSitecopy } from "./LanguageProvider";
+import type { SiteLanguage } from "./sitecopy";
 
-function localizeCrewRole(role: string): string {
-  if (siteLanguage !== "es") return role;
+function localizeCrewRole(role: string, lang: SiteLanguage): string {
+  if (lang !== "es") return role;
   const map: Record<string, string> = {
     "Director & Writer": "Director y guionista",
     Producers: "Productores",
@@ -14,7 +15,8 @@ function localizeCrewRole(role: string): string {
 }
 
 export default function CastCrew() {
-  const { castCrew } = sitecopy;
+  const { castCrew } = useSitecopy();
+  const lang = useLanguageContext();
 
   return (
     <section className="castCrew" id="cast">
@@ -68,7 +70,7 @@ export default function CastCrew() {
           <div className="crewGrid">
             {castCrew.crew.sections.map((section, idx) => (
               <div key={idx} className="crewCard">
-                <h4 className="crewRole">{localizeCrewRole(section.role)}</h4>
+                <h4 className="crewRole">{localizeCrewRole(section.role, lang)}</h4>
                 {section.members.map((member, mIdx) => (
                   <a 
                     key={mIdx} 

@@ -6,7 +6,11 @@
     "node": ">=22.12.0"
   },
   "scripts": {
+    "sync:css": "node scripts/sync-css.mjs",
+    "check:css": "node scripts/sync-css.mjs --check",
+    "predev": "node scripts/sync-css.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/sync-css.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint ."

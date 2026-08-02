@@ -1,11 +1,11 @@
 "use client";
 
-import { sitecopy } from "./sitecopy";
+import { useSitecopy } from "./LanguageProvider";
 import { useState, useEffect } from "react";
 import { getProducts, getCheckoutUrl, formatPrice, type ShopifyProduct } from "../services/shopify";
 
 export default function Merch() {
-  const { merch } = sitecopy;
+  const { merch } = useSitecopy();
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);

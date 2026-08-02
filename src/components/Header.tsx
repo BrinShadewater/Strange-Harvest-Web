@@ -3,10 +3,11 @@
 import { useEffect, useRef } from "react";
 import { useState } from "react";
 import { HERO_LOGO_SRC_OPTIMISED, HERO_LOGO_SRCSET } from "../constants/assets";
-import { sitecopy, siteLanguage } from "./sitecopy";
+import { useLanguageContext, useSitecopy } from "./LanguageProvider";
 
 export default function Header() {
-  const { merch, header } = sitecopy;
+  const { merch, header } = useSitecopy();
+  const siteLanguage = useLanguageContext();
   const [navOpen, setNavOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);

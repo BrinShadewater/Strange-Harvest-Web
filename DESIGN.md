@@ -69,10 +69,34 @@ typeface to "add character"; character comes from the imagery and the copy.
 ## Layout
 
 - Content max-width 1200px; breakpoints at 1200px and 900px.
-- Next.js 15 App Router with `(en)` and `(es)` route groups — **every layout change
-  must hold in both locales**; Spanish strings run longer.
-- `critical.css` is inlined critical CSS and duplicates blocks from `main.css`.
-  **Edit both, or the change only lands after hydration.** This is a real trap.
+- `main` owns `--page-gutter` (120px → 60px → 20px across those breakpoints).
+  Full-bleed sections must derive their bleed from it, never from a fixed value:
+  `.hero` uses `--hero-bleed: min(50px, var(--page-gutter))` so it reaches the
+  viewport edge and never past it. A flat `-50px` overhung mobile by 30px a side
+  and was invisible only because `#root` sets `overflow-x: hidden`.
+- Next.js App Router with `(en)` and `(es)` route groups — **every layout change
+  must hold in both locales**; Spanish strings run longer. Copy comes from
+  `useSitecopy()`, which reads the route-owned `LanguageContext`. **Never resolve
+  language from `window.location`** — as a module-scope constant it evaluated to
+  "en" on the server and shipped English HTML under `<html lang="es">`.
+
+### The two-stylesheet pipeline — read this before touching CSS
+
+Three files, and only one of them is a source:
+
+- `src/main.css` — **the source of truth.** Imported by nothing.
+- `public/styles/main.css` — **generated.** Never hand-edit. Written by
+  `scripts/sync-css.mjs`, which runs on `predev`/`prebuild`. This is the file the
+  browser actually loads, injected as a `<link>` by `<DeferredCSS />` after first
+  paint so it never blocks rendering. A `<noscript>` link covers JS-off.
+- `src/critical.css` — inlined above-fold subset, hand-maintained, and it
+  duplicates blocks from `main.css`. **Edit both, or the rule only lands after
+  hydration** — and since the deferred sheet loads last, a stale `main.css` rule
+  will *override* a correct `critical.css` one.
+
+Run `npm run check:css` to assert the generated file is current. If you invoke
+`next build` directly instead of `npm run build`, the sync does not run and you
+will be testing stale CSS.
 
 ## Elevation & Depth
 
@@ -96,10 +120,16 @@ typeface to "add character"; character comes from the imagery and the copy.
   Don't propagate the treatment to cards, list items, or alerts.
 - **navToggle / navToggleBar**: three bars, transform-morphed to an X.
 - **Cards**: card-black surface, border-gray edge, hover lifts with shadow.
+- **Press carousel**: only the active card is interactive — inactive cards carry
+  `inert`, since they sit at `opacity: 0` and were otherwise tabbable. The track
+  has no `aria-live`; the `.carouselPosition` counter announces instead, and only
+  while paused, so autoplay never interrupts a screen reader. Dots render 10px
+  inside a 24px button (WCAG 2.5.8) and wrap rather than overflow.
 
 ## Do's and Don'ts
 
-- **Do** edit `main.css` and `critical.css` together for any shared block.
+- **Do** edit `main.css` and `critical.css` together for any shared block, and
+  let the sync script regenerate `public/styles/main.css`.
 - **Do** verify changes in both `(en)` and `(es)`.
 - **Do** keep the single Assistant family and the single dark theme.
 - **Do** treat the image library as brand-critical; route new assets through the

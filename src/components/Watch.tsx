@@ -1,55 +1,56 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { sitecopy } from "./sitecopy";
+import { useSitecopy } from "./LanguageProvider";
 import {
   detectRegion,
   filterStreamingPlatformsByCountry,
   filterUSCAPlatformsByCountry,
+  geoFromCountry,
   getPlatformsForRegion,
   type GeoLocation,
 } from "../services/geolocation";
 
-export default function Watch() {
-  const { watch } = sitecopy;
-  const isDev = process.env.NODE_ENV === 'development';
-  const [geo, setGeo] = useState<GeoLocation | null>(null);
-  const [loading, setLoading] = useState(true);
+/**
+ * Watch — the conversion surface.
+ *
+ * The region arrives from the edge header during server rendering, so the
+ * common case paints real platform links in the first byte. When the header is
+ * absent (local dev, unknown host) we fall back to client detection, but we
+ * render the region-agnostic list while that runs instead of a spinner. There
+ * is no state in which this section shows a visitor nothing to click.
+ */
+export default function Watch({ initialCountry = "XX" }: { initialCountry?: string }) {
+  const { watch } = useSitecopy();
+  const isDev = process.env.NODE_ENV === "development";
+
+  const serverGeo = geoFromCountry(initialCountry);
+  const [geo, setGeo] = useState<GeoLocation>(serverGeo);
 
   useEffect(() => {
+    // The server already knew the country — nothing to detect.
+    if (serverGeo.detected) return;
+
+    let cancelled = false;
+
     async function initRegion() {
       try {
         const detectedGeo = await detectRegion();
-        setGeo(detectedGeo);
+        if (!cancelled) setGeo(detectedGeo);
       } catch (error) {
         if (isDev) {
-          console.warn('Failed to detect region:', error);
+          console.warn("Failed to detect region:", error);
         }
-        setGeo({ country: 'XX', region: 'OTHER', detected: false });
-      } finally {
-        setLoading(false);
+        // Keep the region-agnostic list already on screen.
       }
     }
 
     initRegion();
-  }, []);
+    return () => {
+      cancelled = true;
+    };
+  }, [serverGeo.detected, isDev]);
 
-  // Hide platform links until region detection completes to avoid incorrect links.
-  if (loading || !geo) {
-    return (
-      <section className="watch" id="watch">
-        <div className="sectionHead">
-          <h2>{watch.title}</h2>
-        </div>
-
-        <p className="watchNote" style={{ marginTop: 24 }}>
-          {watch.loadingMessage}
-        </p>
-      </section>
-    );
-  }
-
-  // Get region-specific platform visibility
   const { showStreaming, showUSCA, showIntl } = getPlatformsForRegion(geo.region);
   const streamingPlatforms = filterStreamingPlatformsByCountry(watch.streamingPlatforms, geo.country);
   const uscaPlatforms = filterUSCAPlatformsByCountry(watch.usca, geo.country);
@@ -130,6 +131,12 @@ export default function Watch() {
             ))}
           </div>
         </>
+      )}
+
+      {!geo.detected && (
+        <p className="watchNote" style={{ marginTop: 24 }}>
+          {watch.regionUnknownNote}
+        </p>
       )}
     </section>
   );

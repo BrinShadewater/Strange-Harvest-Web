@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 // the is-visible class. This makes the fluorescentFlickerOn animation start
 // as soon as CSS loads (~500ms) rather than waiting for React hydration +
 // IntersectionObserver (~2.4s), which was inflating mobile LCP to 3.1s.
-import { sitecopy } from "./sitecopy";
+import { useSitecopy } from "./LanguageProvider";
 
 type ThemeVariant = "red" | "blue";
 type VariantCounters = Record<ThemeVariant, number>;
@@ -80,7 +80,7 @@ function updateAbStats(mutator: (current: AbStats) => AbStats) {
 }
 
 export default function Hero({ initialVariant = "red" }: { initialVariant?: ThemeVariant }) {
-  const { hero } = sitecopy;
+  const { hero } = useSitecopy();
   // initialVariant comes from the server (cookie-assigned) — no SSR mismatch
   const [assignedVariant] = useState<ThemeVariant>(initialVariant);
   const [isFestivalPoster, setIsFestivalPoster] = useState(initialVariant === "blue");

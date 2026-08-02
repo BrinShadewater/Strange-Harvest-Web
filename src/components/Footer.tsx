@@ -1,10 +1,10 @@
 "use client";
 
-import { sitecopy } from "./sitecopy";
+import { useSitecopy } from "./LanguageProvider";
 import { HERO_LOGO_SRC_OPTIMISED, HERO_LOGO_SRCSET } from "../constants/assets";
 
 export default function Footer() {
-  const { footer } = sitecopy;
+  const { footer } = useSitecopy();
 
   const handleCookieSettings = () => {
     window.dispatchEvent(new Event("openCookieSettings"));

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { sitecopy } from "./sitecopy";
+import { useSitecopy } from "./LanguageProvider";
 import { detectRegion } from "../services/geolocation";
 
 function getAmazonHomeVideoLink(countryCode: string, fallbackHref: string): string {
@@ -36,7 +36,7 @@ function getAmazonHomeVideoLink(countryCode: string, fallbackHref: string): stri
 }
 
 export default function HomeVideo() {
-  const { homeVideo } = sitecopy;
+  const { homeVideo } = useSitecopy();
   const [homeVideoHref, setHomeVideoHref] = useState(homeVideo.cta.href);
 
   useEffect(() => {

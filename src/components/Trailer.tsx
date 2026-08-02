@@ -1,10 +1,10 @@
 "use client";
 
-import { sitecopy } from "./sitecopy";
+import { useSitecopy } from "./LanguageProvider";
 import LazyYoutube from "./LazyYoutube";
 
 export default function Trailer() {
-  const { trailer } = sitecopy;
+  const { trailer } = useSitecopy();
 
   return (
     <section className="trailer" id="trailer">

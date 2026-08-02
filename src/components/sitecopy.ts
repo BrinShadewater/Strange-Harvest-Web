@@ -1,15 +1,5 @@
 export type SiteLanguage = "en" | "es";
 
-function detectSiteLanguage(): SiteLanguage {
-  if (typeof window === "undefined") return "en";
-  // Detect from pathname for /es/ route (Next.js)
-  const pathname = window.location.pathname;
-  if (pathname === "/es" || pathname.startsWith("/es/")) return "es";
-  return "en";
-}
-
-export const siteLanguage = detectSiteLanguage();
-
 const sitecopyEn = {
   cookieConsent: {
     title: "Cookie Notice",
@@ -134,6 +124,16 @@ const sitecopyEn = {
 
   press: {
     title: "Press & Mentions",
+    aria: {
+      carousel: "Press reviews",
+      previous: "Previous review",
+      next: "Next review",
+      pause: "Pause auto-advancing reviews",
+      resume: "Resume auto-advancing reviews",
+      goTo: "Go to review from",
+      /** {current} and {total} are substituted at render. */
+      position: "Review {current} of {total}",
+    },
     icons: [
       {
         name: "Rotten Tomatoes",
@@ -319,7 +319,7 @@ const sitecopyEn = {
     streamingOn: "STREAMING ON",
     rentOwnUSCA: "RENT / OWN",
     rentOwnIntl: "RENT / OWN (UK & INTERNATIONAL)",
-    loadingMessage: "Checking platform availability for your region...",
+    regionUnknownNote: "We couldn’t confirm your region, so this list isn’t filtered. Availability varies by country.",
     ariaWatchOn: "Watch on",
     ariaRentBuyOn: "Rent or buy on",
     streamingPlatforms: [
@@ -578,26 +578,26 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
   cookieConsent: {
     title: "Aviso de Cookies",
     message:
-      "Este sitio web utiliza cookies para mejorar tu experiencia de navegacion y analizar el trafico. Puedes elegir que cookies aceptar.",
+      "Este sitio web utiliza cookies para mejorar tu experiencia de navegación y analizar el tráfico. Puedes elegir qué cookies aceptar.",
     acceptAllButton: "Aceptar todo",
     essentialOnlyButton: "Solo cookies esenciales",
     manageButton: "Administrar preferencias",
     saveButton: "Guardar preferencias",
     privacyLink: {
-      label: "Politica de Privacidad",
+      label: "Política de Privacidad",
     },
     preferences: {
       title: "Preferencias de Cookies",
       description:
-        "Elige que tipos de cookies deseas permitir. Las cookies esenciales no se pueden desactivar porque son necesarias para el funcionamiento del sitio.",
+        "Elige qué tipos de cookies deseas permitir. Las cookies esenciales no se pueden desactivar porque son necesarias para el funcionamiento del sitio.",
       categories: {
         essential: {
           label: "Cookies esenciales",
-          description: "Necesarias para el funcionamiento basico del sitio. No se pueden desactivar.",
+          description: "Necesarias para el funcionamiento básico del sitio. No se pueden desactivar.",
         },
         analytics: {
-          label: "Cookies analiticas",
-          description: "Nos ayudan a entender como los visitantes interactuan con el sitio.",
+          label: "Cookies analíticas",
+          description: "Nos ayudan a entender cómo los visitantes interactúan con el sitio.",
         },
         marketing: {
           label: "Cookies de marketing",
@@ -605,7 +605,7 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
         },
         preferences: {
           label: "Cookies de preferencias",
-          description: "Recuerdan tu configuracion y preferencias para futuras visitas.",
+          description: "Recuerdan tu configuración y preferencias para futuras visitas.",
         },
       },
     },
@@ -628,7 +628,7 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
     tagline: "MOCKUMENTARY DE TERROR TRUE CRIME Y FOUND FOOTAGE",
     subtitle: "SITIO OFICIAL",
     blurb:
-      "Un control de bienestar de rutina conduce a un hallazgo espeluznante y al regreso de un asesino que se creia desaparecido para siempre.",
+      "Un control de bienestar de rutina conduce a un hallazgo espeluznante y al regreso de un asesino que se creía desaparecido para siempre.",
     ctas: {
       primary: { label: "Trailer" },
     },
@@ -644,33 +644,42 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
   synopsis: {
     title: "Sinopsis",
     body: [
-      "Un control de bienestar de rutina en los suburbios de San Bernardino termina en horror. Una familia de tres ha sido atada, desangrada y colocada bajo un extrano simbolo escrito con sangre en el techo. Los detectives Joe Kirby y Lexi Taylor reconocen la marca. Es la firma de un asesino de hace 15 anos — y ha regresado.",
-      "Mr. Shiny no se detiene. Nuevas escenas del crimen aparecen rapidamente. Una victima es encontrada atrapada en una piscina con sanguijuelas vivas. Otra es desollada ritualmente y expuesta en un parque publico.",
-      "El caso deja de parecer rutinario. Los asesinatos parecen conectados a algo mas grande — algo siniestro. Las pruebas apuntan hacia fenomenos cosmicos y fuerzas que van mucho mas alla de la comprension humana.",
+      "Un control de bienestar de rutina en los suburbios de San Bernardino termina en horror. Una familia de tres ha sido atada, desangrada y colocada bajo un extraño símbolo escrito con sangre en el techo. Los detectives Joe Kirby y Lexi Taylor reconocen la marca. Es la firma de un asesino de hace 15 años — y ha regresado.",
+      "Mr. Shiny no se detiene. Nuevas escenas del crimen aparecen rápidamente. Una víctima es encontrada atrapada en una piscina con sanguijuelas vivas. Otra es desollada ritualmente y expuesta en un parque público.",
+      "El caso deja de parecer rutinario. Los asesinatos parecen conectados a algo más grande — algo siniestro. Las pruebas apuntan hacia fenómenos cósmicos y fuerzas que van mucho más allá de la comprensión humana.",
     ],
     quote: {
-      text: "Algunos misterios no se resuelven. Solo se vuelven mas extranos cuanto mas los miras.",
+      text: "Algunos misterios no se resuelven. Solo se vuelven más extraños cuanto más los miras.",
     },
     stats: [
-      { value: "2025", label: "Ano de estreno" },
-      { value: "134m", label: "Duracion" },
-      { value: "RESTRINGIDA", label: "Contenido perturbador / violencia explicita y lenguaje fuerte" },
-      { value: "True Crime / Horror", label: "Genero" },
+      { value: "2025", label: "Año de estreno" },
+      { value: "134m", label: "Duración" },
+      { value: "RESTRINGIDA", label: "Contenido perturbador / violencia explícita y lenguaje fuerte" },
+      { value: "True Crime / Horror", label: "Género" },
     ],
   },
   press: {
     title: "Prensa y menciones",
+    aria: {
+      carousel: "Reseñas de prensa",
+      previous: "Reseña anterior",
+      next: "Reseña siguiente",
+      pause: "Pausar el avance automático de reseñas",
+      resume: "Reanudar el avance automático de reseñas",
+      goTo: "Ir a la reseña de",
+      position: "Reseña {current} de {total}",
+    },
   },
   watch: {
     title: "Ver ahora",
     rentOwnUSCA: "ALQUILER / COMPRA",
     rentOwnIntl: "ALQUILER / COMPRA (REINO UNIDO E INTERNACIONAL)",
-    loadingMessage: "Comprobando disponibilidad de plataformas para tu region...",
+    regionUnknownNote: "No hemos podido confirmar tu región, así que esta lista no está filtrada. La disponibilidad varía según el país.",
     ariaWatchOn: "Ver en",
     ariaRentBuyOn: "Alquilar o comprar en",
   },
   homeVideo: {
-    title: "Lanzamiento oficial en video domestico",
+    title: "Lanzamiento oficial en vídeo doméstico",
     description: "Lanzamiento oficial en DVD distribuido por Sony Pictures Home Entertainment. Fabricado bajo demanda.",
     cta: { label: "Ver en Amazon" },
     disclaimer: "*Vendido y gestionado por Amazon.",
@@ -679,8 +688,8 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
     title: "Merch oficial",
     blurb: "Viste el terror. Lleva el misterio. Merch oficial exclusiva de Strange Harvest para verdaderos creyentes.",
     loadingMessage: "Cargando merchandising...",
-    comingSoonTitle: "Merch proximamente",
-    comingSoonBody: "Nuestra tienda de merch se esta actualizando. Vuelve pronto.",
+    comingSoonTitle: "Merch próximamente",
+    comingSoonBody: "Nuestra tienda de merch se está actualizando. Vuelve pronto.",
     notifyMe: "Avisarme",
     buyNow: "Comprar ahora",
   },
@@ -695,10 +704,20 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
   footer: {
     tagline: "Mockumentary de True Crime y Found Footage",
     officialNotice: "Sitio web oficial de Strange Harvest (2025)",
-    cookieSettingsLabel: "Configuracion de cookies",
+    cookieSettingsLabel: "Configuración de cookies",
     disclaimer:
       "Todo el material de este sitio web es ficticio y se presenta con fines de entretenimiento. Cualquier similitud con personas, organizaciones, lugares o eventos reales es coincidencia y no pretende representar hechos reales.",
   },
 };
 
-export const sitecopy = siteLanguage === "es" ? deepMerge(sitecopyEn, sitecopyEs) : sitecopyEn;
+export type Sitecopy = typeof sitecopyEn;
+
+// Resolved once per language, not per render. Language comes from the route via
+// LanguageContext — never from window.location. Sniffing the pathname at module
+// scope resolved to "en" on the server, so /es shipped English HTML under
+// <html lang="es"> and then hydration-mismatched into Spanish.
+const sitecopyEsMerged = deepMerge(sitecopyEn, sitecopyEs);
+
+export function getSitecopy(lang: SiteLanguage): Sitecopy {
+  return lang === "es" ? sitecopyEsMerged : sitecopyEn;
+}

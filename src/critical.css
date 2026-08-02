@@ -148,19 +148,24 @@ main {
   z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 120px 80px;
+  /* Single source of truth for the page gutter. Full-bleed sections read this
+     so they can never bleed further than the gutter actually is. */
+  --page-gutter: 120px;
+  padding: 80px var(--page-gutter) 80px;
   overflow: visible;
 }
 
 @media (max-width: 1200px) {
   main {
-    padding: 0 60px 80px;
+    --page-gutter: 60px;
+    padding: 0 var(--page-gutter) 80px;
   }
 }
 
 @media (max-width: 900px) {
   main {
-    padding: 0 20px 80px;
+    --page-gutter: 20px;
+    padding: 0 var(--page-gutter) 80px;
   }
 }
 
@@ -181,10 +186,14 @@ section:first-of-type {
   text-align: center;
   padding-top: 120px !important;
   position: relative;
-  padding-left: 50px;
-  padding-right: 50px;
-  margin-left: -50px;
-  margin-right: -50px;
+  /* Bleeds past the content column, but never past the gutter. At a 20px
+     mobile gutter a flat -50px overhung the viewport by 30px each side and
+     was only hidden by overflow-x: hidden on the body. */
+  --hero-bleed: min(50px, var(--page-gutter, 50px));
+  padding-left: var(--hero-bleed);
+  padding-right: var(--hero-bleed);
+  margin-left: calc(var(--hero-bleed) * -1);
+  margin-right: calc(var(--hero-bleed) * -1);
 }
 
 .hero > * {
@@ -200,7 +209,9 @@ section:first-of-type {
 }
 
 .hero h1 {
-  font-size: 84px;
+  /* Reaches its full 84px at 700px and up; scales down below that instead of
+     forcing "STRANGE HARVEST" to fill a phone edge to edge. */
+  font-size: clamp(2.5rem, 12vw, 84px);
   margin-top: 22px;
   margin-bottom: 8px;
   line-height: 0.9;

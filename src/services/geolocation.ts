@@ -23,6 +23,27 @@ const CACHE_KEY = 'sh_geo_region';
 const CACHE_DURATION = 1000 * 60 * 60 * 24; // 24 hours
 const isDev = process.env.NODE_ENV === 'development';
 
+// Without these, a hanging request left the Watch section showing
+// "Checking platform availability…" forever — no links at the moment of
+// conversion. Both calls now fail fast into the fallback chain.
+const EDGE_TIMEOUT_MS = 2000;
+const API_TIMEOUT_MS = 3000;
+
+/** fetch with a hard deadline; rejects rather than hanging. */
+async function fetchWithTimeout(url: string, timeoutMs: number): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(url, {
+      method: 'GET',
+      cache: 'no-cache',
+      signal: controller.signal,
+    });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 /**
  * Detect visitor region using multiple methods
  * Priority: 1. Cloudflare header, 2. API fallback, 3. Default
@@ -71,14 +92,14 @@ export async function detectRegion(): Promise<GeoLocation> {
 async function tryCloudflareDetection(): Promise<GeoLocation | null> {
   try {
     // Call our serverless function endpoint
-    const response = await fetch('/api/geo', {
-      method: 'GET',
-      cache: 'no-cache',
-    });
+    const response = await fetchWithTimeout('/api/geo', EDGE_TIMEOUT_MS);
 
     if (response.ok) {
       const data = await response.json();
-      if (data.country) {
+      // "XX" is the endpoint's "no edge header present" sentinel, not a country.
+      // Treating it as a hit marked the visitor as detected and suppressed the
+      // "we couldn't confirm your region" note. Fall through to the API instead.
+      if (data.country && data.country !== 'XX') {
         return {
           country: data.country,
           region: mapCountryToRegion(data.country),
@@ -99,14 +120,11 @@ async function tryCloudflareDetection(): Promise<GeoLocation | null> {
  */
 async function tryAPIDetection(): Promise<GeoLocation | null> {
   try {
-    const response = await fetch('https://ipapi.co/json/', {
-      method: 'GET',
-      cache: 'no-cache',
-    });
+    const response = await fetchWithTimeout('https://ipapi.co/json/', API_TIMEOUT_MS);
 
     if (response.ok) {
       const data = await response.json();
-      if (data.country_code) {
+      if (data.country_code && data.country_code !== 'XX') {
         return {
           country: data.country_code,
           region: mapCountryToRegion(data.country_code),
@@ -121,6 +139,19 @@ async function tryAPIDetection(): Promise<GeoLocation | null> {
   }
 
   return null;
+}
+
+/**
+ * Build a GeoLocation from a country code already resolved elsewhere —
+ * specifically the edge header read during server rendering. "XX" or empty
+ * means unresolved, which is the signal for the client to try detection.
+ */
+export function geoFromCountry(countryCode: string): GeoLocation {
+  const code = (countryCode || '').toUpperCase();
+  if (!code || code === 'XX') {
+    return { country: 'XX', region: 'OTHER', detected: false };
+  }
+  return { country: code, region: mapCountryToRegion(code), detected: true };
 }
 
 /**
