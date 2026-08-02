@@ -1,3 +1,26 @@
+/**
+ * generate-sitemaps — writes public/sitemap.xml and public/video-sitemap.xml.
+ * (public/image-sitemap.xml is hand-maintained and not touched here.)
+ *
+ * Runs on `prebuild`, so `npm run build` always ships current sitemaps. Running
+ * `next build` directly skips it — use the npm script.
+ *
+ * Its outputs are COMMITTED, deliberately, decided 2026-08-02:
+ *
+ *  - public/sitemap.xml is a static file and therefore SHADOWS any /sitemap.xml
+ *    route. src/app/sitemap.ts used to exist and was dead code for exactly that
+ *    reason; it was deleted. Do not reintroduce a sitemap route — it will look
+ *    authoritative and never serve.
+ *  - Committing them keeps deploys deterministic: robots.txt advertises all
+ *    three sitemaps, so a build that somehow skipped this script would still
+ *    serve the last known-good files rather than 404.
+ *  - It costs no git noise. lastmod comes from source-file mtimes, not the
+ *    clock, so the output is byte-identical across repeat builds. Verified by
+ *    running two consecutive builds and confirming a clean tree.
+ *
+ * If you change page structure, run `npm run sitemaps` and commit the result.
+ */
+
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
