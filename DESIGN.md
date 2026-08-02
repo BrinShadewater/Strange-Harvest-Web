@@ -58,7 +58,19 @@ HSL triplets in `src/theme.css` (`--background: 0 0% 4%`), consumed via
 - **Bone white** (40-hue, 90%) for text — warm, never pure white. Muted variant at 64%.
 - **Blood red** (`--primary`) is the alarm colour: primary actions, the synopsis
   quote rule. Deliberately desaturated to 35% lightness — dried, not fresh.
-- **Harvest gold** (`--accent`) is the second signal, and the title's own colour.
+  **It measures 2.32:1 against the void-black ground**, so it is a surface and
+  emphasis colour only. Never use it for a focus ring, a border that carries
+  meaning, or anything that must satisfy WCAG 1.4.11.
+- **Harvest gold** (`--accent`) is the interaction signal. Until 2026-08-01 the
+  sheet called it "the second signal" while it appeared nowhere on the home page
+  — the accent existed only on paper. It now has one systematic job: **every
+  focus ring on the site is harvest gold**, at 9.31:1 against the ground. It
+  also carries the press-kit link hover. The resting page stays red-and-bone;
+  gold is what the site does when you reach for it.
+- Body text and ground read from `--foreground` and `--background`. They were
+  hardcoded `#e9e9e9` on `#0e0f10` — a cold grey on a blue-tinted charcoal, and
+  because `critical.css` and `main.css` disagreed, every load flashed from one
+  ground to the other.
 
 ## Typography
 
@@ -134,6 +146,8 @@ will be testing stale CSS.
 - **Do** keep the single Assistant family and the single dark theme.
 - **Do** treat the image library as brand-critical; route new assets through the
   house webp pipeline.
+- **Do** let the global `:focus-visible` rule handle focus. A component may set
+  its own `outline-offset`; it may not pick a different colour.
 - **Don't** animate layout properties — transform and opacity only.
 - **Don't** sand off the unease to look more like a standard film site.
 - **Don't** fabricate laurels, review quotes, or festival credits anywhere in the UI.

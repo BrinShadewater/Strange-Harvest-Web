@@ -124,6 +124,10 @@ const sitecopyEn = {
 
   press: {
     title: "Press & Mentions",
+    kitLink: {
+      label: "Press kit & media assets",
+      href: "/press.html",
+    },
     aria: {
       carousel: "Press reviews",
       previous: "Previous review",
@@ -660,6 +664,9 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
   },
   press: {
     title: "Prensa y menciones",
+    kitLink: {
+      label: "Kit de prensa y recursos",
+    },
     aria: {
       carousel: "Reseñas de prensa",
       previous: "Reseña anterior",

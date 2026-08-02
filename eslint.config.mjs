@@ -14,6 +14,9 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    // Stale Vite-era build output. Gitignored, not source, and its bundled
+    // vendor chunks were the only thing making `npm run lint` fail.
+    "dist/**",
     "next-env.d.ts",
   ]),
 ]);

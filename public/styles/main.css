@@ -42,8 +42,11 @@
 body {
   margin: 0;
   font-family: var(--font-body);
-  background: #0e0f10;
-  color: #e9e9e9;
+  /* Tokens, not literals. critical.css used to paint #0e0f10 and the deferred
+     main.css repainted #0a0a0a, so every load flashed a lighter, bluer ground.
+     #e9e9e9 was also a cold grey — the system's text is warm bone white. */
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -123,6 +126,21 @@ h1, h2, h3 {
   margin: 0 0 12px;
   letter-spacing: -0.02em;
 }
+
+/* ─── Focus: harvest gold is the interaction signal ───
+   The accent was documented as "the second signal" but appeared nowhere on the
+   page. Meanwhile only six controls had focus rings and five drew them in blood
+   red, which measures 2.32:1 against the void-black ground and fails WCAG
+   1.4.11. Harvest gold measures 9.31:1.
+
+   One ring, every control. :where() keeps specificity at zero so a component
+   can still set its own offset; it should not pick a different colour.
+   Resting appearance is untouched — this only ever shows on keyboard focus. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 3px;
+}
+
 
 h2 {
   font-size: 40px;
@@ -549,7 +567,7 @@ section:first-of-type {
 }
 
 .synopsisMediaButton:focus-visible {
-  outline: 2px solid hsl(var(--primary));
+  outline: 2px solid hsl(var(--accent));
   outline-offset: 2px;
 }
 
@@ -581,7 +599,7 @@ section:first-of-type {
 }
 
 .synopsisStatButton:focus-visible {
-  outline: 2px solid hsl(var(--primary));
+  outline: 2px solid hsl(var(--accent));
   outline-offset: 2px;
 }
 
@@ -1211,6 +1229,26 @@ body.nav-open {
   outline: 2px solid hsl(var(--accent));
   outline-offset: 2px;
   border-radius: 50%;
+}
+
+.pressKitLink {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
+}
+
+.pressKitLink a {
+  color: hsl(var(--muted-foreground));
+  text-decoration: none;
+  border-bottom: 1px solid hsl(var(--border));
+  padding-bottom: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.pressKitLink a:hover {
+  color: hsl(var(--accent));
+  border-bottom-color: hsl(var(--accent));
 }
 
 .carouselPosition {
@@ -2052,7 +2090,7 @@ section {
 }
 
 .cookieConsentButton:focus {
-  outline: 2px solid hsl(var(--primary));
+  outline: 2px solid hsl(var(--accent));
   outline-offset: 2px;
 }
 
@@ -2160,7 +2198,7 @@ section {
 }
 
 .cookiePreferencesClose:focus {
-  outline: 2px solid hsl(var(--primary));
+  outline: 2px solid hsl(var(--accent));
   border-radius: 4px;
 }
 
@@ -2431,7 +2469,7 @@ input:focus + .cookieToggleSlider {
 }
 
 .footerCookieSettings:focus {
-  outline: 2px solid hsl(var(--primary));
+  outline: 2px solid hsl(var(--accent));
   outline-offset: 2px;
   border-radius: 2px;
 }

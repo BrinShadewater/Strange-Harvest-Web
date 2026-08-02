@@ -138,6 +138,12 @@ export default function Press() {
           {position}
         </p>
       </div>
+
+      {/* The press kit was reachable only by knowing the URL. Press and
+          programmers are a named audience; this is their route in. */}
+      <p className="pressKitLink">
+        <a href={press.kitLink.href}>{press.kitLink.label}</a>
+      </p>
     </section>
   );
 }

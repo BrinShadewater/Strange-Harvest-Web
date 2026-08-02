@@ -107,8 +107,8 @@ async function tryCloudflareDetection(): Promise<GeoLocation | null> {
         };
       }
     }
-  } catch (error) {
-    // Serverless function not available, will fallback.
+  } catch {
+    // Serverless function unavailable or timed out; the API fallback runs next.
   }
 
   return null;
