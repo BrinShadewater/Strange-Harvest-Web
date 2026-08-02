@@ -6,7 +6,12 @@
     "node": ">=22.12.0"
   },
   "scripts": {
+    "sync:css": "node scripts/sync-css.mjs",
+    "check:css": "node scripts/sync-css.mjs --check",
+    "sitemaps": "node scripts/generate-sitemaps.mjs",
+    "predev": "node scripts/sync-css.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/sync-css.mjs && node scripts/generate-sitemaps.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint ."

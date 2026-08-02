@@ -22,7 +22,16 @@ const CookieConsent = dynamic(() => import("./CookieConsent"), { ssr: false });
 
 type ThemeVariant = "red" | "blue";
 
-export default function ClientPage({ lang, abVariant = "red" }: { lang: SiteLanguage; abVariant?: ThemeVariant }) {
+export default function ClientPage({
+  lang,
+  abVariant = "red",
+  initialCountry = "XX",
+}: {
+  lang: SiteLanguage;
+  abVariant?: ThemeVariant;
+  /** Country resolved from edge headers at request time; "XX" when unknown. */
+  initialCountry?: string;
+}) {
   return (
     <LanguageProvider lang={lang}>
       <ParticleBackground />
@@ -34,7 +43,7 @@ export default function ClientPage({ lang, abVariant = "red" }: { lang: SiteLang
         <SymbolDivider />
         <Trailer />
         <SymbolDivider />
-        <Watch />
+        <Watch initialCountry={initialCountry} />
         <SymbolDivider />
         <HomeVideo />
         <SymbolDivider />

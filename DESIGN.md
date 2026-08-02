@@ -30,9 +30,14 @@ components:
 
 # Strange Harvest Web — Design System
 
-> Recorded 2026-07-29 in scan mode from `src/theme.css`, `src/main.css`,
-> `src/critical.css`, and components, during impeccable rollout. North Star confirmed
-> by Alex 2026-07-28; tokens and rules are extracted from shipped code.
+> Recorded 2026-07-29 in scan mode from `src/main.css`, `src/critical.css`, and
+> components, during impeccable rollout. North Star confirmed by Alex 2026-07-28;
+> tokens and rules are extracted from shipped code. Revised 2026-08-01 with the
+> stylesheet pipeline, the accent's role, and the gutter token.
+>
+> (`src/theme.css` was also scanned in 2026-07-29 but was imported by nothing and
+> described an older design; it was deleted 2026-08-01. The live tokens are the
+> `:root` block in `src/main.css` and `src/critical.css`.)
 
 ## Overview
 
@@ -58,7 +63,27 @@ HSL triplets in `src/theme.css` (`--background: 0 0% 4%`), consumed via
 - **Bone white** (40-hue, 90%) for text — warm, never pure white. Muted variant at 64%.
 - **Blood red** (`--primary`) is the alarm colour: primary actions, the synopsis
   quote rule. Deliberately desaturated to 35% lightness — dried, not fresh.
-- **Harvest gold** (`--accent`) is the second signal, and the title's own colour.
+  **It measures 2.32:1 against the void-black ground**, so it is a surface and
+  emphasis colour only. Never use it for a focus ring, a border that carries
+  meaning, or anything that must satisfy WCAG 1.4.11.
+- **Harvest gold** (`--accent`) is the interaction signal. Until 2026-08-01 the
+  sheet called it "the second signal" while it appeared nowhere on the home page
+  — the accent existed only on paper. It now has one systematic job: **every
+  focus ring on the site is harvest gold**, at 9.31:1 against the ground. It
+  also carries the press-kit link hover. The resting page stays red-and-bone;
+  gold is what the site does when you reach for it.
+- **Alarm red** (`--alarm`, 0 65% 55%) is blood red made legible for text —
+  4.24:1 on card black where `--primary` reads 2.19:1. Use it for any warning
+  that has to be read; never reach for `--primary` there.
+- **Red is reserved, not decorative.** The synopsis stat row used to render a
+  release year, a runtime, a genre *and* the content warning all in red, which
+  left the one real warning reading as styling. Only the chip carrying
+  `tone: "warning"` in `SynopsisStat` is red now; the rest are bone white. If
+  you add a stat, it is bone white unless it genuinely warns the viewer.
+- Body text and ground read from `--foreground` and `--background`. They were
+  hardcoded `#e9e9e9` on `#0e0f10` — a cold grey on a blue-tinted charcoal, and
+  because `critical.css` and `main.css` disagreed, every load flashed from one
+  ground to the other.
 
 ## Typography
 
@@ -69,10 +94,39 @@ typeface to "add character"; character comes from the imagery and the copy.
 ## Layout
 
 - Content max-width 1200px; breakpoints at 1200px and 900px.
-- Next.js 15 App Router with `(en)` and `(es)` route groups — **every layout change
-  must hold in both locales**; Spanish strings run longer.
-- `critical.css` is inlined critical CSS and duplicates blocks from `main.css`.
-  **Edit both, or the change only lands after hydration.** This is a real trap.
+- **Vertical rhythm.** Sections are separated by roughly 220px: 40px of section
+  padding, a 140px `SymbolDivider`, then 40px again. Headings sit 40px below the
+  section start and 14px above their content. Any new top-level block must carry
+  `padding: 40px 0` — `.synopsis` is an `<article>` and so missed the shared
+  `section` rule, which left its heading 41px tighter than every other one.
+- `main` owns `--page-gutter` (120px → 60px → 20px across those breakpoints).
+  Full-bleed sections must derive their bleed from it, never from a fixed value:
+  `.hero` uses `--hero-bleed: min(50px, var(--page-gutter))` so it reaches the
+  viewport edge and never past it. A flat `-50px` overhung mobile by 30px a side
+  and was invisible only because `#root` sets `overflow-x: hidden`.
+- Next.js App Router with `(en)` and `(es)` route groups — **every layout change
+  must hold in both locales**; Spanish strings run longer. Copy comes from
+  `useSitecopy()`, which reads the route-owned `LanguageContext`. **Never resolve
+  language from `window.location`** — as a module-scope constant it evaluated to
+  "en" on the server and shipped English HTML under `<html lang="es">`.
+
+### The two-stylesheet pipeline — read this before touching CSS
+
+Three files, and only one of them is a source:
+
+- `src/main.css` — **the source of truth.** Imported by nothing.
+- `public/styles/main.css` — **generated.** Never hand-edit. Written by
+  `scripts/sync-css.mjs`, which runs on `predev`/`prebuild`. This is the file the
+  browser actually loads, injected as a `<link>` by `<DeferredCSS />` after first
+  paint so it never blocks rendering. A `<noscript>` link covers JS-off.
+- `src/critical.css` — inlined above-fold subset, hand-maintained, and it
+  duplicates blocks from `main.css`. **Edit both, or the rule only lands after
+  hydration** — and since the deferred sheet loads last, a stale `main.css` rule
+  will *override* a correct `critical.css` one.
+
+Run `npm run check:css` to assert the generated file is current. If you invoke
+`next build` directly instead of `npm run build`, the sync does not run and you
+will be testing stale CSS.
 
 ## Elevation & Depth
 
@@ -96,14 +150,22 @@ typeface to "add character"; character comes from the imagery and the copy.
   Don't propagate the treatment to cards, list items, or alerts.
 - **navToggle / navToggleBar**: three bars, transform-morphed to an X.
 - **Cards**: card-black surface, border-gray edge, hover lifts with shadow.
+- **Press carousel**: only the active card is interactive — inactive cards carry
+  `inert`, since they sit at `opacity: 0` and were otherwise tabbable. The track
+  has no `aria-live`; the `.carouselPosition` counter announces instead, and only
+  while paused, so autoplay never interrupts a screen reader. Dots render 10px
+  inside a 24px button (WCAG 2.5.8) and wrap rather than overflow.
 
 ## Do's and Don'ts
 
-- **Do** edit `main.css` and `critical.css` together for any shared block.
+- **Do** edit `main.css` and `critical.css` together for any shared block, and
+  let the sync script regenerate `public/styles/main.css`.
 - **Do** verify changes in both `(en)` and `(es)`.
 - **Do** keep the single Assistant family and the single dark theme.
 - **Do** treat the image library as brand-critical; route new assets through the
   house webp pipeline.
+- **Do** let the global `:focus-visible` rule handle focus. A component may set
+  its own `outline-offset`; it may not pick a different colour.
 - **Don't** animate layout properties — transform and opacity only.
 - **Don't** sand off the unease to look more like a standard film site.
 - **Don't** fabricate laurels, review quotes, or festival credits anywhere in the UI.

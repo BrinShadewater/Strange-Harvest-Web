@@ -1,10 +1,10 @@
 "use client";
 
-import { sitecopy } from "./sitecopy";
+import { useSitecopy } from "./LanguageProvider";
 import { HERO_LOGO_SRC_OPTIMISED, HERO_LOGO_SRCSET } from "../constants/assets";
 
 export default function Footer() {
-  const { footer } = sitecopy;
+  const { footer } = useSitecopy();
 
   const handleCookieSettings = () => {
     window.dispatchEvent(new Event("openCookieSettings"));
@@ -14,7 +14,9 @@ export default function Footer() {
     <footer className="siteFooter">
       <div className="footerContent">
         <img src={HERO_LOGO_SRC_OPTIMISED} srcSet={HERO_LOGO_SRCSET} sizes="120px" alt="" className="footerSymbol" aria-hidden="true" loading={"lazy"} decoding={"async"} width={512} height={512} />
-        <h2 className="footerTitle">{footer.title}</h2>
+        {/* Wordmark lockup, not a section heading. As an <h2> it duplicated the
+            page's only <h1> and added an eighth heading that introduces nothing. */}
+        <div className="footerTitle">{footer.title}</div>
         <p className="footerTagline">{footer.tagline}</p>
         
         <div className="footerSocials">

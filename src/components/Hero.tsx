@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 // the is-visible class. This makes the fluorescentFlickerOn animation start
 // as soon as CSS loads (~500ms) rather than waiting for React hydration +
 // IntersectionObserver (~2.4s), which was inflating mobile LCP to 3.1s.
-import { sitecopy } from "./sitecopy";
+import { useSitecopy } from "./LanguageProvider";
 
 type ThemeVariant = "red" | "blue";
 type VariantCounters = Record<ThemeVariant, number>;
@@ -80,7 +80,7 @@ function updateAbStats(mutator: (current: AbStats) => AbStats) {
 }
 
 export default function Hero({ initialVariant = "red" }: { initialVariant?: ThemeVariant }) {
-  const { hero } = sitecopy;
+  const { hero } = useSitecopy();
   // initialVariant comes from the server (cookie-assigned) — no SSR mismatch
   const [assignedVariant] = useState<ThemeVariant>(initialVariant);
   const [isFestivalPoster, setIsFestivalPoster] = useState(initialVariant === "blue");
@@ -272,8 +272,11 @@ export default function Hero({ initialVariant = "red" }: { initialVariant?: Them
         </div>
 
         <div className="heroCopy">
+          {/* One line above the title, not two. "OFFICIAL WEBSITE" also appears
+              in the page <title>, the OG and Twitter cards, the JSON-LD
+              Organization name and the footer — above the h1 it was the fifth
+              statement of the same claim, stacked into a double eyebrow. */}
           <div className="heroKicker">{hero.tagline}</div>
-          <div className="heroSubtitle">{hero.subtitle}</div>
           <h1 className={`heroTitle ${titleVisible ? "is-visible" : ""}`}>{hero.title}</h1>
 
           <p>{hero.blurb}</p>

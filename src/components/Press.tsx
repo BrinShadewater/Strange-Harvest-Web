@@ -1,10 +1,10 @@
 "use client";
 
-import { sitecopy } from "./sitecopy";
+import { useSitecopy } from "./LanguageProvider";
 import { useState, useEffect, useRef, useMemo } from "react";
 
 export default function Press() {
-  const { press } = sitecopy;
+  const { press } = useSitecopy();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const prefersReducedMotion = useRef(false);
@@ -33,6 +33,10 @@ export default function Press() {
     setCurrentIndex((prev) => (prev + 1) % quotesLength);
   };
 
+  const position = press.aria.position
+    .replace("{current}", String(currentIndex + 1))
+    .replace("{total}", String(quotesLength));
+
   return (
     <section className="press" id="press">
       <h2>{press.title}</h2>
@@ -53,11 +57,15 @@ export default function Press() {
         </div>
       )}
       
-      <div className="pressCarousel" aria-label="Press reviews carousel" aria-live={isPaused ? "off" : "polite"}>
+      {/* No aria-live on the track itself. It used to announce on every 8s
+          auto-advance, interrupting screen-reader users indefinitely. The
+          position counter below announces instead, and only when the visitor
+          has taken control by pausing. */}
+      <div className="pressCarousel" role="group" aria-roledescription="carousel" aria-label={press.aria.carousel}>
         <button
           className="carouselButton carouselButtonPrev"
           onClick={goToPrevious}
-          aria-label="Previous review"
+          aria-label={press.aria.previous}
         >
           ‹
         </button>
@@ -70,6 +78,10 @@ export default function Press() {
               target="_blank"
               rel="noopener noreferrer"
               className={`pressCard ${idx === currentIndex ? 'active' : ''}`}
+              /* Inactive cards are opacity:0 and off to the side but were still
+                 in the tab order — keyboard users tabbed through 27 invisible
+                 links. inert removes them from focus and from the a11y tree. */
+              inert={idx !== currentIndex}
               style={{
                 transform: `translateX(${(idx - currentIndex) * 100}%)`,
               }}
@@ -94,7 +106,7 @@ export default function Press() {
         <button
           className="carouselButton carouselButtonNext"
           onClick={goToNext}
-          aria-label="Next review"
+          aria-label={press.aria.next}
         >
           ›
         </button>
@@ -104,7 +116,7 @@ export default function Press() {
         <button
           className="carouselButton carouselButtonPause"
           onClick={() => setIsPaused((p) => !p)}
-          aria-label={isPaused ? "Resume auto-advancing reviews" : "Pause auto-advancing reviews"}
+          aria-label={isPaused ? press.aria.resume : press.aria.pause}
           aria-pressed={isPaused}
         >
           {isPaused ? "▶" : "⏸"}
@@ -115,12 +127,23 @@ export default function Press() {
               key={idx}
               className={`carouselDot ${idx === currentIndex ? 'active' : ''}`}
               onClick={() => setCurrentIndex(idx)}
-              aria-label={`Go to review from ${review.source.split('/')[0].trim()}`}
+              aria-label={`${press.aria.goTo} ${review.source.split('/')[0].trim()}`}
               aria-current={idx === currentIndex ? 'true' : 'false'}
             />
           ))}
         </div>
+        {/* Orientation among 28 quotes, and the one thing that speaks — but only
+            once the visitor has paused, so autoplay never interrupts. */}
+        <p className="carouselPosition" aria-live={isPaused ? "polite" : "off"}>
+          {position}
+        </p>
       </div>
+
+      {/* The press kit was reachable only by knowing the URL. Press and
+          programmers are a named audience; this is their route in. */}
+      <p className="pressKitLink">
+        <a href={press.kitLink.href}>{press.kitLink.label}</a>
+      </p>
     </section>
   );
 }

@@ -245,6 +245,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             flagged this as an "unused preconnect" harming network performance. */}
         {/* Preload only the poster variant the user is assigned — saves ~200–350KB vs preloading both */}
         <PosterPreload />
+        {/* Without JS, <DeferredCSS /> never runs and only critical.css applies.
+            This costs nothing for the 99% who have JS and keeps the page styled
+            for the rest. */}
+        <noscript>
+          {/* eslint-disable-next-line @next/next/no-css-tags */}
+          <link rel="stylesheet" href="/styles/main.css" />
+        </noscript>
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"

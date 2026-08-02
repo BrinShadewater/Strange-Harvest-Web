@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { sitecopy } from "./sitecopy";
+import { useSitecopy } from "./LanguageProvider";
 
 interface ConsentState {
   essential: boolean;
@@ -108,7 +108,7 @@ export default function CookieConsent() {
     preferences: false,
   });
   
-  const { cookieConsent } = sitecopy;
+  const { cookieConsent } = useSitecopy();
 
   useEffect(() => {
     // Check if user has already made a choice
