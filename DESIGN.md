@@ -72,6 +72,14 @@ HSL triplets in `src/theme.css` (`--background: 0 0% 4%`), consumed via
   focus ring on the site is harvest gold**, at 9.31:1 against the ground. It
   also carries the press-kit link hover. The resting page stays red-and-bone;
   gold is what the site does when you reach for it.
+- **Alarm red** (`--alarm`, 0 65% 55%) is blood red made legible for text —
+  4.24:1 on card black where `--primary` reads 2.19:1. Use it for any warning
+  that has to be read; never reach for `--primary` there.
+- **Red is reserved, not decorative.** The synopsis stat row used to render a
+  release year, a runtime, a genre *and* the content warning all in red, which
+  left the one real warning reading as styling. Only the chip carrying
+  `tone: "warning"` in `SynopsisStat` is red now; the rest are bone white. If
+  you add a stat, it is bone white unless it genuinely warns the viewer.
 - Body text and ground read from `--foreground` and `--background`. They were
   hardcoded `#e9e9e9` on `#0e0f10` — a cold grey on a blue-tinted charcoal, and
   because `critical.css` and `main.css` disagreed, every load flashed from one

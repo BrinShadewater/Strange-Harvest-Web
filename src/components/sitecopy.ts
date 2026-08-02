@@ -1,5 +1,13 @@
 export type SiteLanguage = "en" | "es";
 
+/**
+ * A synopsis stat chip. `tone: "warning"` marks the one value that is an actual
+ * content warning rather than neutral metadata. It is the only red in the row —
+ * when a release year and a runtime were also red, the warning read as
+ * decoration. See DESIGN.md, "Colors".
+ */
+export type SynopsisStat = { value: string; label: string; tone?: "warning" };
+
 const sitecopyEn = {
   cookieConsent: {
     title: "Cookie Notice",
@@ -65,7 +73,6 @@ const sitecopyEn = {
   hero: {
     title: "STRANGE HARVEST",
     tagline: "TRUE-CRIME FOUND FOOTAGE HORROR MOCKUMENTARY",
-    subtitle: "OFFICIAL WEBSITE",
     blurb:
       "A routine welfare check leads to a gruesome discovery — and the return of a killer thought gone forever.",
     posterToggle: {
@@ -112,9 +119,9 @@ const sitecopyEn = {
     stats: [
       { value: "2025", label: "Release Year" },
       { value: "134m", label: "Runtime" },
-      { value: "RESTRICTED", label: "Disturbing / Grisly Violent Content And Language" },
+      { value: "RESTRICTED", label: "Disturbing / Grisly Violent Content And Language", tone: "warning" },
       { value: "True Crime / Horror", label: "Genre" },
-    ],
+    ] as SynopsisStat[],
   },
 
   trailer: {
@@ -630,7 +637,6 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
   },
   hero: {
     tagline: "MOCKUMENTARY DE TERROR TRUE CRIME Y FOUND FOOTAGE",
-    subtitle: "SITIO OFICIAL",
     blurb:
       "Un control de bienestar de rutina conduce a un hallazgo espeluznante y al regreso de un asesino que se creía desaparecido para siempre.",
     ctas: {
@@ -658,9 +664,9 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
     stats: [
       { value: "2025", label: "Año de estreno" },
       { value: "134m", label: "Duración" },
-      { value: "RESTRINGIDA", label: "Contenido perturbador / violencia explícita y lenguaje fuerte" },
+      { value: "RESTRINGIDA", label: "Contenido perturbador / violencia explícita y lenguaje fuerte", tone: "warning" },
       { value: "True Crime / Horror", label: "Género" },
-    ],
+    ] as SynopsisStat[],
   },
   press: {
     title: "Prensa y menciones",

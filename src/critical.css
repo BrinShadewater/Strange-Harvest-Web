@@ -18,6 +18,10 @@
   --muted: 0 0% 12%;
   --muted-foreground: 40 10% 64%;
   --border: 0 0% 18%;
+  /* Legible alarm red for TEXT. --primary (35%) is a surface colour and reads
+     2.19:1 on card black; this reads 4.24:1. Use it wherever a warning has to
+     be readable, never --primary. */
+  --alarm: 0 65% 55%;
   --radius: 0.5rem;
   --font-display: var(--font-assistant, "Assistant", sans-serif);
   --font-body: var(--font-assistant, "Assistant", sans-serif);
@@ -84,7 +88,7 @@ body.festival-theme .synopsisStat:hover {
   border-color: hsl(var(--primary));
 }
 
-body.festival-theme .statValue {
+body.festival-theme .statValueWarning {
   color: hsl(var(--primary));
 }
 
@@ -444,8 +448,7 @@ section:first-of-type {
   }
 }
 
-.heroKicker,
-.heroSubtitle {
+.heroKicker {
   font-family: var(--font-display);
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -456,10 +459,6 @@ section:first-of-type {
 
 .heroKicker {
   margin-bottom: 4px;
-}
-
-.heroSubtitle {
-  margin-bottom: 8px;
 }
 
 .heroBlurb {

@@ -272,8 +272,11 @@ export default function Hero({ initialVariant = "red" }: { initialVariant?: Them
         </div>
 
         <div className="heroCopy">
+          {/* One line above the title, not two. "OFFICIAL WEBSITE" also appears
+              in the page <title>, the OG and Twitter cards, the JSON-LD
+              Organization name and the footer — above the h1 it was the fifth
+              statement of the same claim, stacked into a double eyebrow. */}
           <div className="heroKicker">{hero.tagline}</div>
-          <div className="heroSubtitle">{hero.subtitle}</div>
           <h1 className={`heroTitle ${titleVisible ? "is-visible" : ""}`}>{hero.title}</h1>
 
           <p>{hero.blurb}</p>
