@@ -71,18 +71,27 @@ export default function CastCrew() {
             {castCrew.crew.sections.map((section, idx) => (
               <div key={idx} className="crewCard">
                 <h4 className="crewRole">{localizeCrewRole(section.role, lang)}</h4>
-                {section.members.map((member, mIdx) => (
-                  <a 
-                    key={mIdx} 
-                    href={member.imdb} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="crewMember"
-                    aria-label={`View ${member.name} on IMDB`}
-                  >
-                    {member.name}
-                  </a>
-                ))}
+                {/* Not everyone has an IMDb page. An empty `imdb` renders the name
+                    as plain text rather than a link to imdb.com's front page, which
+                    is what a placeholder URL produced. */}
+                {section.members.map((member, mIdx) =>
+                  member.imdb ? (
+                    <a
+                      key={mIdx}
+                      href={member.imdb}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="crewMember"
+                      aria-label={`View ${member.name} on IMDB`}
+                    >
+                      {member.name}
+                    </a>
+                  ) : (
+                    <span key={mIdx} className="crewMember">
+                      {member.name}
+                    </span>
+                  )
+                )}
               </div>
             ))}
           </div>
