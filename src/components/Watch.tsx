@@ -20,9 +20,10 @@ import {
  * render the region-agnostic list while that runs instead of a spinner. There
  * is no state in which this section shows a visitor nothing to click.
  */
+const isDev = process.env.NODE_ENV === "development";
+
 export default function Watch({ initialCountry = "XX" }: { initialCountry?: string }) {
   const { watch } = useSitecopy();
-  const isDev = process.env.NODE_ENV === "development";
 
   const serverGeo = geoFromCountry(initialCountry);
   const [geo, setGeo] = useState<GeoLocation>(serverGeo);
@@ -49,7 +50,7 @@ export default function Watch({ initialCountry = "XX" }: { initialCountry?: stri
     return () => {
       cancelled = true;
     };
-  }, [serverGeo.detected, isDev]);
+  }, [serverGeo.detected]);
 
   const { showStreaming, showUSCA, showIntl } = getPlatformsForRegion(geo.region);
   const streamingPlatforms = filterStreamingPlatformsByCountry(watch.streamingPlatforms, geo.country);

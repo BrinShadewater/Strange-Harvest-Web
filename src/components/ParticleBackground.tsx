@@ -171,13 +171,16 @@ export default function ParticleBackground() {
 
       // Draw white flecks first (behind symbols)
       flecksRef.current.forEach((fleck) => {
-        // Subtle mouse repulsion for flecks
+        // Subtle mouse repulsion for flecks. Guard on `active` and a non-zero
+        // distance like the symbol particles do — without them, flecks were
+        // repelled from (0,0) before the mouse ever moved, and a fleck landing
+        // exactly under the cursor divided by zero and went NaN permanently.
         const dx = mouseRef.current.x - fleck.x;
         const dy = mouseRef.current.y - fleck.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         const forceDistance = 100;
 
-        if (distance < forceDistance) {
+        if (distance < forceDistance && mouseRef.current.active && distance > 0.001) {
           const force = (forceDistance - distance) / forceDistance;
           fleck.x -= (dx / distance) * force * 1.5;
           fleck.y -= (dy / distance) * force * 1.5;

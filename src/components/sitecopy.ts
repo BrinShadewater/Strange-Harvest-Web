@@ -391,7 +391,7 @@ const sitecopyEn = {
       },
       {
         name: "Cosmo",
-        href: "https://www.cosmogo.com/#!/search?phrase=strange%20hav",
+        href: "https://www.cosmogo.com/#!/search?phrase=strange%20harvest",
         icon: "/images/strange-harvest-watch-cosmo-streaming-icon.webp",
         iconWidth: 100,
         iconHeight: 100,

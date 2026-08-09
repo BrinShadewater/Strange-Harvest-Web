@@ -19,7 +19,7 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 // Declare gtag function for TypeScript
 declare global {
   interface Window {
-    dataLayer: unknown[][];
+    dataLayer: unknown[];
     gtag: (command: string, ...args: unknown[]) => void;
   }
 }
@@ -38,10 +38,14 @@ const loadAnalytics = () => {
     return;
   }
 
-  // Initialize dataLayer
+  // Initialize dataLayer. gtag.js only processes queue entries that are
+  // Arguments objects — pushing a plain array is silently ignored, which
+  // meant every queued command (consent, config, events) was dropped once
+  // the real script loaded. Must be a `function` so `arguments` exists.
   window.dataLayer = window.dataLayer || [];
-  window.gtag = (command: string, ...args: unknown[]) => {
-    window.dataLayer.push([command, ...args]);
+  window.gtag = function () {
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer.push(arguments);
   };
   
   // Set initial timestamp
