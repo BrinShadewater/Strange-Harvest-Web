@@ -84,8 +84,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@strangeharvestfilm",
-    creator: "@strangeharvestfilm",
+    // @strangeharvestfilm was the old account and its profile 404s; attributing a
+    // share card to a dead handle wastes the attribution entirely.
+    site: "@Strange_Harvest",
+    creator: "@Strange_Harvest",
     title: "Strange Harvest (2025) | Official Movie Website",
     description:
       "Strange Harvest (2025) is a horror mockumentary streaming on Hulu. Watch the trailer, read reviews, and explore the Mr. Shiny story on the official site.",
@@ -184,7 +186,9 @@ const jsonLd = {
       caption: "Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire.",
       creditText: "Adorable Damage / Pathogen Pictures",
       creator: { "@type": "Organization", name: "Adorable Damage" },
-      copyrightNotice: "© 2025 Strange Harvest. All rights reserved.",
+      // 2024 is correct and matches the visible footer (Alex, 2026-08-09). This is
+      // the copyright year, not the 2025 release year — they legitimately differ.
+      copyrightNotice: "© 2024 Strange Harvest. All rights reserved.",
       license: BASE_URL + "/press.html",
       acquireLicensePage: BASE_URL + "/press.html",
     },
@@ -210,9 +214,12 @@ const jsonLd = {
         "https://en.wikipedia.org/wiki/Strange_Harvest_(film)",
         "https://www.wikidata.org/wiki/Q130379751",
         "https://www.imdb.com/title/tt33400719/",
-        "https://www.instagram.com/strangeharvestfilm",
-        "https://www.facebook.com/strangeharvestfilm",
-        "https://www.twitter.com/strangeharvestfilm",
+        // Confirmed live handles (Alex, 2026-08-09). The old "strangeharvestfilm"
+        // set was stale and its X handle 404'd — a dead sameAs weakens the entity
+        // signal Google builds from this block, so these must match the footer.
+        "https://www.instagram.com/strangeharvestmovie/",
+        "https://www.facebook.com/Strangeharvestmovie/",
+        "https://x.com/Strange_Harvest",
       ],
     },
     {
