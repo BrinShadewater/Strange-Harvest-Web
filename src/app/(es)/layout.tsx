@@ -118,6 +118,7 @@ const jsonLd = {
       caption: "Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire.",
       creditText: "Adorable Damage / Pathogen Pictures",
       creator: { "@type": "Organization", name: "Adorable Damage" },
+      // 2024 is correct and matches the visible footer — see (en)/layout.tsx.
       copyrightNotice: "© 2024 Strange Harvest. All rights reserved.",
       license: BASE_URL + "/press.html",
       acquireLicensePage: BASE_URL + "/press.html",
@@ -144,6 +145,7 @@ const jsonLd = {
         "https://en.wikipedia.org/wiki/Strange_Harvest_(film)",
         "https://www.wikidata.org/wiki/Q130379751",
         "https://www.imdb.com/title/tt33400719/",
+        // Confirmed live handles (Alex, 2026-08-09) — keep in sync with (en)/layout.tsx.
         "https://www.instagram.com/strangeharvestmovie/",
         "https://www.facebook.com/Strangeharvestmovie/",
         "https://x.com/Strange_Harvest",

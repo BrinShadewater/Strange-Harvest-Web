@@ -38,6 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    // See (en)/layout.tsx — @strangeharvestfilm is the old account and 404s.
     site: "@Strange_Harvest",
     title: "Strange Harvest (2025) | Sitio Oficial de la Película",
     description:

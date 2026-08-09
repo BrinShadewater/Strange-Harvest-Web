@@ -518,9 +518,7 @@ const sitecopyEn = {
             { name: "Stuart Ortiz", imdb: "https://www.imdb.com/name/nm3425513/" },
             { name: "Bruce Guido", imdb: "https://www.imdb.com/name/nm3615187/" },
             { name: "Alex Yesilcimen", imdb: "https://www.imdb.com/name/nm9215424/" },
-            // Empty imdb = no IMDb page exists for this person; CastCrew
-            // renders the name as plain text instead of a link.
-            { name: "Michael Karlin", imdb: "" },
+            { name: "Michael Karlin", imdb: "https://www.imdb.com/name/nm4222509/" },
           ],
         },
         {
@@ -528,6 +526,8 @@ const sitecopyEn = {
           members: [
             { name: "David Karlin", imdb: "https://www.imdb.com/name/nm16535811/" },
             { name: "Joseph Paul Latorre", imdb: "https://www.imdb.com/name/nm16535812/" },
+            // No IMDb page (confirmed by Alex 2026-08-09). Empty string renders the
+            // name as plain text; do not restore a placeholder imdb.com link.
             { name: "Bruce P. Guido", imdb: "" },
             { name: "Leo Deleon", imdb: "https://www.imdb.com/name/nm16535809/" },
           ],

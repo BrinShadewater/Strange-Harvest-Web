@@ -21,8 +21,9 @@
 3. **Copyright aligned to © 2024** (confirmed by Alex) across JSON-LD `copyrightNotice` in both
    layouts, `press.html`, and `bts.html` — footer already said 2024.
 4. **Removed the YouTube social link** from `press.html` (per Alex).
-5. **Unlinked crew members without IMDb pages** (Michael Karlin, Bruce P. Guido — confirmed no
-   accounts); hover highlight scoped to real links.
+5. **Crew credit links fixed** — final state per PR #37: Michael Karlin links to his real IMDb
+   page (nm4222509); Bruce P. Guido has none and renders as plain text; hover highlight scoped
+   to real links.
 6. Particle NaN guard, Cosmo Go search-phrase fix, Merch unmount guard, lint warnings cleared.
 
 ## Verified audit results (LLM-reviewed, false positives removed)
