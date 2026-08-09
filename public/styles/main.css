@@ -1998,7 +1998,7 @@ section {
   transition: color 0.2s ease;
 }
 
-.crewMember:hover {
+a.crewMember:hover {
   color: hsl(var(--primary));
 }
 
