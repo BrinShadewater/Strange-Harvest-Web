@@ -45,10 +45,16 @@ The Strange Harvest website now automatically detects visitor location and shows
    - Reads edge headers (CF-IPCountry, etc.)
    - Returns country code via `/api/geo`
 
-3. **`api/geo.ts`**
-   - Vercel serverless function
+3. **`src/app/api/geo/route.ts`**
+   - The Vercel endpoint, an App Router edge route
    - Same functionality for Vercel deployments
    - Returns country code via `/api/geo`
+
+   A root-level `api/geo.ts` used to serve this path via Vercel's legacy serverless
+   convention. It was **deleted on 2026-08-08**: Vercel built it to `/var/task/api/geo.js`,
+   where its `export default` was parsed as CommonJS and threw
+   `SyntaxError: Unexpected token 'export'` on every request, and because the legacy folder
+   takes precedence it shadowed the working App Router route above. Do not reintroduce it.
 
 4. **`netlify.toml`**
    - Netlify configuration

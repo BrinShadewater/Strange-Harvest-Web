@@ -47,19 +47,18 @@ export default function Merch() {
       )}
 
       {error && !loading && (
-        <div className="merchComingSoon">
+        <div className="merchComingSoon" role="status">
           <div className="comingSoonContent">
-            <h3>{merch.comingSoonTitle}</h3>
-            <p>{merch.comingSoonBody}</p>
-            <a 
-              href={merch.shopifyUrl} 
-              target="_blank" 
+            <h3>{merch.errorTitle}</h3>
+            <p>{merch.errorBody}</p>
+            <a
+              href={merch.shopifyUrl}
+              target="_blank"
               rel="noopener noreferrer"
               className="cta primary"
               style={{ marginTop: '24px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
             >
-              <img src="/images/svgcons/still-icon-notify.svg" alt="" style={{ width: '20px', height: '20px', filter: 'brightness(0) invert(1)' }} loading={"lazy"} decoding={"async"} />
-              {merch.notifyMe}
+              {merch.storeLink}
             </a>
           </div>
         </div>
