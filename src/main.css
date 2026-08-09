@@ -5,6 +5,13 @@
   --card: 0 0% 7%;
   --card-foreground: 40 20% 90%;
   --primary: 0 65% 35%;
+  /* Text-safe companion to --primary. The brand red is 2.32:1 on --background:
+     DESIGN.md calls it a surface colour and says never to use it as a focus ring,
+     but it had drifted into ~12 text and hover bindings where it was illegible.
+     This is the same hue lightened until it clears AA (4.88:1 on --background,
+     4.62:1 on --card). Surfaces keep --primary; anything that sets `color:`
+     uses this. */
+  --primary-text: 0 65% 58%;
   --primary-foreground: 40 20% 95%;
   --accent: 45 70% 50%;
   --accent-foreground: 0 0% 4%;
@@ -54,6 +61,9 @@ body {
 
 body.festival-theme {
   --primary: 210 88% 42%;
+  /* Blue arm's text-safe companion — 7.05:1 on --background. The arm must not be
+     able to reintroduce a contrast failure the base theme just fixed. */
+  --primary-text: 210 88% 62%;
   --primary-hover: 210 88% 48%;
   --glow-core-rgb: 0, 130, 255;
   --glow-mid-rgb: 0, 90, 220;
@@ -69,9 +79,9 @@ body.festival-theme .synopsisTitle::after {
   background: hsl(var(--primary));
 }
 
-body.festival-theme .highlight {
-  color: hsl(var(--primary));
-}
+/* .highlight is intentionally NOT themed. It is body copy; recolouring it to the
+   arm's --primary made detective names look like links (cursor:auto, 3.74:1 blue /
+   3.98:1 red). It stays harvest gold in both arms. */
 
 body.festival-theme .synopsisQuote {
   border-left-color: hsl(var(--primary));
@@ -81,14 +91,15 @@ body.festival-theme .synopsisStat:hover {
   border-color: hsl(var(--primary));
 }
 
-body.festival-theme .statValueWarning {
-  color: hsl(var(--primary));
-}
+/* .statValueWarning is intentionally NOT themed. --alarm exists precisely so the
+   content warning stays legible (4.48:1) and reads as a warning; binding it to the
+   arm's --primary made the one real alarm on the page the same colour as the Buy
+   Now buttons and the nav hover. */
 
 body.festival-theme .nav a:hover,
 body.festival-theme .cartIcon,
 body.festival-theme .cartIcon:hover {
-  color: hsl(var(--primary));
+  color: hsl(var(--primary-text));
 }
 
 body.festival-theme .cta:hover {
@@ -105,7 +116,7 @@ body.festival-theme .cta.primary:hover {
 }
 
 body.festival-theme .breadcrumb a:hover {
-  color: hsl(var(--primary));
+  color: hsl(var(--primary-text));
 }
 
 body.festival-theme .homeVideoCta,
@@ -512,8 +523,13 @@ section:first-of-type {
   margin-bottom: 16px;
 }
 
+/* Harvest gold, not blood red. The red here was hsl(0,65%,50%) = 3.98:1, under
+   AA at this size/weight, and it read as a hyperlink because these are detective
+   names in running copy with cursor:auto. Gold is 9.31:1 and is the token whose
+   documented job is exactly this: the second signal. Deliberately NOT themed by
+   the A/B arm, so body copy stays legible and constant in both. */
 .highlight {
-  color: hsl(0, 65%, 50%);
+  color: hsl(var(--accent));
   font-weight: 600;
 }
 
@@ -835,7 +851,7 @@ section:first-of-type {
 }
 
 .langToggleBtn:hover {
-  color: hsl(var(--primary));
+  color: hsl(var(--primary-text));
 }
 
 @media (max-width: 520px) {
@@ -1132,7 +1148,7 @@ body.nav-open {
   left: 16px;
   width: 60px;
   height: auto;
-  color: hsl(var(--primary));
+  color: hsl(var(--primary-text));
   opacity: 0.5;
   z-index: 0;
   pointer-events: none;
@@ -1350,8 +1366,32 @@ body.nav-open {
   max-width: 600px;
 }
 
+/* Was max-width: 450px, which computed to two 218px columns inside a 1200px content
+   column — a narrow orphan grid holding five items, leaving the fifth alone on row
+   three. 960px fits all five on one row at the 180px minimum. */
 .watchGridRent {
-  max-width: 450px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  max-width: 960px;
+}
+
+/* .watchCard.featured was applied in Watch.tsx but had no rule anywhere, so the
+   free-with-subscription stream rendered identically to a $20 purchase. The
+   streaming path is the conversion PRODUCT.md cares about; it should look like it. */
+.watchCard.featured {
+  border-color: hsl(var(--accent) / 0.55);
+  background: hsl(var(--accent) / 0.06);
+}
+
+.watchCard.featured:hover {
+  border-color: hsl(var(--accent));
+  background: hsl(var(--accent) / 0.1);
+}
+
+.watchIncluded {
+  margin-top: 4px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: hsl(var(--accent));
 }
 
 .watchCard {
@@ -1415,7 +1455,7 @@ body.nav-open {
   }
 
   .watchGrid.watchGridRent {
-    grid-template-columns: repeat(auto-fit, minmax(148px, 148px));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     justify-content: center;
     max-width: 330px;
     margin-left: auto;
@@ -1423,8 +1463,10 @@ body.nav-open {
   }
 
   .watchGrid.watchGridRent .watchCard {
-    width: 148px;
-    justify-self: center;
+    /* was width: 148px — a fixed width fights the 1fr track and reintroduces the
+       ragged orphan column the desktop grid just lost. */
+    width: 100%;
+    justify-self: stretch;
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -1509,10 +1551,14 @@ body.nav-open {
   line-height: 1.3;
 }
 
+/* Bone white, not --primary. Price bound to --primary rendered at 1.64:1 on the
+   card ground in the default red arm and 2.62:1 in the blue arm — the single most
+   decision-relevant text on a commerce card was the least readable thing on it.
+   --foreground is 16.06:1 and does not move with the A/B arm. */
 .merchCardPrice {
   font-size: 20px;
   font-weight: 600;
-  color: hsl(var(--primary));
+  color: hsl(var(--foreground));
   margin: 0;
 }
 
@@ -1567,33 +1613,33 @@ body.nav-open {
 }
 
 .merchStoreFallbackLink a:hover {
-  color: hsl(var(--primary));
+  color: hsl(var(--primary-text));
 }
 
-.merchComingSoon {
+.merchErrorState {
   max-width: 800px;
   margin: 0 auto;
   padding: 120px 40px;
   text-align: center;
 }
 
-.comingSoonContent {
+.merchErrorContent {
   background: hsl(var(--card));
   border: 1px solid hsl(var(--border));
   border-radius: 12px;
   padding: 60px 40px;
 }
 
-.comingSoonContent h3 {
+.merchErrorContent h3 {
   font-family: var(--font-display);
   font-size: 32px;
   letter-spacing: 3px;
   margin-bottom: 16px;
-  color: hsl(var(--primary));
+  color: hsl(var(--primary-text));
   text-transform: uppercase;
 }
 
-.comingSoonContent p {
+.merchErrorContent p {
   font-size: 16px;
   color: rgba(255, 255, 255, 0.7);
   margin: 0;
@@ -1610,15 +1656,15 @@ body.nav-open {
     min-height: 600px;
   }
   
-  .merchComingSoon {
+  .merchErrorState {
     padding: 80px 20px;
   }
   
-  .comingSoonContent {
+  .merchErrorContent {
     padding: 40px 24px;
   }
   
-  .comingSoonContent h3 {
+  .merchErrorContent h3 {
     font-size: 24px;
   }
 }
@@ -1851,7 +1897,7 @@ section {
   font-size: 22px;
   letter-spacing: 2px;
   font-weight: 700;
-  color: hsl(var(--primary));
+  color: hsl(var(--primary-text));
   margin-bottom: 32px;
   text-transform: uppercase;
 }
@@ -1943,8 +1989,11 @@ section {
   text-transform: uppercase;
 }
 
+/* --primary as text was 2.32:1 (red arm) / 3.54:1 (blue). The character name is
+   secondary to the actor's name, so --muted-foreground is the semantically correct
+   token as well as the legible one (8.18:1). */
 .castCharacterName {
-  color: hsl(var(--primary));
+  color: hsl(var(--muted-foreground));
   text-transform: none;
   font-size: 13px;
   letter-spacing: 0.3px;
@@ -1974,12 +2023,14 @@ section {
   text-align: center;
 }
 
+/* Was --primary (2.32:1 red arm). Gold at 9.31:1 — these uppercase role labels are
+   section signposts, which is the accent's documented job. */
 .crewRole {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1px;
   margin: 0 0 16px;
-  color: hsl(var(--primary));
+  color: hsl(var(--accent));
   text-transform: uppercase;
 }
 
@@ -1995,7 +2046,7 @@ section {
 }
 
 .crewMember:hover {
-  color: hsl(var(--primary));
+  color: hsl(var(--primary-text));
 }
 
 @media (max-width: 768px) {
@@ -2071,7 +2122,7 @@ section {
 }
 
 .cookieConsentPrivacyLink {
-  color: hsl(var(--primary));
+  color: hsl(var(--primary-text));
   text-decoration: underline;
   transition: color 0.2s ease;
 }
@@ -2209,7 +2260,7 @@ section {
 }
 
 .cookiePreferencesClose:hover {
-  color: hsl(var(--primary));
+  color: hsl(var(--primary-text));
 }
 
 .cookiePreferencesClose:focus {
@@ -2487,7 +2538,7 @@ input:focus + .cookieToggleSlider {
 }
 
 .footerCookieSettings:hover {
-  color: hsl(var(--primary));
+  color: hsl(var(--primary-text));
 }
 
 .footerCookieSettings:focus {
@@ -2507,7 +2558,7 @@ input:focus + .cookieToggleSlider {
 }
 
 .footerPrivacyLink:hover {
-  color: hsl(var(--primary));
+  color: hsl(var(--primary-text));
 }
 
 /* Symbol Divider */

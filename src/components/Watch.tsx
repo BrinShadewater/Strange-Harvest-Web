@@ -80,6 +80,7 @@ export default function Watch({ initialCountry = "XX" }: { initialCountry?: stri
               >
                 <img src={p.icon} alt="" className="watchIcon" loading={"lazy"} decoding={"async"} width={p.iconWidth} height={p.iconHeight} />
                 <div className="watchName">{p.name}</div>
+                <div className="watchIncluded">{watch.includedWithSubscription}</div>
               </a>
             ))}
           </div>

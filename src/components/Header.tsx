@@ -67,7 +67,7 @@ export default function Header() {
           ref={navRef}
           className={`nav${navOpen ? " is-open" : ""}`}
           id="main-nav"
-          aria-label="Site navigation"
+          aria-label={header.aria.siteNavigation}
         >
           <a href="#top" onClick={handleNavLinkClick}>{header.nav.home}</a>
           <a href="#about" onClick={handleNavLinkClick}>{header.nav.about}</a>

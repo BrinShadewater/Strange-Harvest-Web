@@ -159,15 +159,18 @@ export function getCheckoutUrl(handle: string): string {
 export function formatPrice(amount: string, currencyCode: string): string {
   const price = parseFloat(amount);
   
+  // USD, CAD and AUD all mapped to a bare "$", so a Canadian buyer saw "$25.00"
+  // with no way to tell which dollar they were about to be charged. The dollar
+  // currencies carry their prefix; the unambiguous symbols do not need one.
   const currencySymbols: Record<string, string> = {
-    USD: "$",
+    USD: "US$",
     GBP: "£",
     EUR: "€",
-    CAD: "$",
-    AUD: "$",
+    CAD: "CA$",
+    AUD: "A$",
   };
 
-  const symbol = currencySymbols[currencyCode] || currencyCode;
-  
+  const symbol = currencySymbols[currencyCode] || `${currencyCode} `;
+
   return `${symbol}${price.toFixed(2)}`;
 }

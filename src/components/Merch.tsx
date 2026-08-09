@@ -18,6 +18,9 @@ export default function Merch() {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  // An empty catalogue and a failed fetch are different states with different copy.
+  // They used to share the "something broke on our end" message.
+  const [isEmpty, setIsEmpty] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -29,9 +32,8 @@ export default function Merch() {
         if (cancelled) return;
         setProducts(productsData);
 
-        // Show error state if no products returned (likely due to missing credentials)
         if (productsData.length === 0) {
-          setError(true);
+          setIsEmpty(true);
         }
       } catch (err) {
         if (isDev) {
@@ -60,11 +62,11 @@ export default function Merch() {
         </div>
       )}
 
-      {error && !loading && (
-        <div className="merchComingSoon" role="status">
-          <div className="comingSoonContent">
-            <h3>{merch.errorTitle}</h3>
-            <p>{merch.errorBody}</p>
+      {(error || isEmpty) && !loading && (
+        <div className="merchErrorState" role="status">
+          <div className="merchErrorContent">
+            <h3>{error ? merch.errorTitle : merch.emptyTitle}</h3>
+            <p>{error ? merch.errorBody : merch.emptyBody}</p>
             <a
               href={merch.shopifyUrl}
               target="_blank"
@@ -110,11 +112,15 @@ export default function Merch() {
                 <div className="merchCardContent">
                   <h3 className="merchCardTitle">{product.title}</h3>
                   <p className="merchCardPrice">{price}</p>
+                  {/* Outline, not primary. Twelve filled primary buttons here against
+                      zero in the Watch section inverted the stated conversion
+                      hierarchy — PRODUCT.md makes watch paths the conversion and
+                      everything else the thing that earns that click. */}
                   <a
                     href={checkoutUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="cta primary"
+                    className="cta"
                   >
                     {merch.buyNow}
                   </a>

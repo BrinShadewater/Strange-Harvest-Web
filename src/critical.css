@@ -12,6 +12,9 @@
   --card: 0 0% 7%;
   --card-foreground: 40 20% 90%;
   --primary: 0 65% 35%;
+  /* Text-safe companion to --primary — see src/main.css. Must be declared here too
+     or above-fold text repaints illegible until the deferred sheet lands. */
+  --primary-text: 0 65% 58%;
   --primary-foreground: 40 20% 95%;
   --accent: 45 70% 50%;
   --accent-foreground: 0 0% 4%;
@@ -61,6 +64,7 @@ body {
 
 body.festival-theme {
   --primary: 210 88% 42%;
+  --primary-text: 210 88% 62%;
   --primary-hover: 210 88% 48%;
   --glow-core-rgb: 0, 130, 255;
   --glow-mid-rgb: 0, 90, 220;
@@ -76,9 +80,7 @@ body.festival-theme .synopsisTitle::after {
   background: hsl(var(--primary));
 }
 
-body.festival-theme .highlight {
-  color: hsl(var(--primary));
-}
+/* .highlight intentionally not themed — see src/main.css for the rationale. */
 
 body.festival-theme .synopsisQuote {
   border-left-color: hsl(var(--primary));
@@ -88,14 +90,13 @@ body.festival-theme .synopsisStat:hover {
   border-color: hsl(var(--primary));
 }
 
-body.festival-theme .statValueWarning {
-  color: hsl(var(--primary));
-}
+/* .statValueWarning intentionally not themed — --alarm must survive the A/B arm.
+   See src/main.css for the rationale. */
 
 body.festival-theme .nav a:hover,
 body.festival-theme .cartIcon,
 body.festival-theme .cartIcon:hover {
-  color: hsl(var(--primary));
+  color: hsl(var(--primary-text));
 }
 
 body.festival-theme .cta:hover {
@@ -112,7 +113,7 @@ body.festival-theme .cta.primary:hover {
 }
 
 body.festival-theme .breadcrumb a:hover {
-  color: hsl(var(--primary));
+  color: hsl(var(--primary-text));
 }
 
 body.festival-theme .homeVideoCta,
@@ -587,7 +588,7 @@ section:first-of-type {
 }
 
 .langToggleBtn:hover {
-  color: hsl(var(--primary));
+  color: hsl(var(--primary-text));
 }
 
 @media (max-width: 520px) {
