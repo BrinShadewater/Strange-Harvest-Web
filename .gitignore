@@ -39,3 +39,26 @@ seo-image-apply-report.json
 
 # Scratch from image-pipeline write tests
 public/images/test-write.tmp
+
+# Camera originals staged in the repo folder (added 2026-08-08). This is a PUBLIC
+# repo, so an accidental `git add -A` would publish unreleased material and bloat
+# history permanently — 1.5 GB of CR2/HEIC/JPG was sitting here untracked and
+# unignored when this was written. Web-ready derivatives belong in public/images/;
+# originals should live outside the repo entirely. These patterns are a backstop,
+# not the fix.
+New SH BTS Photos/
+*.CR2
+*.cr2
+*.ARW
+*.arw
+*.NEF
+*.nef
+*.DNG
+*.dng
+*.HEIC
+*.heic
+
+# Per-developer agent settings. Shared agent config is CLAUDE.md / AGENTS.md at the
+# repo root, which stay tracked.
+.claude/settings.local.json
+.claude/settings.local.json.*
