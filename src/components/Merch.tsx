@@ -2,7 +2,14 @@
 
 import { useSitecopy } from "./LanguageProvider";
 import { useState, useEffect } from "react";
-import { getProducts, getCheckoutUrl, formatPrice, type ShopifyProduct } from "../services/shopify";
+import {
+  getProducts,
+  getCheckoutUrl,
+  formatPrice,
+  CARD_IMAGE_1X,
+  CARD_IMAGE_2X,
+  type ShopifyProduct,
+} from "../services/shopify";
 
 export default function Merch() {
   const { merch } = useSitecopy();
@@ -67,8 +74,8 @@ export default function Merch() {
       {!loading && !error && products.length > 0 && (
         <div className="merchGrid">
           {products.map((product) => {
-            const imageUrl = product.images.edges[0]?.node.url;
-            const imageAlt = product.images.edges[0]?.node.altText || product.title;
+            const image = product.images.edges[0]?.node;
+            const imageAlt = image?.altText || product.title;
             const price = formatPrice(
               product.priceRange.minVariantPrice.amount,
               product.priceRange.minVariantPrice.currencyCode
@@ -77,9 +84,20 @@ export default function Merch() {
 
             return (
               <article key={product.id} className="merchCard">
-                {imageUrl && (
+                {image && (
                   <div className="merchCardImage">
-                    <img src={imageUrl} alt={imageAlt} loading="lazy" decoding={"async"} width={600} height={600} />
+                    <img
+                      src={image.url1x}
+                      srcSet={`${image.url1x} ${CARD_IMAGE_1X}w, ${image.url2x} ${CARD_IMAGE_2X}w`}
+                      /* The card is ~283 CSS px on desktop and ~301 on mobile's
+                         single column, so one size hint covers both breakpoints. */
+                      sizes={`${CARD_IMAGE_1X}px`}
+                      alt={imageAlt}
+                      loading="lazy"
+                      decoding={"async"}
+                      width={CARD_IMAGE_1X}
+                      height={CARD_IMAGE_1X}
+                    />
                   </div>
                 )}
                 <div className="merchCardContent">
