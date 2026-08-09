@@ -26,9 +26,11 @@ export const metadata: Metadata = {
       "Sitio oficial de Strange Harvest (2025), mockumentary de terror. Mira el tráiler, lee reseñas y consulta dónde ver la película.",
     images: [
       {
-        url: BASE_URL + "/images/strange-harvest-official-movie-poster-1280w.jpg",
+        // Same optimized OG derivative the EN page uses (~160KB vs the 2.2MB
+        // print JPG this pointed at before), with its real dimensions.
+        url: BASE_URL + "/images/strange-harvest-official-movie-poster-og.jpg",
         width: 1200,
-        height: 630,
+        height: 1600,
         alt: "Strange Harvest cartel oficial de la película de terror",
       },
     ],

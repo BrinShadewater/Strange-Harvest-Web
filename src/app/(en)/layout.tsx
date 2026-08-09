@@ -68,12 +68,16 @@ export const metadata: Metadata = {
       "Strange Harvest (2025) is a horror mockumentary streaming on Hulu. Watch the trailer, read reviews, and explore the Mr. Shiny story on the official site.",
     images: [
       {
-        url: BASE_URL + "/images/strange-harvest-official-movie-poster.webp",
+        // Dedicated OG derivative of the poster: JPG because several share
+        // scrapers still skip WebP cards, sized 1200w (~160KB) so scrapers
+        // don't fetch the 2.2MB print file, with the poster's real portrait
+        // dimensions instead of the 1200×630 that was declared before.
+        url: BASE_URL + "/images/strange-harvest-official-movie-poster-og.jpg",
         width: 1200,
-        height: 630,
-        type: "image/webp",
+        height: 1600,
+        type: "image/jpeg",
         alt: "Strange Harvest movie poster featuring dark horror imagery",
-        secureUrl: BASE_URL + "/images/strange-harvest-official-movie-poster.webp",
+        secureUrl: BASE_URL + "/images/strange-harvest-official-movie-poster-og.jpg",
       },
     ],
     siteName: "Strange Harvest Official",
@@ -86,7 +90,7 @@ export const metadata: Metadata = {
     description:
       "Strange Harvest (2025) is a horror mockumentary streaming on Hulu. Watch the trailer, read reviews, and explore the Mr. Shiny story on the official site.",
     images: {
-      url: BASE_URL + "/images/strange-harvest-official-movie-poster.webp",
+      url: BASE_URL + "/images/strange-harvest-official-movie-poster-og.jpg",
       alt: "Strange Harvest movie poster featuring dark horror imagery",
     },
   },

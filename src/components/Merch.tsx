@@ -11,20 +11,24 @@ import {
   type ShopifyProduct,
 } from "../services/shopify";
 
+const isDev = process.env.NODE_ENV === 'development';
+
 export default function Merch() {
   const { merch } = useSitecopy();
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const isDev = process.env.NODE_ENV === 'development';
 
   useEffect(() => {
+    let cancelled = false;
+
     const fetchProducts = async () => {
       try {
         setLoading(true);
         const productsData = await getProducts();
+        if (cancelled) return;
         setProducts(productsData);
-        
+
         // Show error state if no products returned (likely due to missing credentials)
         if (productsData.length === 0) {
           setError(true);
@@ -33,13 +37,16 @@ export default function Merch() {
         if (isDev) {
           console.error("Failed to load products:", err);
         }
-        setError(true);
+        if (!cancelled) setError(true);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
 
     fetchProducts();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (
