@@ -156,9 +156,12 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- No webfont link here on purpose. This site's CSP is
+       style-src 'self' 'unsafe-inline', which blocks the Google Fonts host, so an
+       Assistant stylesheet link never loaded and only logged a CSP error on every
+       page load. These static pages render the sans-serif fallback and always have.
+       The Next app pages get Assistant via next/font, which self-hosts it; matching
+       that here would need a self-hosted @font-face, not an external link. -->
 
   <style>
     :root {
