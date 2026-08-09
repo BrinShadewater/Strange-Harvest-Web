@@ -210,7 +210,8 @@ netlify dev
 
 ### Vercel Deployment
 - [ ] `vercel.json` exists in root
-- [ ] `api/geo.ts` exists
+- [ ] `src/app/api/geo/route.ts` exists (NOT a root-level `api/geo.ts` — that legacy-convention
+      file shadowed this route and 500'd on every request; deleted 2026-08-08)
 - [ ] Deploy: `vercel --prod`
 - [ ] Test: `https://yoursite.vercel.app/api/geo`
 - [ ] Verify returns: `{"country":"US","source":"edge-headers"}`

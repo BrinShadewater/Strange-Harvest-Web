@@ -437,9 +437,11 @@ const sitecopyEn = {
     shopifyUrl: "https://strangeharvestmovie.myshopify.com",
     shopifyCartUrl: "https://strangeharvestmovie.myshopify.com/cart",
     loadingMessage: "Loading merchandise...",
-    comingSoonTitle: "Merch Coming Soon",
-    comingSoonBody: "Our merchandise store is currently being updated. Check back soon!",
-    notifyMe: "Notify me",
+    // Shown only when the Storefront API returns nothing. The store went live on
+    // 2026-08-08, so this state means something is broken, not that merch is unlaunched.
+    errorTitle: "The Store Isn't Loading",
+    errorBody: "Something broke on our end — the shop itself is fine. You can browse it directly while we sort this out.",
+    storeLink: "Go to the store",
     buyNow: "Buy Now",
   },
 
@@ -707,9 +709,9 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
     title: "Merch oficial",
     blurb: "Viste el terror. Lleva el misterio. Merch oficial exclusiva de Strange Harvest para verdaderos creyentes.",
     loadingMessage: "Cargando merchandising...",
-    comingSoonTitle: "Merch próximamente",
-    comingSoonBody: "Nuestra tienda de merch se está actualizando. Vuelve pronto.",
-    notifyMe: "Avisarme",
+    errorTitle: "La tienda no carga",
+    errorBody: "Algo falló de nuestro lado; la tienda en sí funciona. Puedes verla directamente mientras lo solucionamos.",
+    storeLink: "Ir a la tienda",
     buyNow: "Comprar ahora",
   },
   castCrew: {
