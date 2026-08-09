@@ -1,13 +1,11 @@
-# Claude Context: Strange Harvest Web
+@AGENTS.md
 
-`AGENTS.md` in this folder is the full guide and is agent-neutral. Read it first.
+<!-- Canonical content is AGENTS.md beside this file (import since 2026-08-08);
+     edit there, agent-neutral. -->
 
-The hard rule: **do not invent film facts.** No press claim, festival selection, release date,
-award, or distribution detail unless it is sourced or Alex confirms it. Invented festival
-credits follow a film around and are far harder to retract than a bad line of code. If you need
-a fact you do not have, leave a marker and ask.
+## Claude Code addendum
 
-Preserve the existing visual direction and do not replace imagery without approval. Alex's
-lawyer has reviewed the site, so do not casually restructure legal or credit copy.
-
-Project home note: `Memory\ShadewaterMemoryVault\50_Projects\Websites\Strange-Harvest-Web.md`.
+Nothing Claude-specific beyond the film-facts rule above, which is the one that matters
+here: an invented festival selection or distribution claim follows the film around and is
+far harder to retract than a bad line of code. If you need a fact you do not have, leave a
+marker and ask.

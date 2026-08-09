@@ -1,6 +1,7 @@
 # Strange Harvest Web — Agent Guide
 
-Agent-neutral. Claude and Codex both read this file; `CLAUDE.md` points here.
+Agent-neutral and canonical. Claude and Codex both read this file; `CLAUDE.md` is a thin
+`@AGENTS.md` import beside it. **Edit here, not there.**
 
 The public website for **Strange Harvest**, the 2025 horror mockumentary — `strangeharvestmovie.com`.
 Repo root is this folder, tracking a GitHub remote — compute branch state fresh rather than
