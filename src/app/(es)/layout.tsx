@@ -118,7 +118,7 @@ const jsonLd = {
       caption: "Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire.",
       creditText: "Adorable Damage / Pathogen Pictures",
       creator: { "@type": "Organization", name: "Adorable Damage" },
-      copyrightNotice: "© 2025 Strange Harvest. All rights reserved.",
+      copyrightNotice: "© 2024 Strange Harvest. All rights reserved.",
       license: BASE_URL + "/press.html",
       acquireLicensePage: BASE_URL + "/press.html",
     },
