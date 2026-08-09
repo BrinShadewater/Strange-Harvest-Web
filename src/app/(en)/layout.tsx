@@ -84,8 +84,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@strangeharvestfilm",
-    creator: "@strangeharvestfilm",
+    site: "@Strange_Harvest",
+    creator: "@Strange_Harvest",
     title: "Strange Harvest (2025) | Official Movie Website",
     description:
       "Strange Harvest (2025) is a horror mockumentary streaming on Hulu. Watch the trailer, read reviews, and explore the Mr. Shiny story on the official site.",
@@ -210,9 +210,9 @@ const jsonLd = {
         "https://en.wikipedia.org/wiki/Strange_Harvest_(film)",
         "https://www.wikidata.org/wiki/Q130379751",
         "https://www.imdb.com/title/tt33400719/",
-        "https://www.instagram.com/strangeharvestfilm",
-        "https://www.facebook.com/strangeharvestfilm",
-        "https://www.twitter.com/strangeharvestfilm",
+        "https://www.instagram.com/strangeharvestmovie/",
+        "https://www.facebook.com/Strangeharvestmovie/",
+        "https://x.com/Strange_Harvest",
       ],
     },
     {

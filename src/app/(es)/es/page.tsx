@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@strangeharvestfilm",
+    site: "@Strange_Harvest",
     title: "Strange Harvest (2025) | Sitio Oficial de la Película",
     description:
       "Sitio oficial de Strange Harvest (2025), mockumentary de terror. Mira el tráiler, lee reseñas y consulta dónde ver la película.",

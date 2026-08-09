@@ -144,9 +144,9 @@ const jsonLd = {
         "https://en.wikipedia.org/wiki/Strange_Harvest_(film)",
         "https://www.wikidata.org/wiki/Q130379751",
         "https://www.imdb.com/title/tt33400719/",
-        "https://www.instagram.com/strangeharvestfilm",
-        "https://www.facebook.com/strangeharvestfilm",
-        "https://www.twitter.com/strangeharvestfilm",
+        "https://www.instagram.com/strangeharvestmovie/",
+        "https://www.facebook.com/Strangeharvestmovie/",
+        "https://x.com/Strange_Harvest",
       ],
     },
     {

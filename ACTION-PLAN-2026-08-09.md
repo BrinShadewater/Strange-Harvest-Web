@@ -43,13 +43,12 @@ clean H2 outline, 153-char meta description, self-canonicals on all six public r
   prose to hit a readability formula.
 - *"1 image still JPEG"* — the OG card, which is JPG **on purpose** (scraper compatibility).
 
-## Open items (need Alex — facts, not code)
+## Open items
 
-1. **Social handle mismatch (the one real entity issue).** JSON-LD `sameAs` + `twitter:site` say
-   `@strangeharvestfilm` / `instagram.com/strangeharvestfilm` / `facebook.com/strangeharvestfilm`;
-   the footer and press page link `instagram.com/strangeharvestmovie` /
-   `facebook.com/Strangeharvestmovie` / `x.com/Strange_Harvest`. Which set is the real, current
-   profiles? Once confirmed, align JSON-LD, `twitter.site`/`creator`, footer, and `press.html`.
+1. ~~Social handle mismatch~~ **RESOLVED 2026-08-09**: Alex confirmed the `strangeharvestfilm`
+   handles are old. JSON-LD `sameAs`, `twitter:site`/`creator`, and the press-page meta now all
+   use the current profiles (`instagram.com/strangeharvestmovie`, `facebook.com/Strangeharvestmovie`,
+   `x.com/Strange_Harvest`), matching the visible footer links.
 2. **PageSpeed / CWV numbers** — rerun `pagespeed.py` with a `PAGESPEED_API_KEY`, or read the
    field data in Vercel Speed Insights. Only unmeasured category this run.
 3. Optional: `llms-full.txt` does not exist (llms.txt itself scores 100). Experimental — only if
