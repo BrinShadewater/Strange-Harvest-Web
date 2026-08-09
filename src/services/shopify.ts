@@ -4,6 +4,15 @@
  * Types for product data from Shopify
  */
 
+/**
+ * Card images are requested from Shopify already resized. The originals are
+ * 2048x2048 and the card renders at ~300 CSS px, so serving them untransformed
+ * cost 1.69 MB across twelve products for about 0.12 MB of actual pixels.
+ * `url(transform:)` makes the CDN do the work; the two sizes feed a srcset.
+ */
+export const CARD_IMAGE_1X = 320;
+export const CARD_IMAGE_2X = 640;
+
 export interface ShopifyProduct {
   id: string;
   title: string;
@@ -11,7 +20,9 @@ export interface ShopifyProduct {
   images: {
     edges: Array<{
       node: {
-        url: string;
+        /** Transformed to CARD_IMAGE_1X; GraphQL aliases, not raw `url`. */
+        url1x: string;
+        url2x: string;
         altText?: string;
       };
     }>;
@@ -85,7 +96,8 @@ export async function getProducts(): Promise<ShopifyProduct[]> {
                   images(first: 1) {
                     edges {
                       node {
-                        url
+                        url1x: url(transform: {maxWidth: ${CARD_IMAGE_1X}, maxHeight: ${CARD_IMAGE_1X}})
+                        url2x: url(transform: {maxWidth: ${CARD_IMAGE_2X}, maxHeight: ${CARD_IMAGE_2X}})
                         altText
                       }
                     }
