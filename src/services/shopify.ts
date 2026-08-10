@@ -77,7 +77,15 @@ export async function getProducts(): Promise<ShopifyProduct[]> {
 
   try {
     const res = await fetch(
-      `https://${SHOPIFY_DOMAIN}/api/2024-01/graphql.json`,
+      // 2026-07 is the current stable Storefront API version, accessible until
+      // 2027-07-16. This was pinned to 2024-01, which Shopify retired long ago:
+      // requests to a retired version are "fallen forward" and served as the OLDEST
+      // still-accessible version instead (2025-10 as of 2026-08). That silently
+      // worked, which is why nobody noticed — but it meant the merch grid ran on a
+      // version Shopify chose, and that target moves each quarter with no deploy on
+      // our side. Bump this once a year; the store breaking on a schedule nobody is
+      // watching is the failure mode being avoided.
+      `https://${SHOPIFY_DOMAIN}/api/2026-07/graphql.json`,
       {
         method: "POST",
         headers: {
