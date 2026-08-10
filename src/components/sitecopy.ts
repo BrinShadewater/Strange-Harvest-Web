@@ -63,6 +63,9 @@ const sitecopyEn = {
       home: "Strange Harvest home",
       cart: "Open shopping cart",
       language: "Language selector",
+      // Was hardcoded English in Header.tsx, so a screen reader on /es announced
+      // the landmark as "Site navigation".
+      siteNavigation: "Site navigation",
     },
     languageToggle: {
       en: "EN",
@@ -332,6 +335,10 @@ const sitecopyEn = {
     title: "Watch Now",
     streaming: "STREAMING",
     streamingOn: "STREAMING ON",
+    // Distinguishes the subscription tier from the rent/own tiles, which were
+    // visually identical to it — a free-with-subscription stream looked the same
+    // as a $20 purchase.
+    includedWithSubscription: "Included with subscription",
     rentOwnUSCA: "RENT / OWN",
     rentOwnIntl: "RENT / OWN (UK & INTERNATIONAL)",
     regionUnknownNote: "We couldn’t confirm your region, so this list isn’t filtered. Availability varies by country.",
@@ -441,6 +448,10 @@ const sitecopyEn = {
     // 2026-08-08, so this state means something is broken, not that merch is unlaunched.
     errorTitle: "The Store Isn't Loading",
     errorBody: "Something broke on our end — the shop itself is fine. You can browse it directly while we sort this out.",
+    // An empty catalogue is not a failure. Reporting "something broke" for it blamed
+    // the site for a state the shop is legitimately allowed to be in.
+    emptyTitle: "Nothing in the Shop Right Now",
+    emptyBody: "There's no merch listed at the moment. Check the store directly — new items land there first.",
     storeLink: "Go to the store",
     buyNow: "Buy Now",
   },
@@ -639,8 +650,10 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
       merch: "Merch",
     },
     aria: {
+      home: "Inicio de Strange Harvest",
       cart: "Abrir carrito de compras",
       language: "Selector de idioma",
+      siteNavigation: "Navegación del sitio",
     },
   },
   hero: {
@@ -695,6 +708,11 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
   },
   watch: {
     title: "Ver ahora",
+    // These two were missing from the ES block entirely, so the Spanish page fell
+    // back to the English "STREAMING" above a Spanish "ALQUILER / COMPRA".
+    streaming: "EN STREAMING",
+    streamingOn: "DISPONIBLE EN",
+    includedWithSubscription: "Incluido con la suscripción",
     rentOwnUSCA: "ALQUILER / COMPRA",
     rentOwnIntl: "ALQUILER / COMPRA (REINO UNIDO E INTERNACIONAL)",
     regionUnknownNote: "No hemos podido confirmar tu región, así que esta lista no está filtrada. La disponibilidad varía según el país.",
@@ -713,6 +731,8 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
     loadingMessage: "Cargando merchandising...",
     errorTitle: "La tienda no carga",
     errorBody: "Algo falló de nuestro lado; la tienda en sí funciona. Puedes verla directamente mientras lo solucionamos.",
+    emptyTitle: "Ahora mismo no hay nada en la tienda",
+    emptyBody: "De momento no hay productos publicados. Consulta la tienda directamente: los artículos nuevos aparecen allí primero.",
     storeLink: "Ir a la tienda",
     buyNow: "Comprar ahora",
   },

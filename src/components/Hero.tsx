@@ -248,7 +248,10 @@ export default function Hero({ initialVariant = "red" }: { initialVariant?: Them
         srcSet:
           "/images/strange-harvest-alternate-movie-poster-640w.webp 640w, /images/strange-harvest-alternate-movie-poster-960w.webp 960w, /images/strange-harvest-alternate-movie-poster-1280w.webp 1280w",
         downloadSrc: "/images/strange-harvest-alternate-movie-poster.jpg",
-        alt: "Alternate Festival Run Poster featuring the masked killer from the horror mockumentary Strange Harvest",
+        // Describes what is actually in the frame. The previous alt said "featuring
+        // the masked killer"; the artwork is a glowing three-pointed occult symbol
+        // over a night-time city, no figure in it at all.
+        alt: "Festival poster for the horror mockumentary Strange Harvest: a glowing three-pointed occult symbol above the lights of the Inland Empire at night",
       }
     : {
         src: "/images/strange-harvest-official-movie-poster.webp",

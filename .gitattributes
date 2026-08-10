@@ -1,0 +1,20 @@
+# Line endings are pinned so a routine edit can't register as a whole-file rewrite.
+#
+# The repo has core.autocrlf=true, but press.html, privacy.html and transcript.html
+# were committed with CRLF blobs before that was set. Touching any of them normalised
+# the file to LF on `git add`, turning a 30-line change into a 600-line diff and
+# making review effectively impossible. Pinning the working-tree ending stops the
+# blobs and the checkout from disagreeing.
+* text=auto eol=crlf
+
+# Binary assets must never be line-ending converted — it corrupts them.
+*.webp binary
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.gif  binary
+*.ico  binary
+*.woff binary
+*.woff2 binary
+*.pdf  binary
+*.mp4  binary

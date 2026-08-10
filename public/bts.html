@@ -61,7 +61,7 @@
           "@type": "Organization",
           "name": "Adorable Damage"
         },
-        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html",
         "acquireLicensePage": "https://strangeharvestmovie.com/press.html"
       },
@@ -74,7 +74,7 @@
         "width": 1677,
         "height": 1263,
         "creditText": "Adorable Damage / Pathogen Pictures",
-        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html"
       },
       {
@@ -86,7 +86,7 @@
         "width": 1551,
         "height": 1183,
         "creditText": "Adorable Damage / Pathogen Pictures",
-        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html"
       },
       {
@@ -98,7 +98,7 @@
         "width": 1368,
         "height": 1824,
         "creditText": "Adorable Damage / Pathogen Pictures",
-        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html"
       },
       {
@@ -106,11 +106,11 @@
         "@id": "https://strangeharvestmovie.com/bts.html#img-poster-alt",
         "contentUrl": "https://strangeharvestmovie.com/images/strange-harvest-alternate-movie-poster.webp",
         "name": "Strange Harvest alternate movie poster",
-        "caption": "Alternate poster featuring the masked killer from Strange Harvest.",
+        "caption": "Festival poster for Strange Harvest: a glowing three-pointed occult symbol above the lights of the Inland Empire at night.",
         "width": 1365,
-        "height": 2048,
+        "height": 1950,
         "creditText": "Adorable Damage / Pathogen Pictures",
-        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html"
       },
       {
@@ -120,7 +120,7 @@
         "name": "Los asesinatos de Mr. Shiny Spanish poster",
         "caption": "Official Spanish poster artwork for Strange Harvest titled Los asesinatos de Mr. Shiny.",
         "creditText": "Adorable Damage / Pathogen Pictures",
-        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html"
       },
       {
@@ -132,7 +132,7 @@
         "width": 1677,
         "height": 1263,
         "creditText": "Adorable Damage / Pathogen Pictures",
-        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html"
       },
       {
@@ -144,7 +144,7 @@
         "width": 1677,
         "height": 1263,
         "creditText": "Adorable Damage / Pathogen Pictures",
-        "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
+        "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
         "license": "https://strangeharvestmovie.com/press.html"
       }
     ]
@@ -185,12 +185,37 @@
 
   <style>
     :root {
+      /* Without this the UA picks light-mode defaults on a near-black page and the
+         default focus ring computes to rgb(16,16,16) — invisible. */
+      color-scheme: dark;
       --background: #0a0a0a;
       --foreground: #e9e9e9;
       --primary: #c94538;
+      /* Text-safe companion. --primary is 4.14:1 as 12px bold text, under AA.
+         Matches the app's --primary-text so both surfaces agree. */
+      --primary-text: hsl(0, 65%, 58%);
+      /* Same colour as --primary, as an RGB triplet, so alpha variants can be themed
+         too. rgba(201,69,56,·) was hardcoded in three places and ignored the A/B arm. */
+      --primary-rgb: 201, 69, 56;
+      --accent: hsl(45, 70%, 50%);
       --border: rgba(255, 255, 255, 0.1);
       --card: rgba(255, 255, 255, 0.06);
       --card-hover: rgba(255, 255, 255, 0.1);
+    }
+
+    /* The A/B arm used to stop at the page boundary — see the cookie script in <body>. */
+    body.festival-theme {
+      --primary: #0d6bc9;
+      --primary-text: hsl(210, 88%, 62%);
+      --primary-rgb: 13, 107, 201;
+    }
+
+    /* One ring, every control — harvest gold at 9.31:1, matching the app. This page
+       previously had zero :focus-visible rules; its only focus style was
+       .skipLink:focus { top: 0 }, so all 95 controls fell back to an invisible UA ring. */
+    :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
 
     .skipLink {
@@ -327,7 +352,7 @@
     .nav a.active { color: #fff; background: rgba(255, 255, 255, 0.08); }
 
     .cartIcon {
-      color: hsl(0, 65%, 45%);
+      color: var(--primary-text);
       transition: color 0.2s ease, transform 0.2s ease;
       display: inline-flex;
       align-items: center;
@@ -339,7 +364,7 @@
     }
     .cartIcon svg { width: 28px; height: 28px; display: block; }
     .cartIcon:hover {
-      color: hsl(0, 75%, 55%);
+      color: var(--primary-text);
       transform: scale(1.08);
       background: rgba(255,255,255,0.05);
     }
@@ -371,12 +396,12 @@
     }
 
     .langSwitchBtn.active {
-      background: hsl(0, 65%, 45%);
+      background: var(--primary);
       color: #fff;
     }
 
     .langSwitchBtn:hover {
-      color: hsl(0, 65%, 45%);
+      color: var(--primary-text);
     }
 
     .headerRight {
@@ -434,7 +459,7 @@
     }
 
     .heroKicker {
-      color: var(--primary);
+      color: var(--primary-text);
       text-transform: uppercase;
       letter-spacing: 0.12em;
       font-size: 12px;
@@ -598,8 +623,8 @@
     }
 
     .downloadBtn:hover {
-      background: rgba(201, 69, 56, 0.2);
-      border-color: rgba(201, 69, 56, 0.7);
+      background: rgba(var(--primary-rgb), 0.2);
+      border-color: rgba(var(--primary-rgb), 0.7);
     }
 
     .carouselButton {
@@ -618,29 +643,45 @@
       z-index: 2;
     }
 
-    .carouselButton:hover { background: rgba(201, 69, 56, 0.9); }
+    .carouselButton:hover { background: rgba(var(--primary-rgb), 0.9); }
     .carouselButton.prev { left: 12px; }
     .carouselButton.next { right: 12px; }
 
     .dots {
       display: flex;
-      gap: 8px;
+      /* Dots now carry their own 24px hit area, so the visual gap comes from that
+         padding rather than from a gap that the finger cannot reach. */
+      gap: 0;
       justify-content: center;
       margin-top: 12px;
       flex-wrap: wrap;
     }
 
+    /* The button is a 24×24 target; the visible dot stays 10px and is drawn by the
+       pseudo-element. Previously the button WAS the 10px dot with padding:0 — the
+       smallest touch target on the site and well under WCAG 2.5.8's 24×24 minimum. */
     .dot {
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dot::before {
+      content: "";
       width: 10px;
       height: 10px;
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.5);
       background: transparent;
-      cursor: pointer;
-      padding: 0;
     }
 
-    .dot.active { background: #fff; border-color: #fff; }
+    .dot.active::before { background: #fff; border-color: #fff; }
 
     .symbolDivider {
       display: flex;
@@ -765,7 +806,7 @@
     }
 
     .footerCookieSettings:hover {
-      color: hsl(0, 65%, 45%);
+      color: var(--primary-text);
     }
 
     @media (max-width: 800px) {
@@ -878,11 +919,14 @@
         background: rgba(255, 255, 255, 0.85);
         border-radius: 2px;
         transform-origin: center;
-        transition: transform 0.22s ease, opacity 0.22s ease, width 0.22s ease;
+        /* scaleX, not width. Animating width runs layout on every frame of the menu
+           toggle; the app's copy of this bar was fixed the same way on 2026-07-29 and
+           this static page kept the original. */
+        transition: transform 0.22s ease, opacity 0.22s ease;
       }
 
       .navToggle.is-open .navToggleBar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-      .navToggle.is-open .navToggleBar:nth-child(2) { opacity: 0; width: 0; }
+      .navToggle.is-open .navToggleBar:nth-child(2) { opacity: 0; transform: scaleX(0); }
       .navToggle.is-open .navToggleBar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
       .headerRight {
@@ -907,6 +951,17 @@
   </style>
 </head>
 <body>
+  <script>
+    /* Carry the A/B arm across the page boundary. The Next app sets this cookie and
+       renders body.festival-theme; this static page had no idea it existed, so a
+       blue-arm visitor watched the brand change colour on navigation. Runs before
+       paint (first node in <body>) so there is no red flash. */
+    try {
+      if (/(?:^|;\s*)sh_ab_theme_v1=blue(?:;|$)/.test(document.cookie)) {
+        document.body.classList.add("festival-theme");
+      }
+    } catch (e) { /* cookie access can throw in embedded contexts; red is the default */ }
+  </script>
   <a href="#main" class="skipLink">Skip to content</a>
   <div class="grainOverlay" aria-hidden="true"></div>
   <canvas class="particleCanvas" id="particle-canvas" aria-hidden="true"></canvas>
@@ -1022,7 +1077,7 @@
 
       <div class="footerBottom">
         <p class="footerOfficial">Official Website of Strange Harvest (2025)</p>
-        <p class="footerCopyright">© 2025 Strange Harvest. All rights reserved.</p>
+        <p class="footerCopyright">© 2024 Strange Harvest. All rights reserved.</p>
         <p class="footerMusic">Adorable Damage &amp; Pathogen Pictures</p>
         <p class="footerDisclaimer">All material on this website is fictional and presented for entertainment. Any resemblance to real people, organizations, places, or events is coincidental and not intended as factual representation.</p>
         <a href="/privacy.html" class="footerCookieSettings" aria-label="Manage cookie preferences">Cookie Settings</a>
@@ -1146,7 +1201,7 @@
 
     const postersItems = [
       { src: "/images/strange-harvest-official-movie-poster.webp", downloadSrc: "/images/strange-harvest-official-movie-poster-1280w.jpg", alt: "Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire", caption: isEs ? "Poster oficial principal." : "Main official poster.", downloadLabel: isEs ? "Descargar poster principal" : "Download Main Poster" },
-      { src: "/images/strange-harvest-alternate-movie-poster.webp", downloadSrc: "/images/strange-harvest-alternate-movie-poster.jpg", alt: "Alternate poster featuring the masked killer from the horror mockumentary Strange Harvest", caption: isEs ? "Poster alternativo de festival con el asesino enmascarado." : "Alternate Festival Run Poster featuring the masked killer.", downloadLabel: isEs ? "Descargar poster de festival" : "Download Festival Poster" },
+      { src: "/images/strange-harvest-alternate-movie-poster.webp", downloadSrc: "/images/strange-harvest-alternate-movie-poster.jpg", alt: "Festival poster for the horror mockumentary Strange Harvest: a glowing three-pointed occult symbol above the lights of the Inland Empire at night", caption: isEs ? "Póster de festival: el símbolo oculto sobre las luces del Inland Empire." : "Festival Run Poster: the occult symbol above the lights of the Inland Empire.", downloadLabel: isEs ? "Descargar poster de festival" : "Download Festival Poster" },
       { src: "/images/strange-harvest-los-asesinatos-de-mr-shiny-poster.webp", downloadSrc: "/images/strange-harvest-los-asesinatos-de-mr-shiny-poster.jpg", alt: "Official Spanish poster for Strange Harvest titled Los asesinatos de Mr. Shiny", caption: isEs ? "Poster oficial en espanol: Los asesinatos de Mr. Shiny." : "Official Spanish title poster: Los asesinatos de Mr. Shiny.", downloadLabel: isEs ? "Descargar poster en espanol" : "Download Spanish Poster" }
     ];
 

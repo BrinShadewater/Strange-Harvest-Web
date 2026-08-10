@@ -68,7 +68,20 @@ export default function HomeVideo() {
 
       <div className="homeVideoCard">
         <div className="homeVideoImageWrapper">
-          <img src={homeVideo.image} alt={homeVideo.productTitle} className="homeVideoImage" width="300" height="450" loading="lazy" decoding={"async"} />
+          {/* This was the one image the overhaul missed: the full 1368×1824 poster
+              (198 KB) served into a 300px box. The 640w/960w derivatives already
+              existed and were only wired up on the hero. */}
+          <img
+            src={homeVideo.image}
+            srcSet="/images/strange-harvest-official-movie-poster-640w.webp 640w, /images/strange-harvest-official-movie-poster-960w.webp 960w"
+            sizes="300px"
+            alt={homeVideo.productTitle}
+            className="homeVideoImage"
+            width="300"
+            height="450"
+            loading="lazy"
+            decoding={"async"}
+          />
         </div>
         
         <div className="homeVideoContent">

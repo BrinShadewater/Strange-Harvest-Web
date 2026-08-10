@@ -50,7 +50,9 @@
     
     <!-- Twitter Card -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:site" content="@strangeharvestfilm">
+    <!-- @strangeharvestfilm was the old account and its profile 404s (Alex, 2026-08-09).
+         This was the last surviving reference to it on the site. -->
+    <meta property="twitter:site" content="@Strange_Harvest">
     <meta property="twitter:url" content="https://strangeharvestmovie.com/press.html">
     <meta property="twitter:title" content="Strange Harvest Press Kit | Official Media & Reviews">
     <meta property="twitter:description" content="Official press kit for Strange Harvest horror film. High-resolution images and critical reviews.">
@@ -143,7 +145,7 @@
             "@type": "Organization",
             "name": "Adorable Damage"
           },
-          "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
+          "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
           "license": "https://strangeharvestmovie.com/press.html",
           "acquireLicensePage": "https://strangeharvestmovie.com/press.html"
         },
@@ -156,7 +158,7 @@
           "width": 1600,
           "height": 900,
           "creditText": "Adorable Damage / Pathogen Pictures",
-          "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
+          "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
           "license": "https://strangeharvestmovie.com/press.html"
         },
         {
@@ -168,7 +170,7 @@
           "width": 1600,
           "height": 900,
           "creditText": "Adorable Damage / Pathogen Pictures",
-          "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
+          "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
           "license": "https://strangeharvestmovie.com/press.html"
         },
         {
@@ -180,7 +182,7 @@
           "width": 1600,
           "height": 900,
           "creditText": "Adorable Damage / Pathogen Pictures",
-          "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
+          "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
           "license": "https://strangeharvestmovie.com/press.html"
         },
         {
@@ -192,7 +194,7 @@
           "width": 1600,
           "height": 900,
           "creditText": "Adorable Damage / Pathogen Pictures",
-          "copyrightNotice": "© 2025 Strange Harvest. All rights reserved.",
+          "copyrightNotice": "© 2024 Strange Harvest. All rights reserved.",
           "license": "https://strangeharvestmovie.com/press.html"
         }
       ]
@@ -201,13 +203,35 @@
     
     <style>
         :root {
+            /* Without this the UA picks light-mode defaults on a near-black page and
+               the default focus ring computes to rgb(16,16,16) — invisible. */
+            color-scheme: dark;
             --background: #0a0a0a;
             --foreground: #e9e9e9;
             --primary: #c94538;
+            /* Text-safe companion. --primary is 3.94:1 as 14px bold text, under AA.
+               Matches the app's --primary-text so both surfaces agree. */
+            --primary-text: hsl(0, 65%, 58%);
+            --accent: hsl(45, 70%, 50%);
             --border: rgba(255, 255, 255, 0.1);
             --card-bg: rgba(255, 255, 255, 0.03);
             --font-display: "Assistant", sans-serif;
             --font-body: "Assistant", sans-serif;
+        }
+
+        /* The A/B arm used to stop at the page boundary: a blue-arm visitor came from
+           a blue home page to a red press kit. The class is set pre-paint by the
+           cookie script at the top of <body>. */
+        body.festival-theme {
+            --primary: #0d6bc9;
+            --primary-text: hsl(210, 88%, 62%);
+        }
+
+        /* One ring, every control — matches the app's harvest gold at 9.31:1.
+           This page previously had exactly one focus rule (.skipLink:focus). */
+        :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
         }
         
         .skip-link {
@@ -272,7 +296,7 @@
             letter-spacing: 2px;
             margin: 60px 0 24px;
             text-transform: uppercase;
-            color: var(--primary);
+            color: var(--primary-text);
         }
         
         h3 {
@@ -318,7 +342,7 @@
             font-size: 14px;
             letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--primary);
+            color: var(--primary-text);
             margin-bottom: 8px;
         }
         
@@ -367,11 +391,32 @@
         }
         
         .press-image-caption {
-            padding: 16px;
+            padding: 16px 16px 4px;
             font-size: 14px;
             color: rgba(255, 255, 255, 0.7);
         }
-        
+
+        /* Technical line so a journalist can choose a file without downloading it. */
+        .press-image-meta {
+            padding: 0 16px 16px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .press-image a {
+            display: block;
+            cursor: pointer;
+        }
+
+        .press-image a:hover img {
+            opacity: 0.88;
+        }
+
+        /* These four are outbound links to Rotten Tomatoes, Letterboxd, Wikipedia and
+           Hulu — they were wearing the .download-btn class and download nothing.
+           .link-btn shares the styling; only the name was lying. */
+        .link-btn,
         .download-btn {
             display: inline-block;
             padding: 14px 32px;
@@ -387,8 +432,27 @@
             transition: background 0.2s ease;
         }
         
+        .link-btn:hover,
         .download-btn:hover {
             background: #d95748;
+        }
+
+        .contact-email {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 8px 0 20px;
+        }
+
+        .contact-email a {
+            color: var(--primary-text);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .contact-alt {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 8px;
         }
         
         .contact {
@@ -415,7 +479,7 @@
         }
         
         .social-links a:hover {
-            color: var(--primary);
+            color: var(--primary-text);
         }
         
         .back-link {
@@ -429,7 +493,7 @@
         }
         
         .back-link:hover {
-            color: var(--primary);
+            color: var(--primary-text);
             border-color: var(--primary);
         }
 
@@ -443,10 +507,33 @@
             margin-bottom: 16px;
         }
         
+        /* Was 16×19 CSS px — failed WCAG 2.5.8 (24×24) on both axes. Padding grows the
+           hit area without changing the type size or the visual layout much. */
         .lang-switch a {
             color: rgba(255, 255, 255, 0.75);
             text-decoration: none;
             font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            min-height: 44px;
+        }
+
+        .page-footer {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .page-footer .back-link {
+            margin-top: 0;
+        }
+
+        .footer-copyright {
+            margin-top: 16px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .lang-switch a.active {
@@ -474,17 +561,32 @@
     </style>
 </head>
 <body>
+    <script>
+      /* Carry the A/B arm across the page boundary. The Next app sets this cookie and
+         renders body.festival-theme; these static pages had no idea it existed, so a
+         blue-arm visitor watched the brand change colour on navigation. Runs before
+         paint (first node in <body>) so there is no red flash. */
+      try {
+        if (/(?:^|;\s*)sh_ab_theme_v1=blue(?:;|$)/.test(document.cookie)) {
+          document.body.classList.add("festival-theme");
+        }
+      } catch (e) { /* cookie access can throw in embedded contexts; red is the default */ }
+    </script>
     <a href="#main-content" class="skip-link">Skip to content</a>
-    <div id="main-content" class="container">
-        <div class="lang-switch" aria-label="Language selector">
+    <!-- The page used to be [skip-link, div.container, script] — one landmark total,
+         with the skip link pointing at a <div>. header/nav/main/footer now exist as
+         real landmarks; .container stays a single wrapper so the layout is unchanged. -->
+    <div class="container">
+        <nav class="lang-switch" aria-label="Language">
             <a id="lang-en" href="/press.html">EN</a>
             <span>/</span>
             <a id="lang-es" href="/press.html?lang=es">ES</a>
-        </div>
+        </nav>
         <header>
             <h1>Strange Harvest</h1>
             <p class="tagline">Press & Media Kit</p>
         </header>
+        <main id="main-content">
 
         <section>
             <h2>About the Film</h2>
@@ -564,30 +666,52 @@
         <section>
             <h2>Press Images</h2>
             <p>High-resolution promotional images available for editorial use:</p>
+            <!-- Each still is wrapped in a download link rather than sitting bare in the
+                 grid. Previously nothing on this page was downloadable: a journalist had
+                 to right-click-save a lazy-loaded thumbnail. Dimensions and weight are
+                 stated so they can pick a file without downloading it first. -->
             <div class="press-images">
                 <div class="press-image">
-                    <img src="/images/strange-harvest-official-movie-poster.webp" alt="Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire" loading="lazy">
+                    <a href="/images/strange-harvest-official-movie-poster.webp" download aria-label="Download the official movie poster, 1368 by 1824 pixels, 198 KB">
+                        <img src="/images/strange-harvest-official-movie-poster.webp" alt="Official poster for the horror mockumentary Strange Harvest Occult Murder in the Inland Empire" loading="lazy">
+                    </a>
                     <div class="press-image-caption">Official Movie Poster</div>
+                    <div class="press-image-meta">1368 × 1824 · WebP · 198 KB · Poster art: Adorable Damage / Pathogen Pictures</div>
                 </div>
                 <div class="press-image">
-                    <img src="/images/strange-harvest-detective-joe-kirby-peter-zizzo.webp" alt="Detective Joe Kirby" loading="lazy">
+                    <a href="/images/strange-harvest-detective-joe-kirby-peter-zizzo.webp" download aria-label="Download Peter Zizzo as Detective Joe Kirby, 1067 by 600 pixels, 24 KB">
+                        <img src="/images/strange-harvest-detective-joe-kirby-peter-zizzo.webp" alt="Detective Joe Kirby" loading="lazy">
+                    </a>
                     <div class="press-image-caption">Peter Zizzo as Detective Joe Kirby</div>
+                    <div class="press-image-meta">1067 × 600 · WebP · 24 KB</div>
                 </div>
                 <div class="press-image">
-                    <img src="/images/strange-harvest-detective-lexi-taylor-terri-apple.webp" alt="Detective Lexi Taylor" loading="lazy">
+                    <a href="/images/strange-harvest-detective-lexi-taylor-terri-apple.webp" download aria-label="Download Terri Apple as Detective Lexi Taylor, 1067 by 600 pixels, 22 KB">
+                        <img src="/images/strange-harvest-detective-lexi-taylor-terri-apple.webp" alt="Detective Lexi Taylor" loading="lazy">
+                    </a>
                     <div class="press-image-caption">Terri Apple as Detective Lexi Taylor</div>
+                    <div class="press-image-meta">1067 × 600 · WebP · 22 KB</div>
                 </div>
                 <div class="press-image">
-                    <img src="/images/strange-harvest-crime-scene-pool-investigation.webp" alt="Crime Scene Investigation" loading="lazy">
+                    <a href="/images/strange-harvest-crime-scene-pool-investigation.webp" download aria-label="Download the crime scene investigation still, 1600 by 900 pixels, 170 KB">
+                        <img src="/images/strange-harvest-crime-scene-pool-investigation.webp" alt="Crime Scene Investigation" loading="lazy">
+                    </a>
                     <div class="press-image-caption">Crime Scene Investigation</div>
+                    <div class="press-image-meta">1600 × 900 · WebP · 170 KB</div>
                 </div>
                 <div class="press-image">
-                    <img src="/images/strange-harvest-crime-scene-kitchen-evidence.webp" alt="Evidence Collection" loading="lazy">
+                    <a href="/images/strange-harvest-crime-scene-kitchen-evidence.webp" download aria-label="Download the evidence collection still, 1600 by 900 pixels, 173 KB">
+                        <img src="/images/strange-harvest-crime-scene-kitchen-evidence.webp" alt="Evidence Collection" loading="lazy">
+                    </a>
                     <div class="press-image-caption">Evidence Collection Scene</div>
+                    <div class="press-image-meta">1600 × 900 · WebP · 173 KB</div>
                 </div>
                 <div class="press-image">
-                    <img src="/images/strange-harvest-forensic-evidence-bloody-handprint.webp" alt="Forensic Evidence" loading="lazy">
+                    <a href="/images/strange-harvest-forensic-evidence-bloody-handprint.webp" download aria-label="Download the forensic evidence still, 1600 by 845 pixels, 137 KB">
+                        <img src="/images/strange-harvest-forensic-evidence-bloody-handprint.webp" alt="Forensic Evidence" loading="lazy">
+                    </a>
                     <div class="press-image-caption">Forensic Evidence</div>
+                    <div class="press-image-meta">1600 × 845 · WebP · 137 KB</div>
                 </div>
             </div>
         </section>
@@ -595,16 +719,23 @@
         <section>
             <h2>Official Links</h2>
             <p>
-                <a href="https://www.rottentomatoes.com/m/strange_harvest" target="_blank" rel="noopener noreferrer" class="download-btn">Rotten Tomatoes</a>
-                <a href="https://letterboxd.com/film/strange-harvest-2024/" target="_blank" rel="noopener noreferrer" class="download-btn">Letterboxd</a>
-                <a href="https://en.wikipedia.org/wiki/Strange_Harvest_(film)" target="_blank" rel="noopener noreferrer" class="download-btn">Wikipedia</a>
-                <a href="https://www.hulu.com/movie/strange-harvest-e931d642-fe34-4b92-b6da-96f4c7573fac" target="_blank" rel="noopener noreferrer" class="download-btn">Watch on Hulu</a>
+                <a href="https://www.rottentomatoes.com/m/strange_harvest" target="_blank" rel="noopener noreferrer" class="link-btn">Rotten Tomatoes</a>
+                <a href="https://letterboxd.com/film/strange-harvest-2024/" target="_blank" rel="noopener noreferrer" class="link-btn">Letterboxd</a>
+                <a href="https://en.wikipedia.org/wiki/Strange_Harvest_(film)" target="_blank" rel="noopener noreferrer" class="link-btn">Wikipedia</a>
+                <a href="https://www.hulu.com/movie/strange-harvest-e931d642-fe34-4b92-b6da-96f4c7573fac" target="_blank" rel="noopener noreferrer" class="link-btn">Watch on Hulu</a>
             </p>
         </section>
 
-        <section class="contact">
-            <h2>Media Contact</h2>
+        <section class="contact" aria-labelledby="media-contact-heading">
+            <h2 id="media-contact-heading">Media Contact</h2>
             <p>For press inquiries, interview requests, or additional materials:</p>
+            <!-- The page previously offered three social icons and no way to reach a
+                 human. Press and distribution are a named audience; this is their
+                 terminal step. -->
+            <p class="contact-email">
+                <a href="mailto:Strangeharvestmovie@gmail.com?subject=Strange%20Harvest%20%E2%80%94%20press%20enquiry">Strangeharvestmovie@gmail.com</a>
+            </p>
+            <p class="contact-alt">Also reachable on social:</p>
             <div class="social-links">
                 <a href="https://www.instagram.com/strangeharvestmovie/" target="_blank" rel="noopener noreferrer">Instagram</a>
                 <a href="https://www.facebook.com/Strangeharvestmovie/" target="_blank" rel="noopener noreferrer">Facebook</a>
@@ -612,7 +743,11 @@
             </div>
         </section>
 
-        <a href="/" class="back-link">← Back to Strange Harvest Home</a>
+        </main>
+        <footer class="page-footer">
+            <a href="/" class="back-link">← Back to Strange Harvest Home</a>
+            <p class="footer-copyright">© 2024 Strange Harvest. All rights reserved.</p>
+        </footer>
     </div>
     <script>
       (function () {
@@ -677,7 +812,7 @@
         const imagesIntro = h2s[3]?.nextElementSibling;
         if (imagesIntro && imagesIntro.tagName === "P") imagesIntro.textContent = "Imágenes promocionales en alta resolución disponibles para uso editorial:";
 
-        const watchBtn = [...document.querySelectorAll(".download-btn")].find((btn) => btn.textContent?.trim() === "Watch on Hulu");
+        const watchBtn = [...document.querySelectorAll(".link-btn")].find((btn) => btn.textContent?.trim() === "Watch on Hulu");
         if (watchBtn) watchBtn.textContent = "Ver en Hulu";
 
         const contactP = document.querySelector(".contact p");

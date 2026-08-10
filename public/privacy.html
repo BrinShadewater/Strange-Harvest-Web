@@ -73,18 +73,40 @@
     </style>
     
     <style>
+        :root {
+            /* Without this the UA picks light-mode defaults on a near-black page. */
+            color-scheme: dark;
+            --primary: #c94538;
+            /* #c94538 as body-link text is 3.94:1, under AA. Matches the app token. */
+            --primary-text: hsl(0, 65%, 58%);
+            --accent: hsl(45, 70%, 50%);
+        }
+
+        body.festival-theme {
+            --primary: #0d6bc9;
+            --primary-text: hsl(210, 88%, 62%);
+        }
+
+        /* One ring, every control — harvest gold at 9.31:1, matching the app. */
+        :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+
         body {
             font-family: "Assistant", sans-serif;
             line-height: 1.6;
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
-            background: #0e0f10;
+            /* Was #0e0f10 — a lighter, bluer ground than the #0a0a0a every other
+               surface paints. */
+            background: #0a0a0a;
             color: #e9e9e9;
         }
-        h1 { color: #c94538; margin-bottom: 0.5em; }
-        h2 { color: #c94538; margin-top: 2em; }
-        a { color: #c94538; }
+        h1 { color: var(--primary-text); margin-bottom: 0.5em; }
+        h2 { color: var(--primary-text); margin-top: 2em; }
+        a { color: var(--primary-text); }
         .back-link { margin-top: 2em; }
         .lang-switch {
             display: flex;
@@ -104,6 +126,14 @@
     </style>
 </head>
 <body>
+    <script>
+      /* Carry the A/B arm across the page boundary — see press.html for rationale. */
+      try {
+        if (/(?:^|;\s*)sh_ab_theme_v1=blue(?:;|$)/.test(document.cookie)) {
+          document.body.classList.add("festival-theme");
+        }
+      } catch (e) { /* cookie access can throw in embedded contexts */ }
+    </script>
     <div class="lang-switch" aria-label="Language selector">
         <a id="lang-en" href="/privacy.html">EN</a>
         <span>/</span>
