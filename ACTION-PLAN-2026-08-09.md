@@ -1,0 +1,73 @@
+# ACTION-PLAN — 2026-08-09
+
+- URL: `https://strangeharvestmovie.com/`
+- Script score: **88/100** (PageSpeed category scored 0 due to Google API rate-limit — environment
+  limitation, not a site failure; every other category is evidence-backed)
+- Dashboard artifact: generated in the session scratchpad (`SEO-REPORT.html`), sent to Alex
+
+> Like the 2026-08-02 run, this file is deliberately dated. `ACTION-PLAN.md` is hand-maintained —
+> do not let tooling overwrite it. The report generator was run in an isolated directory for
+> exactly that reason.
+
+---
+
+## Done in this session (2026-08-09, PRs #35–#36)
+
+1. **Fixed the GA4 gtag queue** — the consent shim pushed arrays instead of `Arguments` objects,
+   so gtag.js dropped every queued command. Analytics and the A/B events were collecting nothing.
+
+   > **Correction, added 2026-08-09 evening when this file was recovered (PR #44).** The queue fix
+   > was real but was not the whole story, and analytics did **not** start collecting because of
+   > it. GA never initialised at all: the Vercel environment variable was still named
+   > `VITE_GA_MEASUREMENT_ID` — a pre-Next fossil — while the code reads
+   > `NEXT_PUBLIC_GA_MEASUREMENT_ID`, which Next inlines at **build** time. With it unset,
+   > `initGA()` returned early and `window.gtag` was never defined, so every A/B exposure and
+   > click went only to each visitor's own `localStorage` (`sh_ab_theme_stats_v1`) where nobody
+   > could read it. Alex renamed the variable and PR #42's deploy picked it up; `G-HTPNKWFLXL` is
+   > confirmed present in the deployed bundle. Note a renamed variable does nothing until a
+   > rebuild. Caveat: only visitors who accept analytics cookies contribute data.
+2. **Rebuilt the share cards** — dedicated 1200×1600 ~160 KB OG JPG (`…-poster-og.jpg`) replacing
+   a wrong 1200×630 declaration, a WebP card (skipped by some scrapers) on EN, and a 2.2 MB print
+   JPG on ES. Applied to `/`, `/es`, `press.html`, `bts.html`. Verified live.
+3. **Copyright aligned to © 2024** (confirmed by Alex) across JSON-LD `copyrightNotice` in both
+   layouts, `press.html`, and `bts.html` — footer already said 2024.
+4. **Removed the YouTube social link** from `press.html` (per Alex).
+5. **Crew credit links fixed** — final state per PR #37: Michael Karlin links to his real IMDb
+   page (nm4222509); Bruce P. Guido has none and renders as plain text; hover highlight scoped
+   to real links.
+6. Particle NaN guard, Cosmo Go search-phrase fix, Merch unmount guard, lint warnings cleared.
+
+## Verified audit results (LLM-reviewed, false positives removed)
+
+**Passes (100/100 categories):** on-page, robots.txt (all 11 AI crawlers explicitly allowed),
+llms.txt (quality 100), security headers (HSTS+preload, CSP, XFO, XCTO, Referrer-Policy,
+Permissions-Policy), social meta (7/7 OG, 6/6 Twitter), hreflang (en/en-US/en-GB/es/es-ES/
+x-default, consistent both directions), redirects (0 hops), duplicate content. Single H1,
+clean H2 outline, 153-char meta description, self-canonicals on all six public routes.
+
+**Script findings dismissed on review (do not "fix" these):**
+- *"15 images missing alt"* — all are intentional `alt=""` decorative images (symbol dividers,
+  watch/press icons inside `aria-label`ed links, brand mark). Correct accessibility practice.
+- *"1 broken link (Instagram 429)"* and *Letterboxd timeout, Bloody Disgusting / RogerEbert 403s*
+  — bot-blocking on external domains, manual-review per skill rules, not broken links.
+- *"Orphan page"* — the poster download JPG, a file deliberately linked once from the hero.
+- *"Readability 37.2 Flesch"* — horror-film synopsis copy in the house voice; not rewriting film
+  prose to hit a readability formula.
+- *"1 image still JPEG"* — the OG card, which is JPG **on purpose** (scraper compatibility).
+
+## Open items
+
+1. ~~Social handle mismatch~~ **RESOLVED 2026-08-09**: Alex confirmed the `strangeharvestfilm`
+   handles are old. JSON-LD `sameAs`, `twitter:site`/`creator`, and the press-page meta now all
+   use the current profiles (`instagram.com/strangeharvestmovie`, `facebook.com/Strangeharvestmovie`,
+   `x.com/Strange_Harvest`), matching the visible footer links.
+2. **PageSpeed / CWV numbers** — rerun `pagespeed.py` with a `PAGESPEED_API_KEY`, or read the
+   field data in Vercel Speed Insights. Only unmeasured category this run. (INP was measured
+   separately at **118 ms** on 2026-08-09 via chrome-devtools-mcp.)
+3. Optional: `llms-full.txt` does not exist (llms.txt itself scores 100). Experimental — only if
+   AI-search surfacing becomes a priority.
+
+## After deploy
+
+- Re-scrape `strangeharvestmovie.com` in the Facebook Sharing Debugger (needs Alex's login) so the
+  new OG card replaces the cached one. X refreshes on its own within ~a week.
