@@ -957,7 +957,9 @@
        blue-arm visitor watched the brand change colour on navigation. Runs before
        paint (first node in <body>) so there is no red flash. */
     try {
-      if (/(?:^|;\s*)sh_ab_theme_v1=blue(?:;|$)/.test(document.cookie)) {
+      var m = document.cookie.match(/(?:^|;\s*)sh_poster_choice=(red|blue)/)
+                 || document.cookie.match(/(?:^|;\s*)sh_ab_theme_v1=(red|blue)/);
+        if (m && m[1] === "blue") {
         document.body.classList.add("festival-theme");
       }
     } catch (e) { /* cookie access can throw in embedded contexts; red is the default */ }
