@@ -91,6 +91,41 @@
             outline: 2px solid var(--accent);
             outline-offset: 3px;
         }
+
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            background: var(--background);
+            color: var(--foreground);
+            padding: 12px 20px;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            left: 0;
+        }
+
+        /* Was 16×19 CSS px — failed WCAG 2.5.8 (24×24) on both axes. */
+        .lang-switch a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            min-height: 44px;
+        }
+
+        .page-footer {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-copyright {
+            margin-top: 16px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
         
         * {
             margin: 0;
@@ -271,21 +306,30 @@
         }
       } catch (e) { /* cookie access can throw in embedded contexts */ }
     </script>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <!-- This page had a header and nothing else: no nav, no main, no footer, and no
+         skip link. press.html got this treatment on 2026-08-09; transcript.html and
+         privacy.html were missed. -->
     <div class="container">
-        <div class="lang-switch" aria-label="Language selector">
+        <nav class="lang-switch" aria-label="Language">
             <a id="lang-en" href="/transcript.html">EN</a>
             <span>/</span>
             <a id="lang-es" href="/transcript.html?lang=es">ES</a>
-        </div>
+        </nav>
         <header>
             <h1>Strange Harvest</h1>
             <p class="subtitle">Official Trailer Transcript</p>
         </header>
+        <main id="main-content">
 
         <div class="video-embed">
+            <!-- loading="lazy" — the embed sits above the transcript but is not the
+                 reason anyone opens this page, and an eager YouTube iframe pulls in
+                 third-party JS before the text it is captioning. -->
             <iframe
                 src="https://www.youtube.com/embed/tYyTpuk8Zuk"
                 title="Strange Harvest Official Trailer"
+                loading="lazy"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
@@ -410,7 +454,11 @@
             </p>
         </div>
 
-        <a href="/" class="back-link">← Back to Strange Harvest Home</a>
+        </main>
+        <footer class="page-footer">
+            <a href="/" class="back-link">← Back to Strange Harvest Home</a>
+            <p class="footer-copyright">© 2024 Strange Harvest. All rights reserved.</p>
+        </footer>
     </div>
     <script>
       (function () {

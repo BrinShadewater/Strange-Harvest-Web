@@ -93,6 +93,29 @@
             outline-offset: 3px;
         }
 
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            background: #0a0a0a;
+            color: #e9e9e9;
+            padding: 12px 20px;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            left: 0;
+        }
+
+        /* Was 16×19 CSS px — failed WCAG 2.5.8 (24×24) on both axes. */
+        .lang-switch a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            min-height: 44px;
+        }
+
         body {
             font-family: "Assistant", sans-serif;
             line-height: 1.6;
@@ -136,11 +159,15 @@
         }
       } catch (e) { /* cookie access can throw in embedded contexts */ }
     </script>
-    <div class="lang-switch" aria-label="Language selector">
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <!-- This page had ZERO landmarks and no skip link — the least-maintained surface
+         on the site. press.html got this treatment on 2026-08-09; this one was missed. -->
+    <nav class="lang-switch" aria-label="Language">
         <a id="lang-en" href="/privacy.html">EN</a>
         <span>/</span>
         <a id="lang-es" href="/privacy.html?lang=es">ES</a>
-    </div>
+    </nav>
+    <main id="main-content">
     <h1>Privacy Policy</h1>
     <p><strong>Last Updated:</strong> January 17, 2026</p>
 
@@ -188,9 +215,10 @@
     <h2>Contact Us</h2>
     <p>For privacy questions or concerns, contact us through our social media channels linked on the main website.</p>
 
-    <div class="back-link">
+    </main>
+    <footer class="back-link">
         <a href="/">← Back to Strange Harvest</a>
-    </div>
+    </footer>
 
     <script>
       (function () {
