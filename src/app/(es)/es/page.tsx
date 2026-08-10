@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import ClientPage from "@/components/ClientPage";
 import { getCountryFromHeaders } from "@/services/geoServer";
+import { resolvePosterVariant } from "@/services/posterVariant";
 
 const BASE_URL = "https://strangeharvestmovie.com";
 
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
 };
 
 export default async function EsHomePage() {
-  const cookieStore = await cookies();
-  const abVariant = (cookieStore.get("sh_ab_theme_v1")?.value ?? "red") as "red" | "blue";
+  // An explicit toggle choice wins over the A/B assignment — see posterVariant.ts.
+  const { variant } = await resolvePosterVariant();
   const initialCountry = await getCountryFromHeaders();
-  return <ClientPage lang="es" abVariant={abVariant} initialCountry={initialCountry} />;
+  return <ClientPage lang="es" abVariant={variant} initialCountry={initialCountry} />;
 }

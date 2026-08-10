@@ -93,12 +93,12 @@ const sitecopyEn = {
   synopsis: {
     title: "About",
     body: [
-      `A routine welfare check in the San Bernardino suburbs ends in horror. A family of three has been bound, bled, and posed beneath a strange symbol written in blood on the ceiling. Detectives Joe Kirby and Lexi Taylor recognize the mark. It's the calling card of a killer from 15 years ago — and he's back.`,
-      `Mr. Shiny doesn't stop. New crime scenes surface fast. One victim is found trapped in a swimming pool with live leeches. Another is ritualistically flayed and left on display in a public park.`,
+      `A routine welfare check in the San Bernardino suburbs ends in horror. A family of three has been bound, bled, and posed beneath a strange symbol written in blood on the ceiling. Detectives Joe Kirby and Lexi Taylor recognize the mark. It’s the calling card of a killer from 15 years ago — and he’s back.`,
+      `Mr. Shiny doesn’t stop. New crime scenes surface fast. One victim is found trapped in a swimming pool with live leeches. Another is ritualistically flayed and left on display in a public park.`,
       `The case stops feeling routine. The murders seem connected to something larger — something sinister. The evidence points toward cosmic phenomena and forces far beyond human understanding.`,
     ],
     quote: {
-      text: "Some mysteries don't get solved. They just get stranger the longer you look at them.",
+      text: "Some mysteries don’t get solved. They just get stranger the longer you look at them.",
       attribution: "Detective Joe Kirby",
     },
     images: [
@@ -230,7 +230,7 @@ const sitecopyEn = {
         source: "Daily Dead / Rocco T. Thompson",
         href: "https://dailydead.com/fantastic-fest-2024-review-strange-harvest-occult-murder-in-the-inland-empire-is-an-instant-found-footage-classic/",
       },      {
-        quote: "A fascinating and neatly realised horror riff on the 2020s' most popular genre.",
+        quote: "A fascinating and neatly realised horror riff on the 2020s’ most popular genre.",
         source: "Rotten Tomatoes Critics Consensus",
         href: "https://www.rottentomatoes.com/m/strange_harvest",
       },
@@ -290,7 +290,7 @@ const sitecopyEn = {
         href: "https://www.moviejawn.com/home/2025/10/29/strange-harvest-review",
       },
       {
-        quote: "Worth horror mavens' time with enough variation on genre tropes.",
+        quote: "Worth horror mavens’ time with enough variation on genre tropes.",
         source: "Decider",
         href: "https://www.rottentomatoes.com/m/strange_harvest",
       },
@@ -310,7 +310,7 @@ const sitecopyEn = {
         href: "https://joshatthemovies.com/2025/08/04/film-review-strange-harvest/",
       },
       {
-        quote: "The film's doc style keeps you immersed, making it feel almost real.",
+        quote: "The film’s doc style keeps you immersed, making it feel almost real.",
         source: "From the Fourth Row",
         href: "https://fromthefourthrow.com/2025/08/09/strange-harvest-review-a-faux-documentary-film-that-felt-as-real-as-any-true-crime-documentary-ive-ever-seen/",
       },
@@ -440,18 +440,26 @@ const sitecopyEn = {
 
   merch: {
     title: "Official Merch",
-    blurb: "Wear the terror. Carry the mystery. Exclusive Strange Harvest merchandise for true believers.",
+    // Was: "Wear the terror. Carry the mystery. Exclusive Strange Harvest merchandise
+    // for true believers." Three problems — two stacked imperative fragments are the
+    // house style of every merch page on the internet; "exclusive" is an empty
+    // intensifier on a store that is simply the official one; and "true believers"
+    // borrows a cult/UFO register the film does not use. Strange Harvest is a police
+    // procedural, and DESIGN.md's north star is the Evidence Table, so the case file
+    // is the honest frame — and taking something home from one is quietly wrong in
+    // exactly the way the rest of the site is.
+    blurb: "Take something home from the case file. Official Strange Harvest merchandise.",
     shopifyUrl: "https://strangeharvestmovie.myshopify.com",
     shopifyCartUrl: "https://strangeharvestmovie.myshopify.com/cart",
     loadingMessage: "Loading merchandise...",
     // Shown only when the Storefront API returns nothing. The store went live on
     // 2026-08-08, so this state means something is broken, not that merch is unlaunched.
-    errorTitle: "The Store Isn't Loading",
+    errorTitle: "The Store Isn’t Loading",
     errorBody: "Something broke on our end — the shop itself is fine. You can browse it directly while we sort this out.",
     // An empty catalogue is not a failure. Reporting "something broke" for it blamed
     // the site for a state the shop is legitimately allowed to be in.
     emptyTitle: "Nothing in the Shop Right Now",
-    emptyBody: "There's no merch listed at the moment. Check the store directly — new items land there first.",
+    emptyBody: "There’s no merch listed at the moment. Check the store directly — new items land there first.",
     storeLink: "Go to the store",
     buyNow: "Buy Now",
   },
@@ -505,8 +513,8 @@ const sitecopyEn = {
         { name: "Samantha Stephens", character: "Chelsea Lunsford", imdb: "https://www.imdb.com/name/nm5560648/" },
         { name: "Ross Turner", character: "Dr. Dennis Levine", imdb: "https://www.imdb.com/name/nm3129298/" },
         { name: "Coleen Tutton", character: "April Macenroe", imdb: "https://www.imdb.com/name/nm2601916/" },
-        { name: "Angie Jho Lee", character: "Reporter ('95)", imdb: "https://www.imdb.com/name/nm9187716/" },
-        { name: "Alistair David Herz", character: "Anchor ('95)", imdb: "https://www.imdb.com/name/nm2796307/" },
+        { name: "Angie Jho Lee", character: "Reporter (’95)", imdb: "https://www.imdb.com/name/nm9187716/" },
+        { name: "Alistair David Herz", character: "Anchor (’95)", imdb: "https://www.imdb.com/name/nm2796307/" },
         { name: "Garon Grigsby", character: "Anchor 1", imdb: "https://www.imdb.com/name/nm0341954/" },
         { name: "Lisa Cole", character: "Anchor 2", imdb: "https://www.imdb.com/name/nm1565266/" },
         { name: "Jennifer Titus", character: "Anchor 3", imdb: "https://www.imdb.com/name/nm2315616/" },
@@ -727,7 +735,8 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
   },
   merch: {
     title: "Merch oficial",
-    blurb: "Viste el terror. Lleva el misterio. Merch oficial exclusiva de Strange Harvest para verdaderos creyentes.",
+    // Mirrors the EN rewrite — see the note there.
+    blurb: "Llévate algo del expediente. Merch oficial de Strange Harvest.",
     loadingMessage: "Cargando merchandising...",
     errorTitle: "La tienda no carga",
     errorBody: "Algo falló de nuestro lado; la tienda en sí funciona. Puedes verla directamente mientras lo solucionamos.",

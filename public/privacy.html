@@ -129,7 +129,9 @@
     <script>
       /* Carry the A/B arm across the page boundary — see press.html for rationale. */
       try {
-        if (/(?:^|;\s*)sh_ab_theme_v1=blue(?:;|$)/.test(document.cookie)) {
+        var m = document.cookie.match(/(?:^|;\s*)sh_poster_choice=(red|blue)/)
+                 || document.cookie.match(/(?:^|;\s*)sh_ab_theme_v1=(red|blue)/);
+        if (m && m[1] === "blue") {
           document.body.classList.add("festival-theme");
         }
       } catch (e) { /* cookie access can throw in embedded contexts */ }

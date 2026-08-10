@@ -175,6 +175,22 @@ export default function Hero({ initialVariant = "red" }: { initialVariant?: Them
     const nextVariant: ThemeVariant = festivalMode ? "blue" : "red";
     const previousVariant: ThemeVariant = currentVariantRef.current;
     setIsFestivalPoster(festivalMode);
+
+    // Persist the choice. Without this the toggle changed nothing durable: picking
+    // "Official Poster" and reloading snapped straight back to the assigned arm, and
+    // the static pages (which read the cookie) kept showing the arm the home page was
+    // no longer displaying.
+    //
+    // Deliberately a SEPARATE cookie from sh_ab_theme_v1. The assignment must stay
+    // immutable or every exposure and click would be re-attributed to whichever arm
+    // the visitor last clicked, which would make the experiment unreadable.
+    try {
+      const oneYear = 60 * 60 * 24 * 365;
+      document.cookie = `sh_poster_choice=${nextVariant}; path=/; max-age=${oneYear}; SameSite=Lax`;
+    } catch {
+      // Cookie writes can throw in embedded/partitioned contexts. The toggle still
+      // works for this page view; it just won't survive a reload.
+    }
     updateAbStats((stats) => ({
       ...stats,
       toggleToRed: stats.toggleToRed + (nextVariant === "red" ? 1 : 0),
