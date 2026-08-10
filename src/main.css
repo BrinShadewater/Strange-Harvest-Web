@@ -2045,7 +2045,10 @@ section {
   transition: color 0.2s ease;
 }
 
-.crewMember:hover {
+/* Scoped to the anchor: crew without an IMDb page render as <span class="crewMember">
+   and were picking up a link hover they can't act on. (Fix from PR #36 /
+   claude/polish-bugs-optimization-117led, carried over here.) */
+a.crewMember:hover {
   color: hsl(var(--primary-text));
 }
 
