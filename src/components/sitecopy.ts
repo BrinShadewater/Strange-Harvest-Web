@@ -573,6 +573,9 @@ const sitecopyEn = {
     copyright: "© 2024 Strange Harvest. All rights reserved.",
     musicCredit: "Adorable Damage & Pathogen Pictures",
     cookieSettingsLabel: "Cookie Settings",
+    cookieSettingsAria: "Manage cookie preferences",
+    privacyLabel: "Privacy Policy",
+    privacyHref: "/privacy.html",
     disclaimer:
       "All material on this website is fictional and presented for entertainment. Any resemblance to real people, organizations, places, or events is coincidental and not intended as factual representation.",
   },
@@ -623,6 +626,10 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
     saveButton: "Guardar preferencias",
     privacyLink: {
       label: "Política de Privacidad",
+      // href must be repeated here. sitecopyEs is deep-merged OVER sitecopyEn, so
+      // omitting it silently inherits the English "/privacy.html" and drops a
+      // Spanish reader onto the English page. Same for transcriptLink and kitLink.
+      href: "/privacy.html?lang=es",
     },
     preferences: {
       title: "Preferencias de Cookies",
@@ -680,7 +687,10 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
     title: "Trailer oficial",
     iframeTitle: "Trailer oficial de Strange Harvest",
     // "trailer" unaccented to match the existing ES copy above, not "tráiler".
-    transcriptLink: { label: "Leer la transcripción del trailer" },
+    transcriptLink: {
+      label: "Leer la transcripción del trailer",
+      href: "/transcript.html?lang=es",
+    },
   },
   synopsis: {
     title: "Sinopsis",
@@ -703,6 +713,7 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
     title: "Prensa y menciones",
     kitLink: {
       label: "Kit de prensa y recursos",
+      href: "/press.html?lang=es",
     },
     aria: {
       carousel: "Reseñas de prensa",
@@ -757,6 +768,12 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
     tagline: "Mockumentary de True Crime y Found Footage",
     officialNotice: "Sitio web oficial de Strange Harvest (2025)",
     cookieSettingsLabel: "Configuración de cookies",
+    // The aria-label was hardcoded English in Footer.tsx and OVERRODE the
+    // translated visible label, so screen-reader users on /es heard "Manage
+    // cookie preferences" while sighted users read "Configuración de cookies".
+    cookieSettingsAria: "Gestionar preferencias de cookies",
+    privacyLabel: "Política de Privacidad",
+    privacyHref: "/privacy.html?lang=es",
     disclaimer:
       "Todo el material de este sitio web es ficticio y se presenta con fines de entretenimiento. Cualquier similitud con personas, organizaciones, lugares o eventos reales es coincidencia y no pretende representar hechos reales.",
   },

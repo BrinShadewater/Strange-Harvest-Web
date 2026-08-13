@@ -162,11 +162,17 @@
     <a href="#main-content" class="skip-link">Skip to content</a>
     <!-- This page had ZERO landmarks and no skip link — the least-maintained surface
          on the site. press.html got this treatment on 2026-08-09; this one was missed. -->
-    <nav class="lang-switch" aria-label="Language">
-        <a id="lang-en" href="/privacy.html">EN</a>
-        <span>/</span>
-        <a id="lang-es" href="/privacy.html?lang=es">ES</a>
-    </nav>
+    <!-- Wrapped in <header> 2026-08-13: this was the only surface on the site with
+         no banner landmark (measured — the other three static pages each had one).
+         A wrapper is safe here: every .lang-switch rule is class-based and no script
+         selector depends on the nav's parent. -->
+    <header>
+        <nav class="lang-switch" aria-label="Language">
+            <a id="lang-en" href="/privacy.html">EN</a>
+            <span>/</span>
+            <a id="lang-es" href="/privacy.html?lang=es">ES</a>
+        </nav>
+    </header>
     <main id="main-content">
     <h1>Privacy Policy</h1>
     <p><strong>Last Updated:</strong> January 17, 2026</p>

@@ -124,14 +124,10 @@ body.festival-theme .homeVideoCta:hover {
   color: #fff;
 }
 
-#root {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  overflow-y: visible;
-  position: relative;
-}
+/* The `#root` reset that used to sit here was dead — see the film-grain note
+ * further down. Its `overflow-x: hidden` is deliberately NOT reinstated on
+ * body: it never applied, and no surface scrolls horizontally at 375px or
+ * 390px (measured 2026-08-13), so reinstating it would only hide a future bug. */
 
 h1, h2, h3 {
   margin: 0 0 12px;
@@ -1727,37 +1723,33 @@ body::after {
   z-index: 10;
 }
 
-#root::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background:
-    radial-gradient(900px 520px at 50% -160px, rgba(255,255,255,0.03), rgba(0,0,0,0) 60%),
-    radial-gradient(700px 520px at 20% 10%, rgba(var(--glow-far-rgb), 0.08), rgba(0,0,0,0) 55%),
-    radial-gradient(900px 620px at 80% 15%, rgba(255, 210, 120, 0.02), rgba(0,0,0,0) 55%);
-  z-index: 0;
-}
-
-/* Subtle film grain (no external image needed) */
-#root::after {
+/* ── Film grain ───────────────────────────────────────────────────────────
+ * This was keyed to `#root` — a Vite/CRA convention that came along when the
+ * project moved to the Next.js App Router. There is no `id="root"` in the
+ * served markup (verified 2026-08-13: zero matches across src/ and public/),
+ * so the grain, the most on-brand texture in this stylesheet, had never
+ * rendered on the app routes at all.
+ *
+ * Retargeted to `html::after` rather than `body::after`, because body's two
+ * pseudo-elements are already taken by the atmospheric spotlight gradients
+ * below. z-index 2 and opacity 0.06 mirror `.grainOverlay` in public/bts.html,
+ * which is how the static pages have been drawing this correctly all along.
+ *
+ * The companion `#root::before` (a second set of radial gradients) was removed
+ * rather than retargeted: it set top/left/width but never a height, so it
+ * resolved to zero-height and painted nothing even before the Next migration.
+ * The `body::before`/`body::after` spotlights below already cover that job.
+ */
+html::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   opacity: 0.06;
-  z-index: 0;
+  z-index: 2;
   background-image:
     repeating-linear-gradient(0deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06) 1px, rgba(0,0,0,0) 2px, rgba(0,0,0,0) 4px),
     repeating-linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.04) 1px, rgba(0,0,0,0) 2px, rgba(0,0,0,0) 5px);
-}
-
-/* Make sure your app content sits above the overlays */
-#root {
-  position: relative;
-  z-index: 1;
-  overflow: visible;
 }
 
 /* Optional: soften section borders so it feels less "website template" */
@@ -2660,9 +2652,7 @@ body {
   overflow-x: hidden;
 }
 
-#root {
-  overflow-x: hidden;
-}
+/* (a third dead `#root { overflow-x: hidden }` was removed here) */
 
 
 /* ── YouTube Facade ─────────────────────────────────────── */
@@ -2712,4 +2702,44 @@ body {
   border: none;
   border-radius: 8px;
   display: block;
+}
+
+/* ── Reduced motion ───────────────────────────────────────────────────────
+ * Audited 2026-08-13: `prefers-reduced-motion` appeared ZERO times in
+ * main.css, critical.css or the generated public/styles/main.css, while
+ * `.heroTitle.is-visible` ran a four-reversal luminance strobe on the largest
+ * element on the page on every first load — opacity 0 → 0.95 → 0.2 → 1 → 0.45
+ * against brightness 0.1 → 2.2, in the first ~700ms. The JS guard in Hero.tsx
+ * only suppresses the *replay*; the initial run is pure CSS on a
+ * server-rendered class, so it always played.
+ *
+ * Durations are collapsed rather than set to `animation: none`, because every
+ * entrance animation here (fadeIn, navSlideIn, slideDown, slideUp) starts from
+ * opacity 0 or a translate. Killing them outright would strand those elements
+ * invisible. Collapsing resolves `forwards` fills to their final frame and lets
+ * unfilled ones settle on their already-visible base state.
+ *
+ * `.heroTitle` is called out explicitly because it is the one element whose
+ * base state is the *invisible* one (`opacity: 0.1; brightness(0.5)`) — the
+ * animation is what makes the film's title readable. It is pinned to the
+ * resolved end state rather than left to fill-mode semantics.
+ *
+ * Duplicated in critical.css on purpose — see the two-stylesheet note. Edit both.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .heroTitle,
+  .heroTitle.is-visible {
+    animation: none;
+    opacity: 1;
+    filter: brightness(1);
+  }
 }

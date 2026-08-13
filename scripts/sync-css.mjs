@@ -13,6 +13,17 @@
  *
  * src/main.css is the source of truth. Never hand-edit public/styles/main.css.
  *
+ * Caching (vercel.json, `/styles/(.*)`): measured 2026-08-13, this file was being
+ * served `max-age=0, must-revalidate` because vercel.json had a rule for /images/
+ * but none for /styles/. Since DeferredCSS injects it AFTER first paint, every
+ * repeat visit paid a revalidation round-trip before the page was styled.
+ *
+ * It is now `max-age=300, stale-while-revalidate=86400` and deliberately NOT
+ * `immutable`: the filename is not content-hashed, so a long immutable TTL would
+ * pin a stale stylesheet in returning visitors' caches — the same failure mode as
+ * the 11-week drift described above, but unfixable by a redeploy. Content-hash the
+ * output first if you want `immutable`.
+ *
  * Usage:
  *   node scripts/sync-css.mjs           write public/styles/main.css
  *   node scripts/sync-css.mjs --check   exit 1 if out of date (CI guard)
