@@ -8,6 +8,8 @@
   "scripts": {
     "sync:css": "node scripts/sync-css.mjs",
     "check:css": "node scripts/sync-css.mjs --check",
+    "images:bts": "node scripts/generate-image-variants.mjs",
+    "check:images": "node scripts/generate-image-variants.mjs --check",
     "sitemaps": "node scripts/generate-sitemaps.mjs",
     "predev": "node scripts/sync-css.mjs",
     "dev": "next dev",

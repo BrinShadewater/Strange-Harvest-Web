@@ -970,7 +970,7 @@
   <header class="siteHeader" role="banner">
     <div class="siteHeaderInner">
       <a class="brand" href="/" aria-label="Strange Harvest home">
-        <img src="/images/strange-harvest-occult-symbol-horror-icon.webp" alt="" aria-hidden="true">
+        <img src="/images/strange-harvest-occult-symbol-horror-icon-256w.webp" alt="" aria-hidden="true">
         <span>Strange Harvest</span>
       </a>
       <nav class="nav" id="main-nav" aria-label="Primary">
@@ -1021,7 +1021,7 @@
       <p>Behind the scenes of Strange Harvest, the process resembled building an investigative archive more than producing a conventional feature. Interviews, archival broadcasts, reenactments, and investigative threads were developed as standalone pieces and refined over multiple years before final assembly.</p>
       <p>The production relied on a compact team focused on realism, continuity, and worldbuilding detail. The result is a fully fabricated case file presented with documentary precision across performance, locations, props, and visual storytelling.</p>
     </section>
-    <div class="symbolDivider" aria-hidden="true"><img src="/images/strange-harvest-occult-symbol-horror-icon.webp" alt=""></div>
+    <div class="symbolDivider" aria-hidden="true"><img src="/images/strange-harvest-occult-symbol-horror-icon-256w.webp" alt=""></div>
 
     <section class="gallerySection" id="carousel-bts-section" aria-label="Behind The Scenes carousel">
       <h2>Behind The Scenes</h2>
@@ -1029,7 +1029,7 @@
       <div class="carousel" id="carousel-bts"></div>
       <div class="dots" id="dots-bts" aria-label="Behind The Scenes slide navigation"></div>
     </section>
-    <div class="symbolDivider" aria-hidden="true"><img src="/images/strange-harvest-occult-symbol-horror-icon.webp" alt=""></div>
+    <div class="symbolDivider" aria-hidden="true"><img src="/images/strange-harvest-occult-symbol-horror-icon-256w.webp" alt=""></div>
 
     <section class="gallerySection" id="carousel-stills-section" aria-label="Stills carousel">
       <h2>Stills</h2>
@@ -1037,7 +1037,7 @@
       <div class="carousel" id="carousel-stills"></div>
       <div class="dots" id="dots-stills" aria-label="Stills slide navigation"></div>
     </section>
-    <div class="symbolDivider" aria-hidden="true"><img src="/images/strange-harvest-occult-symbol-horror-icon.webp" alt=""></div>
+    <div class="symbolDivider" aria-hidden="true"><img src="/images/strange-harvest-occult-symbol-horror-icon-256w.webp" alt=""></div>
 
     <section class="gallerySection" id="carousel-posters-section" aria-label="Official Posters carousel">
       <h2>Official Posters</h2>
@@ -1045,7 +1045,7 @@
       <div class="carousel" id="carousel-posters"></div>
       <div class="dots" id="dots-posters" aria-label="Official Posters slide navigation"></div>
     </section>
-    <div class="symbolDivider" aria-hidden="true"><img src="/images/strange-harvest-occult-symbol-horror-icon.webp" alt=""></div>
+    <div class="symbolDivider" aria-hidden="true"><img src="/images/strange-harvest-occult-symbol-horror-icon-256w.webp" alt=""></div>
 
     <section class="gallerySection" id="carousel-festivals-section" aria-label="Festival and screenings carousel">
       <h2>Festival &amp; Screenings</h2>
@@ -1058,7 +1058,7 @@
 
   <footer class="siteFooter">
     <div class="footerContent">
-      <img src="/images/strange-harvest-occult-symbol-horror-icon.webp" alt="" class="footerSymbol" aria-hidden="true">
+      <img src="/images/strange-harvest-occult-symbol-horror-icon-256w.webp" alt="" class="footerSymbol" aria-hidden="true">
       <h2 class="footerTitle">STRANGE HARVEST</h2>
       <p class="footerTagline">True Crime Found Footage Mockumentary</p>
 
@@ -1145,6 +1145,92 @@
     }
 
     localizeBtsPage();
+
+    /* GENERATED — regenerate with `node scripts/generate-image-variants.mjs --manifest`.
+     * Widths that actually exist on disk per image. Listing a width we declined to
+     * build (no upscaling) would produce a 404 in srcset, so this is not assumed. */
+    /* The carousel renders into .carousel { max-width: 80% } inside a padded
+     * .gallerySection inside main { max-width: 1200px }, so the slide is at most
+     * ~894 CSS px wide and is height-capped by .slideMedia { height: 52vh }.
+     * Images with no entry in IMG_VARIANTS keep their original src and no srcset. */
+    const SLIDE_SIZES = "(min-width: 1240px) 900px, 76vw";
+
+    function applyVariants(img, src) {
+      const key = src.replace(/^\/images\//, "").replace(/\.webp$/, "");
+      const widths = IMG_VARIANTS[key];
+      if (!widths || !widths.length) return;
+      img.srcset = widths
+        .map((w) => `/images/${key}-${w}w.webp ${w}w`)
+        .join(", ");
+      img.sizes = SLIDE_SIZES;
+    }
+
+    const IMG_VARIANTS = {
+      "glen-sandweiss-victim-interview-strange-harvest": [768,1280,1920],
+      "hail-azragor-blood-message-strange-harvest": [768,1280,1920],
+      "mr-shiny-found-footage-bedroom-strange-harvest": [768,1280,1920],
+      "mr-shiny-handwritten-note-strange-harvest": [768,1280],
+      "mr-shiny-vhs-evidence-tape-strange-harvest": [768,1280,1920],
+      "peter-zizzo-detective-joe-kirby-interview-strange-harvest-bts": [768],
+      "strange-harvest-abduction-investigation-flashlight": [768,1280,1920],
+      "strange-harvest-alternate-movie-poster": [768,1280],
+      "strange-harvest-azragor-statue-evidence-lighting": [768,1280],
+      "strange-harvest-behind-the-scenes-interview-setup": [768,1280],
+      "strange-harvest-behind-the-scenes-newsroom-scene": [768,1280],
+      "strange-harvest-beyond-fest-panel-stage": [768,1280],
+      "strange-harvest-beyond-fest-screening-introduction": [768,1280],
+      "strange-harvest-beyond-fest-theater-screening": [768,1280],
+      "strange-harvest-blood-buckets-evidence": [768,1280,1920],
+      "strange-harvest-bloody-oxygen-tank-crime-scene-evidence": [768,1280,1920],
+      "strange-harvest-bts-alginate-lifecast-head-mould": [768],
+      "strange-harvest-bts-camera-operator-cinema-rig": [768,1280],
+      "strange-harvest-bts-drained-pool-location-setup": [768,1280],
+      "strange-harvest-bts-full-body-prosthetic-makeup": [768],
+      "strange-harvest-bts-hail-azragor-ritual-set-build": [768],
+      "strange-harvest-bts-hospital-scene-kale-hicks-stand-in": [768],
+      "strange-harvest-bts-leech-tank-pool-scene-prep": [768],
+      "strange-harvest-bts-lifecast-mould-setting": [768],
+      "strange-harvest-bts-mr-shiny-mask-on-location": [768,1280],
+      "strange-harvest-bts-newsroom-set-jordon-moser-sound": [768],
+      "strange-harvest-bts-practical-leech-props-tray": [768,1280],
+      "strange-harvest-bts-swat-team-mr-shiny-home-scene": [768,1280],
+      "strange-harvest-bts-swing-set-gore-effect-rig": [768],
+      "strange-harvest-cast-crew-screening-theater": [768,1280],
+      "strange-harvest-crime-scene-paint-bucket-evidence": [768,1280,1920],
+      "strange-harvest-crime-scene-paint-tray-evidence": [768,1280,1920],
+      "strange-harvest-cult-journal-leech-lives": [768,1280,1920],
+      "strange-harvest-cult-ritual-night-forest": [768,1280,1920],
+      "strange-harvest-dining-room-murder-scene": [768,1280,1920],
+      "strange-harvest-evidence-markers-family-photographs": [768,1280],
+      "strange-harvest-evidence-mask-forensic-photo": [768,1280,1920],
+      "strange-harvest-fantastic-fest-afterparty": [768,1280],
+      "strange-harvest-fantastic-fest-cast-and-crew-group": [768],
+      "strange-harvest-fantastic-fest-panel-discussion": [768,1280],
+      "strange-harvest-fantastic-fest-poster-photo-group": [768],
+      "strange-harvest-fantastic-fest-poster-photo": [768],
+      "strange-harvest-fantastic-fest-qa-panel": [768,1280],
+      "strange-harvest-fantastic-fest-step-and-repeat-group": [768,1280],
+      "strange-harvest-fantastic-fest-step-and-repeat-portrait": [768,1280],
+      "strange-harvest-film-crew-behind-the-scenes": [768,1280],
+      "strange-harvest-forest-cult-structures": [768,1280,1920],
+      "strange-harvest-hospital-room-crime-scene-wide": [768,1280],
+      "strange-harvest-jamie-kim-news-report": [768,1280,1920],
+      "strange-harvest-kitchen-crime-scene-victim": [768,1280,1920],
+      "strange-harvest-los-asesinatos-de-mr-shiny-poster": [768],
+      "strange-harvest-mockumentary-news-reporter-scene-bts": [768,1280],
+      "strange-harvest-news-interview-saroj-mallick-witness": [768,1280,1920],
+      "strange-harvest-nursery-surveillance-footage": [768,1280,1920],
+      "strange-harvest-occult-ritual-jar-candles": [768,1280,1920],
+      "strange-harvest-official-movie-poster": [768,1280],
+      "strange-harvest-power-drill-crime-scene-evidence": [768,1280,1920],
+      "strange-harvest-ritual-symbol-crime-scene": [768,1280],
+      "strange-harvest-river-body-recovery": [768,1280,1920],
+      "strange-harvest-security-footage-donut-shop-massacre": [768,1280,1920],
+      "strange-harvest-sheriff-investigating-barbed-wire-pool": [768,1280,1920],
+      "strange-harvest-triple-murder-news-report": [768,1280,1920],
+      "stuart-ortiz-editing-strange-harvest-horror-mockumentary": [768,1280],
+      "stuart-ortiz-location-scout-strange-harvest-elderly-care-home": [768,1280]
+    };
 
     const btsItems = [
       { src: "/images/strange-harvest-mockumentary-news-reporter-scene-bts.webp", alt: "Behind the scenes photo of a news reporter filming an interview scene for the horror mockumentary Strange Harvest", caption: "Behind the scenes photo of a news reporter filming an interview scene for the horror mockumentary Strange Harvest." },
@@ -1342,6 +1428,7 @@
         img.alt = item.alt;
         img.loading = i === 0 ? "eager" : "lazy";
         img.decoding = "async";
+        applyVariants(img, item.src);
 
         const cap = document.createElement("figcaption");
         const capText = document.createElement("div");
