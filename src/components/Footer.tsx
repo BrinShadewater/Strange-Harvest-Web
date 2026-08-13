@@ -39,11 +39,15 @@ export default function Footer() {
           <p className="footerCopyright">{footer.copyright}</p>
           <p className="footerMusic">{footer.musicCredit}</p>
           <p className="footerDisclaimer">{footer.disclaimer}</p>
-          <a href="/privacy.html" className="footerPrivacyLink">Privacy Policy</a>
+          {/* href, label and aria-label all come from sitecopy. All three were
+              hardcoded English here, so /es rendered "Privacy Policy" pointing at
+              the English page, and the aria-label overrode the one string that
+              WAS translated. */}
+          <a href={footer.privacyHref} className="footerPrivacyLink">{footer.privacyLabel}</a>
           <button
             onClick={handleCookieSettings}
             className="footerCookieSettings"
-            aria-label="Manage cookie preferences"
+            aria-label={footer.cookieSettingsAria}
           >
             {footer.cookieSettingsLabel}
           </button>

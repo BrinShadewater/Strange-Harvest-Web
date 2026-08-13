@@ -121,14 +121,9 @@ body.festival-theme .homeVideoCta:hover {
   color: #fff;
 }
 
-#root {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  overflow-y: visible;
-  position: relative;
-}
+/* The `#root` reset that used to sit here was dead — there is no `id="root"`
+ * in the served markup; it is a Vite/CRA fossil. See src/main.css for the full
+ * note and for the film grain that was keyed to the same non-existent element. */
 
 h1, h2, h3 {
   margin: 0 0 12px;
@@ -788,4 +783,30 @@ body.nav-open {
 
 .cta.subtle {
   opacity: 0.7;
+}
+
+/* ── Reduced motion ───────────────────────────────────────────────────────
+ * Above-the-fold half of the guard. critical.css is inlined and applies before
+ * the deferred sheet loads, so the strobe would otherwise still play on first
+ * paint even with main.css fixed — which is exactly why this is duplicated
+ * rather than left to main.css alone.
+ *
+ * See the fuller note in src/main.css. Edit both files together.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .heroTitle,
+  .heroTitle.is-visible {
+    animation: none;
+    opacity: 1;
+    filter: brightness(1);
+  }
 }
