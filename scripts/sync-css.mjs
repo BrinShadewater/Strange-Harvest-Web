@@ -32,6 +32,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { transform } from "lightningcss";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SOURCE = resolve(root, "src/main.css");
@@ -51,7 +52,21 @@ if (!existsSync(SOURCE)) {
 }
 
 // Normalise CRLF so the two files compare cleanly across platforms.
-const expected = BANNER + readFileSync(SOURCE, "utf8").replace(/\r\n/g, "\n");
+const source = readFileSync(SOURCE, "utf8").replace(/\r\n/g, "\n");
+
+// Minify on the way through (added 2026-08-15, Alex's call, lightningcss per his pick).
+// The served file lives in /public, so Next's own pipeline never touches it — this is
+// the only place minification can happen. PageSpeed measured ~220 ms of parse cost on
+// the unminified 57 KB sheet on mobile. src/main.css stays readable; only the
+// generated copy is minified. lightningcss is deterministic for a given input, which
+// is what keeps the --check mode honest: expected is recomputed the same way every run.
+const minified = transform({
+  filename: "main.css",
+  code: Buffer.from(source),
+  minify: true,
+}).code.toString("utf8");
+
+const expected = BANNER + minified + "\n";
 const actual = existsSync(TARGET) ? readFileSync(TARGET, "utf8").replace(/\r\n/g, "\n") : null;
 
 if (actual === expected) {
