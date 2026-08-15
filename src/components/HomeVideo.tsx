@@ -8,16 +8,21 @@ function getAmazonHomeVideoLink(countryCode: string, fallbackHref: string): stri
   const query = encodeURIComponent("Strange Harvest Stuart Ortiz DVD");
   const code = countryCode.toUpperCase();
 
+  // Deep links only where the ASIN is VERIFIED in that marketplace (fetched, HTTP 200,
+  // film title present on the page — checked 2026-08-15). UK/DE/FR/ES/IT 404 on this
+  // ASIN, and JP/MX return 200 *without* the film title (possibly a different product),
+  // so those territories keep honest search links. A search result beats a wrong or
+  // dead product page; re-verify before promoting any territory to a deep link.
   switch (code) {
     case "US":
       return "https://www.amazon.com/dp/B0FSMGS86V";
     case "CA":
-      return `https://www.amazon.ca/s?k=${query}`;
+      return "https://www.amazon.ca/dp/B0FSMGS86V";
     case "GB":
     case "UK":
       return `https://www.amazon.co.uk/s?k=${query}`;
     case "AU":
-      return `https://www.amazon.com.au/s?k=${query}`;
+      return "https://www.amazon.com.au/dp/B0FSMGS86V";
     case "DE":
       return `https://www.amazon.de/s?k=${query}`;
     case "FR":

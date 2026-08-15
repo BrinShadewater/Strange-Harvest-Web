@@ -403,13 +403,11 @@ const sitecopyEn = {
         iconWidth: 100,
         iconHeight: 100,
       },
-      {
-        name: "Sony Pictures Core",
-        href: "https://www.sonypicturescore.com",
-        icon: "/images/sony-pictures-core.webp",
-        iconWidth: 630,
-        iconHeight: 630,
-      },
+      // Sony Pictures Core removed 2026-08-15 (Alex's call). Its href was the bare
+      // platform homepage — no film page exists there that we could find — and the
+      // last click before money should never land on a storefront search. Restore
+      // only with a verified deep link. Removing it also un-orphans the RENT/OWN
+      // grid's third row. The icon asset stays in /images, unused.
     ],
     intl: [
       {

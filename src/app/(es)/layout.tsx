@@ -66,7 +66,10 @@ const jsonLd = {
         "A routine welfare check in the San Bernardino suburbs leads to a gruesome discovery. Detectives Joe Kirby and Lexi Taylor pursue a killer tied to a sinister symbol.",
       genre: ["Horror", "True Crime", "Found Footage", "Mockumentary"],
       contentRating: "R",
-      datePublished: "2025-01-01T00:00:00+00:00",
+      // US wide theatrical release (Roadside Attractions / Saban Films), confirmed by
+      // Alex 2026-08-15 against the Wikipedia article this schema already cites in sameAs.
+      // Replaces a synthetic 2025-01-01 placeholder. World premiere was Fantastic Fest 2024.
+      datePublished: "2025-08-08",
       duration: "PT134M",
       director: {
         "@type": "Person",
