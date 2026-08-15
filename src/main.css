@@ -280,34 +280,14 @@ section:first-of-type {
   margin-top: 18px;
 }
 
-/* ── Mobile fold fix ──────────────────────────────────────────────────────
- * Measured 2026-08-13 at 375×812 and confirmed on Alex's phone 2026-08-15:
- * the first screen held the poster and the poster-toggle buttons and nothing
- * else — the film's TITLE sat clipped at the fold and the CTA row ~143px
- * below it. On a Persuade surface the first screen must carry the name and a
- * way to act. Height-capping the poster (width follows via auto, the 600×900
- * attrs preserve the ratio) pulls kicker, title and CTAs above the fold on a
- * ~812px phone; on shorter phones the title still lands fully visible.
- * The !important matches the one on the base .hero padding rule it overrides.
- * Duplicated in critical.css — edit both. */
-@media (max-width: 520px) {
-  .hero {
-    padding-top: 92px !important;
-  }
-  .hero img {
-    width: auto;
-    max-height: 36vh;
-    max-width: 80vw;
-  }
-  /* .hero prefix beats the base .posterToggle rule, which sits LATER in this
-     file and would win a same-specificity cascade tie. */
-  .hero .posterToggle {
-    margin-top: 12px;
-  }
-  .hero h1 {
-    margin-top: 12px;
-  }
-}
+/* ── Mobile hero: poster-first, BY DECISION ─────────────────────────────
+ * A 2026-08-15 fix height-capped the poster at 36vh so the title and CTAs sat
+ * above the fold (the 2026-08-13 critique's P0). Alex reviewed it live on his
+ * phone and reverted it the same day: "way better the way it was before."
+ * The poster-dominant first screen IS the intended design — the poster is the
+ * film's face, and the title/CTAs sitting below the fold on phones is a
+ * deliberate trade, not a defect. Do not re-flag it, do not re-fix it; see
+ * .impeccable/critique/ignore.md. Duplicated in the sibling stylesheet. */
 .heroGrid {
   display: grid;
   grid-template-columns: 525px 1fr;
