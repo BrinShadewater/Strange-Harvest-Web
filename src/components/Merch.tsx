@@ -1,7 +1,7 @@
 "use client";
 
 import { useSitecopy } from "./LanguageProvider";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   getProducts,
   getCheckoutUrl,
@@ -22,7 +22,42 @@ export default function Merch() {
   // They used to share the "something broke on our end" message.
   const [isEmpty, setIsEmpty] = useState(false);
 
+  // Fetch only when the visitor nears the section. A 2026-08-15 bundle profile
+  // found this effect firing on mount: a Shopify round-trip, JSON parse and
+  // 12-card render for a section far below the fold, during the load window
+  // where the field INP (378 ms) is measured. The `dynamic()` split in
+  // ClientPage.tsx does NOT defer this — Next preloads dynamic chunks for
+  // hydration, so the code and the fetch both ran at load anyway.
+  //
+  // Same IntersectionObserver discipline as the press carousel: fails OPEN
+  // (no IO support -> fetch immediately, behaviour identical to before), and
+  // the 1200px rootMargin starts the fetch well before the section is visible,
+  // so a scrolling visitor still sees products, not the loading state. A
+  // #shop deep link lands inside the margin and fires at once.
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [near, setNear] = useState(false);
+
   useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setNear(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setNear(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "1200px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!near) return;
     let cancelled = false;
 
     const fetchProducts = async () => {
@@ -49,10 +84,10 @@ export default function Merch() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [near]);
 
   return (
-    <section className="merch" id="shop">
+    <section ref={sectionRef} className="merch" id="shop">
       <h2>{merch.title}</h2>
       <p className="merchBlurb">{merch.blurb}</p>
       
