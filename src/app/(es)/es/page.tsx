@@ -11,9 +11,14 @@ export const metadata: Metadata = {
     "Sitio oficial de Strange Harvest (2025), mockumentary de terror. Mira el tráiler, lee reseñas y consulta dónde ver la película.",
   alternates: {
     canonical: BASE_URL + "/es",
+    // Must mirror (en)/layout.tsx exactly: hreflang pairs are ignored unless both
+    // pages declare the same set.
     languages: {
       en: BASE_URL + "/",
+      "en-US": BASE_URL + "/",
+      "en-GB": BASE_URL + "/",
       es: BASE_URL + "/es",
+      "es-ES": BASE_URL + "/es",
       "x-default": BASE_URL + "/",
     },
   },

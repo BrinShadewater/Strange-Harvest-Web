@@ -45,7 +45,7 @@ export default function ClientPage({
         <SymbolDivider />
         <Watch initialCountry={initialCountry} />
         <SymbolDivider />
-        <HomeVideo />
+        <HomeVideo initialCountry={initialCountry} />
         <SymbolDivider />
         <Merch />
         <SymbolDivider />

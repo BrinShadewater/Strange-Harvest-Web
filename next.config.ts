@@ -10,7 +10,7 @@ const CSP = [
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self' data:",
   "img-src 'self' data: blob: https:",
-  "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://va.vercel-scripts.com https://vitals.vercel-insights.com https://ipapi.co https://*.myshopify.com https://*.shopify.com",
+  "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://va.vercel-scripts.com https://vitals.vercel-insights.com https://ipapi.co https://*.myshopify.com https://*.shopify.com",
   "media-src 'self' https:",
   "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
 ].join("; ");
@@ -41,7 +41,9 @@ const nextConfig: NextConfig = {
       {
         source: "/images/(.*)",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          // Not content-hashed, so not immutable: the posters were re-encoded in place
+          // in August and repeat visitors would have kept the old bytes for a year.
+          { key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=2592000" },
         ],
       },
     ];

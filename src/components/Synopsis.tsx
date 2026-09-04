@@ -104,7 +104,7 @@ export default function Synopsis() {
             className="synopsisLightboxClose"
             type="button"
             onClick={() => setExpandedImage(null)}
-            aria-label="Close expanded image"
+            aria-label={synopsis.closeImageAria}
           >
             ×
           </button>
@@ -129,7 +129,7 @@ export default function Synopsis() {
             className="synopsisLightboxClose"
             type="button"
             onClick={() => setExpandedStat(null)}
-            aria-label="Close expanded stat"
+            aria-label={synopsis.closeStatAria}
           >
             ×
           </button>

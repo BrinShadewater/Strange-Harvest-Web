@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export const runtime = "edge"; // Run at the edge for fastest geo header access
-
 export async function GET(request: NextRequest) {
   const headers = request.headers;
 

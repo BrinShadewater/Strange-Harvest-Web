@@ -19,13 +19,16 @@
  *  - Committing them keeps deploys deterministic: robots.txt advertises all
  *    three sitemaps, so a build that somehow skipped this script would still
  *    serve the last known-good files rather than 404.
- *  - It costs no git noise. lastmod comes from source-file mtimes, not the
- *    clock, so the output is byte-identical across repeat builds. Verified by
- *    running two consecutive builds and confirming a clean tree.
+ *  - It costs no git noise. lastmod comes from git history, not the clock or
+ *    file mtimes, so the output is byte-identical across repeat builds AND
+ *    across clones. (mtimes were the first attempt; a fresh checkout stamps
+ *    every file with the clone time, so each Vercel build shipped "everything
+ *    changed today". Caught in the 2026-09-04 review.)
  *
  * If you change page structure, run `npm run sitemaps` and commit the result.
  */
 
+import { execFileSync } from "node:child_process";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
@@ -33,21 +36,46 @@ const ROOT = process.cwd();
 const PUBLIC_DIR = path.join(ROOT, "public");
 
 const toDate = (value) => new Date(value).toISOString().slice(0, 10);
+const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
+
+const git = (...args) => {
+  try {
+    return execFileSync("git", args, { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
+  } catch {
+    return null; // no git on PATH, no .git directory, or the path is unknown to git
+  }
+};
+
+// The committed sitemap's own <lastmod> per <loc>: the fallback when git cannot
+// answer (Vercel builds without a .git directory, a shallow clone that predates
+// the last change). Better the last known-good date than the build clock.
+const previousLastMods = async (fileName) => {
+  const map = new Map();
+  try {
+    const xml = await fs.readFile(path.join(PUBLIC_DIR, fileName), "utf8");
+    for (const m of xml.matchAll(/<loc>([^<]+)<\/loc>[\s\S]*?<lastmod>([^<]+)<\/lastmod>/g)) {
+      map.set(m[1], m[2]);
+    }
+  } catch {
+    // First run, or the file is gone: nothing to fall back to.
+  }
+  return map;
+};
 
 // lastmod sources must be files that still exist and still represent the page.
 // The home-page entries used to stat the root index.html, a Vite-era leftover that
 // Next never served; when it went, this would have silently fallen back to the
 // build date for every home-page lastmod.
-const resolveLastMod = async (relativePath) => {
-  const candidates = [path.join(ROOT, relativePath), path.join(PUBLIC_DIR, relativePath)];
-  for (const candidate of candidates) {
-    try {
-      const stat = await fs.stat(candidate);
-      if (stat.isFile()) return toDate(stat.mtime);
-    } catch {
-      // Try next candidate.
-    }
-  }
+//
+// Order: an uncommitted edit to the file means it changes today; otherwise the
+// date of the last commit that touched it; otherwise the committed sitemap's
+// value; and only then the clock.
+const resolveLastMod = async (relativePath, previous) => {
+  const dirty = git("status", "--porcelain", "--", relativePath);
+  if (dirty) return toDate(Date.now());
+  const committed = git("log", "-1", "--format=%cs", "--", relativePath);
+  if (committed && ISO_DAY.test(committed)) return committed;
+  if (previous && ISO_DAY.test(previous)) return previous;
   return toDate(Date.now());
 };
 
@@ -183,16 +211,18 @@ const buildVideoSitemapXml = (lastModDate) => `<?xml version="1.0" encoding="UTF
 `;
 
 const main = async () => {
+  const previous = await previousLastMods("sitemap.xml");
   const withDates = await Promise.all(
     pageEntries.map(async (entry) => ({
       ...entry,
-      lastmod: await resolveLastMod(entry.file),
+      lastmod: await resolveLastMod(entry.file, previous.get(entry.loc)),
     }))
   );
   const sitemapXml = buildSitemapXml(withDates);
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap.xml"), sitemapXml, "utf8");
 
-  const videoLastMod = await resolveLastMod("src/app/(en)/page.tsx");
+  const previousVideo = await previousLastMods("video-sitemap.xml");
+  const videoLastMod = await resolveLastMod("src/app/(en)/page.tsx", previousVideo.get("https://strangeharvestmovie.com/"));
   const videoSitemapXml = buildVideoSitemapXml(videoLastMod);
   await fs.writeFile(path.join(PUBLIC_DIR, "video-sitemap.xml"), videoSitemapXml, "utf8");
 };

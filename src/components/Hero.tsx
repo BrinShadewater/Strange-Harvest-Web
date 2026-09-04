@@ -308,7 +308,7 @@ export default function Hero({ initialVariant = "red" }: { initialVariant?: Them
               </svg>
             </a>
           </div>
-          <div className="posterToggle" role="group" aria-label="Choose poster version">
+          <div className="posterToggle" role="group" aria-label={hero.posterToggle.groupAria}>
             <button
               type="button"
               className={`posterToggleBtn ${!isFestivalPoster ? "active" : ""}`}

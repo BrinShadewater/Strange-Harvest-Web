@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from 'react';
-import { HERO_LOGO_SRC } from '../constants/assets';
+import { HERO_LOGO_SRC_PARTICLE } from '../constants/assets';
 
 interface Particle {
   x: number;
@@ -78,7 +78,7 @@ export default function ParticleBackground() {
 
     // Load symbol image
     const img = new Image();
-    img.src = HERO_LOGO_SRC;
+    img.src = HERO_LOGO_SRC_PARTICLE;
     img.onload = () => {
       imageRef.current = img;
     };

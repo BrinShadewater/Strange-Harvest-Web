@@ -216,21 +216,18 @@ export default function CookieConsent() {
             <button
               onClick={handleEssentialOnly}
               className="cookieConsentButton cookieConsentEssential"
-              aria-label="Only essential cookies"
             >
               {cookieConsent.essentialOnlyButton}
             </button>
             <button
               onClick={handleManagePreferences}
               className="cookieConsentButton cookieConsentManage"
-              aria-label="Manage cookie preferences"
             >
               {cookieConsent.manageButton}
             </button>
             <button
               onClick={handleAcceptAll}
               className="cookieConsentButton cookieConsentAccept"
-              aria-label="Accept all cookies"
             >
               {cookieConsent.acceptAllButton}
             </button>
@@ -249,7 +246,7 @@ export default function CookieConsent() {
               <button
                 onClick={handleClosePreferences}
                 className="cookiePreferencesClose"
-                aria-label="Close preferences"
+                aria-label={cookieConsent.preferences.closeAria}
               >
                 ×
               </button>
@@ -276,7 +273,7 @@ export default function CookieConsent() {
                       type="checkbox"
                       checked={true}
                       disabled
-                      aria-label="Essential cookies (required)"
+                      aria-label={cookieConsent.preferences.categories.essential.label}
                     />
                     <span className="cookieToggleSlider"></span>
                   </label>
@@ -299,7 +296,7 @@ export default function CookieConsent() {
                       type="checkbox"
                       checked={consent.analytics}
                       onChange={() => toggleConsent("analytics")}
-                      aria-label="Analytics cookies"
+                      aria-label={cookieConsent.preferences.categories.analytics.label}
                     />
                     <span className="cookieToggleSlider"></span>
                   </label>
@@ -322,7 +319,7 @@ export default function CookieConsent() {
                       type="checkbox"
                       checked={consent.marketing}
                       onChange={() => toggleConsent("marketing")}
-                      aria-label="Marketing cookies"
+                      aria-label={cookieConsent.preferences.categories.marketing.label}
                     />
                     <span className="cookieToggleSlider"></span>
                   </label>
@@ -345,7 +342,7 @@ export default function CookieConsent() {
                       type="checkbox"
                       checked={consent.preferences}
                       onChange={() => toggleConsent("preferences")}
-                      aria-label="Preference cookies"
+                      aria-label={cookieConsent.preferences.categories.preferences.label}
                     />
                     <span className="cookieToggleSlider"></span>
                   </label>
