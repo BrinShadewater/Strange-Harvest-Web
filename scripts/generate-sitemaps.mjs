@@ -46,9 +46,25 @@ const git = (...args) => {
   }
 };
 
+// Vercel builds from a shallow clone (depth 10 on 2026-09-04). In one, `git log -1 --
+// file` for a file untouched within the depth returns the boundary commit, whose date
+// is whatever happened to be at the edge of the clone, not when the file changed.
+// Production shipped 2026-08-15 for five pages that last changed on 08-09 and 08-13.
+// The shallow file lists those boundary commits; a date from one is not evidence.
+const shallowBoundary = async () => {
+  if (git("rev-parse", "--is-shallow-repository") !== "true") return new Set();
+  const shallowFile = git("rev-parse", "--git-path", "shallow");
+  try {
+    const listed = await fs.readFile(path.resolve(ROOT, shallowFile ?? ""), "utf8");
+    return new Set(listed.split(/\r?\n/).filter(Boolean));
+  } catch {
+    return new Set();
+  }
+};
+
 // The committed sitemap's own <lastmod> per <loc>: the fallback when git cannot
-// answer (Vercel builds without a .git directory, a shallow clone that predates
-// the last change). Better the last known-good date than the build clock.
+// answer (no .git directory, or a shallow clone whose history stops before the
+// last change). Better the last known-good date than the build clock.
 const previousLastMods = async (fileName) => {
   const map = new Map();
   try {
@@ -68,13 +84,16 @@ const previousLastMods = async (fileName) => {
 // build date for every home-page lastmod.
 //
 // Order: an uncommitted edit to the file means it changes today; otherwise the
-// date of the last commit that touched it; otherwise the committed sitemap's
-// value; and only then the clock.
-const resolveLastMod = async (relativePath, previous) => {
+// date of the last commit that touched it, unless that commit is a shallow-clone
+// boundary; otherwise the committed sitemap's value; and only then the clock.
+const resolveLastMod = async (relativePath, previous, boundary) => {
   const dirty = git("status", "--porcelain", "--", relativePath);
   if (dirty) return toDate(Date.now());
-  const committed = git("log", "-1", "--format=%cs", "--", relativePath);
-  if (committed && ISO_DAY.test(committed)) return committed;
+  const committed = git("log", "-1", "--format=%cs %H", "--", relativePath);
+  if (committed) {
+    const [date, sha] = committed.split(" ");
+    if (ISO_DAY.test(date) && !boundary.has(sha)) return date;
+  }
   if (previous && ISO_DAY.test(previous)) return previous;
   return toDate(Date.now());
 };
@@ -211,18 +230,23 @@ const buildVideoSitemapXml = (lastModDate) => `<?xml version="1.0" encoding="UTF
 `;
 
 const main = async () => {
+  const boundary = await shallowBoundary();
   const previous = await previousLastMods("sitemap.xml");
   const withDates = await Promise.all(
     pageEntries.map(async (entry) => ({
       ...entry,
-      lastmod: await resolveLastMod(entry.file, previous.get(entry.loc)),
+      lastmod: await resolveLastMod(entry.file, previous.get(entry.loc), boundary),
     }))
   );
   const sitemapXml = buildSitemapXml(withDates);
   await fs.writeFile(path.join(PUBLIC_DIR, "sitemap.xml"), sitemapXml, "utf8");
 
   const previousVideo = await previousLastMods("video-sitemap.xml");
-  const videoLastMod = await resolveLastMod("src/app/(en)/page.tsx", previousVideo.get("https://strangeharvestmovie.com/"));
+  const videoLastMod = await resolveLastMod(
+    "src/app/(en)/page.tsx",
+    previousVideo.get("https://strangeharvestmovie.com/"),
+    boundary
+  );
   const videoSitemapXml = buildVideoSitemapXml(videoLastMod);
   await fs.writeFile(path.join(PUBLIC_DIR, "video-sitemap.xml"), videoSitemapXml, "utf8");
 };
