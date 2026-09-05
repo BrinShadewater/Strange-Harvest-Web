@@ -84,7 +84,7 @@ public/images/       Posters, stills, press, review, watch, and social assets
 - `PRODUCT.md` and `DESIGN.md`
 - `DEPLOYMENT-CHECKLIST.md`
 - `ANALYTICS-SETUP.md`
-- `GEOLOCATION-IMPLEMENTATION.md` and `GEOLOCATION-QUICK-REFERENCE.md`
+- `GEOLOCATION-IMPLEMENTATION.md` and `GEOLOCATION-QUICK-REFERENCE.md` (historical: they describe the Netlify-era implementation; the current geo path is `src/services/geoServer.ts` reading the Vercel header, with `src/app/api/geo/route.ts` as the client fallback)
 - `COOKIE-CONSENT-COMPLETE.md`, `COOKIE-CONSENT-IMPLEMENTATION.md`, `COOKIE-CONSENT-UI-REFERENCE.md`
 - `SITE-AUDIT.md` and the dated `ACTION-PLAN-*.md` files — the SEO audits and what was done about them
 
