@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useSitecopy } from "./LanguageProvider";
-import { detectRegion } from "../services/geolocation";
+import { detectRegion, geoFromCountry } from "../services/geolocation";
 
 function getAmazonHomeVideoLink(countryCode: string, fallbackHref: string): string {
   const query = encodeURIComponent("Strange Harvest Stuart Ortiz DVD");
@@ -40,11 +40,18 @@ function getAmazonHomeVideoLink(countryCode: string, fallbackHref: string): stri
   }
 }
 
-export default function HomeVideo() {
+export default function HomeVideo({ initialCountry = "XX" }: { initialCountry?: string }) {
   const { homeVideo } = useSitecopy();
-  const [homeVideoHref, setHomeVideoHref] = useState(homeVideo.cta.href);
+  // Same contract as Watch: the server already resolved the country from the edge
+  // headers, so render the right marketplace link immediately and skip the client
+  // round trip (sessionStorage, /api/geo, then ipapi.co) that ran on every visit.
+  const serverGeo = geoFromCountry(initialCountry);
+  const [homeVideoHref, setHomeVideoHref] = useState(
+    serverGeo.detected ? getAmazonHomeVideoLink(serverGeo.country, homeVideo.cta.href) : homeVideo.cta.href
+  );
 
   useEffect(() => {
+    if (serverGeo.detected) return;
     let isMounted = true;
 
     async function setGeoLink() {
@@ -65,7 +72,7 @@ export default function HomeVideo() {
     return () => {
       isMounted = false;
     };
-  }, [homeVideo.cta.href]);
+  }, [homeVideo.cta.href, serverGeo.detected]);
 
   return (
     <section className="homeVideo" id="home-video">

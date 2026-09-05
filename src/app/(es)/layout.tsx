@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { preload } from "react-dom";
 import { Assistant } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { PosterPreload } from "@/components/PosterPreload";
+import { resolvePosterVariant } from "@/services/posterVariant";
 import DeferredCSS from "@/components/DeferredCSS";
 // critical.css covers above-fold rules only (header, hero, CTAs, ~3KB compressed).
 // The full stylesheet is loaded non-blocking by <DeferredCSS /> after first paint.
@@ -40,7 +42,8 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
   other: {
     "theme-color": "#0a0a0a",
-    "article:published_time": "2025-01-01T00:00:00Z",
+    // US theatrical release, same date as datePublished in the JSON-LD below.
+    "article:published_time": "2025-08-08T00:00:00Z",
     "article:modified_time": "2026-03-18T00:00:00Z",
     "article:author": "Strange Harvest Film",
     "article:section": "Entertainment",
@@ -163,7 +166,15 @@ const jsonLd = {
   ],
 };
 
-export default function EsRootLayout({ children }: { children: React.ReactNode }) {
+export default async function EsRootLayout({ children }: { children: React.ReactNode }) {
+  // Hero toggles this class in an effect, which meant a blue-variant visitor saw the
+  // red theme at first paint and a flash to blue after hydration. Same source of
+  // truth as PosterPreload, so the preloaded poster and the theme always agree.
+  const { variant } = await resolvePosterVariant();
+  // Start the main.css fetch at parse time; <DeferredCSS /> then applies it from
+  // cache instead of waiting for the JS bundle to download and hydrate first.
+  // (A literal <link rel="preload"> in <head> was emitted twice by React's hoisting.)
+  preload("/styles/main.css", { as: "style" });
   return (
     <html lang="es" className={assistant.variable}>
       <head>
@@ -189,7 +200,7 @@ export default function EsRootLayout({ children }: { children: React.ReactNode }
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>
+      <body className={variant === "blue" ? "festival-theme" : undefined}>
         {children}
         <DeferredCSS />
         <SpeedInsights />

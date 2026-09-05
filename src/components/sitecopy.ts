@@ -24,6 +24,7 @@ const sitecopyEn = {
     preferences: {
       title: "Cookie Preferences",
       description: "Choose which types of cookies you want to allow. Essential cookies cannot be disabled as they are necessary for the site to function.",
+      closeAria: "Close preferences",
       categories: {
         essential: {
           label: "Essential Cookies",
@@ -81,6 +82,7 @@ const sitecopyEn = {
     posterToggle: {
       official: "Official Poster",
       festival: "Festival Poster",
+      groupAria: "Choose poster version",
     },
     ctas: {
       primary: { label: "Trailer", href: "#trailer" },
@@ -92,6 +94,8 @@ const sitecopyEn = {
 
   synopsis: {
     title: "About",
+    closeImageAria: "Close expanded image",
+    closeStatAria: "Close expanded stat",
     body: [
       `A routine welfare check in the San Bernardino suburbs ends in horror. A family of three has been bound, bled, and posed beneath a strange symbol written in blood on the ceiling. Detectives Joe Kirby and Lexi Taylor recognize the mark. It’s the calling card of a killer from 15 years ago — and he’s back.`,
       `Mr. Shiny doesn’t stop. New crime scenes surface fast. One victim is found trapped in a swimming pool with live leeches. Another is ritualistically flayed and left on display in a public park.`,
@@ -633,6 +637,7 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
       title: "Preferencias de Cookies",
       description:
         "Elige qué tipos de cookies deseas permitir. Las cookies esenciales no se pueden desactivar porque son necesarias para el funcionamiento del sitio.",
+      closeAria: "Cerrar preferencias",
       categories: {
         essential: {
           label: "Cookies esenciales",
@@ -679,6 +684,7 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
     posterToggle: {
       official: "Poster Oficial",
       festival: "Poster Festival",
+      groupAria: "Elegir versión del poster",
     },
   },
   trailer: {
@@ -692,6 +698,8 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
   },
   synopsis: {
     title: "Sinopsis",
+    closeImageAria: "Cerrar imagen ampliada",
+    closeStatAria: "Cerrar dato ampliado",
     body: [
       "Un control de bienestar de rutina en los suburbios de San Bernardino termina en horror. Una familia de tres ha sido atada, desangrada y colocada bajo un extraño símbolo escrito con sangre en el techo. Los detectives Joe Kirby y Lexi Taylor reconocen la marca. Es la firma de un asesino de hace 15 años — y ha regresado.",
       "Mr. Shiny no se detiene. Nuevas escenas del crimen aparecen rápidamente. Una víctima es encontrada atrapada en una piscina con sanguijuelas vivas. Otra es desollada ritualmente y expuesta en un parque público.",
