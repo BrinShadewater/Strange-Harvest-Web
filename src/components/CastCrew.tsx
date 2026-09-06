@@ -25,6 +25,9 @@ export default function CastCrew() {
       <div className="castCrewContent">
         {/* Lead Detectives */}
         <div className="leadDetectives">
+          {/* The cards carry no aria-label: their visible text (name, role or character) is the
+              accessible name. "View X on IMDB" reordered and replaced it, so voice control and screen
+              readers named a different link than the one on screen, in English on the Spanish page. */}
           <h3 className="subsectionTitle">{castCrew.leadDetectives.title}</h3>
           <div className="detectivesGrid">
             {castCrew.leadDetectives.members.map((member, idx) => (
@@ -34,7 +37,6 @@ export default function CastCrew() {
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="detectiveCard"
-                aria-label={`View ${member.name} on IMDB`}
               >
                 <img src={member.image} alt={member.imageAlt} className="detectiveImage" loading="lazy" decoding={"async"} width={400} height={300} />
                 <h4 className="detectiveName">{member.name}</h4>
@@ -55,7 +57,6 @@ export default function CastCrew() {
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="castName"
-                aria-label={`View ${member.name} on IMDB`}
               >
                 <span className="castPersonName">{member.name}</span>
                 <span className="castCharacterName">{member.character}</span>
@@ -82,7 +83,6 @@ export default function CastCrew() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="crewMember"
-                      aria-label={`View ${member.name} on IMDB`}
                     >
                       {member.name}
                     </a>
