@@ -4,6 +4,7 @@ Notable public-facing changes to Strange Harvest Web are tracked here.
 
 ## Unreleased
 
+- The synopsis stat buttons are named by their visible text; the old `aria-label` reordered the words, so voice control and screen readers heard a different button than the one on screen (#61).
 - Added repository documentation, contribution guidance, security notes, issue templates, and pull request template.
 - Added project brief and maintenance documentation for public-site operations.
 - Added more expressive README headings and voice while keeping the documentation professional.

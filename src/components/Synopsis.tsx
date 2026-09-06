@@ -89,7 +89,9 @@ export default function Synopsis() {
               className="synopsisStat synopsisStatButton"
               type="button"
               onClick={() => setExpandedStat({ value: stat.value, label: stat.label, tone: stat.tone })}
-              aria-label={`Expand stat: ${stat.label} ${stat.value}`}
+              // No aria-label: the visible value + label is the name. "Expand stat: <label> <value>"
+              // reordered the words, so voice control and screen readers heard a different button
+              // than the one on screen (label-content-name-mismatch); "button" already says it acts.
             >
               <div className={`statValue${stat.tone === "warning" ? " statValueWarning" : ""}`}>{stat.value}</div>
               <div className="statLabel">{stat.label}</div>
