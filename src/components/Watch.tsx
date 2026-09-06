@@ -76,7 +76,6 @@ export default function Watch({ initialCountry = "XX" }: { initialCountry?: stri
                 href={p.href}
                 target={p.href.startsWith("http") ? "_blank" : undefined}
                 rel={p.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                aria-label={`${watch.ariaWatchOn} ${p.name}`}
               >
                 <img src={p.icon} alt="" className="watchIcon" loading={"lazy"} decoding={"async"} width={p.iconWidth} height={p.iconHeight} />
                 <div className="watchName">{p.name}</div>
@@ -101,7 +100,6 @@ export default function Watch({ initialCountry = "XX" }: { initialCountry?: stri
                 href={p.href}
                 target={p.href.startsWith("http") ? "_blank" : undefined}
                 rel={p.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                aria-label={`${watch.ariaRentBuyOn} ${p.name}`}
               >
                 <img src={p.icon} alt="" className="watchIcon" loading={"lazy"} decoding={"async"} width={p.iconWidth} height={p.iconHeight} />
                 <div className="watchName">{p.name}</div>
@@ -125,7 +123,6 @@ export default function Watch({ initialCountry = "XX" }: { initialCountry?: stri
                 href={p.href}
                 target={p.href.startsWith("http") ? "_blank" : undefined}
                 rel={p.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                aria-label={`${watch.ariaRentBuyOn} ${p.name}`}
               >
                 <img src={p.icon} alt="" className="watchIcon" loading={"lazy"} decoding={"async"} width={p.iconWidth} height={p.iconHeight} />
                 <div className="watchName">{p.name}</div>
