@@ -44,10 +44,14 @@ export default function Footer() {
               the English page, and the aria-label overrode the one string that
               WAS translated. */}
           <a href={footer.privacyHref} className="footerPrivacyLink">{footer.privacyLabel}</a>
+          {/* No aria-label. WCAG 2.5.3 (Label in Name) wants the accessible name to contain
+              the visible text, because speech-input users say what they see: "Cookie Settings"
+              could not be spoken while the name was "Manage cookie preferences". The visible
+              label is clear on its own, which is the same call already made on the synopsis
+              stat buttons. */}
           <button
             onClick={handleCookieSettings}
             className="footerCookieSettings"
-            aria-label={footer.cookieSettingsAria}
           >
             {footer.cookieSettingsLabel}
           </button>
