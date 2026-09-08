@@ -575,7 +575,6 @@ const sitecopyEn = {
     copyright: "© 2024 Strange Harvest. All rights reserved.",
     musicCredit: "Adorable Damage & Pathogen Pictures",
     cookieSettingsLabel: "Cookie Settings",
-    cookieSettingsAria: "Manage cookie preferences",
     privacyLabel: "Privacy Policy",
     privacyHref: "/privacy.html",
     disclaimer:
@@ -777,7 +776,6 @@ const sitecopyEs: DeepPartial<typeof sitecopyEn> = {
     // The aria-label was hardcoded English in Footer.tsx and OVERRODE the
     // translated visible label, so screen-reader users on /es heard "Manage
     // cookie preferences" while sighted users read "Configuración de cookies".
-    cookieSettingsAria: "Gestionar preferencias de cookies",
     privacyLabel: "Política de Privacidad",
     privacyHref: "/privacy.html?lang=es",
     disclaimer:
