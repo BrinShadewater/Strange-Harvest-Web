@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MAIN_CSS_HREF } from "../../generated/cssHref";
 import { preload } from "react-dom";
 import { Assistant } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -174,7 +175,7 @@ export default async function EsRootLayout({ children }: { children: React.React
   // Start the main.css fetch at parse time; <DeferredCSS /> then applies it from
   // cache instead of waiting for the JS bundle to download and hydrate first.
   // (A literal <link rel="preload"> in <head> was emitted twice by React's hoisting.)
-  preload("/styles/main.css", { as: "style" });
+  preload(MAIN_CSS_HREF, { as: "style" });
   return (
     <html lang="es" className={assistant.variable}>
       <head>
@@ -191,8 +192,7 @@ export default async function EsRootLayout({ children }: { children: React.React
             This costs nothing for the 99% who have JS and keeps the page styled
             for the rest. */}
         <noscript>
-          {/* eslint-disable-next-line @next/next/no-css-tags */}
-          <link rel="stylesheet" href="/styles/main.css" />
+          <link rel="stylesheet" href={MAIN_CSS_HREF} />
         </noscript>
         {/* JSON-LD Structured Data */}
         <script
