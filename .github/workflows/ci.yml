@@ -25,5 +25,18 @@ jobs:
         # behind. It matters more now that the filename is content-hashed: the committed CSS,
         # its hash and src/generated/cssHref.ts have to agree, and this is what says so.
         run: npm run check:css
+      - name: Lint
+        # eslint runs nowhere. Not here, and not during `next build` either: Next 16 dropped
+        # the build-time ESLint integration, so the `lint` script has been sitting in
+        # package.json with nothing invoking it. It exits 0 today (18 warnings, 0 errors), so
+        # this adds error-level cover -- react-hooks and Next correctness rules -- rather than
+        # enforcing the warnings, which are deliberate <img> choices on this site.
+        run: npm run lint
+      - name: Responsive image variants are present
+        # generate-image-variants.mjs --check is a real guard with a real failure mode, wired
+        # into package.json and reached by nothing. Its own message says what a miss costs:
+        # bts.html serving full-size originals into an ~894px box. All 69 sources pass today
+        # and every variant is committed, so this is cover, not a new chore.
+        run: npm run check:images
       - name: Build
         run: npm run build
