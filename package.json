@@ -8,6 +8,7 @@
   "scripts": {
     "sync:css": "node scripts/sync-css.mjs",
     "check:css": "node scripts/sync-css.mjs --check",
+    "check:deploy": "node scripts/check-deploy-config.mjs",
     "images:bts": "node scripts/generate-image-variants.mjs",
     "check:images": "node scripts/generate-image-variants.mjs --check",
     "sitemaps": "node scripts/generate-sitemaps.mjs",
