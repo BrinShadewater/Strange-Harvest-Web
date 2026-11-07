@@ -25,6 +25,12 @@ jobs:
         # behind. It matters more now that the filename is content-hashed: the committed CSS,
         # its hash and src/generated/cssHref.ts have to agree, and this is what says so.
         run: npm run check:css
+      - name: Deploy config
+        # vercel.json and next.config.ts together are how this site is served — the cache
+        # policy, five security headers, and the CSP. Nothing referenced either as a check, so
+        # both could be deleted with every other gate still green. Static and instant, so it
+        # runs before the build.
+        run: npm run check:deploy
       - name: Lint
         # eslint runs nowhere. Not here, and not during `next build` either: Next 16 dropped
         # the build-time ESLint integration, so the `lint` script has been sitting in
